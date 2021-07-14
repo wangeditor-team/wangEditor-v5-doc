@@ -1,0 +1,15 @@
+:root {
+    --c-brand: #4a7ce5;
+    --c-brand-light: #4474c8;
+    --c-tip: rgb(145, 213, 255);
+
+    .icon.outbound {
+        color: var(--c-text-accent);
+    }
+}
+
+html.dark {
+    --c-brand: #4a7ce5;
+    --c-brand-light: #4474c8;
+    --c-tip: rgb(145, 213, 255);
+}

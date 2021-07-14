@@ -1,0 +1,423 @@
+# 菜单配置
+
+本文是各个菜单项的详细配置。如想要自定义工具栏的菜单（隐藏某些菜单、排序、分组等），请参考[工具栏配置](/guide/toolbar-config.html)。
+
+## 通用方法
+
+### 确定 menu key
+
+要配置哪个菜单，首先要知道这个菜单的 key 。执行 `editor.getAllMenuKeys()` 可获取编辑器所有菜单，从中找到自己想要的菜单 key 即可。
+
+### 获取菜单的默认配置
+
+找到菜单 key 之后，可以先看看菜单的当前配置，再自行修改。
+
+```js
+editor.getMenuConfig('uploadImage') // 获取 uploadImage 的当前配置
+```
+
+### 修改配置
+
+```js
+const editorConfig = { MENU_CONF: {} } // 初始化 MENU_CONF 属性
+
+// 修改 uploadImage 菜单配置
+editorConfig.MENU_CONF['uploadImage'] = {
+    server: '/api/upload-image',
+    fieldName: 'custom-field-name'
+    // 继续写其他配置...
+    
+    //【注意】不需要修改的不用写，wangEditor 会去 merge 当前其他配置
+}
+
+// 修改 otherMenuKey 菜单配置
+editorConfig.MENU_CONF['otherMenuKey'] = {
+    // 配置
+}
+
+// 创建编辑器
+const editor = wangEditor.createEditor({
+  textareaSelector: '#editor-container',
+  config: editorConfig,
+  content: [],
+  mode: 'default'
+})
+```
+
+:::tip
+请一定在 `createEditor` 之前完成菜单配置的修改，否则可能无效。
+:::
+
+## 颜色
+
+```js
+const editorConfig = { MENU_CONF: {} }
+
+// 文字颜色
+editorConfig.MENU_CONF['color'] = {
+    colors: ['#000', '#333', '#666']
+}
+
+// 背景色
+editorConfig.MENU_CONF['bgColor'] = {
+    colors: ['#000', '#333', '#666']
+}
+
+// 执行 createEditor
+```
+
+## 字号
+
+```js
+const editorConfig = { MENU_CONF: {} }
+
+editorConfig.MENU_CONF['fontSize'] = {
+    fontSizeList: ['12px', '16px', '24px', '40px']
+}
+
+// 执行 createEditor
+```
+
+## 字体
+
+```js
+const editorConfig = { MENU_CONF: {} }
+
+editorConfig.MENU_CONF['fontFamily'] = {
+    fontFamilyList: [
+        // 元素支持两种形式
+        //   1. 字符串；
+        //   2. { name: 'xxx', value: 'xxx' }
+
+        '黑体',
+        '楷体',
+        { name: '仿宋', value: '仿宋' },
+        'Arial',
+        'Tahoma',
+        'Verdana'
+    ]
+}
+
+// 执行 createEditor
+```
+
+## 行高
+
+```js
+const editorConfig = { MENU_CONF: {} }
+
+editorConfig.MENU_CONF['lineHeight'] = {
+    lineHeightList: ['1', '1.5', '2', '2.5']
+}
+
+// 执行 createEditor
+```
+
+## 表情
+
+```js
+const editorConfig = { MENU_CONF: {} }
+
+editorConfig.MENU_CONF['emotion'] = {
+    emotions: '😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉'.split(' ') // 数组
+}
+
+// 执行 createEditor
+```
+
+
+## 链接
+
+```js
+// 自定义校验链接
+function customCheckLinkFn(text, url) {
+    if (!url) {
+        return
+    }
+    if (url.indexOf('http') !== 0) {
+        return '链接必须以 http/https 开头'
+    }
+    return true
+
+    // 返回值有三种选择：
+    // 1. 返回 true ，说明检查通过，编辑器将正常插入链接
+    // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
+    // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
+}
+
+const editorConfig = { MENU_CONF: {} }
+
+// 插入链接
+editorConfig.MENU_CONF['insertLink'] = {
+    checkLink: customCheckLinkFn
+}
+// 更新链接
+editorConfig.MENU_CONF['updateLink'] = {
+    checkLink: customCheckLinkFn
+}
+
+// 执行 createEditor
+```
+
+## 图片
+
+```js
+// 自定义校验图片
+function customCheckImageFn(src, alt, url) {
+    if (!src) {
+        return
+    }
+    if (src.indexOf('http') !== 0) {
+        return '图片网址必须以 http/https 开头'
+    }
+    return true
+
+    // 返回值有三种选择：
+    // 1. 返回 true ，说明检查通过，编辑器将正常插入图片
+    // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
+    // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
+}
+
+const editorConfig = { MENU_CONF: {} }
+
+// 插入图片
+editorConfig.MENU_CONF['insertImage'] = {
+    onInsertedImage(src, alt, url) {
+        console.log('inserted image', src, alt, url)
+    },
+    checkImage: customCheckImageFn
+}
+// 编辑图片
+editorConfig.MENU_CONF['editImage'] = {
+    onUpdatedImage(src, alt, url) {
+        console.log('updated image', src, alt, url)
+    },
+    checkImage: customCheckImageFn
+}
+
+// 执行 createEditor
+```
+
+## 上传图片
+
+上传图片的配置比较复杂，拆分为几个部分来讲解。
+
+```js{4}
+const editorConfig = { MENU_CONF: {} }
+
+editorConfig.MENU_CONF['uploadImage'] = {
+    // 上传图片的配置
+}
+
+// 执行 createEditor
+```
+
+### 服务端地址
+
+**必填**，否则上传图片会报错。
+
+```js
+editorConfig.MENU_CONF['uploadImage'] = {
+     server: '/api/upload',
+}
+```
+
+【特别注意】服务端 response body 格式要求如下：
+
+```js
+// 成功的格式
+{
+    "errno": 0, // 注意：值是数字，不能是字符串
+    "data": [
+        {
+            "url": "xxx", // 图片 src ，必须
+            "alt": "yyy", // 图片描述文字，非必须
+            "href": "zzz" // 图片的链接，非必须
+        },
+        // 其他图片，也按这个格式
+    ]
+}
+
+// 失败的格式
+{
+    "errno": 1, // 只要不等于 0 就行
+    "message": '失败信息'
+}
+```
+
+:::tip
+如果你的服务端 response body 无法按照上述格式，可以使用下文的 `customInsert`
+:::
+
+
+### 基本配置
+
+```js
+editorConfig.MENU_CONF['uploadImage'] = {
+    // form-data fieldName ，默认值 'wangeditor-uploaded-file'
+    fieldName: 'your-custom-name',
+    // 单个文件的最大体积限制，默认为 2M
+    maxFileSize: 1 * 1024 * 1024, // 1M
+    // 最多可上传几个文件，默认为 100
+    maxNumberOfFiles: 10,
+    // 选择文件时的类型限制，默认为 ['image/*'] 。如不想限制，则设置为 []
+    allowedFileTypes: ['image/*'],
+    // 自定义上传参数，例如传递验证的 token 等。参数会被添加到 formData 中，一起上传到服务端。
+    meta: {
+        token: 'xxx',
+        otherKey: 'yyy'
+    },
+    // 自定义增加 http  header
+    headers: {
+        Accept: 'text/x-json',
+        otherKey: 'xxx'
+    },
+    // 跨域是否传递 cookie ，默认为 false
+    withCredentials: true,
+    // 超时时间，默认为 10 秒
+    timeout: 5 * 1000, // 5 秒
+
+    // 小于 xx 就插入 base64 格式（而不上传），默认为 0
+    base64LimitKB: 5 * 1024 // 5kb
+}
+```
+
+### 回调函数
+
+```js
+editorConfig.MENU_CONF['uploadImage'] = {
+    // 上传之前触发
+    onBeforeUpload(files) {
+        // files 即选中的文件列表
+
+        return files
+
+        // 返回值可选择：
+        // 1. 返回一个数组（files 或者 files 的一部分），则将上传返回结果中的文件
+        // 2. 返回 false ，则终止上传
+    },
+    // 上传进度的回调函数
+    onProgress(progress) {
+        // progress 是 0-100 的数字
+        console.log('progress', progress)
+    },
+    // 单个文件上传成功之后
+    onSuccess(file, res) {
+        console.log(`${file.name} 上传成功`, res)
+    },
+    // 单个文件上传失败
+    onFailed(file, res) {
+        console.log(`${file.name} 上传失败`, res)
+    },
+    // 上传错误，或者触发 timeout 超时
+    onError(file, err, res) {
+        console.log(`${file.name} 上传出错`, err, res)
+    },
+}
+```
+
+### 自定义功能
+
+如果你的服务端 response body 无法按照上文规定的格式，则无法插入图片，提示失败。
+
+但你可以使用 `customInsert` 来自定义插入图片。
+
+```js
+editorConfig.MENU_CONF['uploadImage'] = {
+    // 自定义插入图片
+    customInsert(res, insertFn) {
+        // res 即服务端的返回结果
+
+        // 从 res 中找到 url alt href ，然后插图图片
+        insertFn(url, alt, href)
+    }
+}
+```
+
+如果你不想使用 wangEditor 自带的上传功能，例如你要上传到阿里云 OSS 。<br>
+可以通过 `customUpload` 来自定义上传。
+
+```js
+editorConfig.MENU_CONF['uploadImage'] = {
+    // 自定义上传
+    customUpload(files, insertFn) {
+        // files 即选中的文件
+        // 自己实现上传，并得到图片 url alt href
+        // 最后插入图片
+        insertFn(url, alt, href)
+    }
+}
+```
+
+如果你不想使用 wangEditor 自带的选择文件功能，例如你有自己的图床，或者图片选择器。<br>
+可以通过 `customBrowseAndUpload` 来自己实现选择图片、上传图片，并插入图片。
+
+```js
+editorConfig.MENU_CONF['uploadImage'] = {
+    // 自定义选择图片
+    customBrowseAndUpload(insertFn) {
+        // 自己选择文件
+        // 自己上传文件，并得到图片 url alt href
+        // 最后插入图片
+        insertFn(url, alt, href)
+    }
+}
+```
+
+## 视频
+
+```js
+// 自定义校验视频
+function customCheckVideoFn(src) {
+    if (!src) {
+        return
+    }
+    if (src.indexOf('http') !== 0) {
+        return '视频地址必须以 http/https 开头'
+    }
+    return true
+
+    // 返回值有三种选择：
+    // 1. 返回 true ，说明检查通过，编辑器将正常插入视频
+    // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
+    // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
+}
+
+const editorConfig = { MENU_CONF: {} }
+
+editorConfig.MENU_CONF['insertVideo'] = {
+    onInsertedVideo(src) {
+        console.log('inserted video', src)
+    },
+    checkVideo: customCheckVideoFn
+}
+
+// 执行 createEditor
+```
+
+## 代码高亮
+
+```js
+const editorConfig = { MENU_CONF: {} }
+
+editorConfig.MENU_CONF['codeSelectLang'] = {
+    // 代码语言
+    codeLangs: {
+        { text: 'CSS', value: 'css' },
+        { text: 'HTML', value: 'html' },
+        { text: 'XML', value: 'xml' },
+        // 其他
+    }
+}
+
+// 执行 createEditor
+```
+
+:::tip
+配置代码语言时，只能从 `editor.getMenuConfig('codeSelectLang').codeLangs` 中选择，不能自己随意增加。
+如有其他语言的需要，可以给我们提交 issue ，这需要修改源码。
+:::
+
+## 其他
+
+其他菜单的配置，请参考上文的“通用方法”自行修改。
