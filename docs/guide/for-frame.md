@@ -25,13 +25,14 @@
         <button @click="onGetHtml">get html</button>
     </div>
     <div style="border: 1px solid #ccc;">
-        <Toolbar :editorId="editorId" :defaultConfig="toolbarConfig"/>
+        <Toolbar :editorId="editorId" :defaultConfig="toolbarConfig" :mode="mode"/>
     </div>
     <div style="border: 1px solid #ccc; margin-top: 10px;">
         <Editor
             :editorId="editorId"
             :defaultConfig="editorConfig"
             :defaultContent="defaultContent"
+            :mode="mode"
             @onCreated="onCreated"
             @onChange="onChange"
             @onDestroyed="onDestroyed"
@@ -66,6 +67,7 @@ export default Vue.extend({
                 // 其他编辑器配置
                 // 菜单配置
             }
+            mode: 'default' // or 'simple'
         },
         curContent: []
     },
@@ -115,6 +117,10 @@ export default Vue.extend({
     }
 })
 ```
+
+:::tip
+请关注以上代码中关于 `editorId` 的注释
+:::
 
 ## Vue3
 
@@ -175,11 +181,11 @@ function ReactEditor() {
         <React.Fragment>
             <div style={{ border: '1px solid #ccc'}}>
                 {/* 渲染 toolbar */}
-                <Toolbar editor={editor} defaultConfig={toolbarConfig} />
+                <Toolbar editor={editor} defaultConfig={toolbarConfig} mode="default"/>
             </div>
             <div style={{ border: '1px solid #ccc', marginTop: '10px' }}>
                 {/* 渲染 editor */}
-                <Editor defaultConfig={editorConfig} defaultContent={[]} />
+                <Editor defaultConfig={editorConfig} defaultContent={[]} mode="default"/>
             </div>
         </React.Fragment>
     )

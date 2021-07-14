@@ -75,7 +75,7 @@ editorConfig.onMaxLength = function (editor) {
 
 ## hoverbarKeys
 
-配置编辑器的 hoverbar 菜单。
+配置编辑器的 hoverbar 菜单。通过 `editor.getConfig().hoverbarKeys` 可查看当前的 hoverbarKeys 。
 
 ![](/image/hoverbar.png)
 
