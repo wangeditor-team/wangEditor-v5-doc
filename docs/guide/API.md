@@ -136,7 +136,7 @@ editor.insertBreak()
 在选区插入文本
 
 ```js
-editor.insertText()
+editor.insertText('xxx')
 ```
 
 ### undo

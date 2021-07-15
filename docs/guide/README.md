@@ -111,7 +111,7 @@ editor.getAllMenuKeys()
 ]
 ```
 
-PS：同时，wangEditor 有足够的扩展性，允许你自己开发菜单、模块、插件等。
+PS：同时，wangEditor 有丰富的 [API](/guide/API.html) 和足够的扩展性，允许你[自定义开发](/guide/development.html)菜单、模块、插件等。
 
 ### 踩过 4000 个坑
 

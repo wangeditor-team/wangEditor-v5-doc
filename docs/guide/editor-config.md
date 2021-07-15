@@ -124,7 +124,6 @@ const editorConfig = {}
 editorConfig.onChange = (editor) => {
     // editor changed
     console.log('content', editor.children)
-    console.log('html', editor.getHtml())
 }
 ```
 

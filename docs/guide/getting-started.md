@@ -14,12 +14,14 @@
 PS：安装 wangEditor 参考[这里](/guide/installation.html)。
 
 ```js
+import * as wangEditor from 'wangEditor'
+// CDN: const wangEditor = window.wangEditor
+
 const editorConfig = {}
 editorConfig.placeholder = '请输入内容'
 editorConfig.onChange = (editor) => {
     // 当编辑器选区、内容变化时，即触发
     console.log('content', editor.children)
-    console.log('html', editor.getHtml())
 }
 
 // 创建编辑器
@@ -73,8 +75,9 @@ const toolbar = wangEditor.createToolbar({
 ```
 
 :::tip
-content 只能是上述 json 格式，不支持 html<br>
-所以，**在保存编辑器内容时，要保存 `editor.children` 而不是 html** 。方便再次编辑内容。
+content 只能是上述 json 格式，**不支持 html**<br>
+所以，**在保存编辑器内容时，一定要保存 `editor.children` ，方便再次编辑内容**<br>
+是否要存储 html 视情况而定，参考[这里](/guide/display.html)
 :::
 
 ## mode
@@ -93,7 +96,8 @@ editor changed 后，同步内容到 textarea 即可
 
 ```js
 editorConfig.onChange = (editor) => {
-    const contentStr = JSON.stringify(editor.children)
+    const content = editor.children
+    const contentStr = JSON.stringify(content)
     document.getElementById('textarea-1').innerHTML = contentStr
 }
 ```
@@ -133,6 +137,9 @@ wangEditor 支持多个编辑器共存，正常创建即可
 ```
 
 ```js
+import * as wangEditor from 'wangEditor'
+// CDN: const wangEditor = window.wangEditor
+
 // 创建编辑器1
 const editor1 = wangEditor.createEditor({
   textareaSelector: '#editor-container-1',

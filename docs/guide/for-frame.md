@@ -22,7 +22,7 @@
 ```html
 <div>
     <div>
-        <button @click="onGetHtml">get html</button>
+        <button @click="insertText">insert text</button>
     </div>
     <div style="border: 1px solid #ccc;">
         <Toolbar :editorId="editorId" :defaultConfig="toolbarConfig" :mode="mode"/>
@@ -30,9 +30,11 @@
     <div style="border: 1px solid #ccc; margin-top: 10px;">
         <Editor
             :editorId="editorId"
+
             :defaultConfig="editorConfig"
             :defaultContent="defaultContent"
             :mode="mode"
+
             @onCreated="onCreated"
             @onChange="onChange"
             @onDestroyed="onDestroyed"
@@ -96,13 +98,14 @@ export default Vue.extend({
             window.alert(`customAlert in Vue demo\n${type}:\n${info}`)
         },
 
-        onGetHtml() {
+        insertText() {
             // 获取 editor 实例，即可执行 editor API
             const editor = getEditor(this.editorId)
             if (editor == null) return
+            if (editor.selection == null) return
 
-            const html = editor.getHtml()
-            console.log('cur html', html)
+            // 在选区插入一段文字
+            editor.insertText('一段文字')
         },
     },
 
@@ -146,8 +149,6 @@ function ReactEditor() {
     const [editor, setEditor] = useState<IDomEditor | null>(null)
     // 存储 editor 的最新内容（json 格式）
     const [curContent, setCurContent] = useState<SlateDescendant[]>([])
-    // 存储 editor 的最新 html
-    const [curHtml, setCurHtml] = useState<string>('')
 
     // 工具栏配置
     const toolbarConfig: Partial<IToolbarConfig> = { /* 工具栏配置 */ }
@@ -161,9 +162,8 @@ function ReactEditor() {
         setEditor(editor)
     }
     editorConfig.onChange = (editor: IDomEditor) => {
-        // editor 选区或者内容变化时，获取当前最新的的 content 和 html
+        // editor 选区或者内容变化时，获取当前最新的的 content
         setCurContent(editor.children)
-        setCurHtml(editor.getHtml())
     }
     // 其他编辑器配置
     // 菜单配置
