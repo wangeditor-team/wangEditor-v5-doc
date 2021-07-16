@@ -80,7 +80,7 @@ editorConfig.onMaxLength = function (editor) {
 ![](/image/hoverbar.png)
 
 ```js
-import { DomEditor } from 'wangeditor'
+import { DomEditor } from '@wangeditor/editor-cattle'
 // 使用 CDN ： const DomEditor = window.wangEditor.DomEditor
 
 const editorConfig = {}

@@ -16,7 +16,7 @@
 PS：安装 wangEditor 参考[这里](/guide/installation.html)。
 
 ```js
-import * as wangEditor from 'wangEditor'
+import * as wangEditor from '@wangeditor/editor-cattle'
 // CDN: const wangEditor = window.wangEditor
 
 const editorConfig = {}

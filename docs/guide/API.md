@@ -173,7 +173,7 @@ editor.insertNode(node)
 在选区插入多个节点
 
 ```js
-import { SlateTransforms } from 'wangeditor'
+import { SlateTransforms } from '@wangeditor/editor-cattle'
 // CDN：const SlateTransforms = window.wangEditor.SlateTransforms
 
 const node1 = { type: 'paragraph', children: [{ text: 'aaa' }] }
@@ -188,7 +188,7 @@ SlateTransforms.insertNodes(editor, nodeList)
 删除选区所在的节点
 
 ```js
-import { SlateTransforms } from 'wangeditor'
+import { SlateTransforms } from '@wangeditor/editor-cattle'
 // CDN：const SlateTransforms = window.wangEditor.SlateTransforms
 
 SlateTransforms.removeNodes(editor)
@@ -199,7 +199,7 @@ SlateTransforms.removeNodes(editor)
 可使用 `SlateEditor.nodes` 获取选中的节点。
 
 ```js
-import { SlateEditor } from 'wangeditor'
+import { SlateEditor } from '@wangeditor/editor-cattle'
 // CDN：const SlateEditor = window.wangEditor.SlateEditor
 
 const nodeEntries = SlateEditor.nodes(editor, {
@@ -221,7 +221,7 @@ if (nodeEntries == null) {
 设置选中节点的属性
 
 ```js
-import { SlateTransforms } from 'wangeditor'
+import { SlateTransforms } from '@wangeditor/editor-cattle'
 // CDN：const SlateTransforms = window.wangEditor.SlateTransforms
 
 SlateTransforms.setNodes(editor, { textAlign: 'left' }, {
@@ -272,7 +272,7 @@ void node 即没有子元素的节点（它本身就可以看作是一个特殊�
 判断一个节点是否是 text
 
 ```js
-import { SlateText } from 'wangeditor'
+import { SlateText } from '@wangeditor/editor-cattle'
 // CDN：const SlateText = window.wangEditor.SlateText
 
 SlateText.isText(node) // true/false
@@ -283,7 +283,7 @@ SlateText.isText(node) // true/false
 判断一个节点是否是 elem
 
 ```js
-import { SlateElement } from 'wangeditor'
+import { SlateElement } from '@wangeditor/editor-cattle'
 // CDN：const SlateElement = window.wangEditor.SlateElement
 
 SlateElement.isElement(node) // true/false
@@ -313,7 +313,7 @@ editor.removeMark('bold') // 取消加粗
 获取选中文字的标记（文本样式）
 
 ```js
-import { SlateEditor } from 'wangeditor'
+import { SlateEditor } from '@wangeditor/editor-cattle'
 // CDN：const SlateEditor = window.wangEditor.SlateEditor
 
 SlateEditor.marks(editor) // 例如 { bold: true, color: "#595959" }
@@ -542,7 +542,7 @@ editor.emit('event-key')
 使用如下方式即可得到 slate Transforms 对象，不用再单独安装 slate 。
 
 ```js
-import { SlateTransforms } from 'wangeditor'
+import { SlateTransforms } from '@wangeditor/editor-cattle'
 // CDN：const SlateTransforms = window.wangEditor.SlateTransforms
 ```
 
@@ -553,7 +553,7 @@ import { SlateTransforms } from 'wangeditor'
 使用如下方式即可得到 slate Node 相关对象，不用再单独安装 slate 。
 
 ```js
-import { SlateEditor, SlateNode, SlateElement, SlateText } from 'wangeditor'
+import { SlateEditor, SlateNode, SlateElement, SlateText } from '@wangeditor/editor-cattle'
 // CDN：const SlateEditor = window.wangEditor.SlateEditor
 // CDN：const SlateNode = window.wangEditor.SlateNode
 // CDN：const SlateElement = window.wangEditor.SlateElement
@@ -567,7 +567,7 @@ import { SlateEditor, SlateNode, SlateElement, SlateText } from 'wangeditor'
 使用如下方式即可得到 slate Location 相关对象，不用再单独安装 slate 。
 
 ```js
-import { SlateLocation, SlatePath, SlatePoint, SlateRange } from 'wangeditor'
+import { SlateLocation, SlatePath, SlatePoint, SlateRange } from '@wangeditor/editor-cattle'
 // CDN：const SlateLocation = window.wangEditor.SlateLocation
 // CDN：const SlatePath = window.wangEditor.SlatePath
 // CDN：const SlatePoint = window.wangEditor.SlatePoint

@@ -141,7 +141,7 @@ Vue3 组件正在开发中...
 
 ```tsx
 import React, { useState, useEffect } from 'react'
-import { IDomEditor, IEditorConfig, IToolbarConfig, SlateDescendant } from 'wangeditor'
+import { IDomEditor, IEditorConfig, IToolbarConfig, SlateDescendant } from '@wangeditor/editor-cattle'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
 function ReactEditor() {
