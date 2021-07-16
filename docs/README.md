@@ -43,6 +43,12 @@ const toolbar = wangEditor.createToolbar({
 })
 ```
 
+### 兼容性
+
+- 兼容主流的 PC 浏览器，如 Chrome Firefox Safari Edge 等
+- 暂不支持移动端（后续支持～）
+- **不再支持 IE 浏览器**
+
 ### 交流
 
 - 加入 QQ 群
