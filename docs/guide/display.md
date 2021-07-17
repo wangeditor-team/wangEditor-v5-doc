@@ -11,10 +11,14 @@
 
 ## 存储内容到服务器
 
+有三种形式可供选择。
+
+### 1.同时存储 content 和 html
+
 ```js
 const editor = wangEditor.createEditor({ ... })
 
-// 也可以通过 onChange 把 content html 实时同步到 textarea ，再保存
+// 也可以通过 onChange 把 content html 实时同步到 textarea ，再提交表单
 
 // 点击保存按钮
 $('#button-save').on('click', () => {
@@ -26,10 +30,6 @@ $('#button-save').on('click', () => {
 })
 ```
 
-有三种形式可供选择。
-
-### 1.同时存储 content 和 html
-
 #### 使用
 - 再次编辑文档时，使用 content
 - 显示文档内容时，使用 html
@@ -40,11 +40,23 @@ $('#button-save').on('click', () => {
     - 存储冗余（content 和 html 本质是同一内容，只是形式不同而已）
     - 可能会出现不同步的问题，如只存储了 content 而未存储 html
 
-#### 使用推荐
+#### 适用于以下情况
 - 非 nodejs SSR ，即其他技术栈（如 java php 等）的服务端渲染
 - 前端渲染，但要求 js 体积尽量小（如移动端 h5 单页面）
 
 ### 2.只存储 content
+
+```js
+const editor = wangEditor.createEditor({ ... })
+
+// 也可以通过 onChange 把 content 实时同步到 textarea ，再提交表单
+
+// 点击保存按钮
+$('#button-save').on('click', () => {
+    const content = editor.children 
+    // 存储 content 到服务器，自行实现
+})
+```
 
 #### 使用
 - 再次编辑文档时，使用 content
@@ -54,7 +66,7 @@ $('#button-save').on('click', () => {
 - 优点：存储无冗余，数据一致性
 - 缺点：要求 nodejs SSR 或者只能使用前端渲染
 
-#### 使用推荐
+#### 适用于以下情况
 - 使用 nodejs SSR 服务端渲染
 - 前端渲染，但并不考虑至极的 js 体积优化（如 PC 单页面）
 - 显示页面和编辑页面是同一个 SPA ，此时 wangEditor js 只加载一次
@@ -64,6 +76,18 @@ $('#button-save').on('click', () => {
 :::
 
 ### 3.只存储 html
+
+```js
+const editor = wangEditor.createEditor({ ... })
+
+// 也可以通过 onChange 把 html 实时同步到 textarea ，再提交表单
+
+// 点击保存按钮
+$('#button-save').on('click', () => {
+    const html  = editor.getHtml()
+    // 存储 html 到服务器，自行实现
+})
+```
 
 - **无法再次编辑文档，请考虑清楚！！！**
 - 显示文档内容时，使用 html
