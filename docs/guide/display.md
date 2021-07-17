@@ -22,11 +22,18 @@ const editor = wangEditor.createEditor({ ... })
 
 // 点击保存按钮
 $('#button-save').on('click', () => {
-    const content = editor.children 
-    // 存储 content 到服务器，自行实现
-
+    // 1. 获取 content 和 html
+    const contentStr = JSON.stringify(editor.children)
     const html  = editor.getHtml()
-    // 存储 html 到服务器，自行实现
+
+    // 2. 拼接 content 和 html ，中间见一个间隔字符串，如 '{split}'
+    const contentAndHtml = contentStr + '{split}' + html
+
+    // 3. 提交 contentAndHtml 到服务端，需要你自行处理
+    //    服务端再根据 '{split}' 来拆分 content 和 html ，分别保存
+
+    //【注意】这里要拼接 content 和 html 一次性提交到服务端，是为了避免数据不同步的问题
+    // 例如，因为程序 bug ，突然断网、断电等情况，只提交成功了 content 却未提交成功 html
 })
 ```
 
@@ -36,9 +43,7 @@ $('#button-save').on('click', () => {
 
 #### 分析
 - 优点：简单
-- 缺点：
-    - 存储冗余（content 和 html 本质是同一内容，只是形式不同而已）
-    - 可能会出现不同步的问题，如只存储了 content 而未存储 html
+- 缺点：存储冗余（content 和 html 本质是同一内容，只是形式不同而已）
 
 #### 适用于以下情况
 - 非 nodejs SSR ，即其他技术栈（如 java php 等）的服务端渲染
@@ -63,7 +68,7 @@ $('#button-save').on('click', () => {
 - 显示文档内容时，**将 content 转换为 html** （下文有介绍）
 
 #### 分析
-- 优点：存储无冗余，数据一致性
+- 优点：存储无冗余
 - 缺点：要求 nodejs SSR 或者只能使用前端渲染
 
 #### 适用于以下情况
@@ -89,7 +94,7 @@ $('#button-save').on('click', () => {
 })
 ```
 
-- **无法再次编辑文档，请考虑清楚！！！**
+- 未存储 content ，**将无法再次编辑文档，请考虑清楚！！！**
 - 显示文档内容时，使用 html
 
 ## 显示内容
