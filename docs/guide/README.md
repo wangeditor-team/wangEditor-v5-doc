@@ -1,22 +1,4 @@
-# 介绍
-
-争做国内最好的开源 Web 富文本编辑器！
-
-## 是什么
-
-wangEditor 是一个 Web 富文本编辑器，用于网页内容输入，如论坛、博客、邮箱、在线文档等。<br>
-它从 2015 年开源，至今已发布到 V5 版本。
-
-它已封装了最常用的富文本功能，如标题、文本格式、段落格式、链接、图片、表格、视频等。<br>
-具体操作可直接查看 [demo](/demo.html) 。
-
-![editor](/image/editor.png)
-
-## 兼容性
-
-- 兼容主流的 PC 浏览器，如 Chrome Firefox Safari Edge 等
-- 暂不支持移动端（后续支持～）
-- **不再支持 IE 浏览器**
+# 优势
 
 ## 其他富文本编辑器的问题
 
@@ -32,17 +14,25 @@ wangEditor 是一个 Web 富文本编辑器，用于网页内容输入，如论�
 
 ### 中文不友好
 
-如 CKEditor TinyMCE Quill 等，没有官方的中文文档。这将大大影响你的开发效率（今晚加班～）
+如 CKEditor TinyMCE Quill ProseMirror 等，没有官方的中文文档。这将大大影响你的开发效率（今晚加班～）
 
 PS：英语特别的，请略过。
 
 ### 需要大量二次开发
 
-如 ProseMirror Draft Slate ，他们虽然也是富文本编辑器，但他们仅仅是一个 core 或者 controller ，并不是一个完整的功能。
+如 ProseMirror Draft Slate ProseMirror ，他们虽然也是富文本编辑器，但他们仅仅是一个 core 或者 controller ，并不是一个完整的功能。
 
 大量的二次开发，不仅仅会导致研发成本大增（本月封闭～），还可能因为测试不完善而出现无尽的 bug ，陷入泥潭。
 
 PS：除非你们有强烈的定制开发需要。
+
+### 有框架的约束
+
+如 Slate 和 Draft ，是依赖于 React 框架的。如果你想用到 Vue 中，工作量和难度是非常大的。
+
+### 无官方 React Vue 等组件
+
+一些无框架依赖的，如 PromiseMirror ，如果你要用到 Vue React ，需要自己封装组件。
 
 ### 新产品尚未稳定
 
@@ -113,6 +103,13 @@ editor.getAllMenuKeys()
 
 PS：同时，wangEditor 有丰富的 [API](/guide/API.html) 和足够的扩展性，允许你[自定义开发](/guide/development.html)菜单、模块、插件等。
 
+### 很方便的应用于 Vue React
+
+wangEditor 基于 slate 内核开发，但不依赖于 React ，所以它本身是无框架依赖的。
+
+并且，我们官方封装了 Vue React 组件，可以很方便的[用于 Vue React 等框架](/guide/for-frame.html)。<br>
+其他框架，我们会继续支持，大家也可以提交 issue 。
+
 ### 踩过 4000 个坑
 
 wangEditor 开源多年，大量用户使用和反馈，已经解决了[很多问题](https://github.com/wangeditor-team/wangEditor/issues)。在 V5 版本测试过程中，也这些问题进行了重复测试，最大程度保证稳定性。
@@ -120,21 +117,3 @@ wangEditor 开源多年，大量用户使用和反馈，已经解决了[很多�
 ### 团队作业，持续迭代升级
 
 wangEditor 早已不是作者单人作战，我们有多人团队，一起修复 bug 、升级功能、跟踪问题、社区答疑。
-
-## 团队
-
-### 成员
-
-- a
-- b
-- c
-
-### 申请加入
-
-加入 QQ 群，然后私聊群主即可。
-
-加入团队的条件：
-- 熟悉 [slate.js](https://www.slatejs.org/)
-- 熟悉 vdom ，了解 [snabbdom.js](https://github.com/snabbdom/snabbdom)
-- 熟悉 Vue 或 React
-- 熟悉 webpack rollup 配置

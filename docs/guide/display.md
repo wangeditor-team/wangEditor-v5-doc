@@ -26,11 +26,11 @@ $('#button-save').on('click', () => {
     const contentStr = JSON.stringify(editor.children)
     const html  = editor.getHtml()
 
-    // 2. 拼接 content 和 html ，中间见一个间隔字符串，如 '{split}'
-    const contentAndHtml = contentStr + '{split}' + html
+    // 2. 拼接 content 和 html ，中间插一个间隔字符串（不易重复的，自己定义即可），如 '<<split-symbol-a7qlu>>'
+    const contentAndHtml = contentStr + '<<split-symbol-a7qlu>>' + html
 
     // 3. 提交 contentAndHtml 到服务端，需要你自行处理
-    //    服务端再根据 '{split}' 来拆分 content 和 html ，分别保存
+    //    服务端再根据 '<<split-symbol-a7qlu>>' 来拆分 content 和 html ，分别保存
 
     //【注意】这里要拼接 content 和 html 一次性提交到服务端，是为了避免数据不同步的问题
     // 例如，因为程序 bug ，突然断网、断电等情况，只提交成功了 content 却未提交成功 html

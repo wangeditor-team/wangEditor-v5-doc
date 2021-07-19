@@ -53,3 +53,11 @@ const toolbar = wangEditor.createToolbar({
 
 - 加入 QQ 群
 - 提交 issue
+
+### 团队
+
+- a
+- b
+- c
+
+申请加入团队（链接到 github 文档）

@@ -329,6 +329,14 @@ SlateEditor.marks(editor) // 例如 { bold: true, color: "#595959" }
 editor.id // 如 'wangEditor-1'
 ```
 
+### isFullScreen 属性
+
+编辑器是否全屏
+
+```js
+editor.isFullScreen // true/false
+```
+
 ### focus
 
 聚焦到编辑器
@@ -389,6 +397,26 @@ editor.showProgressBar(progress) // progress 为 0-100 的数字
 
 ```js
 editor.hidePanelOrModal()
+```
+
+### fullScreen
+
+设置为全屏
+
+```js
+editor.fullScreen()
+```
+
+:::tip
+全屏功能，有 html 结构的要求，请参考[这里](/guide/getting-started.html#全屏)
+:::
+
+### unFullScreen
+
+取消全屏
+
+```js
+editor.unFullScreen()
 ```
 
 ### disable
