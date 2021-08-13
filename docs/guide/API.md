@@ -46,12 +46,40 @@ editor.handleTab = () => editor.insertText('    ')
 
 ### getHtml
 
-获取编辑器当前 html
+获取编辑器当前 html 。
+
+`editor.getHtml()` 获取格式化的 html ，外面包裹一个 `<div class="w-e-content-container">` 用于自定义显示时的样式。
+
+```html
+<div class="w-e-content-container">
+    <h1>一行标题</h1>
+    <p>一行文字</p>
+</div>
+```
+
+如果想要去掉格式化，可使用 `editor.getHtml({ withFormat: false })`
+
+如果想要修改 `<div>` 的 `class` ，可使用 `editor.getHtml({ containerClassName: 'your-custom-class' })`
+
+### getText
+
+获取当前编辑器的纯文本内容
 
 ```js
-editor.getHtml() // 格式化
-editor.getHtml(false) // 未格式化
+const text = editor.getText()
 ```
+
+### isEmpty
+
+判断当前编辑器内容是否为空（只有一个空段落）
+
+```js
+editor.isEmpty()
+```
+
+:::tip
+该方法只能识别**只有一个空段落**情况，其他情况（如有一个空标题、空表格）请使用 `editor.getText()` 来判断。
+:::
 
 ### getSelectionText
 
@@ -61,15 +89,18 @@ editor.getHtml(false) // 未格式化
 editor.getSelectionText()
 ```
 
-### getHeaders
+### getElemsByTypePrefix
 
-获取编辑器所有标题，用显示目录
+通过 type 前缀获取编辑器的 element 列表。
 
 ```js
-editor.getHeaders() 
+editor.getElemsByTypePrefix('header') // 获取所有标题
+editor.getElemsByTypePrefix('image') // 获取所有图片
+editor.getElemsByTypePrefix('link') // 获取所有链接
+// 其他
 ```
 
-返回的格式如：
+获取标题的返回的格式如：
 
 ```json
 [

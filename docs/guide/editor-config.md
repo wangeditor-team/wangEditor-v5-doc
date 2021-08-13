@@ -160,6 +160,29 @@ editorConfig.onBlur = (editor) => {
 }
 ```
 
+## customPaste
+
+自定义粘贴。可阻止编辑器的默认粘贴，实现自己的粘贴逻辑。
+
+```js
+const editorConfig = {}
+editorConfig.customPaste = (editor, event) => {
+    // event 是 ClipboardEvent 类型，可以拿到粘贴的数据
+    // 可参考 https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
+
+    // 同步
+    editor.insertText('xxx')
+
+    // 异步
+    setTimeout(() => {
+        editor.insertText('yy')
+    }, 1000)
+
+    return false // 阻止默认的粘贴行为
+    // return true // 继续执行默认的粘贴行为
+}
+```
+
 ## customAlert
 
 自定义编辑器 alert 。如想用 antd 的 message 功能。

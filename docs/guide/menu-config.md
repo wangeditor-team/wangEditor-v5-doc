@@ -149,11 +149,11 @@ const editorConfig = { MENU_CONF: {} }
 
 // 插入链接
 editorConfig.MENU_CONF['insertLink'] = {
-    checkLink: customCheckLinkFn
+    checkLink: customCheckLinkFn // 也支持 async 函数
 }
 // 更新链接
 editorConfig.MENU_CONF['updateLink'] = {
-    checkLink: customCheckLinkFn
+    checkLink: customCheckLinkFn // 也支持 async 函数
 }
 
 // 执行 createEditor
@@ -182,17 +182,21 @@ const editorConfig = { MENU_CONF: {} }
 
 // 插入图片
 editorConfig.MENU_CONF['insertImage'] = {
-    onInsertedImage(src, alt, url) {
+    onInsertedImage(imageNode) {
+        const { src, alt, url } = imageNode
         console.log('inserted image', src, alt, url)
     },
-    checkImage: customCheckImageFn
+    checkImage: customCheckImageFn // 也支持 async 函数
 }
 // 编辑图片
 editorConfig.MENU_CONF['editImage'] = {
-    onUpdatedImage(src, alt, url) {
+    onUpdatedImage(imageNode) {
+        if (imageNode == null) return
+
+        const { src, alt, url } = imageNode
         console.log('updated image', src, alt, url)
     },
-    checkImage: customCheckImageFn
+    checkImage: customCheckImageFn // 也支持 async 函数
 }
 
 // 执行 createEditor
@@ -267,6 +271,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
         token: 'xxx',
         otherKey: 'yyy'
     },
+    metaWithUrl: false, // 将 meta 拼接到 url 参数中
     // 自定义增加 http  header
     headers: {
         Accept: 'text/x-json',
@@ -386,10 +391,11 @@ function customCheckVideoFn(src) {
 const editorConfig = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['insertVideo'] = {
-    onInsertedVideo(src) {
+    onInsertedVideo(videoNode) {
+        const { src } = videoNode
         console.log('inserted video', src)
     },
-    checkVideo: customCheckVideoFn
+    checkVideo: customCheckVideoFn // 也支持 async 函数
 }
 
 // 执行 createEditor
