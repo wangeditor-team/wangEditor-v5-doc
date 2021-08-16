@@ -80,6 +80,10 @@ editorConfig.MENU_CONF['fontSize'] = {
 
 ## 字体
 
+:::tip
+请注意，某些字体不能商用。具体请自行查找。
+:::
+
 ```js
 const editorConfig = { MENU_CONF: {} }
 
