@@ -369,6 +369,18 @@ editorConfig.MENU_CONF['uploadImage'] = {
 }
 ```
 
+### 获取已删除的图片
+
+这是一个常见的需求。<br>
+上传图片到编辑器，然后又把图片删除了。此时你可能想要拿到这张删除的图片，在服务器也把图片文件删了。
+
+- 使用 [onInsertedImage](/guide/menu-config.html#图片) 来收集所有上传或者插入的图片，记录为 `imageList1`
+- 最后保存编辑器内容之前，使用 `editor.getElemsByTypePrefix('image')` 获取当前编辑器的所有图片，记录为 `imageList2`
+- 对比 `imageList1` 和 `imageList2` ，两者的差异，就是删除过的图片
+
+可能会有疑问：为何要在最后去对比？我想要在图片删除时就及时得到反馈。<br>
+但，这样是不行的，因为图片删除了，还可能会被**撤销**回来。所以，一定要在最后去操作。
+
 ## 视频
 
 ```js
