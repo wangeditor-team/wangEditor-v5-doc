@@ -1,5 +1,347 @@
 # 自定义扩展新功能
 
-待写...
+wangEditor 从 V5 开始，源码上就分离了 core editor 还有各个 module 。<br>
+core 是核心 API ，editor 负责汇总集成。所有的具体功能，都分布在各个 module 中来实现。
 
-- 自定义扩展的 `to-html` 如何在显示的时候生效
+所以，从底层设计就保证了扩展性。
+
+![](/image/架构图.awebp)
+
+## 概述
+
+wangEditor 扩展性包括以下部分，你可以来扩展大部分常用的功能。
+- 定义新元素（如 todo-list 、链接卡片、`@xxx` 功能，插入地图等）
+    - 渲染到编辑器
+    - 显示时获取 html
+- 劫持编辑器的 API 并自定义（如输入 `#` 之后，切换为 H1 ，实现简单的 markdown 功能）
+- 扩展菜单
+
+## 安装依赖
+
+### 安装 `@wangeditor/core`
+
+```shell
+npm install @wangeditor/core --peer
+## 或者 yarn add @wangeditor/core --peer
+```
+
+### 安装 `snabbdom`
+
+仅限于渲染新元素到编辑器，下文有解释
+
+```shell
+npm install snabbdom --peer
+## 或者 yarn add snabbdom --peer
+```
+
+### 不用安装 `slate`
+
+注意，不用再安装 `slate` ，可在 `@wangeditor/editor` 中得到 slate 的常用 API
+
+```js
+import {
+    SlateTransforms,
+    SlateDescendant,
+    SlateEditor,
+    SlateNode,
+    SlateElement,
+    SlateText,
+    SlatePath,
+    SlateRange,
+    SlateLocation,
+    SlatePoint,
+} from '@wangeditor/editor'
+```
+
+## 元素的数据结构
+
+如果你需要扩展新元素，则需要先定义数据结构。<br>
+如果不需要，则忽略该步骤。
+
+具体可参考 [节点数据结构](/guide/node-define.html) ，定义自己的节点数据结构。<br>
+注意要符合 [slate.js](https://docs.slatejs.org/) 的数据规范。
+
+## 渲染编辑器视图
+
+需要你提前了解 vdom 概念，以及 [snabbdom.js](https://github.com/snabbdom/snabbdom) 和 JSX 。
+
+如果你定义了新元素，则需要把它显示到编辑器内。主要过程是：**model -> 生成 vdom -> 渲染 DOM** <br>
+用到了 vdom 需要安装 `snabbdom`，参考上文。
+
+### renderTextStyle
+
+增加了新的文本样式，需要渲染编辑器中。
+
+```ts
+import { jsx, VNode } from 'snabbdom'
+import { SlateText } from '@wangeditor/core'
+
+// 定义渲染函数
+function fn(textNode: SlateText, vnode: VNode): VNode {
+    // 1. 根据 textNode 的属性，为 vnode 添加样式
+
+    // 2. 返回添加了样式的 vnode
+    return newVNode
+}
+
+// 注册进 wangEditor
+wangEditor.Boot.registerRenderTextStyle(fn)
+
+// 创建编辑器、工具栏
+```
+
+可参考 wangEditor 源码中的 [文本样式](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/text-style/text-style.tsx) ， [颜色和背景色](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/color/render-text-style.tsx) 和 [字体字号](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/font-size-family/render-text-style.tsx) 。
+
+### renderElem
+
+增加了新的元素，需要渲染到编辑器中。
+
+```tsx
+import { jsx, VNode } from 'snabbdom'
+import { IDomEditor, SlateElement } from '@wangeditor/core'
+
+// 渲染函数
+function fn(elem: SlateElement, children: VNode[] | null, editor: IDomEditor): VNode {
+    // elem 即当前节点
+    // children 是下级节点
+    // editor 即编辑器实例
+
+    const vnode = <p>{children}</p> // type: 'paragraph' 节点，即渲染为 <p>
+    return vnode
+}
+
+// 渲染配置
+const conf = {
+    type: 'paragraph', // 节点 type ，重要！！！
+    renderElem: fn,
+}
+
+// 注册到 wangEditor
+wangEditor.Boot.registerRenderElem(conf)
+
+// 创建编辑器、工具栏
+```
+
+可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/we-2021/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `render-elem.tsx` 文件。
+
+## 生成 HTML
+
+在显示编辑器内容时 ，无论什么渲染形式，都需要得到各个元素的 html。所以对于新元素，必须要扩展 toHtml 方法。
+
+### textToHtml
+
+生成 text 的 html
+
+```ts
+import { IDomEditor, SlateText } from '@wangeditor/core'
+
+// 定义生成 html 的函数
+function fn(textNode: SlateText, textHtml: string, editor: IDomEditor): string {
+  // 获取 text 节点的属性
+  const { bold, italic } = textNode
+
+  // 生成 html
+  let res = textHtml
+  if (bold) res = `<strong>${res}</strong>`
+  if (italic) res = `<em>${res}</em>`
+
+  // 返回 html
+  return res
+}
+
+// 注册到 wangEditor
+wangEditor.Boot.registerTextToHtml(fn)
+
+// 创建编辑器、工具栏
+```
+
+可参考 wangEditor 源码中文本样式的 [textToHtml](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/text-style/text-to-html.ts) 。
+
+### textStyleToHtml
+
+生成文本样式的 html
+
+```ts
+import { SlateText } from '@wangeditor/core'
+
+// 定义函数
+function fn(textNode: SlateText, curHtml: string): string {
+    // 根据 textNode 属性，生成带有样式的 html
+
+    // 获取属性
+    const { color, bgColor, text } = textNode
+
+    // 设置样式
+    const $elem = $(elemHtml)
+    if (color) $elem.css('color', color)
+    if (bgColor) $elem.css('background-color', bgColor)
+
+    // 输出 html
+    const $div = $('<div></div>')
+    $div.append($elem)
+    return $div.html()
+}
+
+// 注册到 wangEditor
+wangEditor.Boot.registerTextStyleToHtml(fn)
+
+// 创建编辑器、工具栏
+```
+
+可参考 wangEditor 源码中 [颜色、背景色](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/color/text-style-to-html.ts) 和 [字体字号](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/font-size-family/text-style-to-html.ts) 的 text-style-to-html 。
+
+### elemToHtml
+
+生成元素的 html
+
+```ts
+import { IDomEditor, SlateElement } from '@wangeditor/core'
+
+// 生成 html 的函数
+function fn(elem: SlateElement, childrenHtml: string, editor: IDomEditor): string {
+    if (childrenHtml === '') {
+        return '<p><br/></p>'
+    }
+    return `<p>${childrenHtml}</p>`
+}
+
+// 配置
+const conf = {
+    type: 'paragraph', // 节点 type ，重要！！！
+    elemToHtml: fn,
+}
+
+// 注册到 wangEditor
+wangEditor.Boot.registerElemToHtml(conf)
+```
+
+可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/we-2021/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `elem-to-html.ts` 文件。
+
+## slate 插件
+
+先要去了解 [slate.js](https://docs.slatejs.org/) 的 API 和插件机制。
+
+```ts
+import { IDomEditor } from '@wangeditor/core'
+
+// 定义 slate 插件
+function withBreak<T extends IDomEditor>(editor: T): T {
+    const { insertBreak } = editor
+    const newEditor = editor
+
+    // 重写 editor insertBreak API
+    // 例如做一个 ctrl + enter 换行功能
+    newEditor.insertBreak = () => {
+        // 判断，如果按键是 ctrl + enter ，则执行 insertBreak
+        insertBreak()
+
+        // 否则，则 return
+    }
+
+    // 还可以重写其他 API
+
+    // 返回 editor ，重要！
+    return newEditor
+}
+
+// 注册到 wangEditor
+wangEditor.Boot.registerPlugin(withBreak)
+```
+
+可参考 wangEditor 源码 [基础模块](https://github.com/wangeditor-team/we-2021/tree/main/packages/basic-modules/src/modules) 中所有 `withXxx.ts` 文件源码。
+
+## 注册菜单
+
+菜单分为三种，都可以扩展
+- ButtonMenu 按钮菜单，如加粗、斜体
+- SelectMenu 下拉菜单，如标题、字体、行高
+- ModalMenu 弹出框菜单，如插入链接、插入网络图片
+
+注意，下面代码中的 `key` 即菜单 key ，要唯一不重复。<br>
+注册完菜单之后，即可把这个 `key` 配置到[工具栏](/guide/toolbar-config.html)中。
+
+### ButtonMenu
+
+```ts
+import { IButtonMenu } from '@wangeditor/core'
+
+// 定义菜单 class
+class MyButtonMenu implements IButtonMenu {
+    // 代码可参考“引用”菜单源码
+    // https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/blockquote/menu/BlockquoteMenu.ts
+}
+
+// 定义菜单配置
+export const menuConf = {
+  key: 'menu1', // menu key ，唯一。注册之后，可配置到工具栏
+  factory() {
+    return new MyButtonMenu()
+  },
+}
+
+// 注册到 wangEditor
+wangEditor.Boot.registerMenu(menuConf)
+
+// 创建编辑器、工具栏
+```
+
+### SelectMenu
+
+```ts
+import { ISelectMenu } from '@wangeditor/core'
+
+// 定义菜单 class
+class MySelectMenu implements ISelectMenu {
+    // 代码可参考“标题”菜单源码
+    // https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/header/menu/HeaderSelectMenu.ts
+}
+
+// 定义菜单配置
+export const menuConf = {
+  key: 'menu2', // menu key ，唯一。注册之后，可配置到工具栏
+  factory() {
+    return new MySelectMenu()
+  },
+}
+
+// 注册到 wangEditor
+wangEditor.Boot.registerMenu(menuConf)
+
+// 创建编辑器、工具栏
+```
+
+### ModalMenu
+
+```ts
+import { IModalMenu } from '@wangeditor/core'
+
+// 定义菜单 class
+class MyModalMenu implements IModalMenu {
+    // 代码可参考“插入链接”菜单源码
+    // https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/link/menu/InsertLink.ts
+}
+
+// 定义菜单配置
+export const menuConf = {
+  key: 'menu3', // menu key ，唯一。注册之后，可配置到工具栏
+  factory() {
+    return new MyModalMenu()
+  },
+}
+
+// 注册到 wangEditor
+wangEditor.Boot.registerMenu(menuConf)
+```
+
+## 总结
+
+一个模块常用代码文件如下，共选择参考（不一定都用到）
+- text-style.tsx
+- render-elem.tsx
+- text-to-html.ts
+- text-style-to-html.tsx
+- elem-to-html.ts
+- plugin.ts
+- menu
+    - Menu1.ts
+    - Menu2.ts
