@@ -26,6 +26,9 @@ jobs:
       run: |
         mkdir -p ~/.ssh/
         echo "${{secrets.SSH_KEY_FOR_GITHUB_WANGEDITOR}}" > ~/.ssh/id_rsa
+        echo "-------------- test1 -----------------"
+        echo ~/.ssh/id_rsa
+        echo "-------------- test2 -----------------"
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan "github.com" >> ~/.ssh/known_hosts
         echo "---------- set ssh-key ok ----------"
