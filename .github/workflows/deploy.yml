@@ -22,9 +22,14 @@ jobs:
         echo "---------- npm install ok ----------"
         npm run build ## 打包出 html 到 docs/.vuepress/dist
         echo "---------- build ok ----------"
+    - name: set ssh key # 临时设置 ssh key
+      run: |
+        mkdir -p ~/.ssh/
+        echo "${{secrets.SSH_KEY_FOR_GITHUB_WANGEDITOR}}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
     - name: download and replace # 下载现有文件，替换
       run: |
-        git clone https://github.com/wangEditor/v5.git
+        git clone git@github.com:wangEditor/v5.git
         echo "---------- git clone ok ----------"
         cp -r ./docs/.vuepress/dist/* ./v5 ## 用最新构建出来的文件，替换现有的
         echo "---------- replace ok ----------"
@@ -38,8 +43,8 @@ jobs:
         echo "---------- end git status ----------"
         git add .
         git commit -m "update by github actions"
-
-        git remote remove origin
-        git remote add origin https://wangeditor:${{secrets.WANGEDITOR_PASSWD}}@github.com/wangEditor/v5.git
-
+        echo "---------- begin git push ----------"
         git push origin main
+        echo "---------- end git push ----------"
+    - name: delete ssh key # 删除 ssh key
+      run: rm -rf ~/.ssh/id_rsa
