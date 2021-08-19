@@ -1,0 +1,7 @@
+---
+sidebar: auto
+---
+
+# demo
+
+demo
