@@ -5,6 +5,8 @@ module.exports = {
         ['link', { rel: 'icon', href: '/favicon.ico' }]
     ],
 
+    base: '/v5/',
+
     locales: {
         '/': {
             lang: 'zh-CN',
