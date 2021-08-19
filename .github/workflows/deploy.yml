@@ -26,15 +26,12 @@ jobs:
       run: |
         mkdir -p ~/.ssh/
         echo "${{secrets.SSH_KEY_FOR_GITHUB_WANGEDITOR}}" > ~/.ssh/id_rsa
-        echo "-------------- test1 -----------------"
-        cat ~/.ssh/id_rsa
-        echo "-------------- test2 -----------------"
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan "github.com" >> ~/.ssh/known_hosts
         echo "---------- set ssh-key ok ----------"
     - name: download and replace # 下载现有文件，替换
       run: |
-        git clone git@github.com:wangEditor/v5.git
+        git clone https://github.com/wangEditor/v5.git
         echo "---------- git clone ok ----------"
         cp -r ./docs/.vuepress/dist/* ./v5 ## 用最新构建出来的文件，替换现有的
         echo "---------- replace ok ----------"
@@ -49,6 +46,7 @@ jobs:
         git add .
         git commit -m "update by github actions"
         echo "---------- begin git push ----------"
+        git remote set-url origin git@github.com:wangEditor/v5.git
         git push origin main
         echo "---------- end git push ----------"
     - name: delete ssh key # 删除 ssh key
