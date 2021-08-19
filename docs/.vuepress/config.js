@@ -1,6 +1,6 @@
 module.exports = {
     title: 'wangEditor',
-    description: 'Web 富文本编辑器',
+    description: '开源 Web 富文本编辑器',
     head: [
         ['link', { rel: 'icon', href: '/favicon.ico' }]
     ],
@@ -61,7 +61,7 @@ module.exports = {
             '/en/': {
                 lang: 'en',
                 selectLanguageName: 'English',
-                description: 'Web rich text editor',
+                description: 'Open source web rich text editor',
 
                 navbar: [
                     { text: 'Guide', link: '/en/guide/' },

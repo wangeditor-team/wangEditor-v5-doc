@@ -1,0 +1,45 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# github actions 中文文档 https://docs.github.com/cn/actions/getting-started-with-github-actions
+
+name: deploy
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10
+    - name: build
+      run: |
+        echo "---------- node-version `node -v` ----------"
+        npm i
+        echo "---------- npm install ok ----------"
+        npm run build ## 打包出 html 到 docs/.vuepress/dist
+        echo "---------- build ok ----------"
+    - name: download and replace # 下载现有文件，替换
+      run: |
+        git clone https://github.com/wangEditor/v5.git
+        echo "---------- git clone ok ----------"
+        cp -r ./docs/.vuepress/dist/* ./v5 ## 用最新构建出来的文件，替换现有的
+        echo "---------- replace ok ----------"
+    - name: upload # 上传文件
+      run: |
+        cd ./v5
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        echo "---------- begin git status ----------"
+        echo `git status`
+        echo "---------- end git status ----------"
+        git add .
+        git commit -m "update by github actions"
+
+        git remote remove origin
+        git remote add origin https://wangeditor:${{secrets.WANGEDITOR_PASSWD}}@github.com/wangEditor/v5.git
+
+        git push origin master
