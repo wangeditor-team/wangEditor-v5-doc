@@ -27,6 +27,8 @@ jobs:
         mkdir -p ~/.ssh/
         echo "${{secrets.SSH_KEY_FOR_GITHUB_WANGEDITOR}}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan "github.com" >> ~/.ssh/known_hosts
+        echo "---------- set ssh-key ok ----------"
     - name: download and replace # 下载现有文件，替换
       run: |
         git clone git@github.com:wangEditor/v5.git
