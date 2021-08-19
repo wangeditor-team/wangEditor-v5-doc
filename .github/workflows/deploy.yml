@@ -31,7 +31,7 @@ jobs:
         echo "---------- set ssh-key ok ----------"
     - name: download and replace # 下载现有文件，替换
       run: |
-        git clone https://github.com/wangEditor/v5.git
+        git clone git@github.com:wangEditor/v5.git
         echo "---------- git clone ok ----------"
         cp -r ./docs/.vuepress/dist/* ./v5 ## 用最新构建出来的文件，替换现有的
         echo "---------- replace ok ----------"
@@ -46,7 +46,6 @@ jobs:
         git add .
         git commit -m "update by github actions"
         echo "---------- begin git push ----------"
-        git remote set-url origin git@github.com:wangEditor/v5.git
         git push origin main
         echo "---------- end git push ----------"
     - name: delete ssh key # 删除 ssh key
