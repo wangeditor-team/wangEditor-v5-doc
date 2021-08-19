@@ -42,4 +42,4 @@ jobs:
         git remote remove origin
         git remote add origin https://wangeditor:${{secrets.WANGEDITOR_PASSWD}}@github.com/wangEditor/v5.git
 
-        git push origin master
+        git push origin main
