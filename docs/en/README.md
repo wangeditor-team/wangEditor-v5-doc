@@ -8,7 +8,7 @@ actions:
     link: /en/guide/getting-started.html
     type: primary
   - text: demo
-    link: /en/demo.html
+    link: https://www.wangeditor.com/demo/en/
     type: secondary
 features:
 - title: Title

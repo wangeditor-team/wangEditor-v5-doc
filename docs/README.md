@@ -8,7 +8,7 @@ actions:
     link: /guide/getting-started.html
     type: primary
   - text: demo 演示
-    link: /demo.html
+    link: https://www.wangeditor.com/demo/zh-CN/
     type: secondary
 features:
 - title: 开源免费
