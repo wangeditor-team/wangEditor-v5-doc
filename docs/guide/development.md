@@ -75,6 +75,7 @@ import {
 ```ts
 import { jsx, VNode } from 'snabbdom'
 import { SlateText } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义渲染函数
 function fn(textNode: SlateText, vnode: VNode): VNode {
@@ -85,7 +86,7 @@ function fn(textNode: SlateText, vnode: VNode): VNode {
 }
 
 // 注册进 wangEditor
-wangEditor.Boot.registerRenderTextStyle(fn)
+Boot.registerRenderTextStyle(fn)
 
 // 创建编辑器、工具栏
 ```
@@ -99,6 +100,7 @@ wangEditor.Boot.registerRenderTextStyle(fn)
 ```tsx
 import { jsx, VNode } from 'snabbdom'
 import { IDomEditor, SlateElement } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor-cattle'
 
 // 渲染函数
 function fn(elem: SlateElement, children: VNode[] | null, editor: IDomEditor): VNode {
@@ -117,7 +119,7 @@ const conf = {
 }
 
 // 注册到 wangEditor
-wangEditor.Boot.registerRenderElem(conf)
+Boot.registerRenderElem(conf)
 
 // 创建编辑器、工具栏
 ```
@@ -134,6 +136,7 @@ wangEditor.Boot.registerRenderElem(conf)
 
 ```ts
 import { IDomEditor, SlateText } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义生成 html 的函数
 function fn(textNode: SlateText, textHtml: string, editor: IDomEditor): string {
@@ -150,7 +153,7 @@ function fn(textNode: SlateText, textHtml: string, editor: IDomEditor): string {
 }
 
 // 注册到 wangEditor
-wangEditor.Boot.registerTextToHtml(fn)
+Boot.registerTextToHtml(fn)
 
 // 创建编辑器、工具栏
 ```
@@ -163,6 +166,7 @@ wangEditor.Boot.registerTextToHtml(fn)
 
 ```ts
 import { SlateText } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义函数
 function fn(textNode: SlateText, curHtml: string): string {
@@ -183,7 +187,7 @@ function fn(textNode: SlateText, curHtml: string): string {
 }
 
 // 注册到 wangEditor
-wangEditor.Boot.registerTextStyleToHtml(fn)
+Boot.registerTextStyleToHtml(fn)
 
 // 创建编辑器、工具栏
 ```
@@ -196,6 +200,7 @@ wangEditor.Boot.registerTextStyleToHtml(fn)
 
 ```ts
 import { IDomEditor, SlateElement } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor-cattle'
 
 // 生成 html 的函数
 function fn(elem: SlateElement, childrenHtml: string, editor: IDomEditor): string {
@@ -212,7 +217,7 @@ const conf = {
 }
 
 // 注册到 wangEditor
-wangEditor.Boot.registerElemToHtml(conf)
+Boot.registerElemToHtml(conf)
 ```
 
 可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/we-2021/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `elem-to-html.ts` 文件。
@@ -223,6 +228,7 @@ wangEditor.Boot.registerElemToHtml(conf)
 
 ```ts
 import { IDomEditor } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义 slate 插件
 function withBreak<T extends IDomEditor>(editor: T): T {
@@ -245,7 +251,7 @@ function withBreak<T extends IDomEditor>(editor: T): T {
 }
 
 // 注册到 wangEditor
-wangEditor.Boot.registerPlugin(withBreak)
+Boot.registerPlugin(withBreak)
 ```
 
 可参考 wangEditor 源码 [基础模块](https://github.com/wangeditor-team/we-2021/tree/main/packages/basic-modules/src/modules) 中所有 `withXxx.ts` 文件源码。
@@ -264,6 +270,7 @@ wangEditor.Boot.registerPlugin(withBreak)
 
 ```ts
 import { IButtonMenu } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义菜单 class
 class MyButtonMenu implements IButtonMenu {
@@ -280,7 +287,7 @@ export const menuConf = {
 }
 
 // 注册到 wangEditor
-wangEditor.Boot.registerMenu(menuConf)
+Boot.registerMenu(menuConf)
 
 // 创建编辑器、工具栏
 ```
@@ -289,6 +296,7 @@ wangEditor.Boot.registerMenu(menuConf)
 
 ```ts
 import { ISelectMenu } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义菜单 class
 class MySelectMenu implements ISelectMenu {
@@ -305,7 +313,7 @@ export const menuConf = {
 }
 
 // 注册到 wangEditor
-wangEditor.Boot.registerMenu(menuConf)
+Boot.registerMenu(menuConf)
 
 // 创建编辑器、工具栏
 ```
@@ -314,6 +322,7 @@ wangEditor.Boot.registerMenu(menuConf)
 
 ```ts
 import { IModalMenu } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义菜单 class
 class MyModalMenu implements IModalMenu {
@@ -330,7 +339,7 @@ export const menuConf = {
 }
 
 // 注册到 wangEditor
-wangEditor.Boot.registerMenu(menuConf)
+Boot.registerMenu(menuConf)
 ```
 
 ## 总结

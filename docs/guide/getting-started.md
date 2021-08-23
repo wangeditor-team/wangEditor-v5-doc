@@ -18,34 +18,36 @@
 引入 wangEditor
 
 ```js
-// npm 方式
+// npm 安装
 import '@wangeditor/editor-cattle/dist/css/style.css'
-import * as wangEditor from '@wangeditor/editor-cattle'
+import { createEditor, createToolbar, IEditorConfig, IDomEditor } from '@wangeditor/editor-cattle'
 
-// CDN 引入
-// const wangEditor = window.wangEditor
+// CDN 引入 css 和 js
+// const wangEditor = window.wangEditor // 全局变量
 ```
 
 创建编辑器
 
-```js
-const editorConfig = {}
+```ts
+//【注意】下面使用的 typescript 语法。如用 javascript 语法，把类型去掉即可。
+
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.placeholder = '请输入内容'
-editorConfig.onChange = (editor) => {
+editorConfig.onChange = (editor: IDomEditor) => {
     // 当编辑器选区、内容变化时，即触发
     console.log('content', editor.children)
     console.log('html', editor.getHtml())
 }
 
 // 创建编辑器
-const editor = wangEditor.createEditor({
+const editor = createEditor({
   textareaSelector: '#editor-container',
   config: editorConfig,
   content: [], // 默认内容，下文有解释
   mode: 'default' // 或者 'simple' ，下文有解释
 })
 // 创建工具栏
-const toolbar = wangEditor.createToolbar({
+const toolbar = createToolbar({
   editor,
   toolbarSelector: '#toolbar-container',
   mode: 'default' // 或者 'simple' ，下文有解释
@@ -69,7 +71,7 @@ const toolbar = wangEditor.createToolbar({
 但是这里要遵循一定的数据格式规范，具体可参考 [节点数据结构](/v5/guide/node-define.html) 。
 
 ```js
-wangEditor.createEditor({
+createEditor({
   content: [
       // 一个标题
       {
@@ -86,11 +88,13 @@ wangEditor.createEditor({
           ]
       }
   ],
+  // content: [] // 即空内容
+
   // 其他属性
 })
 ```
 
-如果想默认内容为空，则传入 `content: []` 即可。
+PS：上述代码在 Typescript 环境下可能报错，请参考[用于 Typescript](/v5/guide/for-ts.html)。
 
 :::tip
 content 只能是上述 json 格式，**不支持 html**<br>
@@ -182,26 +186,26 @@ wangEditor 支持多个编辑器共存，正常创建即可
 
 ```js
 // 创建编辑器1
-const editor1 = wangEditor.createEditor({
+const editor1 = createEditor({
   textareaSelector: '#editor-container-1',
   content: [],
   mode: 'default'
 })
 // 创建工具栏1
-const toolbar1 = wangEditor.createToolbar({
+const toolbar1 = createToolbar({
   editor1,
   toolbarSelector: '#toolbar-container-1',
   mode: 'default'
 })
 
 // 创建编辑器2
-const editor2 = wangEditor.createEditor({
+const editor2 = createEditor({
   textareaSelector: '#editor-container-2',
   content: [],
   mode: 'simple'
 })
 // 创建工具栏2
-const toolbar2 = wangEditor.createToolbar({
+const toolbar2 = createToolbar({
   editor2,
   toolbarSelector: '#toolbar-container-2',
   mode: 'simple'

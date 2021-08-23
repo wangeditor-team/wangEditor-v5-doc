@@ -12,14 +12,16 @@
 
 找到菜单 key 之后，可以先看看菜单的当前配置，再自行修改。
 
-```js
+```ts
 editor.getMenuConfig('uploadImage') // 获取 uploadImage 的当前配置
 ```
 
 ### 修改配置
 
-```js
-const editorConfig = { MENU_CONF: {} } // 初始化 MENU_CONF 属性
+```ts
+import { IEditorConfig, createEditor } from '@wangeditor/editor-cattle'
+
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} } // 初始化 MENU_CONF 属性
 
 // 修改 uploadImage 菜单配置
 editorConfig.MENU_CONF['uploadImage'] = {
@@ -36,7 +38,7 @@ editorConfig.MENU_CONF['otherMenuKey'] = {
 }
 
 // 创建编辑器
-const editor = wangEditor.createEditor({
+const editor = createEditor({
   textareaSelector: '#editor-container',
   config: editorConfig,
   content: [],
@@ -50,8 +52,8 @@ const editor = wangEditor.createEditor({
 
 ## 颜色
 
-```js
-const editorConfig = { MENU_CONF: {} }
+```ts
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // 文字颜色
 editorConfig.MENU_CONF['color'] = {
@@ -68,8 +70,8 @@ editorConfig.MENU_CONF['bgColor'] = {
 
 ## 字号
 
-```js
-const editorConfig = { MENU_CONF: {} }
+```ts
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['fontSize'] = {
     fontSizeList: ['12px', '16px', '24px', '40px']
@@ -84,8 +86,8 @@ editorConfig.MENU_CONF['fontSize'] = {
 请注意，某些字体不能商用。具体请自行查找。
 :::
 
-```js
-const editorConfig = { MENU_CONF: {} }
+```ts
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['fontFamily'] = {
     fontFamilyList: [
@@ -107,8 +109,8 @@ editorConfig.MENU_CONF['fontFamily'] = {
 
 ## 行高
 
-```js
-const editorConfig = { MENU_CONF: {} }
+```ts
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['lineHeight'] = {
     lineHeightList: ['1', '1.5', '2', '2.5']
@@ -119,8 +121,8 @@ editorConfig.MENU_CONF['lineHeight'] = {
 
 ## 表情
 
-```js
-const editorConfig = { MENU_CONF: {} }
+```ts
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['emotion'] = {
     emotions: '😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉'.split(' ') // 数组
@@ -132,7 +134,7 @@ editorConfig.MENU_CONF['emotion'] = {
 
 ## 链接
 
-```js
+```ts
 // 自定义校验链接
 function customCheckLinkFn(text, url) {
     if (!url) {
@@ -149,7 +151,7 @@ function customCheckLinkFn(text, url) {
     // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
 }
 
-const editorConfig = { MENU_CONF: {} }
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // 插入链接
 editorConfig.MENU_CONF['insertLink'] = {
@@ -165,7 +167,7 @@ editorConfig.MENU_CONF['updateLink'] = {
 
 ## 图片
 
-```js
+```ts
 // 自定义校验图片
 function customCheckImageFn(src, alt, url) {
     if (!src) {
@@ -182,7 +184,7 @@ function customCheckImageFn(src, alt, url) {
     // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
 }
 
-const editorConfig = { MENU_CONF: {} }
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // 插入图片
 editorConfig.MENU_CONF['insertImage'] = {
@@ -210,8 +212,8 @@ editorConfig.MENU_CONF['editImage'] = {
 
 上传图片的配置比较复杂，拆分为几个部分来讲解。
 
-```js{4}
-const editorConfig = { MENU_CONF: {} }
+```ts{4}
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['uploadImage'] = {
     // 上传图片的配置
@@ -224,7 +226,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 **必填**，否则上传图片会报错。
 
-```js
+```ts
 editorConfig.MENU_CONF['uploadImage'] = {
      server: '/api/upload',
 }
@@ -232,7 +234,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 【特别注意】服务端 response body 格式要求如下：
 
-```js
+```ts
 // 成功的格式
 {
     "errno": 0, // 注意：值是数字，不能是字符串
@@ -260,7 +262,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ### 基本配置
 
-```js
+```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // form-data fieldName ，默认值 'wangeditor-uploaded-file'
     fieldName: 'your-custom-name',
@@ -293,7 +295,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ### 回调函数
 
-```js
+```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 上传之前触发
     onBeforeUpload(files) {
@@ -331,7 +333,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 但你可以使用 `customInsert` 来自定义插入图片。
 
-```js
+```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义插入图片
     customInsert(res, insertFn) {
@@ -346,7 +348,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 如果你不想使用 wangEditor 自带的上传功能，例如你要上传到阿里云 OSS 。<br>
 可以通过 `customUpload` 来自定义上传。
 
-```js
+```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义上传
     customUpload(files, insertFn) {
@@ -361,7 +363,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 如果你不想使用 wangEditor 自带的选择文件功能，例如你有自己的图床，或者图片选择器。<br>
 可以通过 `customBrowseAndUpload` 来自己实现选择图片、上传图片，并插入图片。
 
-```js
+```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义选择图片
     customBrowseAndUpload(insertFn) {
@@ -387,7 +389,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ## 视频
 
-```js
+```ts
 // 自定义校验视频
 function customCheckVideoFn(src) {
     if (!src) {
@@ -404,7 +406,7 @@ function customCheckVideoFn(src) {
     // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
 }
 
-const editorConfig = { MENU_CONF: {} }
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['insertVideo'] = {
     onInsertedVideo(videoNode) {
@@ -419,8 +421,8 @@ editorConfig.MENU_CONF['insertVideo'] = {
 
 ## 代码高亮
 
-```js
-const editorConfig = { MENU_CONF: {} }
+```ts
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['codeSelectLang'] = {
     // 代码语言

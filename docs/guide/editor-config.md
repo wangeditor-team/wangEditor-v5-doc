@@ -2,8 +2,14 @@
 
 如果是第一次使用，请先通过 [快速开始](/v5/guide/getting-started.html) 了解基本使用。
 
-```js{3}
-const editor = wangEditor.createEditor({
+```ts{4}
+import { IEditorConfig, createEditor } from '@wangeditor/editor-cattle'
+
+const editorConfig: Partial<IEditorConfig> = {
+    /* 编辑器配置 */
+}
+
+const editor = createEditor({
   textareaSelector: '#editor-container',
   config: editorConfig,
   content: [],
@@ -17,8 +23,8 @@ const editor = wangEditor.createEditor({
 
 配置编辑器 placeholder
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.placeholder = '请输入内容...'
 ```
 
@@ -26,8 +32,8 @@ editorConfig.placeholder = '请输入内容...'
 
 配置编辑器是否只读，默认为 `false`
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.readOnly = true
 ```
 
@@ -37,8 +43,8 @@ editorConfig.readOnly = true
 
 配置编辑器默认是否 focus ，默认为 `true`
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.autoFocus = false
 ```
 
@@ -46,8 +52,8 @@ editorConfig.autoFocus = false
 
 配置编辑器是否支持滚动，默认为 `true`
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.scroll = false
 ```
 
@@ -61,8 +67,8 @@ editorConfig.scroll = false
 
 配置编辑器的 maxlength ，默认不限制
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.maxLength = 1000
 editorConfig.onMaxLength = function (editor) {
     // 当达到 maxlength 限制时，触发该回调函数
@@ -79,11 +85,10 @@ editorConfig.onMaxLength = function (editor) {
 
 ![](/v5/image/hoverbar.png)
 
-```js
-import { DomEditor } from '@wangeditor/editor-cattle'
-// 使用 CDN ： const DomEditor = window.wangEditor.DomEditor
+```ts
+import { DomEditor, IEditorConfig } from '@wangeditor/editor-cattle'
 
-const editorConfig = {}
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.hoverbarKeys = [
     {
         desc: '选中链接 selected link',
@@ -108,8 +113,8 @@ editorConfig.hoverbarKeys = [
 
 编辑器创建完毕时的回调函数。
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.onCreated = (editor) => {
     // editor created
 }
@@ -119,8 +124,8 @@ editorConfig.onCreated = (editor) => {
 
 编辑器内容、选区变化时的回调函数。
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.onChange = (editor) => {
     // editor changed
     console.log('content', editor.children)
@@ -131,8 +136,8 @@ editorConfig.onChange = (editor) => {
 
 编辑器销毁时的回调函数。调用 `editor.destroy()` 即可销毁编辑器，详见 [API](/v5/guide/API.html) 。
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.onDestroyed = (editor) => {
     // editor destroyed
 }
@@ -142,8 +147,8 @@ editorConfig.onDestroyed = (editor) => {
 
 编辑器 focus 时的回调函数。
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.onFocus = (editor) => {
     // editor focused
 }
@@ -153,8 +158,8 @@ editorConfig.onFocus = (editor) => {
 
 编辑器 blur 时的回调函数。
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.onBlur = (editor) => {
     // editor blur
 }
@@ -164,8 +169,8 @@ editorConfig.onBlur = (editor) => {
 
 自定义粘贴。可阻止编辑器的默认粘贴，实现自己的粘贴逻辑。
 
-```js
-const editorConfig = {}
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.customPaste = (editor, event) => {
     // event 是 ClipboardEvent 类型，可以拿到粘贴的数据
     // 可参考 https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
@@ -187,10 +192,10 @@ editorConfig.customPaste = (editor, event) => {
 
 自定义编辑器 alert 。如想用 antd 的 message 功能。
 
-```js
+```ts
 import { message } from 'antd'
 
-const editorConfig = {}
+const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.customAlert = (s, t) => {
     switch (t) {
         case 'success':

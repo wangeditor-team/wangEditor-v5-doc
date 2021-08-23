@@ -16,7 +16,7 @@
 ### 1.同时存储 content 和 html
 
 ```js
-const editor = wangEditor.createEditor({ ... })
+const editor = createEditor({ ... })
 
 // 也可以通过 onChange 把 content html 实时同步到 textarea ，再提交表单
 
@@ -52,7 +52,7 @@ $('#button-save').on('click', () => {
 ### 2.只存储 content
 
 ```js
-const editor = wangEditor.createEditor({ ... })
+const editor = createEditor({ ... })
 
 // 也可以通过 onChange 把 content 实时同步到 textarea ，再提交表单
 
@@ -83,7 +83,7 @@ $('#button-save').on('click', () => {
 ### 3.只存储 html
 
 ```js
-const editor = wangEditor.createEditor({ ... })
+const editor = createEditor({ ... })
 
 // 也可以通过 onChange 把 html 实时同步到 textarea ，再提交表单
 
@@ -116,7 +116,7 @@ $('#button-save').on('click', () => {
 const content = await getContentFromDatabaseOrServer()
 
 // 创建编辑器，只传入 content 即可
-const editor = wangEditor.createEditor({ content })
+const editor = createEditor({ content })
 
 const html = editor.getHtml()
 const text = editor.getText()

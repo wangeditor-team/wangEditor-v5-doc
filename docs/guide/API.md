@@ -205,7 +205,6 @@ editor.insertNode(node)
 
 ```js
 import { SlateTransforms } from '@wangeditor/editor-cattle'
-// CDN：const SlateTransforms = window.wangEditor.SlateTransforms
 
 const node1 = { type: 'paragraph', children: [{ text: 'aaa' }] }
 const node2 = { type: 'paragraph', children: [{ text: 'bbb' }] }
@@ -220,7 +219,6 @@ SlateTransforms.insertNodes(editor, nodeList)
 
 ```js
 import { SlateTransforms } from '@wangeditor/editor-cattle'
-// CDN：const SlateTransforms = window.wangEditor.SlateTransforms
 
 SlateTransforms.removeNodes(editor)
 ```
@@ -231,7 +229,6 @@ SlateTransforms.removeNodes(editor)
 
 ```js
 import { SlateEditor } from '@wangeditor/editor-cattle'
-// CDN：const SlateEditor = window.wangEditor.SlateEditor
 
 const nodeEntries = SlateEditor.nodes(editor, {
   match: node => node.type === 'paragraph', // 匹配 paragraph
@@ -253,7 +250,6 @@ if (nodeEntries == null) {
 
 ```js
 import { SlateTransforms } from '@wangeditor/editor-cattle'
-// CDN：const SlateTransforms = window.wangEditor.SlateTransforms
 
 SlateTransforms.setNodes(editor, { textAlign: 'left' }, {
   mode: 'highest' // 针对最高层级的节点
@@ -304,7 +300,6 @@ void node 即没有子元素的节点（它本身就可以看作是一个特殊�
 
 ```js
 import { SlateText } from '@wangeditor/editor-cattle'
-// CDN：const SlateText = window.wangEditor.SlateText
 
 SlateText.isText(node) // true/false
 ```
@@ -315,7 +310,6 @@ SlateText.isText(node) // true/false
 
 ```js
 import { SlateElement } from '@wangeditor/editor-cattle'
-// CDN：const SlateElement = window.wangEditor.SlateElement
 
 SlateElement.isElement(node) // true/false
 ```
@@ -345,7 +339,6 @@ editor.removeMark('bold') // 取消加粗
 
 ```js
 import { SlateEditor } from '@wangeditor/editor-cattle'
-// CDN：const SlateEditor = window.wangEditor.SlateEditor
 
 SlateEditor.marks(editor) // 例如 { bold: true, color: "#595959" }
 ```
@@ -484,7 +477,7 @@ editor.destroy()
 
 :::tip
 destroy 仅仅是移除编辑器、工具栏的 DOM 节点，全局绑定的事件等。<br>
-自己定义的变量，如 `const editor = wangEditor.createEditor({...})` ，这个 `editor` 还需要自己来销毁。
+自己定义的变量，如 `const editor = createEditor({...})` ，这个 `editor` 还需要自己来销毁。
 :::
 
 ## selection 相关
@@ -602,7 +595,6 @@ editor.emit('event-key')
 
 ```js
 import { SlateTransforms } from '@wangeditor/editor-cattle'
-// CDN：const SlateTransforms = window.wangEditor.SlateTransforms
 ```
 
 ### Node Editor API
@@ -613,10 +605,6 @@ import { SlateTransforms } from '@wangeditor/editor-cattle'
 
 ```js
 import { SlateEditor, SlateNode, SlateElement, SlateText } from '@wangeditor/editor-cattle'
-// CDN：const SlateEditor = window.wangEditor.SlateEditor
-// CDN：const SlateNode = window.wangEditor.SlateNode
-// CDN：const SlateElement = window.wangEditor.SlateElement
-// CDN：const SlateText = window.wangEditor.SlateText
 ```
 
 ### Location API
@@ -627,9 +615,4 @@ import { SlateEditor, SlateNode, SlateElement, SlateText } from '@wangeditor/edi
 
 ```js
 import { SlateLocation, SlatePath, SlatePoint, SlateRange } from '@wangeditor/editor-cattle'
-// CDN：const SlateLocation = window.wangEditor.SlateLocation
-// CDN：const SlatePath = window.wangEditor.SlatePath
-// CDN：const SlatePoint = window.wangEditor.SlatePoint
-// CDN：const SlateRange = window.wangEditor.SlateRange
 ```
-

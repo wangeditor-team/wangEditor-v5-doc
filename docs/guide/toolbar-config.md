@@ -6,13 +6,15 @@
 wangEditor V5 开始，工具栏配置和[菜单配置](/v5/guide/menu-config.html)（如配置颜色、字体、链接校验、上传图片等）分离了。本文只讲编辑器配置。
 :::
 
-```js{2}
-const toolbarConfig = {
+```ts{4}
+import { IToolbarConfig, createToolbar } from '@wangeditor/editor-cattle'
+
+const toolbarConfig: Partial<IToolbarConfig> = {
     /* 工具栏配置 */
 }
 
 // 创建工具栏
-const toolbar = wangEditor.createToolbar({
+const toolbar = createToolbar({
   editor,
   toolbarSelector: '#toolbar-container',
   config: toolbarConfig
@@ -28,8 +30,8 @@ const toolbar = wangEditor.createToolbar({
 
 【注意】可以通过 `editor.getAllMenuKeys()` 查询编辑器注册的所有菜单 key 。这些都可以用于 `toolbarKeys` 中。
 
-```js
-const toolbarConfig = {
+```ts
+const toolbarConfig: Partial<IToolbarConfig> = {
     toolbarKeys: [
         // 菜单 key
         'headerSelect',
@@ -59,8 +61,8 @@ const toolbarConfig = {
 如果仅仅想排除掉某些菜单，其他都保留，可以使用 `excludeKeys` 来配置。<br>
 可通过 `toolbar.getConfig().toolbarKeys` 查看工具栏的默认配置
 
-```js
-const toolbarConfig = {
+```ts
+const toolbarConfig: Partial<IToolbarConfig> = {
     excludeKeys: [
         'headerSelect',
         'italic',

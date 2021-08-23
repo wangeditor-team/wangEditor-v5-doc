@@ -30,14 +30,14 @@ footer: Copyright © 2017-present wangeditor.com
 
 ```js
 import '@wangeditor/editor-cattle/dist/css/style.css'
-import * as wangEditor from '@wangeditor/editor-cattle'
+import { createEditor, createToolbar } from '@wangeditor/editor-cattle'
 
 // 创建编辑器
-const editor = wangEditor.createEditor({
+const editor = createEditor({
   textareaSelector: '#editor-container'
 })
 // 创建工具栏
-const toolbar = wangEditor.createToolbar({
+const toolbar = createToolbar({
   editor,
   toolbarSelector: '#toolbar-container'
 })
