@@ -101,13 +101,13 @@ editor.getAllMenuKeys()
 ]
 ```
 
-PS：同时，wangEditor 有丰富的 [API](/guide/API.html) 和足够的扩展性，允许你[自定义开发](/guide/development.html)菜单、模块、插件等。
+PS：同时，wangEditor 有丰富的 [API](/v5/guide/API.html) 和足够的扩展性，允许你[自定义开发](/v5/guide/development.html)菜单、模块、插件等。
 
 ### 很方便的应用于 Vue React
 
 wangEditor 基于 slate 内核开发，但不依赖于 React ，所以它本身是无框架依赖的。
 
-并且，我们官方封装了 Vue React 组件，可以很方便的[用于 Vue React 等框架](/guide/for-frame.html)。<br>
+并且，我们官方封装了 Vue React 组件，可以很方便的[用于 Vue React 等框架](/v5/guide/for-frame.html)。<br>
 其他框架，我们会继续支持，大家也可以提交 issue 。
 
 ### 踩过 4000 个坑

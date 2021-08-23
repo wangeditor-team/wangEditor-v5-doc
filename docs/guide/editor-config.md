@@ -1,6 +1,6 @@
 # 编辑器配置
 
-如果是第一次使用，请先通过 [快速开始](/guide/getting-started.html) 了解基本使用。
+如果是第一次使用，请先通过 [快速开始](/v5/guide/getting-started.html) 了解基本使用。
 
 ```js{3}
 const editor = wangEditor.createEditor({
@@ -31,7 +31,7 @@ const editorConfig = {}
 editorConfig.readOnly = true
 ```
 
-只读状态可通过 `editor.enable()` 和 `editor.disable()` 切换，详见 [API](/guide/API.html) 。
+只读状态可通过 `editor.enable()` 和 `editor.disable()` 切换，详见 [API](/v5/guide/API.html) 。
 
 ## autoFocus
 
@@ -54,7 +54,7 @@ editorConfig.scroll = false
 :::tip
 可将 scroll 设置为 `false` 的情况：
 - 编辑器高度自增
-- 在线文档文档，如腾讯文档、语雀那样的，参考 [demo](/demo.html) 中的“仿语雀编辑器”
+- 在线文档文档，如腾讯文档、语雀那样的，参考 [demo](https://www.wangeditor.com/demo/zh-CN/like-qq-doc.html) 中的“仿语雀编辑器”
 :::
 
 ## maxLength onMaxLength
@@ -77,7 +77,7 @@ editorConfig.onMaxLength = function (editor) {
 
 配置编辑器的 hoverbar 菜单。通过 `editor.getConfig().hoverbarKeys` 可查看当前的 hoverbarKeys 。
 
-![](/image/hoverbar.png)
+![](/v5/image/hoverbar.png)
 
 ```js
 import { DomEditor } from '@wangeditor/editor-cattle'
@@ -129,7 +129,7 @@ editorConfig.onChange = (editor) => {
 
 ## onDestroyed
 
-编辑器销毁时的回调函数。调用 `editor.destroy()` 即可销毁编辑器，详见 [API](/guide/API.html) 。
+编辑器销毁时的回调函数。调用 `editor.destroy()` 即可销毁编辑器，详见 [API](/v5/guide/API.html) 。
 
 ```js
 const editorConfig = {}

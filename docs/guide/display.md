@@ -198,8 +198,6 @@ hr {
 </pre>
 ```
 
-使用 Prism.js 可以参考 [demo](/demo.html) 。
-
 :::tip
 如果是前端异步渲染（非 SSR 渲染），待渲染完毕需要执行 `Prism.highlightAll()` 来触发高亮。
 :::

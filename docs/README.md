@@ -29,8 +29,8 @@ footer: Copyright © 2017-present wangeditor.com
 ### 使用简单
 
 ```js
+import '@wangeditor/editor-cattle/dist/css/style.css'
 import * as wangEditor from '@wangeditor/editor-cattle'
-// CDN: var wangEditor = window.wangEditor
 
 // 创建编辑器
 const editor = wangEditor.createEditor({

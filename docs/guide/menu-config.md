@@ -1,6 +1,6 @@
 # 菜单配置
 
-本文是各个菜单项的详细配置。如想要自定义工具栏的菜单（隐藏某些菜单、排序、分组等），请参考[工具栏配置](/guide/toolbar-config.html)。
+本文是各个菜单项的详细配置。如想要自定义工具栏的菜单（隐藏某些菜单、排序、分组等），请参考[工具栏配置](/v5/guide/toolbar-config.html)。
 
 ## 通用方法
 
@@ -378,7 +378,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 这是一个常见的需求。<br>
 上传图片到编辑器，然后又把图片删除了。此时你可能想要拿到这张删除的图片，在服务器也把图片文件删了。
 
-- 使用 [onInsertedImage](/guide/menu-config.html#图片) 来收集所有上传或者插入的图片，记录为 `imageList1`
+- 使用 [onInsertedImage](/v5/guide/menu-config.html#图片) 来收集所有上传或者插入的图片，记录为 `imageList1`
 - 最后保存编辑器内容之前，使用 `editor.getElemsByTypePrefix('image')` 获取当前编辑器的所有图片，记录为 `imageList2`
 - 对比 `imageList1` 和 `imageList2` ，两者的差异，就是删除过的图片
 

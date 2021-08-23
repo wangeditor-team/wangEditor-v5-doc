@@ -13,12 +13,22 @@
 
 ### 创建编辑器和工具栏
 
-PS：安装 wangEditor 参考[这里](/guide/installation.html)。
+注意，安装 wangEditor 参考[这里](/v5/guide/installation.html)。
+
+引入 wangEditor
 
 ```js
+// npm 方式
+import '@wangeditor/editor-cattle/dist/css/style.css'
 import * as wangEditor from '@wangeditor/editor-cattle'
-// CDN: const wangEditor = window.wangEditor
 
+// CDN 引入
+// const wangEditor = window.wangEditor
+```
+
+创建编辑器
+
+```js
 const editorConfig = {}
 editorConfig.placeholder = '请输入内容'
 editorConfig.onChange = (editor) => {
@@ -44,19 +54,19 @@ const toolbar = wangEditor.createToolbar({
 
 这样就创建出了一个最基本的编辑器。
 
-![](/image/editor.png)
+![](/v5/image/editor.png)
 
 ::: tip
 1. 工具栏并不是强制的，如不需要，可以不创建。这并不影响编辑器的使用。
-2. 工具栏的菜单是可以配置的，可参考[配置](/guide/toolbar-config.html)。
-3. 其他 editor config 可参考[配置](/guide/editor-config.html)。
+2. 工具栏的菜单是可以配置的，可参考[配置](/v5/guide/toolbar-config.html)。
+3. 其他 editor config 可参考[配置](/v5/guide/editor-config.html)。
 :::
 
 ### content 初始化内容
 
 创建编辑器时，传入的默认内容。即编辑器创建完成后，立马显示这些内容。
 
-但是这里要遵循一定的数据格式规范，具体可参考 [节点数据结构](/guide/node-define.html) 。
+但是这里要遵循一定的数据格式规范，具体可参考 [节点数据结构](/v5/guide/node-define.html) 。
 
 ```js
 wangEditor.createEditor({
@@ -85,12 +95,12 @@ wangEditor.createEditor({
 :::tip
 content 只能是上述 json 格式，**不支持 html**<br>
 所以，**在保存编辑器内容时，一定要保存 `editor.children` ，方便再次编辑内容**<br>
-是否要存储 html 视情况而定，参考[这里](/guide/display.html)
+是否要存储 html 视情况而定，参考[这里](/v5/guide/display.html)
 :::
 
 ### mode 模式
 
-编辑器内置了两种模式（区别可参考 [demo](/demo.html)）
+编辑器内置了两种模式（区别可参考 [demo](https://www.wangeditor.com/demo/zh-CN/index.html)）
 - `default` 默认模式 - 集成了 wangEditor 所有功能
 - `simple` 简洁模式 - 仅有部分常见功能，但更加简洁易用
 
@@ -146,15 +156,15 @@ wangEditor 工具栏内置了“全屏”菜单，但使用它需要有一个条
 </div>
 ```
 
-如果你的 html 结构无法做到上述要求，或者不想用全屏功能，可以通过[工具栏配置](/guide/toolbar-config.html) `{ excludeKeys: 'fullScreen' }` 来隐藏全屏菜单。
+如果你的 html 结构无法做到上述要求，或者不想用全屏功能，可以通过[工具栏配置](/v5/guide/toolbar-config.html) `{ excludeKeys: 'fullScreen' }` 来隐藏全屏菜单。
 
 ### 其他
 
 - 可以自定义 `toolbar-container` 的样式和行为，实现工具栏 fixed 到顶部
-- 可以自定义 html 实现腾讯文档、语雀文档的效果，参考 [demo](/demo.html)
+- 可以自定义 html 实现腾讯文档、语雀文档的效果，参考 [demo](https://www.wangeditor.com/demo/zh-CN/like-qq-doc.html)
 - 其他自行探索
 
-![](/image/yuque.png)
+![](/v5/image/yuque.png)
 
 ## 一个页面多个编辑器
 

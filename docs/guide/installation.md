@@ -34,5 +34,6 @@ npm install @wangeditor/editor-for-vue --save
 ## CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/wangEditor.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@wangeditor/editor-cattle@latest/dist/css/style.css" rel="stylesheet">
 ```

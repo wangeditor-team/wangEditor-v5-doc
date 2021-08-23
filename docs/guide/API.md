@@ -12,7 +12,7 @@ editor.getConfig()
 
 ### getMenuConfig
 
-获取单个 menu 的配置。menu 配置相关的可参考[这里](/guide/menu-config.html)。
+获取单个 menu 的配置。menu 配置相关的可参考[这里](/v5/guide/menu-config.html)。
 
 ```js
 editor.getMenuConfig(menuKey)
@@ -28,7 +28,7 @@ editor.getAllMenuKeys()
 
 ### alert
 
-编辑器 alert ，可通过 [customAlert](/guide/editor-config.html#customalert) 配置。
+编辑器 alert ，可通过 [customAlert](/v5/guide/editor-config.html#customalert) 配置。
 
 ```js
 editor.alert('错误信息', 'error')
@@ -188,7 +188,7 @@ editor.redo()
 
 ## 节点操作
 
-使用节点操作 API 前，请查看 [节点数据结构](/guide/node-define.html) 。
+使用节点操作 API 前，请查看 [节点数据结构](/v5/guide/node-define.html) 。
 
 ### insertNode
 
@@ -439,7 +439,7 @@ editor.fullScreen()
 ```
 
 :::tip
-全屏功能，有 html 结构的要求，请参考[这里](/guide/getting-started.html#全屏)
+全屏功能，有 html 结构的要求，请参考[这里](/v5/guide/getting-started.html#全屏)
 :::
 
 ### unFullScreen

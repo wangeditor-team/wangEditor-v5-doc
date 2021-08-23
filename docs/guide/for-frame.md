@@ -1,21 +1,21 @@
 # 用于 Vue React
 
-如果是第一次使用，请先通过 [快速开始](/guide/getting-started.html) 了解基本使用。
+如果是第一次使用，请先通过 [快速开始](/v5/guide/getting-started.html) 了解基本使用。
 
 ## 注意
 
 本文只介绍各个框架的组件接入，实际使用时还需要很多配置、API 。<br>
 所以，阅读下文代码时，如遇到 `工具栏配置` `编辑器配置` `菜单配置` `editor API` 等字眼，请继续参考其他文档：
-- [工具栏配置](/guide/toolbar-config.html)
-- [编辑器配置](/guide/editor-config.html)
-- [编辑器 API](/guide/API.html)
-- [菜单配置](/guide/menu-config.html)
+- [工具栏配置](/v5/guide/toolbar-config.html)
+- [编辑器配置](/v5/guide/editor-config.html)
+- [编辑器 API](/v5/guide/API.html)
+- [菜单配置](/v5/guide/menu-config.html)
 
 ## Vue2
 
 ### 安装
 
-需安装 `wangEditor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/guide/installation.html)。
+需安装 `wangEditor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/guide/installation.html)。
 
 ### 模板
 
@@ -133,7 +133,7 @@ Vue3 组件正在开发中...
 
 ### 安装
 
-需安装 `wangEditor` 和 `@wangeditor/editor-for-react`，可参考[这里](/guide/installation.html)。
+需安装 `wangEditor` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/guide/installation.html)。
 
 ### 使用
 

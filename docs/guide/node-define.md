@@ -7,7 +7,7 @@ wangEditor 是基于 slate.js 为内核开发的，所以学习本文之前，�
 很多同学可能根本不知道本文要讲什么，对于这里的“节点”和“数据结构”也不知何意。<br>
 没关系，接下来通过几个问题，就可以让你快速入门。
 
-我们通过 [API](/guide/API.html) 的学习，已经知道了 wangEditor 有丰富的 API 可供使用。<br>
+我们通过 [API](/v5/guide/API.html) 的学习，已经知道了 wangEditor 有丰富的 API 可供使用。<br>
 那么问题来了：
 
 - `editor.addMark({ key: value })` 可以设置文本样式，如何设置删除线呢？此时 `key` `value` 该怎么写？
@@ -22,11 +22,11 @@ wangEditor 是基于 slate.js 为内核开发的，所以学习本文之前，�
 
 例如，写一段文字、设置一个标题或列表，查看 `editor.children` 即可看到他们的数据结构
 
-![](/image/数据结构-1.png)
+![](/v5/image/数据结构-1.png)
 
 再例如，对文字设置行高，设置文本样式，查看 `editor.children` 即可看到他们的数据结构
 
-![](/image/数据结构-2.png)
+![](/v5/image/数据结构-2.png)
 
 ## 各种节点的数据结构
 
