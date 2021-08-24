@@ -112,16 +112,16 @@ $('#button-save').on('click', () => {
 支持浏览器，**也支持 nodejs**（所以可以用于 nodejs SSR 服务端渲染）
 
 ```js
-// 自己从服务端或这数据库获取 content
-const content = await getContentFromDatabaseOrServer()
+// 1. 自己从服务端或这数据库获取 content
 
-// 创建编辑器，只传入 content 即可
+// 2. 创建编辑器，只传入 content 即可
 const editor = createEditor({ content })
 
+// 3. 获取 html 和 text
 const html = editor.getHtml()
 const text = editor.getText()
 
-// 将 html 或者 text 渲染到页面
+// 4. 将 html 或者 text 渲染到页面
 ```
 
 【注意】继续参考下文，需要为 html 增加一些样式。
@@ -190,7 +190,8 @@ hr {
 
 代码高亮推荐使用 [Prism.js](https://prismjs.com/) ，因为编辑器内容内部也是基于 Prism.js 来实现的。
 
-如果在编辑器中添加代码块 `const a = 100;` ，并选择语言 `javascript` 。输出的 html 好符合 Prism.js 规定的 html 格式。
+如果在编辑器中添加代码块 `const a = 100;` ，并选择语言 `javascript` 。输出的 html 会符合 Prism.js 规定的 html 格式。
+然后用 Prism.js 来渲染代码高亮即可。
 
 ```html
 <pre>

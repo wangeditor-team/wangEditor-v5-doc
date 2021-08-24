@@ -50,7 +50,7 @@ editorConfig.autoFocus = false
 
 ## scroll
 
-配置编辑器是否支持滚动，默认为 `true`
+配置编辑器是否支持滚动，默认为 `true` 。注意，此时**不要固定 `editor-container` 的高度**，设置一个 `min-height` 即可。
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}
@@ -70,7 +70,7 @@ editorConfig.scroll = false
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.maxLength = 1000
-editorConfig.onMaxLength = function (editor) {
+editorConfig.onMaxLength = function (editor: IDomEditor) {
     // 当达到 maxlength 限制时，触发该回调函数
 }
 ```
@@ -98,7 +98,7 @@ editorConfig.hoverbarKeys = [
 ]
 ```
 
-其他配置可参考[源码](https://github.com/wangeditor-team/we-2021/blob/main/packages/editor/src/config/hoverbar.ts)。
+其他配置可参考[源码](https://github.com/wangeditor-team/we-2021/blob/main/packages/editor/src/init-default-config/config/hoverbar.ts)。
 
 **不建议直接修改这个配置**，用编辑器默认的即可。建议这样操作：
 - 如果想要选中文字的 hoverbar ，就在 createEditor 时设置 `mode: 'default'`
@@ -115,7 +115,7 @@ editorConfig.hoverbarKeys = [
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onCreated = (editor) => {
+editorConfig.onCreated = (editor: IDomEditor) => {
     // editor created
 }
 ```
@@ -126,7 +126,7 @@ editorConfig.onCreated = (editor) => {
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onChange = (editor) => {
+editorConfig.onChange = (editor: IDomEditor) => {
     // editor changed
     console.log('content', editor.children)
 }
@@ -138,7 +138,7 @@ editorConfig.onChange = (editor) => {
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onDestroyed = (editor) => {
+editorConfig.onDestroyed = (editor: IDomEditor) => {
     // editor destroyed
 }
 ```
@@ -149,7 +149,7 @@ editorConfig.onDestroyed = (editor) => {
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onFocus = (editor) => {
+editorConfig.onFocus = (editor: IDomEditor) => {
     // editor focused
 }
 ```
@@ -160,7 +160,7 @@ editorConfig.onFocus = (editor) => {
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onBlur = (editor) => {
+editorConfig.onBlur = (editor: IDomEditor) => {
     // editor blur
 }
 ```
@@ -171,7 +171,7 @@ editorConfig.onBlur = (editor) => {
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.customPaste = (editor, event) => {
+editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean => {
     // event 是 ClipboardEvent 类型，可以拿到粘贴的数据
     // 可参考 https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
 
@@ -196,7 +196,7 @@ editorConfig.customPaste = (editor, event) => {
 import { message } from 'antd'
 
 const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.customAlert = (s, t) => {
+editorConfig.customAlert = (s: string, t: string) => {
     switch (t) {
         case 'success':
             message.success(s)

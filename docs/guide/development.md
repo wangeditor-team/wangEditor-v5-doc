@@ -16,43 +16,6 @@ wangEditor 扩展性包括以下部分，你可以来扩展大部分常用的功
 - 劫持编辑器的 API 并自定义（如输入 `#` 之后，切换为 H1 ，实现简单的 markdown 功能）
 - 扩展菜单
 
-## 安装依赖
-
-### 安装 `@wangeditor/core`
-
-```shell
-npm install @wangeditor/core --peer
-## 或者 yarn add @wangeditor/core --peer
-```
-
-### 安装 `snabbdom`
-
-仅限于渲染新元素到编辑器，下文有解释
-
-```shell
-npm install snabbdom --peer
-## 或者 yarn add snabbdom --peer
-```
-
-### 不用安装 `slate`
-
-注意，不用再安装 `slate` ，可在 `@wangeditor/editor` 中得到 slate 的常用 API
-
-```js
-import {
-    SlateTransforms,
-    SlateDescendant,
-    SlateEditor,
-    SlateNode,
-    SlateElement,
-    SlateText,
-    SlatePath,
-    SlateRange,
-    SlateLocation,
-    SlatePoint,
-} from '@wangeditor/editor'
-```
-
 ## 元素的数据结构
 
 如果你需要扩展新元素，则需要先定义数据结构。<br>
@@ -68,20 +31,29 @@ import {
 如果你定义了新元素，则需要把它显示到编辑器内。主要过程是：**model -> 生成 vdom -> 渲染 DOM** <br>
 用到了 vdom 需要安装 `snabbdom`，参考上文。
 
+### 安装 snabbdom.js
+
+```shell
+yarn add snabbdom --peer
+## 安装到 package.json 的 peerDependencies 中即可
+```
+
 ### renderTextStyle
 
 增加了新的文本样式，需要渲染编辑器中。
 
 ```ts
 import { jsx, VNode } from 'snabbdom'
-import { SlateText } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor-cattle'
+import { Boot, SlateNode, SlateText } from '@wangeditor/editor-cattle'
 
 // 定义渲染函数
-function fn(textNode: SlateText, vnode: VNode): VNode {
-    // 1. 根据 textNode 的属性，为 vnode 添加样式
+function fn(textNode: SlateNode, vnode: VNode): VNode {
+    // 1. 根据 textNode 的属性
+    const { bold, color } = textNode as SlateText
 
-    // 2. 返回添加了样式的 vnode
+    // 2. 为 vnode 添加样式
+
+    // 3. 返回添加了样式的 vnode
     return newVNode
 }
 
@@ -99,8 +71,7 @@ Boot.registerRenderTextStyle(fn)
 
 ```tsx
 import { jsx, VNode } from 'snabbdom'
-import { IDomEditor, SlateElement } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor-cattle'
+import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor-cattle'
 
 // 渲染函数
 function fn(elem: SlateElement, children: VNode[] | null, editor: IDomEditor): VNode {
@@ -135,8 +106,7 @@ Boot.registerRenderElem(conf)
 生成 text 的 html
 
 ```ts
-import { IDomEditor, SlateText } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor-cattle'
+import { Boot, IDomEditor, SlateText } from '@wangeditor/editor-cattle'
 
 // 定义生成 html 的函数
 function fn(textNode: SlateText, textHtml: string, editor: IDomEditor): string {
@@ -165,15 +135,14 @@ Boot.registerTextToHtml(fn)
 生成文本样式的 html
 
 ```ts
-import { SlateText } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor-cattle'
+import { Boot, SlateText, SlateNode } from '@wangeditor/editor-cattle'
 
 // 定义函数
-function fn(textNode: SlateText, curHtml: string): string {
+function fn(textNode: SlateNode, curHtml: string): string {
     // 根据 textNode 属性，生成带有样式的 html
 
     // 获取属性
-    const { color, bgColor, text } = textNode
+    const { color, bgColor, text } = textNode as SlateText
 
     // 设置样式
     const $elem = $(elemHtml)
@@ -199,8 +168,7 @@ Boot.registerTextStyleToHtml(fn)
 生成元素的 html
 
 ```ts
-import { IDomEditor, SlateElement } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor-cattle'
+import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor-cattle'
 
 // 生成 html 的函数
 function fn(elem: SlateElement, childrenHtml: string, editor: IDomEditor): string {
@@ -227,8 +195,7 @@ Boot.registerElemToHtml(conf)
 先要去了解 [slate.js](https://docs.slatejs.org/) 的 API 和插件机制。
 
 ```ts
-import { IDomEditor } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor-cattle'
+import { Boot, IDomEditor } from '@wangeditor/editor-cattle'
 
 // 定义 slate 插件
 function withBreak<T extends IDomEditor>(editor: T): T {
@@ -266,7 +233,18 @@ Boot.registerPlugin(withBreak)
 注意，下面代码中的 `key` 即菜单 key ，要唯一不重复。<br>
 注册完菜单之后，即可把这个 `key` 配置到[工具栏](/v5/guide/toolbar-config.html)中。
 
+### 安装 `@wangeditor/core`
+
+如使用 Typescript 需要类型校验，需安装 `@wangeditor/core` 。
+
+```shell
+yarn add @wangeditor/core --peer
+## 安装到 package.json 的 peerDependencies 中即可
+```
+
 ### ButtonMenu
+
+代码如下。菜单的详细配置，可参考“引用”菜单[源码](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/blockquote/menu/BlockquoteMenu.ts)。
 
 ```ts
 import { IButtonMenu } from '@wangeditor/core'
@@ -274,8 +252,7 @@ import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义菜单 class
 class MyButtonMenu implements IButtonMenu {
-    // 代码可参考“引用”菜单源码
-    // https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/blockquote/menu/BlockquoteMenu.ts
+    // 菜单配置，参考“引用”菜单源码
 }
 
 // 定义菜单配置
@@ -294,14 +271,15 @@ Boot.registerMenu(menuConf)
 
 ### SelectMenu
 
+代码如下。菜单的详细配置，可参考“标题”菜单[源码](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/header/menu/HeaderSelectMenu.ts)。
+
 ```ts
 import { ISelectMenu } from '@wangeditor/core'
 import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义菜单 class
 class MySelectMenu implements ISelectMenu {
-    // 代码可参考“标题”菜单源码
-    // https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/header/menu/HeaderSelectMenu.ts
+    // 菜单配置，代码可参考“标题”菜单源码
 }
 
 // 定义菜单配置
@@ -320,14 +298,15 @@ Boot.registerMenu(menuConf)
 
 ### ModalMenu
 
+代码如下。菜单配置可参考“插入链接”菜单[源码](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/link/menu/InsertLink.ts)。
+
 ```ts
 import { IModalMenu } from '@wangeditor/core'
 import { Boot } from '@wangeditor/editor-cattle'
 
 // 定义菜单 class
 class MyModalMenu implements IModalMenu {
-    // 代码可参考“插入链接”菜单源码
-    // https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/link/menu/InsertLink.ts
+    // 菜单配置，代码可参考“插入链接”菜单源码
 }
 
 // 定义菜单配置

@@ -6,7 +6,7 @@
 
 获取编辑器所有配置
 
-```js
+```ts
 editor.getConfig()
 ```
 
@@ -14,7 +14,7 @@ editor.getConfig()
 
 获取单个 menu 的配置。menu 配置相关的可参考[这里](/v5/guide/menu-config.html)。
 
-```js
+```ts
 editor.getMenuConfig(menuKey)
 ```
 
@@ -22,7 +22,7 @@ editor.getMenuConfig(menuKey)
 
 获取编辑器所有 menu 的 key
 
-```js
+```ts
 editor.getAllMenuKeys()
 ```
 
@@ -30,7 +30,7 @@ editor.getAllMenuKeys()
 
 编辑器 alert ，可通过 [customAlert](/v5/guide/editor-config.html#customalert) 配置。
 
-```js
+```ts
 editor.alert('错误信息', 'error')
 ```
 
@@ -40,7 +40,7 @@ editor.alert('错误信息', 'error')
 
 控制编辑器按 tab 键时，输入什么。默认如下
 
-```js
+```ts
 editor.handleTab = () => editor.insertText('    ')
 ```
 
@@ -57,15 +57,14 @@ editor.handleTab = () => editor.insertText('    ')
 </div>
 ```
 
-如果想要去掉格式化，可使用 `editor.getHtml({ withFormat: false })`
-
-如果想要修改 `<div>` 的 `class` ，可使用 `editor.getHtml({ containerClassName: 'your-custom-class' })`
+- 如果想要去掉格式化，可使用 `editor.getHtml({ withFormat: false })`
+- 如果想要修改 `<div>` 的 `class` ，可使用 `editor.getHtml({ containerClassName: 'your-custom-class' })`
 
 ### getText
 
 获取当前编辑器的纯文本内容
 
-```js
+```ts
 const text = editor.getText()
 ```
 
@@ -73,7 +72,7 @@ const text = editor.getText()
 
 判断当前编辑器内容是否为空（只有一个空段落）
 
-```js
+```ts
 editor.isEmpty()
 ```
 
@@ -85,7 +84,7 @@ editor.isEmpty()
 
 获取选中的文本
 
-```js
+```ts
 editor.getSelectionText()
 ```
 
@@ -93,7 +92,7 @@ editor.getSelectionText()
 
 通过 type 前缀获取编辑器的 element 列表。
 
-```js
+```ts
 editor.getElemsByTypePrefix('header') // 获取所有标题
 editor.getElemsByTypePrefix('image') // 获取所有图片
 editor.getElemsByTypePrefix('link') // 获取所有链接
@@ -102,7 +101,7 @@ editor.getElemsByTypePrefix('link') // 获取所有链接
 
 获取标题的返回的格式如：
 
-```json
+```tson
 [
   {
     "id": "w-e-element-0",
@@ -126,7 +125,7 @@ editor.getElemsByTypePrefix('link') // 获取所有链接
 
 向后删除，相当于按 backspace 键。
 
-```js
+```ts
 editor.deleteBackward()
 ```
 
@@ -134,7 +133,7 @@ editor.deleteBackward()
 
 向后删除，相当于按 delete 键（部分键盘没有这个键）
 
-```js
+```ts
 editor.deleteForward()
 ```
 
@@ -142,7 +141,7 @@ editor.deleteForward()
 
 删除选中的内容
 
-```js
+```ts
 editor.deleteFragment()
 ```
 
@@ -150,7 +149,7 @@ editor.deleteFragment()
 
 获取选中的内容，json 格式
 
-```js
+```ts
 editor.getFragment()
 ```
 
@@ -158,7 +157,7 @@ editor.getFragment()
 
 在选区回车换行
 
-```js
+```ts
 editor.insertBreak()
 ```
 
@@ -166,7 +165,7 @@ editor.insertBreak()
 
 在选区插入文本
 
-```js
+```ts
 editor.insertText('xxx')
 ```
 
@@ -174,7 +173,7 @@ editor.insertText('xxx')
 
 撤销
 
-```js
+```ts
 editor.undo()
 ```
 
@@ -182,7 +181,7 @@ editor.undo()
 
 重做
 
-```js
+```ts
 editor.redo()
 ```
 
@@ -194,7 +193,7 @@ editor.redo()
 
 在选区插入一个节点
 
-```js
+```ts
 const node = { type: 'paragraph', children: [{ text: 'simple text' }] }
 editor.insertNode(node)
 ```
@@ -203,7 +202,7 @@ editor.insertNode(node)
 
 在选区插入多个节点
 
-```js
+```ts
 import { SlateTransforms } from '@wangeditor/editor-cattle'
 
 const node1 = { type: 'paragraph', children: [{ text: 'aaa' }] }
@@ -217,7 +216,7 @@ SlateTransforms.insertNodes(editor, nodeList)
 
 删除选区所在的节点
 
-```js
+```ts
 import { SlateTransforms } from '@wangeditor/editor-cattle'
 
 SlateTransforms.removeNodes(editor)
@@ -225,22 +224,31 @@ SlateTransforms.removeNodes(editor)
 
 ### 获取选中节点
 
-可使用 `SlateEditor.nodes` 获取选中的节点。
+可使用 `SlateEditor.nodes` 获取选中的节点。详情可参考 [Slate.js](https://docs.slatejs.org/) 中的 `Editor.nodes` API 。
 
-```js
-import { SlateEditor } from '@wangeditor/editor-cattle'
+```ts
+import { SlateEditor, SlateElement, SlateNode } from '@wangeditor/editor-cattle'
 
 const nodeEntries = SlateEditor.nodes(editor, {
-  match: node => node.type === 'paragraph', // 匹配 paragraph
-  universal: true,
+    match: (node: SlateNode) => {
+        if (SlateElement.isElement(node)) {
+            if (node.type === 'paragraph') {
+                return true // 匹配 paragraph
+            }
+        }
+        return false
+    },
+    universal: true,
 })
 
 if (nodeEntries == null) {
-  console.log('当前未选中的 paragraph')
+    console.log('当前未选中的 paragraph')
 } else {
-  const [node, path] = nodeEntries[0]
-  console.log('选中了 paragraph 节点', node)
-  console.log('节点 path 是', path)
+    for (let nodeEntry of nodeEntries) {
+        const [node, path] = nodeEntry
+        console.log('选中了 paragraph 节点', node)
+        console.log('节点 path 是', path)
+    }
 }
 ```
 
@@ -248,10 +256,13 @@ if (nodeEntries == null) {
 
 设置选中节点的属性
 
-```js
+```ts
 import { SlateTransforms } from '@wangeditor/editor-cattle'
 
-SlateTransforms.setNodes(editor, { textAlign: 'left' }, {
+SlateTransforms.setNodes(editor, {
+  // @ts-ignore
+  textAlign: 'right'
+}, {
   mode: 'highest' // 针对最高层级的节点
 })
 ```
@@ -260,7 +271,7 @@ SlateTransforms.setNodes(editor, { textAlign: 'left' }, {
 
 获取一个节点的父节点
 
-```js
+```ts
 const parentNode = editor.getParentNode(node) // 返回 node 或者 null
 ```
 
@@ -268,7 +279,7 @@ const parentNode = editor.getParentNode(node) // 返回 node 或者 null
 
 获取一个节点对应的 DOM 节点
 
-```js
+```ts
 const elem = editor.toDOMNode(node) // 返回 HTMLElement
 ```
 
@@ -276,7 +287,7 @@ const elem = editor.toDOMNode(node) // 返回 HTMLElement
 
 判断一个节点是否是 inline
 
-```js
+```ts
 const inline = editor.isInline(node)
 ```
 
@@ -284,7 +295,7 @@ const inline = editor.isInline(node)
 
 判断一个节点是否是 void
 
-```js
+```ts
 const void = editor.isVoid(node)
 ```
 
@@ -298,7 +309,7 @@ void node 即没有子元素的节点（它本身就可以看作是一个特殊�
 
 判断一个节点是否是 text
 
-```js
+```ts
 import { SlateText } from '@wangeditor/editor-cattle'
 
 SlateText.isText(node) // true/false
@@ -308,7 +319,7 @@ SlateText.isText(node) // true/false
 
 判断一个节点是否是 elem
 
-```js
+```ts
 import { SlateElement } from '@wangeditor/editor-cattle'
 
 SlateElement.isElement(node) // true/false
@@ -318,18 +329,16 @@ SlateElement.isElement(node) // true/false
 
 为选中的文本添加标记（文本样式）
 
-```js
-editor.addMark({
-  bold: true,     // 加粗
-  color: '#999'   // 文字颜色
-})
+```ts
+editor.addMark('bold', true)     // 加粗
+editor.addMark('color', '#999')  // 文本颜色
 ```
 
 ### removeMark
 
 对选中的文字，取消标记（文本样式）
 
-```js
+```ts
 editor.removeMark('bold') // 取消加粗
 ```
 
@@ -337,7 +346,7 @@ editor.removeMark('bold') // 取消加粗
 
 获取选中文字的标记（文本样式）
 
-```js
+```ts
 import { SlateEditor } from '@wangeditor/editor-cattle'
 
 SlateEditor.marks(editor) // 例如 { bold: true, color: "#595959" }
@@ -349,7 +358,7 @@ SlateEditor.marks(editor) // 例如 { bold: true, color: "#595959" }
 
 获取编辑器 id
 
-```js
+```ts
 editor.id // 如 'wangEditor-1'
 ```
 
@@ -357,7 +366,7 @@ editor.id // 如 'wangEditor-1'
 
 编辑器是否全屏
 
-```js
+```ts
 editor.isFullScreen // true/false
 ```
 
@@ -365,7 +374,7 @@ editor.isFullScreen // true/false
 
 聚焦到编辑器
 
-```js
+```ts
 editor.focus()
 ```
 
@@ -373,7 +382,7 @@ editor.focus()
 
 失焦编辑器
 
-```js
+```ts
 editor.blur()
 ```
 
@@ -381,7 +390,7 @@ editor.blur()
 
 判断当前编辑器是否聚焦？
 
-```js
+```ts
 editor.isFocused() // true/false
 ```
 
@@ -389,7 +398,7 @@ editor.isFocused() // true/false
 
 强制更新视图
 
-```js
+```ts
 editor.updateView()
 ```
 
@@ -403,7 +412,7 @@ updateView 是内部 API ，不建议用户使用。如要使用，也请勿频�
 
 可根据 `toDOMNode` 获取 node 对应的 DOM 元素。
 
-```js
+```ts
 editor.scrollToElem(elemId)
 ```
 
@@ -411,7 +420,7 @@ editor.scrollToElem(elemId)
 
 显示进度条，一般用于上传功能
 
-```js
+```ts
 editor.showProgressBar(progress) // progress 为 0-100 的数字
 ```
 
@@ -419,7 +428,7 @@ editor.showProgressBar(progress) // progress 为 0-100 的数字
 
 隐藏当前的弹框 （如插入链接） 和下拉列表（如设置标题、设置字体）
 
-```js
+```ts
 editor.hidePanelOrModal()
 ```
 
@@ -427,7 +436,7 @@ editor.hidePanelOrModal()
 
 设置为全屏
 
-```js
+```ts
 editor.fullScreen()
 ```
 
@@ -439,7 +448,7 @@ editor.fullScreen()
 
 取消全屏
 
-```js
+```ts
 editor.unFullScreen()
 ```
 
@@ -447,7 +456,7 @@ editor.unFullScreen()
 
 禁用编辑器，设置为只读
 
-```js
+```ts
 editor.disable()
 ```
 
@@ -455,7 +464,7 @@ editor.disable()
 
 判断当前编辑器是否只读？
 
-```js
+```ts
 editor.isDisabled() // true/false
 ```
 
@@ -463,7 +472,7 @@ editor.isDisabled() // true/false
 
 取消禁用，取消只读
 
-```js
+```ts
 editor.enable()
 ```
 
@@ -471,7 +480,7 @@ editor.enable()
 
 销毁编辑器和工具栏
 
-```js
+```ts
 editor.destroy()
 ```
 
@@ -488,13 +497,13 @@ selection 数据结构参考 [slate Location](https://docs.slatejs.org/concepts/
 
 获取编辑器当前的选区。如果未选中，则返回 `null` 。
 
-```js
+```ts
 editor.selection // selection 或 null
 ```
 
 selection 数据结构如下：
 
-```json
+```tson
 {
   "anchor": { "path": [1,0], "offset":8 },
   "focus": { "path": [1,0], "offset":10 }
@@ -505,7 +514,7 @@ selection 数据结构如下：
 
 选中一个指定的选区。
 
-```js
+```ts
 const newSelection = {
   anchor: { path: [1,0], offset:8 },
   focus: { path: [1,0], offset:10 }
@@ -517,7 +526,7 @@ editor.select(newSelection)
 
 取消选中
 
-```js
+```ts
 editor.deselect()
 ```
 
@@ -525,7 +534,7 @@ editor.deselect()
 
 恢复最近一次非 null 选区。如编辑器 blur 之后，再重新恢复选区。
 
-```js
+```ts
 editor.restoreSelection()
 ```
 
@@ -533,7 +542,7 @@ editor.restoreSelection()
 
 获取选区的定位（相对于编辑区域，而非 body），**将视情况返回 `left` `right` `top` `bottom` 的其中几个**。
 
-```js
+```ts
 editor.getSelectionPosition() // 例如 { left: "80.15px", top: "116px" }
 ```
 
@@ -541,7 +550,7 @@ editor.getSelectionPosition() // 例如 { left: "80.15px", top: "116px" }
 
 获取某个节点的定位（相对于编辑区域，而非 body），**将视情况返回 `left` `right` `top` `bottom` 的其中几个**。
 
-```js
+```ts
 editor.getNodePosition(node)
 ```
 
@@ -553,7 +562,7 @@ wangEditor 使用 [event-emitter](https://www.npmjs.com/package/event-emitter) �
 
 监听某个事件
 
-```js
+```ts
 editor.on('event-key', fn)
 ```
 
@@ -561,7 +570,7 @@ editor.on('event-key', fn)
 
 取消监听
 
-```js
+```ts
 editor.off('event-key', fn)
 ```
 
@@ -569,7 +578,7 @@ editor.off('event-key', fn)
 
 只监听一次
 
-```js
+```ts
 editor.once('event-key', fn)
 ```
 
@@ -577,7 +586,7 @@ editor.once('event-key', fn)
 
 触发事件
 
-```js
+```ts
 editor.emit('event-key')
 ```
 
@@ -593,7 +602,7 @@ editor.emit('event-key')
 
 使用如下方式即可得到 slate Transforms 对象，不用再单独安装 slate 。
 
-```js
+```ts
 import { SlateTransforms } from '@wangeditor/editor-cattle'
 ```
 
@@ -603,7 +612,7 @@ import { SlateTransforms } from '@wangeditor/editor-cattle'
 
 使用如下方式即可得到 slate Node 相关对象，不用再单独安装 slate 。
 
-```js
+```ts
 import { SlateEditor, SlateNode, SlateElement, SlateText } from '@wangeditor/editor-cattle'
 ```
 
@@ -613,6 +622,6 @@ import { SlateEditor, SlateNode, SlateElement, SlateText } from '@wangeditor/edi
 
 使用如下方式即可得到 slate Location 相关对象，不用再单独安装 slate 。
 
-```js
+```ts
 import { SlateLocation, SlatePath, SlatePoint, SlateRange } from '@wangeditor/editor-cattle'
 ```

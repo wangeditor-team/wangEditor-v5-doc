@@ -15,7 +15,7 @@
 
 ### 安装
 
-需安装 `wangEditor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/guide/installation.html)。
+需安装 `@wangeditor/editor-cattle` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/guide/installation.html)。
 
 ### 模板
 
@@ -133,7 +133,7 @@ Vue3 组件正在开发中...
 
 ### 安装
 
-需安装 `wangEditor` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/guide/installation.html)。
+需安装 `@wangeditor/editor-cattle` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/guide/installation.html)。
 
 ### 使用
 

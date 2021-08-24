@@ -136,7 +136,7 @@ editorConfig.MENU_CONF['emotion'] = {
 
 ```ts
 // 自定义校验链接
-function customCheckLinkFn(text, url) {
+function customCheckLinkFn(text: string, url: string): string | boolean | undefined {
     if (!url) {
         return
     }
@@ -167,9 +167,23 @@ editorConfig.MENU_CONF['updateLink'] = {
 
 ## 图片
 
+如果用于 Typescript ，需定义图片元素类型。可单独放在 `.d.ts` 中定义。
+
+```ts
+import { SlateElement } from '@wangeditor/editor-cattle'
+
+type ImageElement = SlateElement & {
+    src: string
+    alt: string
+    url: string
+}
+```
+
+图片菜单的配置
+
 ```ts
 // 自定义校验图片
-function customCheckImageFn(src, alt, url) {
+function customCheckImageFn(src: string, alt: string, url: string): boolean | undefined | string {
     if (!src) {
         return
     }
@@ -188,7 +202,9 @@ const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // 插入图片
 editorConfig.MENU_CONF['insertImage'] = {
-    onInsertedImage(imageNode) {
+    onInsertedImage(imageNode: ImageElement | null) {
+        if (imageNode == null) return
+
         const { src, alt, url } = imageNode
         console.log('inserted image', src, alt, url)
     },
@@ -196,7 +212,7 @@ editorConfig.MENU_CONF['insertImage'] = {
 }
 // 编辑图片
 editorConfig.MENU_CONF['editImage'] = {
-    onUpdatedImage(imageNode) {
+    onUpdatedImage(imageNode: ImageElement | null) {
         if (imageNode == null) return
 
         const { src, alt, url } = imageNode
@@ -232,10 +248,10 @@ editorConfig.MENU_CONF['uploadImage'] = {
 }
 ```
 
-【特别注意】服务端 response body 格式要求如下：
+**【特别注意】服务端 response body 格式要求如下：**<br>
+上传成功的返回格式：
 
 ```ts
-// 成功的格式
 {
     "errno": 0, // 注意：值是数字，不能是字符串
     "data": [
@@ -247,8 +263,11 @@ editorConfig.MENU_CONF['uploadImage'] = {
         // 其他图片，也按这个格式
     ]
 }
+```
 
-// 失败的格式
+上传失败的返回格式：
+
+```ts
 {
     "errno": 1, // 只要不等于 0 就行
     "message": '失败信息'
@@ -298,7 +317,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 上传之前触发
-    onBeforeUpload(files) {
+    onBeforeUpload(files: File[]) {
         // files 即选中的文件列表
 
         return files
@@ -308,20 +327,20 @@ editorConfig.MENU_CONF['uploadImage'] = {
         // 2. 返回 false ，则终止上传
     },
     // 上传进度的回调函数
-    onProgress(progress) {
+    onProgress(progress: number) {
         // progress 是 0-100 的数字
         console.log('progress', progress)
     },
     // 单个文件上传成功之后
-    onSuccess(file, res) {
+    onSuccess(file: File, res: any) {
         console.log(`${file.name} 上传成功`, res)
     },
     // 单个文件上传失败
-    onFailed(file, res) {
+    onFailed(file: File, res: any) {
         console.log(`${file.name} 上传失败`, res)
     },
     // 上传错误，或者触发 timeout 超时
-    onError(file, err, res) {
+    onError(file: File, err: any, res: any) {
         console.log(`${file.name} 上传出错`, err, res)
     },
 }
@@ -329,21 +348,30 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ### 自定义功能
 
-如果你的服务端 response body 无法按照上文规定的格式，则无法插入图片，提示失败。
+如果用于 Typescript ，则要定义插入函数的类型。
 
+```ts
+type InsertFnType = (url: string, alt: string, href: string) => void
+```
+
+#### 自定义插入
+
+如果你的服务端 response body 无法按照上文规定的格式，则无法插入图片，提示失败。<br>
 但你可以使用 `customInsert` 来自定义插入图片。
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义插入图片
-    customInsert(res, insertFn) {
+    customInsert(res: any, insertFn: InsertFnType) {
         // res 即服务端的返回结果
 
         // 从 res 中找到 url alt href ，然后插图图片
         insertFn(url, alt, href)
-    }
+    },
 }
 ```
+
+#### 自定义上传
 
 如果你不想使用 wangEditor 自带的上传功能，例如你要上传到阿里云 OSS 。<br>
 可以通过 `customUpload` 来自定义上传。
@@ -351,7 +379,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义上传
-    customUpload(files, insertFn) {
+    customUpload(files: File[], insertFn: InsertFnType) {
         // files 即选中的文件
         // 自己实现上传，并得到图片 url alt href
         // 最后插入图片
@@ -360,13 +388,15 @@ editorConfig.MENU_CONF['uploadImage'] = {
 }
 ```
 
+#### 自定义选择图片
+
 如果你不想使用 wangEditor 自带的选择文件功能，例如你有自己的图床，或者图片选择器。<br>
 可以通过 `customBrowseAndUpload` 来自己实现选择图片、上传图片，并插入图片。
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义选择图片
-    customBrowseAndUpload(insertFn) {
+    customBrowseAndUpload(insertFn: InsertFnType) {
         // 自己选择文件
         // 自己上传文件，并得到图片 url alt href
         // 最后插入图片
@@ -389,9 +419,21 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ## 视频
 
+如果用于 Typescript ，需定义视频元素类型。可单独放在 `.d.ts` 中定义。
+
+```ts
+import { SlateElement } from '@wangeditor/editor-cattle'
+
+type VideoElement = SlateElement & {
+    src: string
+}
+```
+
+菜单配置
+
 ```ts
 // 自定义校验视频
-function customCheckVideoFn(src) {
+function customCheckVideoFn(src: string): boolean | string | undefined {
     if (!src) {
         return
     }
@@ -409,7 +451,9 @@ function customCheckVideoFn(src) {
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['insertVideo'] = {
-    onInsertedVideo(videoNode) {
+    onInsertedVideo(videoNode: VideoElement | null) {
+        if (videoNode == null) return
+
         const { src } = videoNode
         console.log('inserted video', src)
     },
@@ -426,12 +470,12 @@ const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['codeSelectLang'] = {
     // 代码语言
-    codeLangs: {
+    codeLangs: [
         { text: 'CSS', value: 'css' },
         { text: 'HTML', value: 'html' },
         { text: 'XML', value: 'xml' },
         // 其他
-    }
+    ]
 }
 
 // 执行 createEditor

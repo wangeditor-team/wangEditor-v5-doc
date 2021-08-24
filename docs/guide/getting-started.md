@@ -117,7 +117,7 @@ content 只能是上述 json 格式，**不支持 html**<br>
 editor changed 后，同步内容到 textarea 即可
 
 ```js
-editorConfig.onChange = (editor) => {
+editorConfig.onChange = (editor: IDomEditor) => {
     const content = editor.children
     const contentStr = JSON.stringify(content)
     document.getElementById('textarea-1').innerHTML = contentStr
@@ -155,8 +155,8 @@ wangEditor 工具栏内置了“全屏”菜单，但使用它需要有一个条
 
 ```html
 <div id="parent-container">
-  <div id="toolbar-container"></div>
-  <div id="editor-container"></div>
+  <div id="toolbar-container"> <!-- 用于创建工具栏 --> </div>
+  <div id="editor-container"> <!-- 用于创建编辑器 --> </div>
 </div>
 ```
 
@@ -193,7 +193,7 @@ const editor1 = createEditor({
 })
 // 创建工具栏1
 const toolbar1 = createToolbar({
-  editor1,
+  editor: editor1,
   toolbarSelector: '#toolbar-container-1',
   mode: 'default'
 })
@@ -206,7 +206,7 @@ const editor2 = createEditor({
 })
 // 创建工具栏2
 const toolbar2 = createToolbar({
-  editor2,
+  editor: editor2,
   toolbarSelector: '#toolbar-container-2',
   mode: 'simple'
 })

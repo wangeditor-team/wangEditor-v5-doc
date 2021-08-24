@@ -10,7 +10,7 @@ wangEditor 是基于 slate.js 为内核开发的，所以学习本文之前，�
 我们通过 [API](/v5/guide/API.html) 的学习，已经知道了 wangEditor 有丰富的 API 可供使用。<br>
 那么问题来了：
 
-- `editor.addMark({ key: value })` 可以设置文本样式，如何设置删除线呢？此时 `key` `value` 该怎么写？
+- `editor.addMark(key, value)` 可以设置文本样式，如何设置删除线呢？此时 `key` `value` 该怎么写？
 - `editor.insertNode(node)` 可以插入一个节点，如何插入一个链接呢？此时 `node` 该怎么写？
 - `SlateTransforms.setNodes(editor, {...})` 可以设置节点的属性，如何设置行高呢？此时 `{...}` 这个属性该怎么写？
 
