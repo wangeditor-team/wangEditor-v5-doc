@@ -34,12 +34,12 @@ import { createEditor, createToolbar } from '@wangeditor/editor-cattle'
 
 // 创建编辑器
 const editor = createEditor({
-  textareaSelector: '#editor-container'
+  selector: '#editor-container'
 })
 // 创建工具栏
 const toolbar = createToolbar({
   editor,
-  toolbarSelector: '#toolbar-container'
+  selector: '#toolbar-container'
 })
 ```
 

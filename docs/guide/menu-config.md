@@ -39,7 +39,7 @@ editorConfig.MENU_CONF['otherMenuKey'] = {
 
 // 创建编辑器
 const editor = createEditor({
-  textareaSelector: '#editor-container',
+  selector: '#editor-container',
   config: editorConfig,
   content: [],
   mode: 'default'

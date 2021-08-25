@@ -10,7 +10,7 @@ const editorConfig: Partial<IEditorConfig> = {
 }
 
 const editor = createEditor({
-  textareaSelector: '#editor-container',
+  selector: '#editor-container',
   config: editorConfig,
   content: [],
   mode: 'default'
