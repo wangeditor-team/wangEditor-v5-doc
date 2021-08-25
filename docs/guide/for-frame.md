@@ -51,6 +51,7 @@
 
 ```ts
 import Vue from 'vue'
+import '@wangeditor/editor-cattle/dist/css/style.css'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
 
 export default Vue.extend({
@@ -68,10 +69,10 @@ export default Vue.extend({
                 placeholder: '请输入内容...',
                 // 其他编辑器配置
                 // 菜单配置
-            }
-            mode: 'default' // or 'simple'
+            },
+            mode: 'default', // or 'simple'
+            curContent: []
         },
-        curContent: []
     },
 
     methods: {
@@ -141,6 +142,7 @@ Vue3 组件正在开发中...
 
 ```tsx
 import React, { useState, useEffect } from 'react'
+import '@wangeditor/editor-cattle/dist/css/style.css'
 import { IDomEditor, IEditorConfig, IToolbarConfig, SlateDescendant } from '@wangeditor/editor-cattle'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
