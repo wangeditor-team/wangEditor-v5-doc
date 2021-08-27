@@ -16,7 +16,7 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 // 创建工具栏
 const toolbar = createToolbar({
   editor,
-  toolbarSelector: '#toolbar-container',
+  selector: '#toolbar-container',
   config: toolbarConfig
   mode: 'default'
 })

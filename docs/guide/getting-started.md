@@ -41,7 +41,7 @@ editorConfig.onChange = (editor: IDomEditor) => {
 
 // 创建编辑器
 const editor = createEditor({
-  textareaSelector: '#editor-container',
+  selector: '#editor-container',
   config: editorConfig,
   content: [], // 默认内容，下文有解释
   mode: 'default' // 或者 'simple' ，下文有解释
@@ -49,7 +49,7 @@ const editor = createEditor({
 // 创建工具栏
 const toolbar = createToolbar({
   editor,
-  toolbarSelector: '#toolbar-container',
+  selector: '#toolbar-container',
   mode: 'default' // 或者 'simple' ，下文有解释
 })
 ```
@@ -187,27 +187,27 @@ wangEditor 支持多个编辑器共存，正常创建即可
 ```js
 // 创建编辑器1
 const editor1 = createEditor({
-  textareaSelector: '#editor-container-1',
+  selector: '#editor-container-1',
   content: [],
   mode: 'default'
 })
 // 创建工具栏1
 const toolbar1 = createToolbar({
   editor: editor1,
-  toolbarSelector: '#toolbar-container-1',
+  selector: '#toolbar-container-1',
   mode: 'default'
 })
 
 // 创建编辑器2
 const editor2 = createEditor({
-  textareaSelector: '#editor-container-2',
+  selector: '#editor-container-2',
   content: [],
   mode: 'simple'
 })
 // 创建工具栏2
 const toolbar2 = createToolbar({
   editor: editor2,
-  toolbarSelector: '#toolbar-container-2',
+  selector: '#toolbar-container-2',
   mode: 'simple'
 })
 ```
