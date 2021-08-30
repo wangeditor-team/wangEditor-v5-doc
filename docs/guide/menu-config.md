@@ -176,6 +176,7 @@ type ImageElement = SlateElement & {
     src: string
     alt: string
     url: string
+    href: string
 }
 ```
 
@@ -205,8 +206,8 @@ editorConfig.MENU_CONF['insertImage'] = {
     onInsertedImage(imageNode: ImageElement | null) {
         if (imageNode == null) return
 
-        const { src, alt, url } = imageNode
-        console.log('inserted image', src, alt, url)
+        const { src, alt, url, href } = imageNode
+        console.log('inserted image', src, alt, url, href)
     },
     checkImage: customCheckImageFn // 也支持 async 函数
 }

@@ -29,6 +29,8 @@
     </div>
     <div style="border: 1px solid #ccc; margin-top: 10px;">
         <Editor
+            style="height: 500px"
+
             :editorId="editorId"
 
             :defaultConfig="editorConfig"
@@ -42,6 +44,7 @@
             @onFocus="onFocus"
             @onBlur="onBlur"
             @customAlert="customAlert"
+            @customPaste="customPaste"
         />
     </div>
 </div>
@@ -97,6 +100,16 @@ export default Vue.extend({
         },
         customAlert(info: string, type: string) {
             window.alert(`customAlert in Vue demo\n${type}:\n${info}`)
+        },
+        customPaste(editor, event, callback) {
+            console.log('ClipboardEvent 粘贴事件对象', event)
+
+            // 自定义插入内容
+            editor.insertText('xxx')
+
+            // 返回值（注意，vue 事件的返回值，不能用 return）
+            callback(false) // 返回 false ，阻止默认粘贴行为
+            // callback(true) // 返回 true ，继续默认的粘贴行为
         },
 
         insertText() {
@@ -183,11 +196,20 @@ function ReactEditor() {
         <React.Fragment>
             <div style={{ border: '1px solid #ccc'}}>
                 {/* 渲染 toolbar */}
-                <Toolbar editor={editor} defaultConfig={toolbarConfig} mode="default"/>
+                <Toolbar
+                    editor={editor}
+                    defaultConfig={toolbarConfig}
+                    mode="default"
+                />
             </div>
             <div style={{ border: '1px solid #ccc', marginTop: '10px' }}>
                 {/* 渲染 editor */}
-                <Editor defaultConfig={editorConfig} defaultContent={[]} mode="default"/>
+                <Editor
+                    defaultConfig={editorConfig}
+                    defaultContent={[]}
+                    mode="default"
+                    style={{ height: '500px' }}
+                />
             </div>
         </React.Fragment>
     )

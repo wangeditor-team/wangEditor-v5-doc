@@ -99,28 +99,6 @@ editor.getElemsByTypePrefix('link') // 获取所有链接
 // 其他
 ```
 
-获取标题的返回的格式如：
-
-```tson
-[
-  {
-    "id": "w-e-element-0",
-    "type": "header1",
-    "text": "标题1"
-  },
-  {
-    "id": "w-e-element-19",
-    "type": "header2",
-    "text": "标题1-1"
-  },
-  {
-    "id": "w-e-element-37",
-    "type": "header3",
-    "text": "标题1-1-1"
-  }
-]
-```
-
 ### deleteBackward
 
 向后删除，相当于按 backspace 键。
