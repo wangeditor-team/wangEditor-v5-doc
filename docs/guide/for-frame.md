@@ -75,7 +75,7 @@ export default Vue.extend({
             },
             mode: 'default', // or 'simple'
             curContent: []
-        },
+        }
     },
 
     methods: {
@@ -217,3 +217,28 @@ function ReactEditor() {
 
 export default ReactEditor
 ```
+
+## 常见问题
+
+使用 Vue React 组件时，有可能遇到以下报错。
+
+```log
+Can't import the named export 'createEditor' from non EcmaScript module (only default export is available)
+```
+
+解决方案：打包时需要考虑 node_modules 目录下 `.mjs` 格式的文件。<br>
+如果是 webpack ，需要增加以下配置：
+
+```js
+module: {
+    rules: [
+        {
+            test: /\.mjs$/,
+            include: /node_modules/,
+            type: "javascript/auto"
+        },
+    ],
+},
+```
+
+其他打包工具，请自行查找。
