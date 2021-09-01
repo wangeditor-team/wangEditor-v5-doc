@@ -25,9 +25,15 @@
         <button @click="insertText">insert text</button>
     </div>
     <div style="border: 1px solid #ccc;">
-        <Toolbar :editorId="editorId" :defaultConfig="toolbarConfig" :mode="mode"/>
-    </div>
-    <div style="border: 1px solid #ccc; margin-top: 10px;">
+        <!-- 工具栏 -->
+        <Toolbar
+            style="border-bottom: 1px solid #ccc"
+            :editorId="editorId"
+            :defaultConfig="toolbarConfig"
+            :mode="mode"
+        />
+
+        <!-- 编辑器 -->
         <Editor
             style="height: 500px"
 
@@ -200,9 +206,9 @@ function ReactEditor() {
                     editor={editor}
                     defaultConfig={toolbarConfig}
                     mode="default"
+                    style={{ borderBottom: '1px solid #ccc' }}
                 />
-            </div>
-            <div style={{ border: '1px solid #ccc', marginTop: '10px' }}>
+
                 {/* 渲染 editor */}
                 <Editor
                     defaultConfig={editorConfig}
