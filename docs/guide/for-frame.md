@@ -247,4 +247,68 @@ module: {
 },
 ```
 
-其他打包工具，请自行查找。
+其他打包工具，请自行查找。<br>
+如果你使用 vue-cli 或者 create-react-app 创建的项目，可继续参考下文。
+
+### vue-cli
+
+vue-cli 可以通过创建 vue.config.js 文件，来增加 webpack 配置，参考[文档](https://cli.vuejs.org/zh/guide/webpack.html)。
+
+```js
+module.exports = {
+    configureWebpack: {
+        module: {
+            rules: [
+                {
+                    test: /\.mjs$/,
+                    include: /node_modules/,
+                    type: "javascript/auto"
+                },
+            ],
+        },
+    }
+}
+```
+
+### create-react-app
+
+使用 create-react-app 推荐使用 [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) 来修改 webpack 配置。
+
+第一，安装依赖
+
+```shell
+yarn add customize-cra react-app-rewired --dev
+```
+
+第二，修改 package.json
+
+```
+/* package.json */
+
+"scripts": {
+-   "start": "react-scripts start",
++   "start": "react-app-rewired start",
+-   "build": "react-scripts build",
++   "build": "react-app-rewired build",
+-   "test": "react-scripts test",
++   "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+}
+```
+
+第三，在项目根目录下创建 config-overrides.js 文件，在其中重写 webpack 配置。
+
+```js
+const { override, addWebpackModuleRule } = require("customize-cra");
+module.exports = override(
+    addWebpackModuleRule(
+        {
+            test: /\.mjs$/,
+            include: /node_modules/,
+            type: 'javascript/auto'
+        }
+    )
+)
+```
+
+最后，重新执行 `yarn start` 即可。
