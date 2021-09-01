@@ -154,7 +154,13 @@ wangEditor 没有针对 z-index 做配置，需要你自己定义。
 wangEditor 工具栏内置了“全屏”菜单，但使用它需要有一个条件：**`toolbar-container` 和 `editor-container` 必须有同一个父元素**。
 
 ```html
-<div id="parent-container">
+<style>
+  .full-screen-container {
+    z-index: 100; /* 如有需要，可以自定义 z-index */
+  }
+</style>
+
+<div class="full-screen-container">
   <div id="toolbar-container"> <!-- 用于创建工具栏 --> </div>
   <div id="editor-container"> <!-- 用于创建编辑器 --> </div>
 </div>
