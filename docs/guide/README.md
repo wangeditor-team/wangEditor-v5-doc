@@ -93,7 +93,7 @@ editor.getAllMenuKeys()
 
 [
     "bold","underline","italic","through","code","clearStyle","headerSelect","header1","header2","header3",
-    "color","bgColor","insertLink","updateLink","unLink","viewLink","insertImage","deleteImage","editImage",
+    "color","bgColor","insertLink","editLink","unLink","viewLink","insertImage","deleteImage","editImage",
     "viewImageLink","imageWidth30","imageWidth50","imageWidth100","blockquote","emotion","fontSize","fontFamily",
     "indent","delIndent","justifyLeft","justifyRight","justifyCenter","lineHeight","redo","undo","divider","codeBlock",
     "bulletedList","numberedList","insertTable","deleteTable","insertTableRow","deleteTableRow","insertTableCol",

@@ -93,7 +93,7 @@ editorConfig.hoverbarKeys = [
     {
         desc: '选中链接 selected link',
         match: (editor, node) => DomEditor.checkNodeType(node, 'link'),
-        menuKeys: ['updateLink', 'unLink', 'viewLink'],
+        menuKeys: ['editLink', 'unLink', 'viewLink'],
     }
 ]
 ```

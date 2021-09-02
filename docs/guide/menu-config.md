@@ -158,7 +158,7 @@ editorConfig.MENU_CONF['insertLink'] = {
     checkLink: customCheckLinkFn // 也支持 async 函数
 }
 // 更新链接
-editorConfig.MENU_CONF['updateLink'] = {
+editorConfig.MENU_CONF['editLink'] = {
     checkLink: customCheckLinkFn // 也支持 async 函数
 }
 
