@@ -40,7 +40,7 @@
             :editorId="editorId"
 
             :defaultConfig="editorConfig"
-            :defaultContent="defaultContent"
+            :defaultContent="getDefaultContent"
             :mode="mode"
 
             @onCreated="onCreated"
@@ -62,6 +62,7 @@
 import Vue from 'vue'
 import '@wangeditor/editor-cattle/dist/css/style.css'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
+import cloneDeep from 'lodash.clonedeep'
 
 export default Vue.extend({
     components: { Editor, Toolbar },
@@ -73,7 +74,12 @@ export default Vue.extend({
             editorId: 'w-e-1001',
 
             toolbarConfig: { /* 工具栏配置 */ },
-            defaultContent: [],
+            defaultContent: [
+                {
+                    type: 'paragraph',
+                    children: [{ text: '一行文字' }],
+                },
+            ],
             editorConfig: {
                 placeholder: '请输入内容...',
                 // 其他编辑器配置
@@ -81,6 +87,13 @@ export default Vue.extend({
             },
             mode: 'default', // or 'simple'
             curContent: []
+        }
+    },
+
+    computed: {
+        // 深拷贝 content
+        getDefaultContent() {
+            return cloneDeep(this.defaultContent)
         }
     },
 
