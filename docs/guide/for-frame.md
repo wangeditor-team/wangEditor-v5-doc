@@ -285,7 +285,56 @@ module.exports = {
 
 ### create-react-app
 
-使用 create-react-app 推荐使用 [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) 来修改 webpack 配置。
+使用 create-react-app 扩展 webpack 配置，以下方式选择一个即可。
+
+#### @craco/craco
+
+可使用 [@craco/craco](https://www.npmjs.com/package/@craco/craco) 来修改 webpack 配置。
+
+第一，安装依赖
+
+```shell
+yarn add @craco/craco -D
+```
+
+第二，修改 package.json
+
+```
+"scripts": {
+-   "start": "react-scripts start",
++   "start": "craco start",
+-   "build": "react-scripts build",
++   "build": "craco build"
+-   "test": "react-scripts test",
++   "test": "craco test"
+}
+```
+
+第三，在项目根目录创建 craco.config.js 文件，在其中扩展 webpack 配置
+
+```js
+module.exports = {
+    webpack: {
+        configure: {
+            module: {
+                rules: [
+                    {
+                        test: /\.mjs$/,
+                        include: /node_modules/,
+                        type: "javascript/auto"
+                    }
+                ],
+            }
+        },
+    }
+}
+```
+
+最后，重新执行 `yarn start` 即可。
+
+#### react-app-rewired
+
+可使用 [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) 来修改 webpack 配置。
 
 第一，安装依赖
 
@@ -296,8 +345,6 @@ yarn add customize-cra react-app-rewired --dev
 第二，修改 package.json
 
 ```
-/* package.json */
-
 "scripts": {
 -   "start": "react-scripts start",
 +   "start": "react-app-rewired start",
@@ -309,7 +356,7 @@ yarn add customize-cra react-app-rewired --dev
 }
 ```
 
-第三，在项目根目录下创建 config-overrides.js 文件，在其中重写 webpack 配置。
+第三，在项目根目录下创建 config-overrides.js 文件，在其中扩展 webpack 配置。
 
 ```js
 const { override, addWebpackModuleRule } = require("customize-cra");
