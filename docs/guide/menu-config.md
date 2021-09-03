@@ -19,7 +19,7 @@ editor.getMenuConfig('uploadImage') // 获取 uploadImage 的当前配置
 ### 修改配置
 
 ```ts
-import { IEditorConfig, createEditor } from '@wangeditor/editor-cattle'
+import { IEditorConfig, createEditor, createToolbar } from '@wangeditor/editor-cattle'
 
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} } // 初始化 MENU_CONF 属性
 
@@ -44,6 +44,9 @@ const editor = createEditor({
   content: [],
   mode: 'default'
 })
+
+// 创建菜单栏
+const toolbar = createToolbar({...})
 ```
 
 :::tip

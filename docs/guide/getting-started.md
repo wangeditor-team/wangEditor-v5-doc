@@ -116,6 +116,11 @@ content 只能是上述 json 格式，**不支持 html**<br>
 
 editor changed 后，同步内容到 textarea 即可
 
+```html
+<textarea id="textarea-1"></textarea>
+<textarea id="textarea-2"></textarea>
+```
+
 ```js
 editorConfig.onChange = (editor: IDomEditor) => {
     const content = editor.children
