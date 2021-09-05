@@ -280,7 +280,7 @@ const void = editor.isVoid(node)
 :::tip
 void node 即没有子元素的节点（它本身就可以看作是一个特殊字符），例如 image video 。可参考 [html void element](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element) 定义。
 
-你可以通过 `editor.isVoid` 自定义哪些元素是 void ，不过这详细学习 slate 。
+你可以通过 `editor.isVoid` 自定义哪些元素是 void ，但需要详细学习 slate 。
 :::
 
 ### isText
