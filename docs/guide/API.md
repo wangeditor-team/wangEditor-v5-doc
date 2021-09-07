@@ -147,6 +147,14 @@ editor.insertBreak()
 editor.insertText('xxx')
 ```
 
+### clear
+
+清空编辑器内容
+
+```ts
+editor.clear()
+```
+
 ### undo
 
 撤销
