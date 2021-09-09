@@ -28,7 +28,8 @@ npm install @wangeditor/editor-for-vue --save
 安装 Vue3 组件
 
 ```shell
-# TODO
+npm install @wangeditor/editor-for-vue@next --save
+# 或者 yarn add @wangeditor/editor-for-vue@next
 ```
 
 ## CDN
