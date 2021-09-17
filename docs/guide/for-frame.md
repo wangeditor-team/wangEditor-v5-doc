@@ -301,7 +301,7 @@ export default {
 
 ### 使用
 
-以下代码使用 React Hooks 。如使用 React class 组件，可参考[这里](https://github.com/wangeditor-team/we-2021/blob/main/packages/editor-for-react/example/pages/BasicInClass.tsx)。
+以下代码使用 React Hooks 。如使用 React class 组件，可参考[这里](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor-for-react/example/pages/BasicInClass.tsx)。
 
 ```tsx
 import React, { useState, useEffect } from 'react'

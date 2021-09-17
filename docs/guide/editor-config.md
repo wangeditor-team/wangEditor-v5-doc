@@ -98,7 +98,7 @@ editorConfig.hoverbarKeys = [
 ]
 ```
 
-其他配置可参考[源码](https://github.com/wangeditor-team/we-2021/blob/main/packages/editor/src/init-default-config/config/hoverbar.ts)。
+其他配置可参考[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor/src/init-default-config/config/hoverbar.ts)。
 
 **不建议直接修改这个配置**，用编辑器默认的即可。建议这样操作：
 - 如果想要选中文字的 hoverbar ，就在 createEditor 时设置 `mode: 'default'`

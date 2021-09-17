@@ -63,7 +63,7 @@ Boot.registerRenderTextStyle(fn)
 // 创建编辑器、工具栏
 ```
 
-可参考 wangEditor 源码中的 [文本样式](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/text-style/text-style.tsx) ， [颜色和背景色](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/color/render-text-style.tsx) 和 [字体字号](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/font-size-family/render-text-style.tsx) 。
+可参考 wangEditor 源码中的 [文本样式](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/text-style/text-style.tsx) ， [颜色和背景色](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/color/render-text-style.tsx) 和 [字体字号](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/font-size-family/render-text-style.tsx) 。
 
 ### renderElem
 
@@ -95,7 +95,7 @@ Boot.registerRenderElem(conf)
 // 创建编辑器、工具栏
 ```
 
-可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/we-2021/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `render-elem.tsx` 文件。
+可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/wangEditor-v5/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `render-elem.tsx` 文件。
 
 ## 生成 HTML
 
@@ -128,7 +128,7 @@ Boot.registerTextToHtml(fn)
 // 创建编辑器、工具栏
 ```
 
-可参考 wangEditor 源码中文本样式的 [textToHtml](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/text-style/text-to-html.ts) 。
+可参考 wangEditor 源码中文本样式的 [textToHtml](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/text-style/text-to-html.ts) 。
 
 ### textStyleToHtml
 
@@ -161,7 +161,7 @@ Boot.registerTextStyleToHtml(fn)
 // 创建编辑器、工具栏
 ```
 
-可参考 wangEditor 源码中 [颜色、背景色](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/color/text-style-to-html.ts) 和 [字体字号](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/font-size-family/text-style-to-html.ts) 的 text-style-to-html 。
+可参考 wangEditor 源码中 [颜色、背景色](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/color/text-style-to-html.ts) 和 [字体字号](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/font-size-family/text-style-to-html.ts) 的 text-style-to-html 。
 
 ### elemToHtml
 
@@ -188,7 +188,7 @@ const conf = {
 Boot.registerElemToHtml(conf)
 ```
 
-可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/we-2021/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `elem-to-html.ts` 文件。
+可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/wangEditor-v5/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `elem-to-html.ts` 文件。
 
 ## slate 插件
 
@@ -221,7 +221,7 @@ function withBreak<T extends IDomEditor>(editor: T): T {
 Boot.registerPlugin(withBreak)
 ```
 
-可参考 wangEditor 源码 [基础模块](https://github.com/wangeditor-team/we-2021/tree/main/packages/basic-modules/src/modules) 中所有 `withXxx.ts` 文件源码。
+可参考 wangEditor 源码 [基础模块](https://github.com/wangeditor-team/wangEditor-v5/tree/main/packages/basic-modules/src/modules) 中所有 `withXxx.ts` 文件源码。
 
 ## 注册菜单
 
@@ -244,7 +244,7 @@ yarn add @wangeditor/core --peer
 
 ### ButtonMenu
 
-代码如下。菜单的详细配置，可参考“引用”菜单[源码](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/blockquote/menu/BlockquoteMenu.ts)。
+代码如下。菜单的详细配置，可参考“引用”菜单[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/blockquote/menu/BlockquoteMenu.ts)。
 
 ```ts
 import { IButtonMenu } from '@wangeditor/core'
@@ -271,7 +271,7 @@ Boot.registerMenu(menuConf)
 
 ### SelectMenu
 
-代码如下。菜单的详细配置，可参考“标题”菜单[源码](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/header/menu/HeaderSelectMenu.ts)。
+代码如下。菜单的详细配置，可参考“标题”菜单[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/header/menu/HeaderSelectMenu.ts)。
 
 ```ts
 import { ISelectMenu } from '@wangeditor/core'
@@ -298,7 +298,7 @@ Boot.registerMenu(menuConf)
 
 ### ModalMenu
 
-代码如下。菜单配置可参考“插入链接”菜单[源码](https://github.com/wangeditor-team/we-2021/blob/main/packages/basic-modules/src/modules/link/menu/InsertLink.ts)。
+代码如下。菜单配置可参考“插入链接”菜单[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/link/menu/InsertLink.ts)。
 
 ```ts
 import { IModalMenu } from '@wangeditor/core'
