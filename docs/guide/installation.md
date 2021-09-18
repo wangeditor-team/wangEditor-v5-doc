@@ -7,7 +7,7 @@
 安装 editor
 
 ```shell
-npm install @wangeditor/editor-cattle --save
+npm install @wangeditor/editor --save
 # 或者 yarn add @wangeditor/editor
 ```
 
@@ -36,10 +36,10 @@ npm install @wangeditor/editor-for-vue@next --save
 
 ```html
 <!-- 引入 css -->
-<link href="https://cdn.jsdelivr.net/npm/@wangeditor/editor-cattle@latest/dist/css/style.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
 
 <!-- 引入 js -->
-<script src="https://cdn.jsdelivr.net/npm/@wangeditor/editor-cattle@latest/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/index.min.js"></script>
 <script>
     var E = window.wangEditor; // 全局变量
 </script>

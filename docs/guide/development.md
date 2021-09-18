@@ -44,7 +44,7 @@ yarn add snabbdom --peer
 
 ```ts
 import { jsx, VNode } from 'snabbdom'
-import { Boot, SlateNode, SlateText } from '@wangeditor/editor-cattle'
+import { Boot, SlateNode, SlateText } from '@wangeditor/editor'
 
 // 定义渲染函数
 function fn(textNode: SlateNode, vnode: VNode): VNode {
@@ -71,7 +71,7 @@ Boot.registerRenderTextStyle(fn)
 
 ```tsx
 import { jsx, VNode } from 'snabbdom'
-import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor-cattle'
+import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor'
 
 // 渲染函数
 function fn(elem: SlateElement, children: VNode[] | null, editor: IDomEditor): VNode {
@@ -106,7 +106,7 @@ Boot.registerRenderElem(conf)
 生成 text 的 html
 
 ```ts
-import { Boot, IDomEditor, SlateText } from '@wangeditor/editor-cattle'
+import { Boot, IDomEditor, SlateText } from '@wangeditor/editor'
 
 // 定义生成 html 的函数
 function fn(textNode: SlateText, textHtml: string, editor: IDomEditor): string {
@@ -135,7 +135,7 @@ Boot.registerTextToHtml(fn)
 生成文本样式的 html
 
 ```ts
-import { Boot, SlateText, SlateNode } from '@wangeditor/editor-cattle'
+import { Boot, SlateText, SlateNode } from '@wangeditor/editor'
 
 // 定义函数
 function fn(textNode: SlateNode, curHtml: string): string {
@@ -168,7 +168,7 @@ Boot.registerTextStyleToHtml(fn)
 生成元素的 html
 
 ```ts
-import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor-cattle'
+import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor'
 
 // 生成 html 的函数
 function fn(elem: SlateElement, childrenHtml: string, editor: IDomEditor): string {
@@ -195,7 +195,7 @@ Boot.registerElemToHtml(conf)
 先要去了解 [slate.js](https://docs.slatejs.org/) 的 API 和插件机制。
 
 ```ts
-import { Boot, IDomEditor } from '@wangeditor/editor-cattle'
+import { Boot, IDomEditor } from '@wangeditor/editor'
 
 // 定义 slate 插件
 function withBreak<T extends IDomEditor>(editor: T): T {
@@ -248,7 +248,7 @@ yarn add @wangeditor/core --peer
 
 ```ts
 import { IButtonMenu } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor-cattle'
+import { Boot } from '@wangeditor/editor'
 
 // 定义菜单 class
 class MyButtonMenu implements IButtonMenu {
@@ -275,7 +275,7 @@ Boot.registerMenu(menuConf)
 
 ```ts
 import { ISelectMenu } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor-cattle'
+import { Boot } from '@wangeditor/editor'
 
 // 定义菜单 class
 class MySelectMenu implements ISelectMenu {
@@ -302,7 +302,7 @@ Boot.registerMenu(menuConf)
 
 ```ts
 import { IModalMenu } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor-cattle'
+import { Boot } from '@wangeditor/editor'
 
 // 定义菜单 class
 class MyModalMenu implements IModalMenu {

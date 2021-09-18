@@ -19,7 +19,7 @@ editor.getMenuConfig('uploadImage') // 获取 uploadImage 的当前配置
 ### 修改配置
 
 ```ts
-import { IEditorConfig, createEditor, createToolbar } from '@wangeditor/editor-cattle'
+import { IEditorConfig, createEditor, createToolbar } from '@wangeditor/editor'
 
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} } // 初始化 MENU_CONF 属性
 
@@ -173,7 +173,7 @@ editorConfig.MENU_CONF['editLink'] = {
 如果用于 Typescript ，需定义图片元素类型。可单独放在 `.d.ts` 中定义。
 
 ```ts
-import { SlateElement } from '@wangeditor/editor-cattle'
+import { SlateElement } from '@wangeditor/editor'
 
 type ImageElement = SlateElement & {
     src: string
@@ -426,7 +426,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 如果用于 Typescript ，需定义视频元素类型。可单独放在 `.d.ts` 中定义。
 
 ```ts
-import { SlateElement } from '@wangeditor/editor-cattle'
+import { SlateElement } from '@wangeditor/editor'
 
 type VideoElement = SlateElement & {
     src: string

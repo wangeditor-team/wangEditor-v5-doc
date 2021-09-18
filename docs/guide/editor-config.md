@@ -3,7 +3,7 @@
 如果是第一次使用，请先通过 [快速开始](/v5/guide/getting-started.html) 了解基本使用。
 
 ```ts{4}
-import { IEditorConfig, createEditor } from '@wangeditor/editor-cattle'
+import { IEditorConfig, createEditor } from '@wangeditor/editor'
 
 const editorConfig: Partial<IEditorConfig> = {
     /* 编辑器配置 */
@@ -86,7 +86,7 @@ editorConfig.onMaxLength = function (editor: IDomEditor) {
 ![](/v5/image/hoverbar.png)
 
 ```ts
-import { DomEditor, IEditorConfig } from '@wangeditor/editor-cattle'
+import { DomEditor, IEditorConfig } from '@wangeditor/editor'
 
 const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.hoverbarKeys = [

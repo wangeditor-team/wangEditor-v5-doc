@@ -7,7 +7,7 @@
 新建一个 `custom-types.d.ts` ，源码如下。注意，保证该文件在 `tsconfig.json` 的 `include` 中。
 
 ```ts
-import { SlateDescendant } from '@wangeditor/editor-cattle'
+import { SlateDescendant } from '@wangeditor/editor'
 
 declare module 'slate' {
     interface CustomTypes {
@@ -43,5 +43,5 @@ import {
     IDomEditor,     // 编辑器实例接口
     IEditorConfig,  // 编辑器配置
     IToolbarConfig, // 工具栏配置
-} from '@wangeditor/editor-cattle'
+} from '@wangeditor/editor'
 ```

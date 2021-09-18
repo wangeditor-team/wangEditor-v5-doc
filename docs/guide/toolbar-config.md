@@ -7,7 +7,7 @@ wangEditor V5 开始，工具栏配置和[菜单配置](/v5/guide/menu-config.ht
 :::
 
 ```ts{4}
-import { IToolbarConfig, createToolbar } from '@wangeditor/editor-cattle'
+import { IToolbarConfig, createToolbar } from '@wangeditor/editor'
 
 const toolbarConfig: Partial<IToolbarConfig> = {
     /* 工具栏配置 */

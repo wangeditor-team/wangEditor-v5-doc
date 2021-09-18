@@ -15,7 +15,7 @@
 
 ### 安装
 
-需安装 `@wangeditor/editor-cattle` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/guide/installation.html)。
+需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/guide/installation.html)。
 
 ### 模板
 
@@ -60,7 +60,7 @@
 
 ```ts
 import Vue from 'vue'
-import '@wangeditor/editor-cattle/dist/css/style.css'
+import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
 import cloneDeep from 'lodash.clonedeep'
 
@@ -162,7 +162,7 @@ export default Vue.extend({
 
 ### 安装
 
-需安装 `@wangeditor/editor-cattle` 和 `@wangeditor/editor-for-vue@next`，可参考[这里](/v5/guide/installation.html)。
+需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue@next`，可参考[这里](/v5/guide/installation.html)。
 
 ### 模板
 
@@ -197,7 +197,7 @@ export default Vue.extend({
 ### script
 
 ```js
-import '@wangeditor/editor-cattle/dist/css/style.css' // 也可以在 <style> 中 import
+import '@wangeditor/editor/dist/css/style.css' // 也可以在 <style> 中 import
 
 import { computed, onUnmounted } from 'vue'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
@@ -297,7 +297,7 @@ export default {
 
 ### 安装
 
-需安装 `@wangeditor/editor-cattle` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/guide/installation.html)。
+需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/guide/installation.html)。
 
 ### 使用
 
@@ -305,8 +305,8 @@ export default {
 
 ```tsx
 import React, { useState, useEffect } from 'react'
-import '@wangeditor/editor-cattle/dist/css/style.css'
-import { IDomEditor, IEditorConfig, IToolbarConfig, SlateDescendant } from '@wangeditor/editor-cattle'
+import '@wangeditor/editor/dist/css/style.css'
+import { IDomEditor, IEditorConfig, IToolbarConfig, SlateDescendant } from '@wangeditor/editor'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
 function ReactEditor() {

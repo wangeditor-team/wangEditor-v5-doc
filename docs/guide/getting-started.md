@@ -19,8 +19,8 @@
 
 ```js
 // npm 安装
-import '@wangeditor/editor-cattle/dist/css/style.css'
-import { createEditor, createToolbar, IEditorConfig, IDomEditor } from '@wangeditor/editor-cattle'
+import '@wangeditor/editor/dist/css/style.css'
+import { createEditor, createToolbar, IEditorConfig, IDomEditor } from '@wangeditor/editor'
 
 // CDN 引入 css 和 js
 // const wangEditor = window.wangEditor // 全局变量
