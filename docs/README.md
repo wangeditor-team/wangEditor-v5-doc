@@ -51,13 +51,10 @@ const toolbar = createToolbar({
 
 ### 交流
 
-- 加入 QQ 群
-- 提交 issue
+- 加入 QQ 群 `681464059`
+- [提交问题和建议](https://github.com/wangeditor-team/wangEditor-v5/issues)
 
 ### 团队
 
-- a
-- b
-- c
-
-申请加入团队（链接到 github 文档）
+- [研发团队](https://github.com/wangeditor-team/wangEditor-v5/graphs/contributors)
+- [申请加入团队](https://github.com/wangeditor-team/wangEditor-v5/blob/main/docs/join.md)

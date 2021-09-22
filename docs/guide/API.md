@@ -524,6 +524,14 @@ editor.deselect()
 editor.restoreSelection()
 ```
 
+### isSelectedAll
+
+判断编辑器是否全部选中。
+
+```ts
+editor.isSelectedAll() // true/false
+```
+
 ### getSelectionPosition
 
 获取选区的定位（相对于编辑区域，而非 body），**将视情况返回 `left` `right` `top` `bottom` 的其中几个**。
