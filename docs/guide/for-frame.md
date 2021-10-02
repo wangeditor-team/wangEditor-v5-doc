@@ -71,7 +71,7 @@ export default Vue.extend({
             //【特别注意】
             // 1. editorId Toolbar 和 Editor 的关联，要保持一致
             // 2. 多个编辑器时，每个的 editorId 要唯一
-            editorId: 'w-e-1001',
+            editorId: 'w-e-1',
 
             toolbarConfig: { /* 工具栏配置 */ },
             defaultContent: [
@@ -227,8 +227,8 @@ export default {
             insertImage: {
                 checkImage(src) {
                     console.log('image src', src)
-                    if (src.indexOf("http") !== 0) {
-                        return "图片网址必须以 http/https 开头";
+                    if (src.indexOf('http') !== 0) {
+                        return '图片网址必须以 http/https 开头';
                     }
                     return true;
                 },
@@ -238,10 +238,10 @@ export default {
 
     // 编辑器回调函数
     const handleCreated = (editor) => {
-      console.log("created", editor);
+      console.log('created', editor);
     }
     const handleChange = (editor) => {
-      console.log("change:", editor.children);
+      console.log('change:', editor.children);
     }
     const handleDestroyed = (editor) => {
       console.log('destroyed', editor)
@@ -416,11 +416,7 @@ module.exports = {
 
 ### create-react-app
 
-使用 create-react-app 扩展 webpack 配置，以下方式选择一个即可。
-
-#### @craco/craco
-
-可使用 [@craco/craco](https://www.npmjs.com/package/@craco/craco) 来修改 webpack 配置。
+使用 create-react-app 扩展 webpack 配置，可使用 [@craco/craco](https://www.npmjs.com/package/@craco/craco) 。
 
 第一，安装依赖
 
@@ -463,43 +459,4 @@ module.exports = {
 
 最后，重新执行 `yarn start` 即可。
 
-#### react-app-rewired
-
-可使用 [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) 来修改 webpack 配置。
-
-第一，安装依赖
-
-```shell
-yarn add customize-cra react-app-rewired --dev
-```
-
-第二，修改 package.json
-
-```
-"scripts": {
--   "start": "react-scripts start",
-+   "start": "react-app-rewired start",
--   "build": "react-scripts build",
-+   "build": "react-app-rewired build",
--   "test": "react-scripts test",
-+   "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
-}
-```
-
-第三，在项目根目录下创建 config-overrides.js 文件，在其中扩展 webpack 配置。
-
-```js
-const { override, addWebpackModuleRule } = require("customize-cra");
-module.exports = override(
-    addWebpackModuleRule(
-        {
-            test: /\.mjs$/,
-            include: /node_modules/,
-            type: 'javascript/auto'
-        }
-    )
-)
-```
-
-最后，重新执行 `yarn start` 即可。
+PS：也可以使用 [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) 来扩展 webpack 配置。

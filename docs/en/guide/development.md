@@ -1,3 +1,5 @@
 # Extend
 
-扩展新模块
+WIP...
+
+See [Chinese version](/v5/guide/development.html).

@@ -489,7 +489,7 @@ editor.selection // selection 或 null
 
 selection 数据结构如下：
 
-```tson
+```json
 {
   "anchor": { "path": [1,0], "offset":8 },
   "focus": { "path": [1,0], "offset":10 }
