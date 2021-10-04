@@ -88,14 +88,22 @@ editor.isEmpty()
 editor.getSelectionText()
 ```
 
+### getElemsByType
+
+通过 type 获取编辑器的 element 列表。
+
+```ts
+editor.getElemsByType('image') // 所有图片
+editor.getElemsByType('link') // 所有链接
+// 其他
+```
+
 ### getElemsByTypePrefix
 
 通过 type 前缀获取编辑器的 element 列表。
 
 ```ts
-editor.getElemsByTypePrefix('header') // 获取所有标题
-editor.getElemsByTypePrefix('image') // 获取所有图片
-editor.getElemsByTypePrefix('link') // 获取所有链接
+editor.getElemsByTypePrefix('header') // 获取所有标题 header1 header2 header3...
 // 其他
 ```
 
@@ -514,6 +522,22 @@ editor.select(newSelection)
 
 ```ts
 editor.deselect()
+```
+
+### move
+
+移动光标
+
+```ts
+editor.move(3) // 移动 3 个字符
+```
+
+### moveReverse
+
+反向移动光标
+
+```ts
+editor.moveReverse(2) // 反向移动 2 个字符
 ```
 
 ### restoreSelection

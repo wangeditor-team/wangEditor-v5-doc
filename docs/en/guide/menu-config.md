@@ -403,7 +403,7 @@ This is a common requirement.<br>
 You upload an image to the server, then you delete this image. You want to get this deleted image and delete it from the server when you save content.
 
 - Use [onInsertedImage](#image) to collect all images, record to `imageList1`
-- When you save content, use `editor.getElemsByTypePrefix('image')` to get rest images, record to `imageList2`
+- When you save content, use `editor.getElemsByType('image')` to get rest images, record to `imageList2`
 - Diff `imageList1` and `imageList2`, then you will get deleted images
 
 You may wonder: If I can get this image when it just is deleted, but when save content?<br>

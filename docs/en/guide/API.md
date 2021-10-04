@@ -86,14 +86,21 @@ This method can only identify an empty paragraph. If you want more info, use `ed
 editor.getSelectionText()
 ```
 
+### getElemsByType
+
+Get all elements in editor by type.
+
+```ts
+editor.getElemsByType('image') // all images
+editor.getElemsByType('link') // all links
+```
+
 ### getElemsByTypePrefix
 
 Get all elements in editor by type prefix.
 
 ```ts
-editor.getElemsByTypePrefix('header') // all header
-editor.getElemsByTypePrefix('image') // all images
-editor.getElemsByTypePrefix('link') // all links
+editor.getElemsByTypePrefix('header') // all header: header1 header2 header3...
 ```
 
 ### deleteBackward
@@ -463,6 +470,22 @@ Cancel select.
 
 ```ts
 editor.deselect()
+```
+
+### move
+
+Move cursor.
+
+```ts
+editor.move(3) // Move cursor 3 characters
+```
+
+### moveReverse
+
+Reverse move cursor.
+
+```ts
+editor.moveReverse(2) // Reverse move cursor 2 characters
 ```
 
 ### restoreSelection
