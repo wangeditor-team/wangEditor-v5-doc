@@ -2,7 +2,7 @@
 home: true
 heroImage: null
 heroText: wangEditor
-tagline: Open source web rich text editor, run right out of the box.
+tagline: Open source web rich text editor, run right out of the box, config simply.
 actions:
   - text: Getting started
     link: /en/guide/getting-started.html

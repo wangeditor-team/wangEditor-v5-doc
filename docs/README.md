@@ -2,7 +2,7 @@
 home: true
 heroImage: null
 heroText: wangEditor
-tagline: 开源 Web 富文本编辑器，开箱即用
+tagline: 开源 Web 富文本编辑器，开箱即用，配置简单
 actions:
   - text: 快速上手
     link: /guide/getting-started.html
