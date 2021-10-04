@@ -1,6 +1,6 @@
-# Toolbar config
+# Toolbar Config
 
-If you first-time use wangEditor, please see [Get started](./getting-started.md) it to learn basic usage.
+If you first-time use wangEditor, please see [Get Started](./getting-started.md) it to learn basic usage.
 
 ```ts{4}
 import { IToolbarConfig, createToolbar } from '@wangeditor/editor'
@@ -20,7 +20,7 @@ const toolbar = createToolbar({
 // Use `toolbar.getConfig()` to checkout default toolbar config
 ```
 
-## toolbarKeys
+## ToolbarKeys
 
 You can re-order and re-group toolbar menus.<br>
 You can run `editor.getAllMenuKeys()` to checkout all embedded menu keys.
@@ -51,7 +51,7 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 // create toolbar
 ```
 
-## excludeKeys
+## ExcludeKeys
 
 You may only want to exclude some menus, and keep the rest.
 

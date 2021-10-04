@@ -523,7 +523,7 @@ editor.once('event-key', fn)
 editor.emit('event-key')
 ```
 
-## use Slate.js API
+## Use Slate.js API
 
 wangEditor is based on [slate.js](https://docs.slatejs.org/) but React. You may use Slate.js API to operate the editor.
 

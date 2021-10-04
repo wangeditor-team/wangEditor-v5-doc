@@ -1,6 +1,6 @@
 # Installation
 
-## npm
+## Npm
 
 Install editor package
 
