@@ -1,12 +1,12 @@
-# Menu config
+# Menu Config
 
-## General way
+## General Way
 
-### Get a menu key
+### Get a Menu Key
 
 Use `editor.getAllMenuKeys()` to checkout all menus key, and find your menu key.
 
-### Get the menu default config
+### Get the Menu Default Config
 
 When you find a menu key, you can get this menu's default config.
 
@@ -14,7 +14,7 @@ When you find a menu key, you can get this menu's default config.
 editor.getMenuConfig('uploadImage') // `uploadImage` is a menu key
 ```
 
-### Change the menu config
+### Change the Menu Config
 
 ```ts
 import { IEditorConfig, createEditor, createToolbar } from '@wangeditor/editor'
@@ -63,7 +63,7 @@ editorConfig.MENU_CONF['bgColor'] = {
 // do createEditor...
 ```
 
-## Font size
+## Font Size
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
@@ -75,7 +75,7 @@ editorConfig.MENU_CONF['fontSize'] = {
 // do createEditor
 ```
 
-## Font-family
+## Font-Family
 
 :::tip
 Some fonts are not commercially available.
@@ -100,7 +100,7 @@ editorConfig.MENU_CONF['fontFamily'] = {
 // do createEditor
 ```
 
-## Line height
+## Line Height
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
@@ -229,7 +229,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 // do createEditor
 ```
 
-### Server address
+### Server Address
 
 Required.
 
@@ -268,7 +268,7 @@ If uploaded failed, the server must return data like this format:
 If your server's response body is not above format, you can use the following `customInsert`.
 :::
 
-### Basic config
+### Basic Config
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
@@ -342,7 +342,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 }
 ```
 
-### Custom functions
+### Custom Functions
 
 If you use Type script, you should define a function type first.
 
@@ -365,7 +365,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 }
 ```
 
-#### Custom upload
+#### Custom Upload
 
 If you unwanted wangEditor's embedded upload function, you can use `customUpload` to upload images yourself.
 
@@ -382,7 +382,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 }
 ```
 
-#### Custom select images
+#### Custom Select Images
 
 If you unwanted wangEditor's embedded select function, you can use `customBrowseAndUpload` to implement by yourself.
 
@@ -397,7 +397,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 }
 ```
 
-### Get deleted images
+### Get Deleted Images
 
 This is a common requirement.<br>
 You upload an image to the server, then you delete this image. You want to get this deleted image and delete it from the server when you save content.
@@ -456,7 +456,7 @@ editorConfig.MENU_CONF['insertVideo'] = {
 // do createEditor
 ```
 
-## Code highlight
+## Code Highlight
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }

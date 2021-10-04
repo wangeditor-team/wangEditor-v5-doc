@@ -1,6 +1,6 @@
-# Editor config
+# Editor Config
 
-If you first-time use wangEditor, please see [Get started](./getting-started.md) it to learn basic usage.
+If you first-time use wangEditor, please see [Get Started](./getting-started.md) it to learn basic usage.
 
 
 ```ts{4}

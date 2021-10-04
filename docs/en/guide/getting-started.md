@@ -1,8 +1,8 @@
-# Getting started
+# Getting Started
 
-## Create editor
+## Create Editor
 
-### Define html code
+### Define Html Code
 
 ```html
 <div id="toolbar-container">
@@ -14,7 +14,7 @@
 </div>
 ```
 
-### Create editor and toolbar
+### Create Editor and Toolbar
 
 Import wangEditor
 
@@ -53,7 +53,7 @@ const toolbar = createToolbar({
 })
 ```
 
-With the simple code above., you will create a basic editor.
+With the simple code above, you will create a basic editor.
 
 ![](/v5/image/editor-en.png)
 
@@ -63,7 +63,7 @@ With the simple code above., you will create a basic editor.
 3. There are many [editor configs](./editor-config.md)
 :::
 
-### init content
+### Init Content
 
 You can set your custom content when creating an editor.<br>
 But you should comply with the editor [content node structure standard](./node-define.md).
@@ -100,7 +100,7 @@ You should save `editor.children` when you save editor content, so you can edit 
 Do you need to save html content? Look at your needs. Please see [Store and display](./display.md)
 :::
 
-### mode
+### Mode
 
 There are to modes, see [Demo](https://www.wangeditor.com/demo/en/).
 - `default` mode, Integrate all wangEditor functions
@@ -130,9 +130,9 @@ editorConfig.onChange = (editor: IDomEditor) => {
 }
 ```
 
-## Size and style
+## Size and Style
 
-### width and height
+### Width and Height
 
 Width is self-adaption, 100% by default.
 
@@ -143,7 +143,7 @@ Height is `min-height: 300px;` by default, you can change it manually.
 <div id="editor-container" style="height: 600px;"></div>
 ```
 
-### z-index
+### Z-Index
 
 wangEditor do not set `z-index` ever, you can set it yourself.
 
@@ -152,7 +152,7 @@ wangEditor do not set `z-index` ever, you can set it yourself.
 <div id="editor-container" style="z-index: 100;"></div>
 ```
 
-### full-screen
+### Full-Screen
 
 wangEditor embed full-screen menu, but there is one requirement:
 **`toolbar-container` and `editor-container` must have same parent node**.
@@ -170,16 +170,16 @@ wangEditor embed full-screen menu, but there is one requirement:
 </div>
 ```
 
-If you unwanted full-screen menu, you can hide this by `{ excludeKeys: 'fullScreen' }`, see [Toolbar config](./toolbar-config.md).
+If you unwanted full-screen menu, you can hide this by `{ excludeKeys: 'fullScreen' }`, see [Toolbar Config](./toolbar-config.md).
 
-### others
+### Others
 
 - You can fixed toolbar to top by define `toolbar-container` style.
 - You can dev an editor like Google Doc by redefine html structure and style.
 
 ![](/v5/image/like-google-doc.png)
 
-## Multiple editors
+## Multiple Editors
 
 You can create many editors in one page.
 

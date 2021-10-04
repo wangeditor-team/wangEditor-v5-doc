@@ -1,4 +1,4 @@
-# Introduce
+# Introduction
 
 wangEditor is a rich-text editor for web pages, open-source and free to use.
 

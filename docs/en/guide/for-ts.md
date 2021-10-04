@@ -1,6 +1,6 @@
 # For Typescript
 
-## Define type
+## Define Type
 
 Create a `custom-types.d.ts` file, ensure it will be included in `tsconfig.json`.
 
@@ -36,7 +36,7 @@ declare module 'slate' {
 }
 ```
 
-## Common interface and type
+## Common Interface and Type
 
 ```js
 import {

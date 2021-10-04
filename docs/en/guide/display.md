@@ -1,4 +1,4 @@
-# Store and display
+# Store and Display
 
 Editor's use cases are:
 - New a doc, editor content is empty
@@ -6,13 +6,13 @@ Editor's use cases are:
 - Edit doc content, save content, close the editor
 - Display doc content ( Only view, no editor )
 
-This article will introduce how to save and display your content
+This article will introduce how to save and display your content.
 
 ## Store
 
 There are three methods, you can choose one according to your needs.
 
-### 1. Save content and html
+### 1. Save Content and Html
 
 ```js
 const editor = createEditor({ ... })
@@ -51,7 +51,7 @@ $('#button-save').on('click', () => {
 - Front-end render. Require minimum html code volume, like mobile h5 page.
 - Server render, not nodejs but other language ( Java C# ... ).
 
-### 2. Only save content
+### 2. Only Save Content
 
 ```js
 const editor = createEditor({ ... })
@@ -81,7 +81,7 @@ $('#button-save').on('click', () => {
 - Front-end render, do not care about html code volume
 - SPA, includes edit page and display page
 
-### 3. Only save html
+### 3. Only Save Html
 
 ```js
 const editor = createEditor({ ... })
@@ -100,11 +100,11 @@ $('#button-save').on('click', () => {
 
 ## Display
 
-### Output html
+### Output Html
 
 If you saved html, just output html.
 
-### Convert content to html
+### Convert Content to Html
 
 You can convert content to html in browser and nodejs SSR.
 
@@ -121,7 +121,7 @@ const text = editor.getText()
 // 4. render html or text in your page
 ```
 
-### Add css style
+### Add CSS Style
 
 The html is clean, only has tag, but no style. You may define some style like:
 
@@ -175,7 +175,7 @@ hr {
 }
 ```
 
-### Code highlight
+### Code Highlight
 
 You can use [Prism.js](https://prismjs.com/) to highlight code block.
 

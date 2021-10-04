@@ -1,4 +1,4 @@
-# Date structure
+# Date Structure
 
 wangEditor is based on Slate.js, so you may learn [Slate node design](https://docs.slatejs.org/concepts/02-nodes) first.
 
@@ -12,7 +12,7 @@ You maybe have learned [editor API](./API.md), let me ask you some questions.
 
 This article will tell you all of the node types and props, so you can do everything by the editor API.
 
-## Getting started
+## Getting Started
 
 If you want to know a node structure quickly, it's very simply.
 - Create an editor and run in browser, or use [demo](https://www.wangeditor.com/demo/en/)
@@ -27,7 +27,7 @@ Set line height and text style, run `editor.children` then you can see it's stru
 
 ![](/v5/image/数据结构-2-en.png)
 
-## All nodes structure
+## All Nodes Structure
 
 See `type` in every source code.
 

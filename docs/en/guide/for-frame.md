@@ -5,17 +5,17 @@ If you first-time use wangEditor, please see [Get started](./getting-started.md)
 ## Attention
 
 This article only introduces editor components, you should also learn some API and configs.
-- [Toolbar config](./toolbar-config.md)
-- [Editor config](./editor-config.md)
+- [Toolbar Config](./toolbar-config.md)
+- [Editor Config](./editor-config.md)
 - [Editor API](./API.md)
-- [Menus config](./menu-config.md)
+- [Menus Config](./menu-config.md)
 
 ## Vue 2.x
 
 ### Installation
 
 Install `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`, see [Installation](./installation.md).
-### template
+### Template
 
 ```html
 <div>
@@ -54,7 +54,7 @@ Install `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`, see [Installation
 </div>
 ```
 
-### script
+### Script
 
 ```ts
 import Vue from 'vue'
@@ -135,12 +135,12 @@ export default Vue.extend({
             if (editor == null) return
             if (editor.selection == null) return
 
-            // insert text in selection
+            // Insert text in selection
             editor.insertText('hello wangEditor.')
         },
     },
 
-    // timely destroy editor
+    // Timely destroy editor
     beforeDestroy() {
         const editor = getEditor(this.editorId)
         if (editor == null) return
@@ -158,7 +158,7 @@ export default Vue.extend({
 
 Install `@wangeditor/editor` and `@wangeditor/editor-for-vue@next`, see [Installation](./installation.md).
 
-### template
+### Template
 
 ```html
 <template>
@@ -188,7 +188,7 @@ Install `@wangeditor/editor` and `@wangeditor/editor-for-vue@next`, see [Install
 </template>
 ```
 
-### script
+### Script
 
 ```js
 import '@wangeditor/editor/dist/css/style.css' // or import this in <style>
@@ -203,7 +203,7 @@ export default {
   setup() {
     const editorId = 'w-e-1'
 
-    // default content
+    // Default content
     const defaultContent = [
         {
             type: "paragraph",
@@ -214,7 +214,7 @@ export default {
     // Deep clone `content`
     const getDefaultContent = computed(() => cloneDeep(defaultContent))
 
-    // editor config
+    // Editor config
     const editorConfig = {
         placeholder: 'Type your text',
         MENU_CONF: {
@@ -230,7 +230,7 @@ export default {
         }
     }
 
-    // editor callbacks
+    // Editor callbacks
     const handleCreated = (editor) => {
       console.log('created', editor);
     }
@@ -252,7 +252,7 @@ export default {
     const customPaste = (editor, event, callback) => {
         console.log('ClipboardEvent is paste event data', event)
 
-        // insert your custom text
+        // Insert your custom text
         editor.insertText('xxx')
 
         // You can not `return xxx` in Vue event function, use `callback`
@@ -265,7 +265,7 @@ export default {
         const editor = getEditor(editorId)
         if (editor == null) return
 
-        // destroy and remove editor
+        // Destroy and remove editor
         editor.destroy()
         removeEditor(editorId)
     })
@@ -302,29 +302,29 @@ import { IDomEditor, IEditorConfig, IToolbarConfig, SlateDescendant } from '@wan
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
 function ReactEditor() {
-    // save editor instance
+    // Save editor instance
     const [editor, setEditor] = useState<IDomEditor | null>(null)
-    // save editor's latest content
+    // Save editor's latest content
     const [curContent, setCurContent] = useState<SlateDescendant[]>([])
 
-    // toolbar config
+    // Toolbar config
     const toolbarConfig: Partial<IToolbarConfig> = { /* toolbar config */ }
 
-    // editor config
+    // Editor config
     const editorConfig: Partial<IEditorConfig> = {}
     editorConfig.placeholder = 'Type your text'
     editorConfig.onCreated = (editor: IDomEditor) => {
-        // save editor instance here, important!
+        // Save editor instance here, important!
         setEditor(editor)
     }
     editorConfig.onChange = (editor: IDomEditor) => {
         // get latest content where editor changed
         setCurContent(editor.children)
     }
-    // other editor config...
-    // menus config...
+    // Other editor config...
+    // Menus config...
 
-    // timely destroy editor
+    // Timely destroy editor
     useEffect(() => {
         return () => {
             if (editor == null) return
@@ -359,7 +359,7 @@ function ReactEditor() {
 export default ReactEditor
 ```
 
-## Common problems
+## Common Problems
 
 When you use React or Vue component, you may occur the following error.
 

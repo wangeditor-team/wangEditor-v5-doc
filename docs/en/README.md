@@ -55,4 +55,4 @@ const toolbar = createToolbar({
 
 ### Team
 
-- [Team members](https://github.com/wangeditor-team/wangEditor-v5/graphs/contributors))
+- [Team members](https://github.com/wangeditor-team/wangEditor-v5/graphs/contributors)
