@@ -26,7 +26,7 @@ wangEditor 扩展性包括以下部分，你可以来扩展大部分常用的功
 
 ## 渲染编辑器视图
 
-需要你提前了解 vdom 概念，以及 [snabbdom.js](https://github.com/snabbdom/snabbdom) 和 JSX 。
+需要你提前了解 vdom 概念，以及 [snabbdom.js](https://github.com/snabbdom/snabbdom) 和它的 `h` 函数。
 
 如果你定义了新元素，则需要把它显示到编辑器内。主要过程是：**model -> 生成 vdom -> 渲染 DOM** <br>
 用到了 vdom 需要安装 `snabbdom`，参考上文。
@@ -43,18 +43,25 @@ yarn add snabbdom --peer
 增加了新的文本样式，需要渲染编辑器中。
 
 ```ts
-import { jsx, VNode } from 'snabbdom'
+import { h, VNode } from 'snabbdom'
 import { Boot, SlateNode, SlateText } from '@wangeditor/editor'
 
 // 定义渲染函数
 function fn(textNode: SlateNode, vnode: VNode): VNode {
     // 1. 根据 textNode 的属性
     const { bold, color } = textNode as SlateText
+    let newVnode = vnode
 
-    // 2. 为 vnode 添加样式
+    // 2. 为 vnode 添加样式标签
+    if (bold) {
+      newVnode = h('b', {}, [newVnode])
+    }
+    if (color) {
+      // 继续...
+    }
 
     // 3. 返回添加了样式的 vnode
-    return newVNode
+    return newVnode
 }
 
 // 注册进 wangEditor
@@ -70,7 +77,7 @@ Boot.registerRenderTextStyle(fn)
 增加了新的元素，需要渲染到编辑器中。
 
 ```tsx
-import { jsx, VNode } from 'snabbdom'
+import { h, VNode } from 'snabbdom'
 import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor'
 
 // 渲染函数
@@ -79,7 +86,7 @@ function fn(elem: SlateElement, children: VNode[] | null, editor: IDomEditor): V
     // children 是下级节点
     // editor 即编辑器实例
 
-    const vnode = <p>{children}</p> // type: 'paragraph' 节点，即渲染为 <p>
+    const vnode = h('p', {}, children) // type: 'paragraph' 节点，即渲染为 <p> 标签
     return vnode
 }
 
