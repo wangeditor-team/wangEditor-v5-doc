@@ -320,8 +320,8 @@ editorConfig.MENU_CONF['uploadImage'] = {
     // 超时时间，默认为 10 秒
     timeout: 5 * 1000, // 5 秒
 
-    // 小于 xx 就插入 base64 格式（而不上传），默认为 0
-    base64LimitKB: 5 * 1024 // 5kb
+    // 小于该值就插入 base64 格式（而不上传），默认为 0
+    base64LimitKB: 5 // 5kb
 }
 ```
 
