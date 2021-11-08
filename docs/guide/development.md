@@ -102,7 +102,7 @@ Boot.registerRenderElem(conf)
 // 创建编辑器、工具栏
 ```
 
-PS：`h` 函数的使用请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
+PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
 
 ## 生成 HTML
 
