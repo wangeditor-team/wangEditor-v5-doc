@@ -97,7 +97,7 @@ createEditor({
 PS：上述代码在 Typescript 环境下可能报错，请参考[用于 Typescript](/v5/guide/for-ts.html)。
 
 :::tip
-content 只能是上述 json 格式，**不支持 html**<br>
+content 只能是上述 json 格式，**不支持 html**（原因可参考[这里](https://github.com/wangeditor-team/wangEditor-v5/issues/233)）<br>
 所以，**在保存编辑器内容时，一定要保存 `editor.children` ，方便再次编辑内容**<br>
 是否要存储 html 视情况而定，参考[这里](/v5/guide/display.html)
 :::

@@ -7,6 +7,8 @@
 - 再次编辑文档，修改内容，保存，关闭编辑器
 - 查看文档内容（此时只查看，用不到编辑器）
 
+![](/v5/image/store-display.png)
+
 本文就解决这些场景中的所有问题。
 
 ## 存储内容到服务器
@@ -24,18 +26,15 @@ const editor = createEditor({ ... })
 $('#button-save').on('click', () => {
     // 1. 获取 content 和 html
     const contentStr = JSON.stringify(editor.children)
-    const html  = editor.getHtml()
+    const html = editor.getHtml()
 
-    // 2. 拼接 content 和 html ，中间插一个间隔字符串（不易重复的，自己定义即可），如 '<<split-symbol-a7qlu>>'
-    const contentAndHtml = contentStr + '<<split-symbol-a7qlu>>' + html
+    // 2. 提交 contentStr 和 html 到服务端，自行实现
 
-    // 3. 提交 contentAndHtml 到服务端，需要你自行处理
-    //    服务端再根据 '<<split-symbol-a7qlu>>' 来拆分 content 和 html ，分别保存
-
-    //【注意】这里要拼接 content 和 html 一次性提交到服务端，是为了避免数据不同步的问题
-    // 例如，因为程序 bug ，突然断网、断电等情况，只提交成功了 content 却未提交成功 html
+    // PS：将 contentStr 和 html 拼接在一起，一次性提交到服务器，可避免数据不一致问题
 })
 ```
+
+![](/v5/image/store-display-1.png)
 
 #### 使用
 - 再次编辑文档时，使用 content
@@ -62,6 +61,8 @@ $('#button-save').on('click', () => {
     // 存储 content 到服务器，自行实现
 })
 ```
+
+![](/v5/image/store-display-2.png)
 
 #### 使用
 - 再次编辑文档时，使用 content

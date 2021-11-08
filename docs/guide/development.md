@@ -40,7 +40,12 @@ yarn add snabbdom --peer
 
 ### renderTextStyle
 
-增加了新的文本样式，需要渲染编辑器中。
+编辑器中需要渲染文本样式，最基本的一些文本样式（如加粗、斜体、颜色等）编辑器已经自带了。
+如果你需要再自定义新的文本样式，可以通过以下方式来注册。
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
 
 ```ts
 import { h, VNode } from 'snabbdom'
@@ -66,15 +71,17 @@ function fn(textNode: SlateNode, vnode: VNode): VNode {
 
 // 注册进 wangEditor
 Boot.registerRenderTextStyle(fn)
-
-// 创建编辑器、工具栏
 ```
 
-可参考 wangEditor 源码中的 [文本样式](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/text-style/text-style.tsx) ， [颜色和背景色](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/color/render-text-style.tsx) 和 [字体字号](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/font-size-family/render-text-style.tsx) 。
+PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
 
 ### renderElem
 
 增加了新的元素，需要渲染到编辑器中。
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
 
 ```tsx
 import { h, VNode } from 'snabbdom'
@@ -98,8 +105,6 @@ const conf = {
 
 // 注册到 wangEditor
 Boot.registerRenderElem(conf)
-
-// 创建编辑器、工具栏
 ```
 
 PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
@@ -110,7 +115,11 @@ PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snab
 
 ### textToHtml
 
-生成 text 的 html
+生成 text 节点的的 html
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
 
 ```ts
 import { Boot, IDomEditor, SlateText } from '@wangeditor/editor'
@@ -131,8 +140,6 @@ function fn(textNode: SlateText, textHtml: string, editor: IDomEditor): string {
 
 // 注册到 wangEditor
 Boot.registerTextToHtml(fn)
-
-// 创建编辑器、工具栏
 ```
 
 可参考 wangEditor 源码中文本样式的 [textToHtml](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/text-style/text-to-html.ts) 。
@@ -140,6 +147,10 @@ Boot.registerTextToHtml(fn)
 ### textStyleToHtml
 
 生成文本样式的 html
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
 
 ```ts
 import { Boot, SlateText, SlateNode } from '@wangeditor/editor'
@@ -164,8 +175,6 @@ function fn(textNode: SlateNode, curHtml: string): string {
 
 // 注册到 wangEditor
 Boot.registerTextStyleToHtml(fn)
-
-// 创建编辑器、工具栏
 ```
 
 可参考 wangEditor 源码中 [颜色、背景色](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/color/text-style-to-html.ts) 和 [字体字号](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/font-size-family/text-style-to-html.ts) 的 text-style-to-html 。
@@ -173,6 +182,10 @@ Boot.registerTextStyleToHtml(fn)
 ### elemToHtml
 
 生成元素的 html
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
 
 ```ts
 import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor'
@@ -197,9 +210,13 @@ Boot.registerElemToHtml(conf)
 
 可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/wangEditor-v5/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `elem-to-html.ts` 文件。
 
-## slate 插件
+## 注册插件
 
-先要去了解 [slate.js](https://docs.slatejs.org/) 的 API 和插件机制。
+wangEditor 是基于 [slate.js](https://docs.slatejs.org/) 内核的，所以可以直接使用 slate.js 插件。所以你先要去了解 slate.js 的 API 和插件机制。
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
 
 ```ts
 import { Boot, IDomEditor } from '@wangeditor/editor'
@@ -253,6 +270,10 @@ yarn add @wangeditor/core --peer
 
 代码如下。菜单的详细配置，可参考“引用”菜单[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/blockquote/menu/BlockquoteMenu.ts)。
 
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
+
 ```ts
 import { IButtonMenu } from '@wangeditor/core'
 import { Boot } from '@wangeditor/editor'
@@ -272,13 +293,15 @@ export const menuConf = {
 
 // 注册到 wangEditor
 Boot.registerMenu(menuConf)
-
-// 创建编辑器、工具栏
 ```
 
 ### SelectMenu
 
 代码如下。菜单的详细配置，可参考“标题”菜单[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/header/menu/HeaderSelectMenu.ts)。
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
 
 ```ts
 import { ISelectMenu } from '@wangeditor/core'
@@ -299,13 +322,15 @@ export const menuConf = {
 
 // 注册到 wangEditor
 Boot.registerMenu(menuConf)
-
-// 创建编辑器、工具栏
 ```
 
 ### ModalMenu
 
 代码如下。菜单配置可参考“插入链接”菜单[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/link/menu/InsertLink.ts)。
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
 
 ```ts
 import { IModalMenu } from '@wangeditor/core'

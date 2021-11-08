@@ -6,6 +6,8 @@ Editor's use cases are:
 - Edit doc content, save content, close the editor
 - Display doc content ( Only view, no editor )
 
+![](/v5/image/store-display-en.png)
+
 This article will introduce how to save and display your content.
 
 ## Store
@@ -25,16 +27,13 @@ $('#button-save').on('click', () => {
     const contentStr = JSON.stringify(editor.children)
     const html  = editor.getHtml()
 
-    // 2. splice `content` and `html` with a separator (you can custom define) ，like `<<split-symbol-a7qlu>>`
-    const contentAndHtml = contentStr + '<<split-symbol-a7qlu>>' + html
+    // 2. commit `contentStr` and `html` to web server, by yourself
 
-    // 3. commit contentAndHtml to web server
-    //    server will decompose `content` and `html` by the separator `<<split-symbol-a7qlu>>`, and store both
-
-    // Attention: 
-    // Splicing `content` and `html`, and commit to server in one time, can ensure data synchronization
+    // PS: Splicing `contentStr` and `html`, and commit to server in one time, can ensure data synchronization
 })
 ```
+
+![](/v5/image/store-display-1-en.png)
 
 #### Usage
 
@@ -64,6 +63,8 @@ $('#button-save').on('click', () => {
     // commit content to server and store
 })
 ```
+
+![](/v5/image/store-display-2-en.png)
 
 #### Usage
 
