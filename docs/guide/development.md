@@ -102,7 +102,7 @@ Boot.registerRenderElem(conf)
 // 创建编辑器、工具栏
 ```
 
-可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/wangEditor-v5/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `render-elem.tsx` 文件。
+PS：`h` 函数的使用请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
 
 ## 生成 HTML
 
