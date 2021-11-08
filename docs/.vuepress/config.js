@@ -105,4 +105,20 @@ module.exports = {
             },
         },
     },
+
+    plugins: [
+        [
+            '@vuepress/plugin-search',
+            {
+                locales: {
+                    '/': {
+                        placeholder: '搜索',
+                    },
+                    '/en/': {
+                        placeholder: 'Search',
+                    },
+                },
+            },
+        ],
+    ],
 }

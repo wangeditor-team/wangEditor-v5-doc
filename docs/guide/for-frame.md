@@ -160,6 +160,8 @@ export default Vue.extend({
 
 ## Vue3
 
+可参考博客[50 行代码 Vue3 中使用富文本编辑器](https://juejin.cn/post/7027977252331585544)。
+
 ### 安装
 
 需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue@next`，可参考[这里](/v5/guide/installation.html)。
