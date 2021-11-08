@@ -137,6 +137,8 @@ editorConfig.MENU_CONF['emotion'] = {
 
 ## 链接
 
+- `checkLink` 校验链接
+
 ```ts
 // 自定义校验链接
 function customCheckLinkFn(text: string, url: string): string | boolean | undefined {
@@ -184,6 +186,9 @@ type ImageElement = SlateElement & {
 ```
 
 图片菜单的配置
+- `onInsertedImage` 插入图片之后的回调
+- `onUpdatedImage` 更新图片之后的回调
+- `checkImage` 校验图片链接
 
 ```ts
 // 自定义校验图片
@@ -443,6 +448,8 @@ type VideoElement = SlateElement & {
 ```
 
 菜单配置
+- `onInsertedVideo` 插入视频之后的回调
+- `checkVideo` 校验视频链接
 
 ```ts
 // 自定义校验视频
@@ -478,6 +485,8 @@ editorConfig.MENU_CONF['insertVideo'] = {
 
 ## 代码高亮
 
+- `codeLangs` 配置代码语言
+
 ```ts
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
@@ -501,4 +510,4 @@ editorConfig.MENU_CONF['codeSelectLang'] = {
 
 ## 其他
 
-其他菜单的配置，请参考上文的“通用方法”自行修改。
+其他菜单的配置，请参考上文的 [通用方法](#通用方法) 自行修改。
