@@ -62,7 +62,6 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 
 ```ts
 const toolbarConfig: Partial<IToolbarConfig> = {
-    toolbarKeys: [ ... ],
     insertKeys: {
         index: 5, // 插入的位置，基于当前的 toolbarKeys
         keys: ['menu-key1', 'menu-key2']

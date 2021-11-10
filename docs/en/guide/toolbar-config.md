@@ -57,7 +57,6 @@ You may only want to insert some new menus, based on current `toolbarKeys`.
 
 ```ts
 const toolbarConfig: Partial<IToolbarConfig> = {
-    toolbarKeys: [ ... ],
     insertKeys: {
         index: 5, // inserted index, in current toolbarKeys
         keys: ['menu-key1', 'menu-key2']
