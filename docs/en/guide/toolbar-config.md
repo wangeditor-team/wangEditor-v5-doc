@@ -22,7 +22,7 @@ const toolbar = createToolbar({
 
 ## ToolbarKeys
 
-You can re-order and re-group toolbar menus.<br>
+Rewrite toolbar menus, re-order and re-group.<br>
 You can run `editor.getAllMenuKeys()` to checkout all embedded menu keys.
 
 ```ts
@@ -46,6 +46,22 @@ const toolbarConfig: Partial<IToolbarConfig> = {
         },
         // other menu keys...
     ]
+}
+
+// create toolbar
+```
+
+## insertKeys
+
+You may only want to insert some new menus, based on current `toolbarKeys`.
+
+```ts
+const toolbarConfig: Partial<IToolbarConfig> = {
+    toolbarKeys: [ ... ],
+    insertKeys: {
+        index: 5, // inserted index, in current toolbarKeys
+        keys: ['menu-key1', 'menu-key2']
+    },
 }
 
 // create toolbar

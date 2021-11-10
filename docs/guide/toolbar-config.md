@@ -26,7 +26,7 @@ const toolbar = createToolbar({
 
 ## toolbarKeys
 
-配置工具栏显示哪些菜单，以及菜单的排序、分组。
+**重新**配置工具栏，显示哪些菜单，以及菜单的排序、分组。
 
 【注意】可以通过 `editor.getAllMenuKeys()` 查询编辑器注册的所有菜单 key 。这些都可以用于 `toolbarKeys` 中。
 
@@ -51,6 +51,22 @@ const toolbarConfig: Partial<IToolbarConfig> = {
         },
         // 继续配置其他菜单...
     ]
+}
+
+// 创建 toolbar
+```
+
+## insertKeys
+
+可以在当前 `toolbarKeys` 的基础上继续插入新菜单，如自定义扩展的菜单。
+
+```ts
+const toolbarConfig: Partial<IToolbarConfig> = {
+    toolbarKeys: [ ... ],
+    insertKeys: {
+        index: 5, // 插入的位置，基于当前的 toolbarKeys
+        keys: ['menu-key1', 'menu-key2']
+    },
 }
 
 // 创建 toolbar
