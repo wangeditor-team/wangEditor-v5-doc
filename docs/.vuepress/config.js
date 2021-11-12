@@ -56,7 +56,8 @@ module.exports = {
                             '/guide/node-define.md',
                             '/guide/development.md',
                             '/guide/i18n.md',
-                            '/guide/for-ts.md'
+                            '/guide/for-ts.md',
+                            '/guide/plugins.md'
                         ]
                     }
                 ],
@@ -98,7 +99,8 @@ module.exports = {
                             '/en/guide/node-define.md',
                             '/en/guide/development.md',
                             '/en/guide/i18n.md',
-                            '/en/guide/for-ts.md'
+                            '/en/guide/for-ts.md',
+                            '/en/guide/plugins.md'
                         ]
                     }
                 ],
