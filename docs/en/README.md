@@ -28,6 +28,8 @@ footer: Copyright © 2017-present wangeditor.com
 
 ### Easy usage
 
+You can create a fully functional rich-text editor with 10 lines of code. See [demo](https://www.wangeditor.com/demo/en/).
+
 ```js
 import '@wangeditor/editor/dist/css/style.css'
 import { createEditor, createToolbar } from '@wangeditor/editor'
@@ -42,6 +44,8 @@ const toolbar = createToolbar({
   selector: '#toolbar-container'
 })
 ```
+
+![](/v5/image/editor-en.png)
 
 ### Compatibility
 
