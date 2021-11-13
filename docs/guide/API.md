@@ -608,6 +608,16 @@ editor.once('event-key', fn)
 editor.emit('event-key')
 ```
 
+### 内置的事件
+
+```ts
+editor.on('fullScreen', () => { console.log('fullScreen') })
+editor.on('unFullScreen', () => { console.log('unFullScreen') })
+editor.on('scroll', () => { console.log('scroll') })
+editor.on('modalOrPanelShow', modalOrPanel => { console.log(modalOrPanel) })
+editor.on('modalOrPanelHide', () => { console.log('modalOrPanelHide') })
+```
+
 ## 使用 slate 解锁更多 API
 
 > wangEditor 基于 [slate.js](https://docs.slatejs.org/)（但不依赖 React）开发

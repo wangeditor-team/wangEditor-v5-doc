@@ -546,6 +546,16 @@ editor.once('event-key', fn)
 editor.emit('event-key')
 ```
 
+### Embedded events
+
+```ts
+editor.on('fullScreen', () => { console.log('fullScreen') })
+editor.on('unFullScreen', () => { console.log('unFullScreen') })
+editor.on('scroll', () => { console.log('scroll') })
+editor.on('modalOrPanelShow', modalOrPanel => { console.log(modalOrPanel) })
+editor.on('modalOrPanelHide', () => { console.log('modalOrPanelHide') })
+```
+
 ## Use Slate.js API
 
 wangEditor is based on [slate.js](https://docs.slatejs.org/) but React. You may use Slate.js API to operate the editor.
