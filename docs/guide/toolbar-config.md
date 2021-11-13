@@ -87,3 +87,31 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 
 // 创建 toolbar
 ```
+
+## modalAppendToBody
+
+将菜单弹出的 modal 添加到 body 下，并自定义 modal 的定位和其他样式。
+
+![](/v5/image/modal-appendTo-body.png)
+
+```ts
+const toolbarConfig: Partial<IToolbarConfig> = {
+    modalAppendToBody: true
+}
+
+// 创建 toolbar 和 editor
+
+// 可监听 `modalOrPanelShow` 和 `modalOrPanelHide` 自定义事件来设置样式、蒙层
+editor.on('modalOrPanelShow', modalOrPanel => {
+    if (modalOrPanel.type !== 'modal') return
+    const { $elem } = modalOrPanel // modal element
+
+    // 设置 modal 样式（定位、z-index）
+    // 显示蒙层
+})
+editor.on('modalOrPanelHide', () => {
+    // 隐藏蒙层
+})
+```
+
+上述代码细节可以参考 [example 源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor/examples/modal-appendTo-body.html)

@@ -20,7 +20,7 @@ const toolbar = createToolbar({
 // Use `toolbar.getConfig()` to checkout default toolbar config
 ```
 
-## ToolbarKeys
+## toolbarKeys
 
 Rewrite toolbar menus, re-order and re-group.<br>
 You can run `editor.getAllMenuKeys()` to checkout all embedded menu keys.
@@ -66,7 +66,7 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 // create toolbar
 ```
 
-## ExcludeKeys
+## excludeKeys
 
 You may only want to exclude some menus, and keep the rest.
 
@@ -81,3 +81,31 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 
 // create toolbar
 ```
+
+## modalAppendToBody
+
+You may want to append the modal when a menu clicked to `<body>`, and custom its position style.
+
+![](/v5/image/modal-appendTo-body-en.png)
+
+```ts
+const toolbarConfig: Partial<IToolbarConfig> = {
+    modalAppendToBody: true
+}
+
+// Create toolbar and editor
+
+// Observe `modalOrPanelShow` and `modalOrPanelHide` custom event, then set modal style, and even you can show a mask <div>
+editor.on('modalOrPanelShow', modalOrPanel => {
+    if (modalOrPanel.type !== 'modal') return
+    const { $elem } = modalOrPanel // modal element
+
+    // set modal style (position, z-index)
+    // show a mask <div>
+})
+editor.on('modalOrPanelHide', () => {
+    // hide your mask <div>
+})
+```
+
+You could checkout [example source code](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor/examples/modal-appendTo-body.html).
