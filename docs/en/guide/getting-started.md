@@ -1,5 +1,7 @@
 # Getting Started
 
+If you wanna to use wangEditor in Vue or React, please read this article first, then check [this article](./for-frame.md).
+
 ## Create Editor
 
 ### Define Html Code
