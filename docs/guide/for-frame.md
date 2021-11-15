@@ -13,6 +13,8 @@
 
 ## Vue2
 
+可参考博客 [50 行代码 Vue2.6 中使用富文本编辑器](https://juejin.cn/post/7030722267264843783/)
+
 ### 安装
 
 需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/guide/installation.html)。
