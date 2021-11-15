@@ -163,6 +163,26 @@ editor.insertText('xxx')
 editor.clear()
 ```
 
+### 重置内容
+
+可以通过 selection API 和 node API 来重置内容
+
+```ts
+import { SlateTransforms } from '@wangeditor/editor'
+
+// 全选
+editor.select([])
+// 删除选中内容
+editor.deleteFragment()
+// 插入自己的内容
+SlateTransforms.insertNodes(editor, [
+  { type: 'paragraph', children: [{ text: '你的文章内容1' }] },
+  { type: 'paragraph', children: [{ text: '你的文章内容2' }] }
+])
+// 删除第一个空行（按需）
+SlateTransforms.removeNodes(editor, { at: [0] })
+```
+
 ### undo
 
 撤销

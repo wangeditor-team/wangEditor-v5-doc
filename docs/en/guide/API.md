@@ -149,6 +149,26 @@ editor.insertText('xxx')
 editor.clear()
 ```
 
+### Rewrite content
+
+You can write content by selection APIs and node APIs.
+
+```ts
+import { SlateTransforms } from '@wangeditor/editor'
+
+// Select all
+editor.select([])
+// Delete selected content
+editor.deleteFragment()
+// Insert your content
+SlateTransforms.insertNodes(editor, [
+  { type: 'paragraph', children: [{ text: 'your text 1' }] },
+  { type: 'paragraph', children: [{ text: 'your text 2' }] }
+])
+// Delete the first paragraph (optional)
+SlateTransforms.removeNodes(editor, { at: [0] })
+```
+
 ### undo
 
 ```ts
