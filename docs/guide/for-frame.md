@@ -297,6 +297,8 @@ export default {
 
 ## React
 
+可参考博客 [50 行代码 React Hooks 中使用富文本编辑器](https://juejin.cn/post/7030584414652334093)
+
 ### 安装
 
 需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/guide/installation.html)。
