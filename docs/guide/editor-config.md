@@ -81,33 +81,57 @@ editorConfig.onMaxLength = function (editor: IDomEditor) {
 
 ## hoverbarKeys
 
-配置编辑器的 hoverbar 菜单。通过 `editor.getConfig().hoverbarKeys` 可查看当前的 hoverbarKeys 。
+配置编辑器的 hoverbar 菜单。通过 `editor.getConfig().hoverbarKeys` 可查看当前的 hoverbarKeys
 
 ![](/v5/image/hoverbar.png)
 
-```ts
-import { DomEditor, IEditorConfig } from '@wangeditor/editor'
+:::tip
+createEditor 时设置 `model: 'simple'` 可隐藏选中文本时的 hoverbar 。
+:::
 
+### 使用 element type
+
+可以通过元素 `type` 配置某种元素的 hoverbar
+
+- 元素的 `type` 可通过 `editor.children` 查看，如下图
+- 使用 `editor.getAllMenuKeys()` 可查看所有内置 menu key
+
+![](/v5/image/elem-type.png)
+
+```ts
 const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.hoverbarKeys = [
-    {
-        desc: '选中链接 selected link',
-        match: (editor, node) => DomEditor.checkNodeType(node, 'link'),
+editorConfig.hoverbarKeys = {
+    'link': {
+        // 重写 link 元素的 hoverbar
         menuKeys: ['editLink', 'unLink', 'viewLink'],
+    },
+    'image': {
+        // 清空 image 元素的 hoverbar
+        menuKeys: [],
     }
-]
+}
 ```
 
-其他配置可参考[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor/src/init-default-config/config/hoverbar.ts)。
+### 自定义 match 函数
 
-**不建议直接修改这个配置**，用编辑器默认的即可。建议这样操作：
-- 如果想要选中文字的 hoverbar ，就在 createEditor 时设置 `mode: 'default'`
-- 如果不想要选中文字的 hoverbar ，就在 createEditor 时设置 `model: 'simple'`
+如果 element type 无法满足需求，可通过自定义 `match` 函数匹配元素。
 
-:::tip
-千万不要直接设置 `editorConfig.hoverbarKeys = []` 空数组，这会清空所有 hoverbar 。<br>
-除非你的工具栏里已经包含了 `hoverbarKeys` 的所有菜单。
-:::
+```ts
+import { SlateNode, IDomEditor, IEditorConfig } from '@wangeditor/editor'
+
+const editorConfig: Partial<IEditorConfig> = {}
+editorConfig.hoverbarKeys = {
+    'text': {
+        // 如有 match 函数，则优先根据 match 判断，而忽略 element type
+        match: (editor: IDomEditor, n: SlateNode) => {
+            // 可参考下文的源码
+        },
+        menuKeys: [ ... ], // 定义你想要的 menu keys
+    }
+}
+```
+
+可参考 hoverbar 配置的[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor/src/init-default-config/config/hoverbar.ts)。
 
 ## onCreated
 

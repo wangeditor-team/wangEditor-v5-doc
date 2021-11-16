@@ -82,31 +82,56 @@ Cause it may affect performance when text is too large.
 
 You can use `editor.getConfig().hoverbarKeys` to checkout default config.
 
-![](/v5/image/hoverbar.png)
-
-```ts
-import { DomEditor, IEditorConfig } from '@wangeditor/editor'
-
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.hoverbarKeys = [
-    {
-        desc: 'selected link',
-        match: (editor, node) => DomEditor.checkNodeType(node, 'link'),
-        menuKeys: ['editLink', 'unLink', 'viewLink'],
-    }
-]
-```
-
-You can see [source code](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor/src/init-default-config/config/hoverbar.ts) to all default hoverbar keys config.
-
-
-**Changing hoverbar keys manually is not recommended**, recommend use `mode` to change it.
-- If you want hoverbar when select text, set `mode: 'default'` when creating editor
-- If you unwanted hoverbar when select text, set `model: 'simple'` when creating editor
+![](/v5/image/hoverbar-en.png)
 
 :::tip
-No not set `editorConfig.hoverbarKeys = []`, it will clear all hoverbar menus!
+If you only unwanted hoverbar when select text, set `model: 'simple'` when creating editor
 :::
+
+### Use element type
+
+You can config hoverbar menu keys by element type.<br>
+
+- You can checkout every element's type by `editor.children` , see the picture below
+- You can use `editor.getAllMenuKeys()` to checkout all embedded menu keys
+
+![](/v5/image/elem-type-en.png)
+
+```ts
+const editorConfig: Partial<IEditorConfig> = {}
+editorConfig.hoverbarKeys = {
+    'link': {
+        // rewrite link element's hoverbar
+        menuKeys: ['editLink', 'unLink', 'viewLink'],
+    },
+    'image': {
+        // clear image element's hoverbar
+        menuKeys: [],
+    },
+    // others...
+}
+```
+
+### Custom match function
+
+You can also custom a match function instead of use element type.
+
+```ts
+import { SlateNode, IDomEditor, IEditorConfig } from '@wangeditor/editor'
+
+const editorConfig: Partial<IEditorConfig> = {}
+editorConfig.hoverbarKeys = {
+    'text': {
+        match: (editor: IDomEditor, n: SlateNode) => {
+            // match your node exactly
+        },
+        menuKeys: [ ... ], // custom your menu keys
+    },
+    // others...
+}
+```
+
+You can see [source code](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor/src/init-default-config/config/hoverbar.ts) of all default hoverbar keys config.
 
 ## onCreated
 
