@@ -122,10 +122,10 @@ PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snab
 - 全局只能注册一次，不要重复注册
 
 ```ts
-import { Boot, IDomEditor, SlateText } from '@wangeditor/editor'
+import { Boot, SlateText } from '@wangeditor/editor'
 
 // 定义生成 html 的函数
-function fn(textNode: SlateText, textHtml: string, editor: IDomEditor): string {
+function fn(textNode: SlateText, textHtml: string): string {
   // 获取 text 节点的属性
   const { bold, italic } = textNode
 
@@ -188,10 +188,10 @@ Boot.registerTextStyleToHtml(fn)
 - 全局只能注册一次，不要重复注册
 
 ```ts
-import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor'
+import { Boot, SlateElement } from '@wangeditor/editor'
 
 // 生成 html 的函数
-function fn(elem: SlateElement, childrenHtml: string, editor: IDomEditor): string {
+function fn(elem: SlateElement, childrenHtml: string): string {
     if (childrenHtml === '') {
         return '<p><br/></p>'
     }
