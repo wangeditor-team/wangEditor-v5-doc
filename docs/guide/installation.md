@@ -7,29 +7,29 @@
 安装 editor
 
 ```shell
-npm install @wangeditor/editor --save
-# 或者 yarn add @wangeditor/editor
+yarn add @wangeditor/editor
+# 或者 npm install @wangeditor/editor --save
 ```
 
 安装 React 组件
 
 ```shell
-npm install @wangeditor/editor-for-react --save
-# 或者 yarn add @wangeditor/editor-for-react
+yarn add @wangeditor/editor-for-react
+# 或者 npm install @wangeditor/editor-for-react --save
 ```
 
 安装 Vue2 组件
 
 ```shell
-npm install @wangeditor/editor-for-vue --save
-# 或者 yarn add @wangeditor/editor-for-vue
+yarn add @wangeditor/editor-for-vue
+# 或者 npm install @wangeditor/editor-for-vue --save
 ```
 
 安装 Vue3 组件
 
 ```shell
-npm install @wangeditor/editor-for-vue@next --save
-# 或者 yarn add @wangeditor/editor-for-vue@next
+yarn add @wangeditor/editor-for-vue@next
+# 或者 npm install @wangeditor/editor-for-vue@next --save
 ```
 
 ## CDN
