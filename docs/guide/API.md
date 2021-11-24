@@ -46,19 +46,16 @@ editor.handleTab = () => editor.insertText('    ')
 
 ### getHtml
 
-获取编辑器当前 html 。
-
-`editor.getHtml()` 获取格式化的 html ，外面包裹一个 `<div class="w-e-content-container">` 用于自定义显示时的样式。
+`editor.getHtml()` 获取**格式化**的 html
 
 ```html
-<div class="w-e-content-container">
-    <h1>一行标题</h1>
-    <p>一行文字</p>
-</div>
+<h1>一行标题</h1>
+<p>
+    <strong>一行文字</strong>
+</p>
 ```
 
-- 如果想要去掉格式化，可使用 `editor.getHtml({ withFormat: false })`
-- 如果想要修改 `<div>` 的 `class` ，可使用 `editor.getHtml({ containerClassName: 'your-custom-class' })`
+不想要格式化，可使用 `editor.getHtml({ withFormat: false })`
 
 ### getText
 

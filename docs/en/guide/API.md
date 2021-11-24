@@ -46,19 +46,16 @@ editor.handleTab = () => editor.insertText('    ')
 
 ### getHtml
 
-Get editor's content html format.
+`editor.getHtml()` return a **formatted** html string.
 
-`editor.getHtml()` return a html string ，wrapped a `<div class="w-e-content-container">` to define your custom style.
-
-```html
-<div class="w-e-content-container">
-    <h1>Header</h1>
-    <p>text</p>
-</div>
+```js
+<h1>Header</h1>
+<p>
+    <strong>text</strong>
+</p>
 ```
 
-- If you unwanted html format, use `editor.getHtml({ withFormat: false })`
-- If you want to change container div's class name, use `editor.getHtml({ containerClassName: 'your-custom-class' })`
+If you unwanted format, use `editor.getHtml({ withFormat: false })`.
 
 ### getText
 
