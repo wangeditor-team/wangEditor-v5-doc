@@ -331,7 +331,7 @@ function ReactEditor() {
             editor.destroy()
             setEditor(null)
         }
-    }, [])
+    }, [editor])
 
     return (
         <React.Fragment>
