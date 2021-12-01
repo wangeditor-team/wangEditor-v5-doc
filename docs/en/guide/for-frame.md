@@ -193,7 +193,7 @@ Install `@wangeditor/editor` and `@wangeditor/editor-for-vue@next`, see [Install
 ```js
 import '@wangeditor/editor/dist/css/style.css' // or import this in <style>
 
-import { computed, onUnmounted } from 'vue'
+import { computed, onBeforeUnmount } from 'vue'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
 import cloneDeep from 'lodash.clonedeep'
 
@@ -261,7 +261,7 @@ export default {
     }
 
     // Timely destroy editor
-    onUnmounted(() => {
+    onBeforeUnmount(() => {
         const editor = getEditor(editorId)
         if (editor == null) return
 

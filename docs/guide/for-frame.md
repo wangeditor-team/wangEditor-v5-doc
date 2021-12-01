@@ -203,7 +203,7 @@ export default Vue.extend({
 ```js
 import '@wangeditor/editor/dist/css/style.css' // 也可以在 <style> 中 import
 
-import { computed, onUnmounted } from 'vue'
+import { computed, onBeforeUnmount } from 'vue'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
 import cloneDeep from 'lodash.clonedeep'
 
@@ -271,7 +271,7 @@ export default {
     }
 
     // 及时销毁编辑器
-    onUnmounted(() => {
+    onBeforeUnmount(() => {
         const editor = getEditor(editorId)
         if (editor == null) return
 
