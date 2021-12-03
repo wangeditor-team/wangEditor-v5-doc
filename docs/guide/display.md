@@ -185,6 +185,10 @@ hr {
     height: 1px;
     background-color: #ccc;
 }
+
+img {
+    max-width: 100%;
+}
 ```
 
 ### 代码高亮
