@@ -326,7 +326,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
     timeout: 5 * 1000, // 5 秒
 
     // 小于该值就插入 base64 格式（而不上传），默认为 0
-    base64LimitKB: 5 // 5kb
+    base64LimitSize: 5 * 1024 // 5kb
 }
 ```
 

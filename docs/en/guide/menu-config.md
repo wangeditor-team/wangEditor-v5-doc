@@ -306,7 +306,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
     timeout: 5 * 1000, // 5 秒
 
     // If image's size less than this, then insert image by base64 format. Default 0.
-    base64LimitKB: 5 // 5kb
+    base64LimitSize: 5 * 1024 // 5kb
 }
 ```
 
