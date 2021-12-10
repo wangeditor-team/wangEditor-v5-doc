@@ -127,6 +127,10 @@ const text = editor.getText()
 The html is clean, only has tag, but no style. You may define some style like:
 
 ```css
+p, li, td, th, blockquote {
+    white-space: pre-wrap; /* Show space */
+}
+
 table {
     border-collapse: collapse;
 }

@@ -46,16 +46,13 @@ editor.handleTab = () => editor.insertText('    ')
 
 ### getHtml
 
-`editor.getHtml()` return a **formatted** html string.
+`editor.getHtml()` return **unformatted** html string.
 
-```js
-<h1>Header</h1>
-<p>
-    <strong>text</strong>
-</p>
+```html
+<p>head</p><p>hello <strong>word</strong></p>
 ```
 
-If you unwanted format, use `editor.getHtml({ withFormat: false })`.
+You can format html by yourself, use [xml-formatter](https://www.npmjs.com/package/xml-formatter).
 
 ### getText
 

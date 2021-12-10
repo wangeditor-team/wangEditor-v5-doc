@@ -135,6 +135,10 @@ const text = editor.getText()
 以下是几个最常见的样式，作为参考。你可以再自己修改，也据此实现“多皮肤”功能。
 
 ```css
+p, li, td, th, blockquote {
+    white-space: pre-wrap; /* 显示空格 */
+}
+
 /* 表格 */
 table {
     border-collapse: collapse;

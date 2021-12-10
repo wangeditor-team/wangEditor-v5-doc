@@ -46,16 +46,13 @@ editor.handleTab = () => editor.insertText('    ')
 
 ### getHtml
 
-`editor.getHtml()` 获取**格式化**的 html
+`editor.getHtml()` 获取**非格式化**的 html
 
 ```html
-<h1>一行标题</h1>
-<p>
-    <strong>一行文字</strong>
-</p>
+<p>head</p><p>hello <strong>word</strong></p>
 ```
 
-不想要格式化，可使用 `editor.getHtml({ withFormat: false })`
+你可以自行格式化 html ，如使用 [xml-formatter](https://www.npmjs.com/package/xml-formatter)
 
 ### getText
 
