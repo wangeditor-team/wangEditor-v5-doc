@@ -126,6 +126,9 @@ editorConfig.MENU_CONF['emotion'] = {
 
 ## Link
 
+- `checkLink` Check link url
+- `parseLinkUrl` Parse link url
+
 ```ts
 function customCheckLinkFn(text: string, url: string): string | boolean | undefined {
     if (!url) {
@@ -142,15 +145,24 @@ function customCheckLinkFn(text: string, url: string): string | boolean | undefi
     // 3. return undefined. Means check failed, no need to alert some text info
 }
 
+function customParseLinkUrl(url: string): string {
+    if (url.indexOf('http') !== 0) {
+        return `http://${url}`
+    }
+    return url
+}
+
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // insertLink menu config
 editorConfig.MENU_CONF['insertLink'] = {
-    checkLink: customCheckLinkFn // support `async function`
+    checkLink: customCheckLinkFn, // support `async function`
+    parseLinkUrl: customParseLinkUrl, // support `async function`
 }
 // editLink menu config
 editorConfig.MENU_CONF['editLink'] = {
-    checkLink: customCheckLinkFn // support `async function`
+    checkLink: customCheckLinkFn, // support `async function`
+    parseLinkUrl: customParseLinkUrl, // support `async function`
 }
 
 // do createEditor
@@ -191,6 +203,13 @@ function customCheckImageFn(src: string, alt: string, url: string): boolean | un
     // 3. return undefined. Means check failed, no need to alert some text info
 }
 
+function customParseImageSrc(src: string): string {
+    if (src.indexOf('http') !== 0) {
+        return `http://${src}`
+    }
+    return src
+}
+
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // insertImage menu config
@@ -201,7 +220,8 @@ editorConfig.MENU_CONF['insertImage'] = {
         const { src, alt, url, href } = imageNode
         console.log('inserted image', src, alt, url, href)
     },
-    checkImage: customCheckImageFn // support `async function`
+    checkImage: customCheckImageFn, // support `async function`
+    parseImageSrc: customParseImageSrc, // support `async function`
 }
 // editImage menu config
 editorConfig.MENU_CONF['editImage'] = {
@@ -211,7 +231,8 @@ editorConfig.MENU_CONF['editImage'] = {
         const { src, alt, url } = imageNode
         console.log('updated image', src, alt, url)
     },
-    checkImage: customCheckImageFn // support `async function`
+    checkImage: customCheckImageFn, // support `async function`
+    parseImageSrc: customParseImageSrc, // support `async function`
 }
 
 // do createEditor
@@ -441,6 +462,11 @@ function customCheckVideoFn(src: string): boolean | string | undefined {
     // 3. return undefined. Means check failed, no need to alert some text info
 }
 
+function customParseVideoSrc(src: string): string {
+    // parse video src and return the new src
+    return newSrc
+}
+
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['insertVideo'] = {
@@ -450,7 +476,8 @@ editorConfig.MENU_CONF['insertVideo'] = {
         const { src } = videoNode
         console.log('inserted video', src)
     },
-    checkVideo: customCheckVideoFn // support `async function`
+    checkVideo: customCheckVideoFn, // support `async function`
+    parseVideoSrc: customParseVideoSrc, // support `async function`
 }
 
 // do createEditor

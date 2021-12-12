@@ -138,6 +138,7 @@ editorConfig.MENU_CONF['emotion'] = {
 ## 链接
 
 - `checkLink` 校验链接
+- `parseLinkUrl` 转换链接 url
 
 ```ts
 // 自定义校验链接
@@ -156,15 +157,25 @@ function customCheckLinkFn(text: string, url: string): string | boolean | undefi
     // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
 }
 
+// 自定义转换链接 url
+function customParseLinkUrl(url: string): string {
+    if (url.indexOf('http') !== 0) {
+        return `http://${url}`
+    }
+    return url
+}
+
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // 插入链接
 editorConfig.MENU_CONF['insertLink'] = {
-    checkLink: customCheckLinkFn // 也支持 async 函数
+    checkLink: customCheckLinkFn, // 也支持 async 函数
+    parseLinkUrl: customParseLinkUrl, // 也支持 async 函数
 }
 // 更新链接
 editorConfig.MENU_CONF['editLink'] = {
-    checkLink: customCheckLinkFn // 也支持 async 函数
+    checkLink: customCheckLinkFn, // 也支持 async 函数
+    parseLinkUrl: customParseLinkUrl, // 也支持 async 函数
 }
 
 // 执行 createEditor
@@ -189,6 +200,7 @@ type ImageElement = SlateElement & {
 - `onInsertedImage` 插入图片之后的回调
 - `onUpdatedImage` 更新图片之后的回调
 - `checkImage` 校验图片链接
+- `parseImageSrc` 转换图片链接
 
 ```ts
 // 自定义校验图片
@@ -207,6 +219,14 @@ function customCheckImageFn(src: string, alt: string, url: string): boolean | un
     // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
 }
 
+// 转换图片链接
+function customParseImageSrc(src: string): string {
+    if (src.indexOf('http') !== 0) {
+        return `http://${src}`
+    }
+    return src
+}
+
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // 插入图片
@@ -217,7 +237,8 @@ editorConfig.MENU_CONF['insertImage'] = {
         const { src, alt, url, href } = imageNode
         console.log('inserted image', src, alt, url, href)
     },
-    checkImage: customCheckImageFn // 也支持 async 函数
+    checkImage: customCheckImageFn, // 也支持 async 函数
+    parseImageSrc: customParseImageSrc, // 也支持 async 函数
 }
 // 编辑图片
 editorConfig.MENU_CONF['editImage'] = {
@@ -227,7 +248,8 @@ editorConfig.MENU_CONF['editImage'] = {
         const { src, alt, url } = imageNode
         console.log('updated image', src, alt, url)
     },
-    checkImage: customCheckImageFn // 也支持 async 函数
+    checkImage: customCheckImageFn, // 也支持 async 函数
+    parseImageSrc: customParseImageSrc, // 也支持 async 函数
 }
 
 // 执行 createEditor
@@ -450,6 +472,7 @@ type VideoElement = SlateElement & {
 菜单配置
 - `onInsertedVideo` 插入视频之后的回调
 - `checkVideo` 校验视频链接
+- `parseVideoSrc` 转换视频链接
 
 ```ts
 // 自定义校验视频
@@ -468,6 +491,17 @@ function customCheckVideoFn(src: string): boolean | string | undefined {
     // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
 }
 
+// 自定义转换视频
+function customParseVideoSrc(src: string): string {
+    if (src.includes('.bilibili.com')) {
+        // 转换 bilibili url 为 iframe （仅作为示例，不保证代码正确和完整）
+        const arr = location.pathname.split('/')
+        const vid = arr[arr.length - 1]
+        return `<iframe src="//player.bilibili.com/player.html?bvid=${vid}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>`
+    }
+    return src
+}
+
 const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 editorConfig.MENU_CONF['insertVideo'] = {
@@ -477,7 +511,8 @@ editorConfig.MENU_CONF['insertVideo'] = {
         const { src } = videoNode
         console.log('inserted video', src)
     },
-    checkVideo: customCheckVideoFn // 也支持 async 函数
+    checkVideo: customCheckVideoFn, // 也支持 async 函数
+    parseVideoSrc: customParseVideoSrc, // 也支持 async 函数
 }
 
 // 执行 createEditor
