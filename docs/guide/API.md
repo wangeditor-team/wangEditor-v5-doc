@@ -530,6 +530,14 @@ const newSelection = {
 editor.select(newSelection)
 ```
 
+### selectAll
+
+选中所有内容
+
+```ts
+editor.selectAll()
+```
+
 ### deselect
 
 取消选中

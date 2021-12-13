@@ -478,6 +478,14 @@ const newSelection = {
 editor.select(newSelection)
 ```
 
+### selectAll
+
+Select all content.
+
+```ts
+editor.selectAll()
+```
+
 ### deselect
 
 Cancel select.
