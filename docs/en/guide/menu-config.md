@@ -265,14 +265,11 @@ If uploaded successfully, the server must return data like this format:
 ```ts
 {
     "errno": 0, // it's number, not string
-    "data": [
-        {
-            "url": "xxx", // required, image src
-            "alt": "yyy", // required, image alt
-            "href": "zzz" // required, image link
-        },
-        // other images data...
-    ]
+    "data": {
+        "url": "xxx", // image src, required
+        "alt": "yyy", // image alt, optional
+        "href": "zzz" // image link, optional
+    }
 }
 ```
 
@@ -335,13 +332,12 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    onBeforeUpload(files: File[]) {
-        // `files` is selected files
-
+    onBeforeUpload(files) {
+        // `files` is selected files, format like { key1: file1, key2: file2 }
         return files
 
         // You can return:
-        // 1. return an array (files or partial of files). Editor will upload files in this array
+        // 1. return a object (files or partial of files). Editor will upload files in this object
         // 2. return false. Stop upload
     },
     onProgress(progress: number) {
@@ -392,8 +388,8 @@ If you unwanted wangEditor's embedded upload function, you can use `customUpload
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    customUpload(files: File[], insertFn: InsertFnType) {
-        // `files` is your selected files
+    async customUpload(file: File, insertFn: InsertFnType) {
+        // `file` is your selected file
 
         // upload images yourself, and get image's url, alt, href
 

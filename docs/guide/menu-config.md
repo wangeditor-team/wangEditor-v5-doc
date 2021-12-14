@@ -285,14 +285,11 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 {
     "errno": 0, // 注意：值是数字，不能是字符串
-    "data": [
-        {
-            "url": "xxx", // 图片 src ，必须
-            "alt": "yyy", // 图片描述文字，非必须
-            "href": "zzz" // 图片的链接，非必须
-        },
-        // 其他图片，也按这个格式
-    ]
+    "data": {
+        "url": "xxx", // 图片 src ，必须
+        "alt": "yyy", // 图片描述文字，非必须
+        "href": "zzz" // 图片的链接，非必须
+    }
 }
 ```
 
@@ -357,14 +354,13 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 上传之前触发
-    onBeforeUpload(files: File[]) {
-        // files 即选中的文件列表
-
+    onBeforeUpload(files) {
+        // files 选中的文件列表，格式如 { key1: file1, key2: file2 }
         return files
 
         // 返回值可选择：
-        // 1. 返回一个数组（files 或者 files 的一部分），则将上传返回结果中的文件
-        // 2. 返回 false ，则终止上传
+        // 1. 返回一个对象（files 或者 files 的一部分），则将上传返回结果中的文件
+        // 2. 返回 false ，终止上传
     },
     // 上传进度的回调函数
     onProgress(progress: number) {
@@ -419,8 +415,8 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义上传
-    customUpload(files: File[], insertFn: InsertFnType) {
-        // files 即选中的文件
+    async customUpload(file: File, insertFn: InsertFnType) {
+        // file 即选中的文件
         // 自己实现上传，并得到图片 url alt href
         // 最后插入图片
         insertFn(url, alt, href)
