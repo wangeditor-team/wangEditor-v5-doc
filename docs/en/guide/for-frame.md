@@ -10,37 +10,140 @@ This article only introduces editor components, you should also learn some API a
 - [Editor API](./API.md)
 - [Menus Config](./menu-config.md)
 
-## Vue 2.x
+## Vue2
 
 ### Installation
 
 Install `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`, see [Installation](./installation.md).
-### Template
+
+### Basic usage
+
+Template
 
 ```html
-<div>
-    <div>
-        <button @click="insertText">insert text</button>
-    </div>
+<template>
     <div style="border: 1px solid #ccc;">
-        <!-- toolbar -->
         <Toolbar
             style="border-bottom: 1px solid #ccc"
             :editorId="editorId"
             :defaultConfig="toolbarConfig"
             :mode="mode"
         />
-
-        <!-- editor -->
         <Editor
             style="height: 500px"
-
             :editorId="editorId"
-
             :defaultConfig="editorConfig"
             :defaultContent="getDefaultContent"
             :mode="mode"
+        />
+    </div>
+</template>
+```
 
+Script
+
+```html
+<script>
+import Vue from 'vue'
+import '@wangeditor/editor/dist/css/style.css'
+import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
+import cloneDeep from 'lodash.clonedeep'
+
+export default Vue.extend({
+    components: { Editor, Toolbar },
+    data() {
+        return {
+            editorId: `w-e-${Math.random().toString().slice(-5)}`, // Must be unique !
+            toolbarConfig: {},
+            editorConfig: { placeholder: 'Type your text...' },
+            defaultContent: [
+                { type: 'paragraph', children: [{ text: 'hello world' }] }
+            ],
+            mode: 'default', // or 'simple'
+        }
+    },
+    computed: {
+        getDefaultContent() {
+            return cloneDeep(this.defaultContent) // Must deep clone `defaultContent`
+        }
+    },
+    beforeDestroy() {
+        const editor = getEditor(this.editorId)
+        if (editor == null) return
+
+        // Timely destroy editor !
+        editor.destroy()
+        removeEditor(this.editorId)
+    }
+})
+</script>
+```
+
+:::tip
+- `editorId` should be unique.
+- `defaultContent` should deep clone in `computed`.
+- Timely destroy `editor` before vue component destroy.
+:::
+
+Import style
+
+```html
+<style src="@wangeditor/editor/dist/css/style.css"></style>
+```
+
+### Async set content
+
+For instance, you may async set content after ajax. **You can not change `defaultContent` directly, but async-render the component**.
+
+Add a `data` property `isEditorShow: false`, set `true` when ajax done.
+
+```js
+data() {
+    return {
+        // other data properties...
+
+        isEditorShow: false
+    }
+},
+mounted() {
+    // Simulate ajax, async set content
+    setTimeout(() => {
+        this.defaultContent = [
+            { type: 'paragraph', children: [{ text: 'ajax content' }] }
+        ]
+        this.isEditorShow = true
+    }, 1000)
+},
+```
+
+In template, async-render component according to `isEditorShow`.
+
+```html
+<template>
+    <div>
+        <div v-if="isEditorShow" style="border: 1px solid #ccc;">
+            <Toolbar ... />
+            <Editor ... />
+        </div>
+        <p v-else>loading...</p>
+    </div>
+</template>
+```
+
+### Config
+
+You can extend toolbar and editor config in `toolbarConfig` and `editorConfig` (above code)
+- [Toolbar Config](./toolbar-config.md)
+- [Editor Config](./editor-config.md)
+- [Menus Config](./menu-config.md)
+
+Be careful: life-cycle functions (format like `onXxx`) which in editor's config, **you should use Vue events, not use in `editorConfig`**
+
+```html
+<template>
+    <div style="border: 1px solid #ccc;">
+        <Toolbar ... />
+        <Editor
             @onCreated="onCreated"
             @onChange="onChange"
             @onDestroyed="onDestroyed"
@@ -51,221 +154,123 @@ Install `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`, see [Installation
             @customPaste="customPaste"
         />
     </div>
-</div>
+</template>
 ```
 
-### Script
+```js
+methods: {
+    onCreated(editor) { console.log('onCreated', editor) },
+    onChange(editor) { console.log('onChange', editor.children) },
+    onDestroyed(editor) { console.log('onDestroyed', editor) },
+    onMaxLength(editor) { console.log('onMaxLength', editor) },
+    onFocus(editor) { console.log('onFocus', editor) },
+    onBlur(editor) { console.log('onBlur', editor) },
+    customAlert(info: string, type: string) { window.alert(`customAlert in Vue demo\n${type}:\n${info}`) },
+    customPaste(editor, event, callback) {
+        console.log('ClipboardEvent is paste event data', event)
 
-```ts
-import Vue from 'vue'
-import '@wangeditor/editor/dist/css/style.css'
-import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
-import cloneDeep from 'lodash.clonedeep'
+        // Insert some text
+        editor.insertText('xxx')
 
-export default Vue.extend({
-    components: { Editor, Toolbar },
-    data() {
-        return {
-            // Particular attention:
-            // 1. `editorId` is used to relate Toolbar and Editor
-            // 2. When you create multiple editors in one page, every editor must be unique
-            editorId: 'w-e-1',
-
-            toolbarConfig: { /* toolbar config */ },
-            defaultContent: [
-                {
-                    type: 'paragraph',
-                    children: [{ text: 'hello world' }],
-                },
-            ],
-            editorConfig: {
-                placeholder: 'Type your text',
-                // other editor config
-                // menus config
-            },
-            mode: 'default', // or 'simple'
-            curContent: []
-        }
+        // You can not `return xxx` in Vue event function, use `callback`
+        callback(false) // return false ，prevent default paste behavior
+        // callback(true) // return true ，go on default paste behavior
     },
+}
+```
 
-    computed: {
-        // Deep clone `content`
-        getDefaultContent() {
-            return cloneDeep(this.defaultContent)
-        }
-    },
+### API
 
-    methods: {
-        onCreated(editor) {
-            console.log('onCreated', editor)
-        },
-        onChange(editor) {
-            console.log('onChange', editor.children)
-            this.curContent = editor.children
-        },
-        onDestroyed(editor) {
-            console.log('onDestroyed', editor)
-        },
-        onMaxLength(editor) {
-            console.log('onMaxLength', editor)
-        },
-        onFocus(editor) {
-            console.log('onFocus', editor)
-        },
-        onBlur(editor) {
-            console.log('onBlur', editor)
-        },
-        customAlert(info: string, type: string) {
-            window.alert(`customAlert in Vue demo\n${type}:\n${info}`)
-        },
-        customPaste(editor, event, callback) {
-            console.log('ClipboardEvent is paste event data', event)
+You can use `getEditor(this.editorId)` to get the `editor` instance after it's rendered, and trigger it's [APIs]((./API.md)).
 
-            // insert your custom text
-            editor.insertText('xxx')
+```html
+<template>
+    <div>
+        <button @click="insertText">insert text</button>
+        <div style="border: 1px solid #ccc;">
+            <Toolbar .../>
+            <Editor .../>
+        </div>
+    </div>
+</template>
+```
 
-            // You can not `return xxx` in Vue event function, use `callback`
-            callback(false) // return false ，prevent default paste behavior
-            // callback(true) // return true ，go on default paste behavior
-        },
-
-        insertText() {
-            // get editor instance by `editorId`
-            const editor = getEditor(this.editorId)
-            if (editor == null) return
-            if (editor.selection == null) return
-
-            // Insert text in selection
-            editor.insertText('hello wangEditor.')
-        },
-    },
-
-    // Timely destroy editor
-    beforeDestroy() {
-        const editor = getEditor(this.editorId)
+```js
+methods: {
+    insertText() {
+        const editor = getEditor(this.editorId) // get editor instance (after it's rendered)
         if (editor == null) return
 
-        // destroy and remove editor
-        editor.destroy()
-        removeEditor(this.editorId)
-    }
-})
+        // Trigger it's API or property
+        editor.insertText('hello')
+        console.log(editor.children)
+    },
+},
+mounted() {
+    this.$nextTick(() => {
+        const editor = getEditor(this.editorId) // get editor instance (after it's rendered)
+        if (editor == null) return
+        console.log('getEditor on mounted', editor)
+    })
+},
 ```
 
-## Vue 3.x
+## Vue3
 
 ### Installation
 
 Install `@wangeditor/editor` and `@wangeditor/editor-for-vue@next`, see [Installation](./installation.md).
 
-### Template
+### Basic usage
+
+Template
 
 ```html
 <template>
     <div style="border: 1px solid #ccc">
-      <!-- toolbar -->
       <Toolbar
         :editorId="editorId"
+        :defaultConfig="toolbarConfig"
         :mode="mode"
         style="border-bottom: 1px solid #ccc"
       />
-      <!-- editor -->
       <Editor
         :editorId="editorId"
-        :mode="mode"
         :defaultConfig="editorConfig"
         :defaultContent="getDefaultContent"
-        @onCreated="handleCreated"
-        @onChange="handleChange"
-        @onDestroyed="handleDestroyed"
-        @onFocus="handleFocus"
-        @onBlur="handleBlur"
-        @customAlert="customAlert"
-        @customPaste="customPaste"
+        :mode="mode"
         style="height: 500px"
       />
     </div>
 </template>
 ```
 
-### Script
+Script
 
-```js
-import '@wangeditor/editor/dist/css/style.css' // or import this in <style>
-
-import { computed, onBeforeUnmount } from 'vue'
+```html
+<script>
+import { computed, onBeforeUnmount, ref } from 'vue'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
 import cloneDeep from 'lodash.clonedeep'
 
 export default {
-  name: 'MyEditor',
   components: { Editor, Toolbar },
   setup() {
-    const editorId = 'w-e-1'
+    const editorId = `w-e-${Math.random().toString().slice(-5)}` // Must be unique !
 
-    // Default content
     const defaultContent = [
-        {
-            type: "paragraph",
-            children: [{ text: "hello world" }],
-        },
+        { type: "paragraph", children: [{ text: "hello word" }] }
     ]
+    const getDefaultContent = computed(() => cloneDeep(defaultContent)) // Must deep clone `defaultContent`
 
-    // Deep clone `content`
-    const getDefaultContent = computed(() => cloneDeep(defaultContent))
+    const toolbarConfig = {}
+    const editorConfig = { placeholder: 'Type here...' }
 
-    // Editor config
-    const editorConfig = {
-        placeholder: 'Type your text',
-        MENU_CONF: {
-            insertImage: {
-                checkImage(src) {
-                    console.log('image src', src)
-                    if (src.indexOf('http') !== 0) {
-                        return 'Image source must includes http/https';
-                    }
-                    return true;
-                },
-            },
-        }
-    }
-
-    // Editor callbacks
-    const handleCreated = (editor) => {
-      console.log('created', editor);
-    }
-    const handleChange = (editor) => {
-      console.log('change:', editor.children);
-    }
-    const handleDestroyed = (editor) => {
-      console.log('destroyed', editor)
-    }
-    const handleFocus = (editor) => {
-        console.log('focus', editor)
-    }
-    const handleBlur = (editor) => {
-        console.log('blur', editor)
-    }
-    const customAlert = (info, type) => {
-        alert(`Custom info: ${type} - ${info}`)
-    }
-    const customPaste = (editor, event, callback) => {
-        console.log('ClipboardEvent is paste event data', event)
-
-        // Insert your custom text
-        editor.insertText('xxx')
-
-        // You can not `return xxx` in Vue event function, use `callback`
-        callback(false) // return false ，prevent default paste behavior
-        // callback(true) // return true ，go on default paste behavior
-    }
-
-    // Timely destroy editor
+    // Timely destroy `editor` before vue component destroy.
     onBeforeUnmount(() => {
         const editor = getEditor(editorId)
         if (editor == null) return
 
-        // Destroy and remove editor
         editor.destroy()
         removeEditor(editorId)
     })
@@ -274,16 +279,148 @@ export default {
       editorId,
       mode: 'default',
       getDefaultContent,
+      toolbarConfig,
       editorConfig,
-      handleCreated,
-      handleChange,
-      handleDestroyed,
-      handleFocus,
-      handleBlur,
-      customAlert,
-      customPaste
     };
   }
+}
+</script>    
+```
+
+:::tip
+- `editorId` should be unique.
+- `defaultContent` should deep clone in `computed`.
+- Timely destroy `editor` before vue component destroy.
+:::
+
+Import style
+
+```html
+<style src="@wangeditor/editor/dist/css/style.css"></style>
+```
+
+### Async set content
+
+For instance, you may async set content after ajax. **You can not change `defaultContent` directly, but async-render the component**.
+
+You can declare a ref `isEditorShow = false`, set `true` when ajax done.
+
+```js
+// const defaultContent = []
+// const getDefaultContent = computed(() => cloneDeep(defaultContent))
+const defaultContent = ref([])
+const getDefaultContent = computed(() => cloneDeep(defaultContent.value))
+
+const isEditorShow = ref(false)
+
+// Simulate ajax, async set content
+setTimeout(() => {
+    isEditorShow.value = true
+    defaultContent.value =  [
+        { type: "paragraph", children: [{ text: "ajax content" }] },
+    ]
+}, 1000)
+```
+
+In template, async-render component according to `isEditorShow` value.
+
+```html
+<template>
+    <div>
+        <div v-if="isEditorShow" style="border: 1px solid #ccc">
+            <Toolbar ... />
+            <Editor ... />
+        </div>
+        <p v-else>loading</p>
+    </div>
+</template>
+```
+
+### Config
+
+You can extend toolbar and editor config in `toolbarConfig` and `editorConfig` (above code)
+- [Toolbar Config](./toolbar-config.md)
+- [Editor Config](./editor-config.md)
+- [Menus Config](./menu-config.md)
+
+Be careful: life-cycle functions (format like `onXxx`) which in editor's config, **you should use Vue events, not use in `editorConfig`**
+
+```html
+<template>
+    <div style="border: 1px solid #ccc">
+      <Toolbar ... />
+      <Editor
+        @onCreated="handleCreated"
+        @onChange="handleChange"
+        @onDestroyed="handleDestroyed"
+        @onFocus="handleFocus"
+        @onBlur="handleBlur"
+        @customAlert="customAlert"
+        @customPaste="customPaste"
+      />
+    </div>
+</template>
+```
+
+```js
+const handleCreated = (editor) => { console.log('created', editor) }
+const handleChange = (editor) => { console.log('change:', editor.children) }
+const handleDestroyed = (editor) => { console.log('destroyed', editor) }
+const handleFocus = (editor) => { console.log('focus', editor) }
+const handleBlur = (editor) => { console.log('blur', editor) }
+const customAlert = (info, type) => { alert(`Custom alert: ${type} - ${info}`) }
+const customPaste = (editor, event, callback) => {
+    console.log('ClipboardEvent is paste event data', event)
+
+    // Insert your custom text
+    editor.insertText('xxx')
+
+    // You can not `return xxx` in Vue event function, use `callback`
+    callback(false) // return false ，prevent default paste behavior
+    // callback(true) // return true ，go on default paste behavior
+}
+
+return {
+    // others...
+
+    handleCreated,
+    handleChange,
+    handleDestroyed,
+    handleFocus,
+    handleBlur,
+    customAlert,
+    customPaste
+}
+```
+
+### API
+
+You can use `getEditor(editorId)` to get the `editor` instance after it's rendered, and trigger it's [APIs]((./API.md)).
+
+```html
+<template>
+    <div>
+        <button @click="insertText">insert text</button>
+        <div style="border: 1px solid #ccc">
+            <Toolbar ... />
+            <Editor ... />
+        </div>
+    </div>
+</template>
+```
+
+```js
+const insertText = () => {
+    const editor = getEditor(editorId) // get editor instance, after it's rendered
+    if (editor == null) return
+
+    editor.insertText('hello world') // trigger editor API
+}
+
+return {
+    // others...
+
+    insertText
 }
 ```
 
@@ -293,38 +430,25 @@ export default {
 
 Install `@wangeditor/editor` and `@wangeditor/editor-for-react`, see [Installation](./installation.md).
 
-### Usage
+### Basic usage
 
-```tsx
+```jsx
 import React, { useState, useEffect } from 'react'
 import '@wangeditor/editor/dist/css/style.css'
-import { IDomEditor, IEditorConfig, IToolbarConfig, SlateDescendant } from '@wangeditor/editor'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
-function ReactEditor() {
-    // Save editor instance
-    const [editor, setEditor] = useState<IDomEditor | null>(null)
-    // Save editor's latest content
-    const [curContent, setCurContent] = useState<SlateDescendant[]>([])
-
-    // Toolbar config
-    const toolbarConfig: Partial<IToolbarConfig> = { /* toolbar config */ }
-
-    // Editor config
-    const editorConfig: Partial<IEditorConfig> = {}
-    editorConfig.placeholder = 'Type your text'
-    editorConfig.onCreated = (editor: IDomEditor) => {
-        // Save editor instance here, important!
-        setEditor(editor)
+function MyEditor() {
+    const [editor, setEditor] = useState(null) // editor instance
+    const defaultContent = [
+        { type: "paragraph", children: [{ text: "hello world" }], }
+    ]
+    const toolbarConfig = { }
+    const editorConfig = {
+        placeholder: 'Type here...',
+        onCreated(editor) { setEditor(editor) } // Save editor instance here, important!
     }
-    editorConfig.onChange = (editor: IDomEditor) => {
-        // get latest content where editor changed
-        setCurContent(editor.children)
-    }
-    // Other editor config...
-    // Menus config...
 
-    // Timely destroy editor
+    // Timely destroy editor, important!
     useEffect(() => {
         return () => {
             if (editor == null) return
@@ -334,27 +458,87 @@ function ReactEditor() {
     }, [editor])
 
     return (
-        <React.Fragment>
-            <div style={{ border: '1px solid #ccc'}}>
-                {/* render toolbar */}
+        <>
+            <div style={{ border: '1px solid #ccc', zIndex: 100}}>
                 <Toolbar
                     editor={editor}
                     defaultConfig={toolbarConfig}
                     mode="default"
                     style={{ borderBottom: '1px solid #ccc' }}
                 />
-
-                {/* render editor */}
                 <Editor
                     defaultConfig={editorConfig}
-                    defaultContent={[]}
+                    defaultContent={defaultContent}
                     mode="default"
                     style={{ height: '500px' }}
                 />
             </div>
-        </React.Fragment>
+        </>
     )
 }
 
-export default ReactEditor
+export default MyEditor
+```
+
+### Async set content
+
+For instance, you may async set content after ajax. **You can not change `defaultContent` directly, but async-render the component**.
+
+You can declare a state variable `isEditorShow = false`, set `true` when ajax done.
+
+```js
+// const defaultContent = [ ... ]
+const [defaultContent, setDefaultContent] = useState([])
+const [isEditorShow, setIsEditorShow] = useState(false)
+
+// Simulate ajax, async set content
+setTimeout(() => {
+    setDefaultContent([
+        { type: "paragraph", children: [{ text: "ajax content" }] }
+    ])
+    setIsEditorShow(true)
+}, 1000)
+```
+
+In JSX, async-render component according to `isEditorShow` value.
+
+```jsx
+return (
+    <>
+        {isEditorShow && <div style={{ border: '1px solid #ccc', zIndex: 100}}>
+            <Toolbar ... />
+            <Editor ... />
+        </div>}
+        {!isEditorShow && <p>loading</p>}
+    </>
+)
+```
+
+
+### Config
+
+You can extend toolbar and editor config in `toolbarConfig` and `editorConfig` (above code)
+- [Toolbar Config](./toolbar-config.md)
+- [Editor Config](./editor-config.md)
+- [Menus Config](./menu-config.md)
+
+### API
+
+You can get the `editor` state value, and trigger it's [APIs]((./API.md)).
+
+```jsx
+function insertText() {
+    if (editor == null) return
+    console.log(editor.insertText('hello'))
+}
+
+return (
+    <>
+        <button onClick={insertText}>insert text</button>
+        <div style={{ border: '1px solid #ccc', zIndex: 100}}>
+            <Toolbar ... />
+            <Editor ... />
+        </div>
+    </>
+)
 ```

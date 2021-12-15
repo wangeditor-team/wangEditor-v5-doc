@@ -448,7 +448,7 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 function MyEditor() {
     const [editor, setEditor] = useState(null) // 存储 editor 实例
     const defaultContent = [
-        { type: "paragraph", children: [{ text: "ajax 异步获取的内容" }], }
+        { type: "paragraph", children: [{ text: "一行文字" }], }
     ]
     const toolbarConfig = { }
     const editorConfig = {
@@ -532,7 +532,7 @@ return (
 
 ### 调用 API
 
-当编辑器渲染完成之后，通过 `getEditor(editorId)` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
+当编辑器渲染完成之后，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
 
 ```jsx
 function insertText() {
