@@ -149,6 +149,14 @@ editor.insertBreak()
 editor.insertText('xxx')
 ```
 
+### dangerouslyInsertHtml
+
+插入 HTML ，但不能保证语义一致。
+
+```ts
+editor.dangerouslyInsertHtml(`<h1>标题</h1><p>文本 <b>加粗</b></p>`)
+```
+
 ### clear
 
 清空编辑器内容

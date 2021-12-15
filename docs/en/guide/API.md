@@ -137,6 +137,14 @@ editor.insertBreak()
 editor.insertText('xxx')
 ```
 
+### dangerouslyInsertHtml
+
+Insert HTML string, but it's dangerous. There is no guarantee of complete consistency.
+
+```ts
+editor.dangerouslyInsertHtml(`<h1>Header1</h1><p>Hello <b>word</b></p>`)
+```
+
 ### clear
 
 ```ts
