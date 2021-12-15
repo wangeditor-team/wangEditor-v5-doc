@@ -12,9 +12,9 @@ actions:
     type: secondary
 features:
 - title: 简洁易用，功能强大
-  details: 快速接入，配置简单，几行代码即可生成。集成了所有常见功能，无需二次开发。
+  details: 快速接入，配置简单，几行代码即可生成。集成了所有常见功能，无需二次开发。在 Vue React 也可以快速接入。
 - title: 无框架依赖
-  details: 不依赖任何第三方框架，无论你使用 jQuery 、Vue 或者 React 等，都可轻松接入。
+  details: 不依赖任何第三方框架，可用于 jQuery Vue React 等。wangEditor 提供了官方的 Vue React 组件。
 - title: 踩过 4000+ 坑
   details: wangEditor 开源多年，有大量用户使用和反馈，我们已解决了太多的用户问题（详见 github issues）。
 footer: Copyright © 2017-present wangeditor.com
@@ -22,7 +22,7 @@ footer: Copyright © 2017-present wangeditor.com
 
 ### 使用简单
 
-10 行代码即可创建一个功能健全的富文本编辑器，可查看 [demo 示例](https://www.wangeditor.com/demo/zh-CN/)。
+10 行代码即可创建一个功能健全的富文本编辑器，可查看 [demo 示例](https://www.wangeditor.com/demo/zh-CN/)。如用于 Vue React 可参考[这里](/v5/guide/for-frame.html)。
 
 ![](/v5/image/editor.png)
 

@@ -19,32 +19,133 @@
 
 需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/guide/installation.html)。
 
-### 模板
+### 基本使用
+
+模板
 
 ```html
-<div>
-    <div>
-        <button @click="insertText">insert text</button>
-    </div>
+<template>
     <div style="border: 1px solid #ccc;">
-        <!-- 工具栏 -->
         <Toolbar
             style="border-bottom: 1px solid #ccc"
             :editorId="editorId"
             :defaultConfig="toolbarConfig"
             :mode="mode"
         />
-
-        <!-- 编辑器 -->
         <Editor
             style="height: 500px"
-
             :editorId="editorId"
-
             :defaultConfig="editorConfig"
             :defaultContent="getDefaultContent"
             :mode="mode"
+        />
+    </div>
+</template>
+```
 
+script
+
+```html
+<script>
+import Vue from 'vue'
+import '@wangeditor/editor/dist/css/style.css'
+import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
+import cloneDeep from 'lodash.clonedeep'
+
+export default Vue.extend({
+    components: { Editor, Toolbar },
+    data() {
+        return {
+            editorId: `w-e-${Math.random().toString().slice(-5)}`, //【注意】编辑器 id ，要全局唯一
+            toolbarConfig: {},
+            editorConfig: { placeholder: '请输入内容...' },
+            defaultContent: [
+                { type: 'paragraph', children: [{ text: '一行文字' }] }
+            ],
+            mode: 'default', // or 'simple'
+        }
+    },
+    computed: {
+        getDefaultContent() {
+            return cloneDeep(this.defaultContent) //【注意】深度拷贝 defaultContent ，否则会报错
+        }
+    },
+    beforeDestroy() {
+        const editor = getEditor(this.editorId)
+        if (editor == null) return
+
+        // 【注意】组件销毁时，及时销毁编辑器
+        editor.destroy()
+        removeEditor(this.editorId)
+    }
+})
+</script>
+```
+
+:::tip
+- `editorId` 要全局唯一，不可重复
+- `defaultContent` 要使用 `computed` 和深拷贝，否则会报错
+- 组件销毁时，要及时销毁编辑器
+:::
+
+记得引入 style
+
+```html
+<style src="@wangeditor/editor/dist/css/style.css"></style>
+```
+
+### 异步设置内容
+
+例如，Ajax 异步获取内容，然后设置到编辑器中。**注意，不可以直接修改 `defaultContent` ，而是要异步渲染组件**。
+
+在 `data` 中定义一个属性 `isEditorShow: false`，在 Ajax 结束时设置为 `true`
+
+```js
+data() {
+    return {
+        // 省略其他属性...
+        isEditorShow: false
+    }
+},
+mounted() {
+    // 模拟 ajax 请求，异步渲染编辑器
+    setTimeout(() => {
+        this.defaultContent = [
+            { type: 'paragraph', children: [{ text: 'ajax 异步获取的内容' }] }
+        ]
+        this.isEditorShow = true
+    }, 1000)
+},
+```
+
+模板中，根据 `isEditorShow` 来渲染组件
+
+```html
+<template>
+    <div>
+        <div v-if="isEditorShow" style="border: 1px solid #ccc;">
+            <Toolbar ... />
+            <Editor ... />
+        </div>
+        <p v-else>loading...</p>
+    </div>
+</template>
+```
+
+### 配置
+
+可通过 `toolbarConfig` 和 `editorConfig` 来修改菜单栏和编辑器的配置，详细文档参考
+- [工具栏配置](/v5/guide/toolbar-config.html)
+- [编辑器配置](/v5/guide/editor-config.html)
+- [菜单配置](/v5/guide/menu-config.html)
+
+【注意】，编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
+
+```html
+<template>
+    <div style="border: 1px solid #ccc;">
+        <Toolbar ... />
+        <Editor
             @onCreated="onCreated"
             @onChange="onChange"
             @onDestroyed="onDestroyed"
@@ -55,110 +156,66 @@
             @customPaste="customPaste"
         />
     </div>
-</div>
+</template>
 ```
 
-### script
+```js
+methods: {
+    onCreated(editor) { console.log('onCreated', editor) },
+    onChange(editor) { console.log('onChange', editor.children) },
+    onDestroyed(editor) { console.log('onDestroyed', editor) },
+    onMaxLength(editor) { console.log('onMaxLength', editor) },
+    onFocus(editor) { console.log('onFocus', editor) },
+    onBlur(editor) { console.log('onBlur', editor) },
+    customAlert(info: string, type: string) { window.alert(`customAlert in Vue demo\n${type}:\n${info}`) },
+    customPaste(editor, event, callback) {
+        console.log('ClipboardEvent 粘贴事件对象', event)
 
-```ts
-import Vue from 'vue'
-import '@wangeditor/editor/dist/css/style.css'
-import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
-import cloneDeep from 'lodash.clonedeep'
+        // 自定义插入内容
+        editor.insertText('xxx')
 
-export default Vue.extend({
-    components: { Editor, Toolbar },
-    data() {
-        return {
-            //【特别注意】
-            // 1. editorId Toolbar 和 Editor 的关联，要保持一致
-            // 2. 多个编辑器时，每个的 editorId 要唯一
-            editorId: 'w-e-1',
-
-            toolbarConfig: { /* 工具栏配置 */ },
-            defaultContent: [
-                {
-                    type: 'paragraph',
-                    children: [{ text: '一行文字' }],
-                },
-            ],
-            editorConfig: {
-                placeholder: '请输入内容...',
-                // 其他编辑器配置
-                // 菜单配置
-            },
-            mode: 'default', // or 'simple'
-            curContent: []
-        }
+        // 返回值（注意，vue 事件的返回值，不能用 return）
+        callback(false) // 返回 false ，阻止默认粘贴行为
+        // callback(true) // 返回 true ，继续默认的粘贴行为
     },
+}
+```
 
-    computed: {
-        // 注意，深度拷贝 content ，否则会报错
-        getDefaultContent() {
-            return cloneDeep(this.defaultContent)
-        }
-    },
+### 调用 API
 
-    methods: {
-        onCreated(editor) {
-            console.log('onCreated', editor)
-        },
-        onChange(editor) {
-            console.log('onChange', editor.children)
-            this.curContent = editor.children
-        },
-        onDestroyed(editor) {
-            console.log('onDestroyed', editor)
-        },
-        onMaxLength(editor) {
-            console.log('onMaxLength', editor)
-        },
-        onFocus(editor) {
-            console.log('onFocus', editor)
-        },
-        onBlur(editor) {
-            console.log('onBlur', editor)
-        },
-        customAlert(info: string, type: string) {
-            window.alert(`customAlert in Vue demo\n${type}:\n${info}`)
-        },
-        customPaste(editor, event, callback) {
-            console.log('ClipboardEvent 粘贴事件对象', event)
+当编辑器渲染完成之后，通过 `getEditor(this.editorId)` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
 
-            // 自定义插入内容
-            editor.insertText('xxx')
+```html
+<template>
+    <div>
+        <button @click="insertText">insert text</button>
+        <div style="border: 1px solid #ccc;">
+            <Toolbar .../>
+            <Editor .../>
+        </div>
+    </div>
+</template>
+```
 
-            // 返回值（注意，vue 事件的返回值，不能用 return）
-            callback(false) // 返回 false ，阻止默认粘贴行为
-            // callback(true) // 返回 true ，继续默认的粘贴行为
-        },
-
-        insertText() {
-            // 获取 editor 实例，即可执行 editor API
-            const editor = getEditor(this.editorId)
-            if (editor == null) return
-            if (editor.selection == null) return
-
-            // 在选区插入一段文字
-            editor.insertText('一段文字')
-        },
-    },
-
-    // 及时销毁 editor
-    beforeDestroy() {
-        const editor = getEditor(this.editorId)
+```js
+methods: {
+    insertText() {
+        const editor = getEditor(this.editorId) // 获取 editor 实例（必须等它渲染完成）
         if (editor == null) return
 
-        // 销毁，并移除 editor
-        editor.destroy()
-        removeEditor(this.editorId)
-    }
-})
+        // 调用 editor 属性和 API
+        editor.insertText('一段文字')
+        console.log(editor.children)
+    },
+},
+mounted() {
+    this.$nextTick(() => {
+        const editor = getEditor(this.editorId) // 获取 editor 实例（必须等它渲染完成）
+        if (editor == null) return
+        console.log('getEditor on mounted', editor)
+    })
+},
 ```
-
-:::tip
-请关注以上代码中关于 `editorId` 的注释
-:::
 
 ## Vue3
 
@@ -168,114 +225,56 @@ export default Vue.extend({
 
 需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue@next`，可参考[这里](/v5/guide/installation.html)。
 
-### 模板
+### 基本使用
+
+模板
 
 ```html
 <template>
     <div style="border: 1px solid #ccc">
-      <!-- 工具栏 -->
       <Toolbar
         :editorId="editorId"
+        :defaultConfig="toolbarConfig"
         :mode="mode"
         style="border-bottom: 1px solid #ccc"
       />
-      <!-- 编辑器 -->
       <Editor
         :editorId="editorId"
-        :mode="mode"
         :defaultConfig="editorConfig"
         :defaultContent="getDefaultContent"
-        @onCreated="handleCreated"
-        @onChange="handleChange"
-        @onDestroyed="handleDestroyed"
-        @onFocus="handleFocus"
-        @onBlur="handleBlur"
-        @customAlert="customAlert"
-        @customPaste="customPaste"
+        :mode="mode"
         style="height: 500px"
       />
     </div>
 </template>
 ```
 
-### script
+script
 
-```js
-import '@wangeditor/editor/dist/css/style.css' // 也可以在 <style> 中 import
-
-import { computed, onBeforeUnmount } from 'vue'
+```html
+<script>
+import { computed, onBeforeUnmount, ref } from 'vue'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
 import cloneDeep from 'lodash.clonedeep'
 
 export default {
-  name: 'MyEditor',
   components: { Editor, Toolbar },
   setup() {
-    const editorId = 'wangEditor-1'
+    const editorId = `w-e-${Math.random().toString().slice(-5)}` //【注意】编辑器 id ，要全局唯一
 
-    // 默认内容
     const defaultContent = [
-        {
-            type: "paragraph",
-            children: [{ text: "一行文字" }],
-        },
+        { type: "paragraph", children: [{ text: "一行文字" }] }
     ]
+    const getDefaultContent = computed(() => cloneDeep(defaultContent)) // 注意，要深拷贝 defaultContent ，否则报错
 
-    // 注意，深度拷贝 content ，否则会报错
-    const getDefaultContent = computed(() => cloneDeep(defaultContent))
+    const toolbarConfig = {}
+    const editorConfig = { placeholder: '请输入内容...' }
 
-    // 编辑器配置
-    const editorConfig = {
-        placeholder: '请输入内容...',
-        MENU_CONF: {
-            insertImage: {
-                checkImage(src) {
-                    console.log('image src', src)
-                    if (src.indexOf('http') !== 0) {
-                        return '图片网址必须以 http/https 开头';
-                    }
-                    return true;
-                },
-            },
-        }
-    }
-
-    // 编辑器回调函数
-    const handleCreated = (editor) => {
-      console.log('created', editor);
-    }
-    const handleChange = (editor) => {
-      console.log('change:', editor.children);
-    }
-    const handleDestroyed = (editor) => {
-      console.log('destroyed', editor)
-    }
-    const handleFocus = (editor) => {
-        console.log('focus', editor)
-    }
-    const handleBlur = (editor) => {
-        console.log('blur', editor)
-    }
-    const customAlert = (info, type) => {
-        alert(`【自定义提示】${type} - ${info}`)
-    }
-    const customPaste = (editor, event, callback) => {
-        console.log('ClipboardEvent 粘贴事件对象', event)
-
-        // 自定义插入内容
-        editor.insertText('xxx')
-
-        // 返回值（注意，vue 事件的返回值，不能用 return）
-        callback(false) // 返回 false ，阻止默认粘贴行为
-        // callback(true) // 返回 true ，继续默认的粘贴行为
-    }
-
-    // 及时销毁编辑器
+    // 组件销毁时，也及时销毁编辑器
     onBeforeUnmount(() => {
         const editor = getEditor(editorId)
         if (editor == null) return
 
-        // 销毁，并移除 editor
         editor.destroy()
         removeEditor(editorId)
     })
@@ -284,16 +283,148 @@ export default {
       editorId,
       mode: 'default',
       getDefaultContent,
+      toolbarConfig,
       editorConfig,
-      handleCreated,
-      handleChange,
-      handleDestroyed,
-      handleFocus,
-      handleBlur,
-      customAlert,
-      customPaste
     };
   }
+}
+</script>    
+```
+
+:::tip
+- `editorId` 要全局唯一，不可重复
+- `defaultContent` 要使用 `computed` 和深拷贝，否则会报错
+- 组件销毁时，要及时销毁编辑器
+:::
+
+记得引入 style
+
+```html
+<style src="@wangeditor/editor/dist/css/style.css"></style>
+```
+
+### 异步设置内容
+
+例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` ，而是要异步渲染组件**。
+
+可以使用 Vue3 ref 定义一个响应式变量 `isEditorShow = false`，在 Ajax 结束时设置为 `true`。
+
+```js
+// const defaultContent = []
+// const getDefaultContent = computed(() => cloneDeep(defaultContent))
+const defaultContent = ref([])
+const getDefaultContent = computed(() => cloneDeep(defaultContent.value))
+
+const isEditorShow = ref(false)
+
+// 模拟 ajax 异步获取内容
+setTimeout(() => {
+    isEditorShow.value = true
+    defaultContent.value =  [
+        { type: "paragraph", children: [{ text: "ajax 异步获取的内容" }] },
+    ]
+}, 1000)
+```
+
+然后 template 根据 `isEditorShow` 异步渲染编辑器
+
+```html
+<template>
+    <div>
+        <div v-if="isEditorShow" style="border: 1px solid #ccc">
+            <Toolbar ... />
+            <Editor ... />
+        </div>
+        <p v-else>loading</p>
+    </div>
+</template>
+```
+
+### 配置
+
+可通过 `toolbarConfig` 和 `editorConfig` 来修改菜单栏和编辑器的配置，详细文档参考
+- [工具栏配置](/v5/guide/toolbar-config.html)
+- [编辑器配置](/v5/guide/editor-config.html)
+- [菜单配置](/v5/guide/menu-config.html)
+
+【注意】，编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
+
+```html
+<template>
+    <div style="border: 1px solid #ccc">
+      <Toolbar ... />
+      <Editor
+        @onCreated="handleCreated"
+        @onChange="handleChange"
+        @onDestroyed="handleDestroyed"
+        @onFocus="handleFocus"
+        @onBlur="handleBlur"
+        @customAlert="customAlert"
+        @customPaste="customPaste"
+      />
+    </div>
+</template>
+```
+
+```js
+const handleCreated = (editor) => { console.log('created', editor) }
+const handleChange = (editor) => { console.log('change:', editor.children) }
+const handleDestroyed = (editor) => { console.log('destroyed', editor) }
+const handleFocus = (editor) => { console.log('focus', editor) }
+const handleBlur = (editor) => { console.log('blur', editor) }
+const customAlert = (info, type) => { alert(`【自定义提示】${type} - ${info}`) }
+const customPaste = (editor, event, callback) => {
+    console.log('ClipboardEvent 粘贴事件对象', event)
+
+    // 自定义插入内容
+    editor.insertText('xxx')
+
+    // 返回值（注意，vue 事件的返回值，不能用 return）
+    callback(false) // 返回 false ，阻止默认粘贴行为
+    // callback(true) // 返回 true ，继续默认的粘贴行为
+}
+
+return {
+    // 省略其他 ...
+
+    handleCreated,
+    handleChange,
+    handleDestroyed,
+    handleFocus,
+    handleBlur,
+    customAlert,
+    customPaste
+}
+```
+
+### 调用 API
+
+当编辑器渲染完成之后，通过 `getEditor(editorId)` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
+
+```html
+<template>
+    <div>
+        <button @click="insertText">insert text</button>
+        <div style="border: 1px solid #ccc">
+            <Toolbar ... />
+            <Editor ... />
+        </div>
+    </div>
+</template>
+```
+
+```js
+const insertText = () => {
+    const editor = getEditor(editorId) // 获取 editor ，必须等待它渲染完之后
+    if (editor == null) return
+
+    editor.insertText('hello world') // 执行 editor API
+}
+
+return {
+    // 省略其他 ...
+
+    insertText
 }
 ```
 
@@ -305,41 +436,27 @@ export default {
 
 需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/guide/installation.html)。
 
-### 使用
+### 基本使用
 
-以下代码使用 React Hooks 。如使用 React class 组件，可参考[这里](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor-for-react/example/pages/BasicInClass.tsx)。
+以下代码使用 React Hooks 。如使用 React class 组件，可参考[这里](https://github.com/wangeditor-team/wangEditor-for-react/tree/main/example/pages)。
 
-```tsx
+```jsx
 import React, { useState, useEffect } from 'react'
 import '@wangeditor/editor/dist/css/style.css'
-import { IDomEditor, IEditorConfig, IToolbarConfig, SlateDescendant } from '@wangeditor/editor'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
-function ReactEditor() {
-    // 存储 editor 实例
-    const [editor, setEditor] = useState<IDomEditor | null>(null)
-    // 存储 editor 的最新内容（json 格式）
-    const [curContent, setCurContent] = useState<SlateDescendant[]>([])
-
-    // 工具栏配置
-    const toolbarConfig: Partial<IToolbarConfig> = { /* 工具栏配置 */ }
-
-    // editor 配置
-    const editorConfig: Partial<IEditorConfig> = {}
-    editorConfig.placeholder = '请输入内容...'
-    editorConfig.onCreated = (editor: IDomEditor) => {
-        // 记录 editor 实例，重要 ！
-        // 有了 editor 实例，就可以执行 editor API
-        setEditor(editor)
+function MyEditor() {
+    const [editor, setEditor] = useState(null) // 存储 editor 实例
+    const defaultContent = [
+        { type: "paragraph", children: [{ text: "ajax 异步获取的内容" }], }
+    ]
+    const toolbarConfig = { }
+    const editorConfig = {
+        placeholder: '请输入内容...',
+        onCreated(editor) { setEditor(editor) } // 记录下 editor 实例，重要！
     }
-    editorConfig.onChange = (editor: IDomEditor) => {
-        // editor 选区或者内容变化时，获取当前最新的的 content
-        setCurContent(editor.children)
-    }
-    // 其他编辑器配置
-    // 菜单配置
 
-    // 及时销毁 editor ，重要！！！
+    // 及时销毁 editor ，重要！
     useEffect(() => {
         return () => {
             if (editor == null) return
@@ -349,27 +466,87 @@ function ReactEditor() {
     }, [editor])
 
     return (
-        <React.Fragment>
-            <div style={{ border: '1px solid #ccc'}}>
-                {/* 渲染 toolbar */}
+        <>
+            <div style={{ border: '1px solid #ccc', zIndex: 100}}>
                 <Toolbar
                     editor={editor}
                     defaultConfig={toolbarConfig}
                     mode="default"
                     style={{ borderBottom: '1px solid #ccc' }}
                 />
-
-                {/* 渲染 editor */}
                 <Editor
                     defaultConfig={editorConfig}
-                    defaultContent={[]}
+                    defaultContent={defaultContent}
                     mode="default"
                     style={{ height: '500px' }}
                 />
             </div>
-        </React.Fragment>
+        </>
     )
 }
 
-export default ReactEditor
+export default MyEditor
+```
+
+### 异步设置内容
+
+例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` ，而是要异步渲染组件**。
+
+可定义一个 state `isEditorShow = false` ，等 Ajax 结束时设置为 `true`
+
+```js
+// const defaultContent = [ ... ]
+const [defaultContent, setDefaultContent] = useState([])
+const [isEditorShow, setIsEditorShow] = useState(false)
+
+// 模拟 ajax 异步请求
+setTimeout(() => {
+    setDefaultContent([
+        { type: "paragraph", children: [{ text: "ajax 异步获取的内容" }] }
+    ])
+    setIsEditorShow(true)
+}, 1000)
+```
+
+JSX 中根据 `isEditorShow` 异步渲染组件
+
+```jsx
+return (
+    <>
+        {isEditorShow && <div style={{ border: '1px solid #ccc', zIndex: 100}}>
+            <Toolbar ... />
+            <Editor ... />
+        </div>}
+        {!isEditorShow && <p>loading</p>}
+    </>
+)
+```
+
+
+### 配置
+
+可通过 `toolbarConfig` 和 `editorConfig` 来修改菜单栏和编辑器的配置，详细文档参考
+- [工具栏配置](/v5/guide/toolbar-config.html)
+- [编辑器配置](/v5/guide/editor-config.html)
+- [菜单配置](/v5/guide/menu-config.html)
+
+### 调用 API
+
+当编辑器渲染完成之后，通过 `getEditor(editorId)` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
+
+```jsx
+function insertText() {
+    if (editor == null) return
+    console.log(editor.insertText('hello'))
+}
+
+return (
+    <>
+        <button onClick={insertText}>insert text</button>
+        <div style={{ border: '1px solid #ccc', zIndex: 100}}>
+            <Toolbar ... />
+            <Editor ... />
+        </div>
+    </>
+)
 ```

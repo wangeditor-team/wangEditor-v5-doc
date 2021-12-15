@@ -14,7 +14,7 @@ features:
 - title: Easy to use
   details: Quick use, easy config, few codes will create an editor. Integrate all basic functions, No need to secondary develop.
 - title: Independent frameworks
-  details: Independent of any third-party frameworks, you can use it in jQuery, Vue, React.
+  details: Independent of any third-party frameworks, you can use it in jQuery, Vue, React. We supply official Vue React components.
 - title: Closed 4000+ issues
   details: wangEditor open source for many years, many users committed many issues. We have closed 4000+ Github issues and will go on.
 footer: Copyright © 2017-present wangeditor.com
@@ -23,6 +23,7 @@ footer: Copyright © 2017-present wangeditor.com
 ### Easy usage
 
 You can create a fully functional rich-text editor with 10 lines of code. See [demo](https://www.wangeditor.com/demo/en/).
+You can use [official component](/v5/en/guide/for-frame.html) in Vue or React.
 
 ![](/v5/image/editor-en.png)
 
