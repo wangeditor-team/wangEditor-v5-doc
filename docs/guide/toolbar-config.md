@@ -3,7 +3,7 @@
 如果是第一次使用，请先通过 [快速开始](/v5/guide/getting-started.html) 了解基本使用。
 
 :::tip
-wangEditor V5 开始，工具栏配置和[菜单配置](/v5/guide/menu-config.html)（如配置颜色、字体、链接校验、上传图片等）分离了。本文只讲编辑器配置。
+wangEditor 从 V5 版本开始，工具栏配置和[菜单配置](/v5/guide/menu-config.html)（如配置颜色、字体、链接校验、上传图片等）分离了。本文只讲编辑器配置。
 :::
 
 ```ts{4}
@@ -22,6 +22,13 @@ const toolbar = createToolbar({
 })
 
 // 可通过 toolbar.getConfig() 查看工具栏的默认配置
+```
+
+【附加】如果你使用 Vue React ，可以通过如下代码获取 `toolbar` 实例
+
+```ts
+import { DomEditor } from '@wangeditor/editor'
+const toolbar = DomEditor.getToolbar(editor)
 ```
 
 ## toolbarKeys

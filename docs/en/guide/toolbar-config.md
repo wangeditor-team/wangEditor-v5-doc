@@ -20,6 +20,13 @@ const toolbar = createToolbar({
 // Use `toolbar.getConfig()` to checkout default toolbar config
 ```
 
+In addition, if you use Vue or React, you can get `toolbar` instance by these codes.
+
+```ts
+import { DomEditor } from '@wangeditor/editor'
+const toolbar = DomEditor.getToolbar(editor)
+```
+
 ## toolbarKeys
 
 Rewrite toolbar menus, re-order and re-group.<br>
