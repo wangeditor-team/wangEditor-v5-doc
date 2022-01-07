@@ -7,7 +7,7 @@
 - 再次编辑文档，修改内容，保存，关闭编辑器
 - 查看文档内容（此时只查看，用不到编辑器）
 
-![](/v5/image/store-display.png)
+![](/image/store-display.png)
 
 本文就解决这些场景中的所有问题。
 
@@ -34,7 +34,7 @@ $('#button-save').on('click', () => {
 })
 ```
 
-![](/v5/image/store-display-1.png)
+![](/image/store-display-1.png)
 
 #### 使用
 - 再次编辑文档时，使用 content
@@ -62,7 +62,7 @@ $('#button-save').on('click', () => {
 })
 ```
 
-![](/v5/image/store-display-2.png)
+![](/image/store-display-2.png)
 
 #### 使用
 - 再次编辑文档时，使用 content

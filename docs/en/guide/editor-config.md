@@ -82,7 +82,7 @@ Cause it may affect performance when text is too large.
 
 You can use `editor.getConfig().hoverbarKeys` to checkout default config.
 
-![](/v5/image/hoverbar-en.png)
+![](/image/hoverbar-en.png)
 
 :::tip
 If you only unwanted hoverbar when select text, set `model: 'simple'` when creating editor
@@ -95,7 +95,7 @@ You can config hoverbar menu keys by element type.<br>
 - You can checkout every element's type by `editor.children` , see the picture below
 - You can use `editor.getAllMenuKeys()` to checkout all embedded menu keys
 
-![](/v5/image/elem-type-en.png)
+![](/image/elem-type-en.png)
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}

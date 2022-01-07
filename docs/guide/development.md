@@ -5,7 +5,7 @@ core 是核心 API ，editor 负责汇总集成。所有的具体功能，都分
 
 所以，从底层设计就保证了扩展性。
 
-![](/v5/image/架构图.awebp)
+![](/image/架构图.png)
 
 ## 概述
 
@@ -31,7 +31,7 @@ wangEditor 扩展性包括以下部分，你可以来扩展大部分常用的功
 如果你定义了新元素，则需要把它显示到编辑器内。主要过程是：**model -> 生成 vdom -> 渲染 DOM** <br>
 用到了 vdom 需要安装 `snabbdom`，参考上文。
 
-![](/v5/image/extend-api.png)
+![](/image/extend-api.png)
 
 ### 安装 snabbdom.js
 
@@ -351,11 +351,10 @@ Boot.registerMenu(menuConf)
 ## 总结
 
 一个模块常用代码文件如下，共选择参考（不一定都用到）
-- text-style.tsx
 - render-elem.tsx
-- text-to-html.ts
-- text-style-to-html.tsx
+- render-style.tsx
 - elem-to-html.ts
+- style-to-html.tsx
 - plugin.ts
 - menu
     - Menu1.ts

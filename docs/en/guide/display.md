@@ -6,7 +6,7 @@ Editor's use cases are:
 - Edit doc content, save content, close the editor
 - Display doc content ( Only view, no editor )
 
-![](/v5/image/store-display-en.png)
+![](/image/store-display-en.png)
 
 This article will introduce how to save and display your content.
 
@@ -33,7 +33,7 @@ $('#button-save').on('click', () => {
 })
 ```
 
-![](/v5/image/store-display-1-en.png)
+![](/image/store-display-1-en.png)
 
 #### Usage
 
@@ -64,7 +64,7 @@ $('#button-save').on('click', () => {
 })
 ```
 
-![](/v5/image/store-display-2-en.png)
+![](/image/store-display-2-en.png)
 
 #### Usage
 

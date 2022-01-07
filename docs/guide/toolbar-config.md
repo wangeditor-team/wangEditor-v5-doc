@@ -99,7 +99,7 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 
 将菜单弹出的 modal 添加到 body 下，并自定义 modal 的定位和其他样式。
 
-![](/v5/image/modal-appendTo-body.png)
+![](/image/modal-appendTo-body.png)
 
 ```ts
 const toolbarConfig: Partial<IToolbarConfig> = {

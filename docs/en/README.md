@@ -25,7 +25,7 @@ footer: Copyright © 2017-present wangeditor.com
 You can create a fully functional rich-text editor with 10 lines of code. See [demo](https://www.wangeditor.com/demo/en/).
 You can use [official component](/v5/en/guide/for-frame.html) in Vue or React.
 
-![](/v5/image/editor-en.png)
+![](/image/editor-en.png)
 
 ```js
 import '@wangeditor/editor/dist/css/style.css'

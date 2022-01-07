@@ -58,7 +58,7 @@ const toolbar = createToolbar({
 
 这样就创建出了一个最基本的编辑器。
 
-![](/v5/image/editor.png)
+![](/image/editor.png)
 
 ::: tip
 1. 工具栏并不是强制的，如不需要，可以不创建。这并不影响编辑器的使用。
@@ -181,7 +181,7 @@ wangEditor 工具栏内置了“全屏”菜单，但使用它需要有一个条
 - 可以自定义 html 实现腾讯文档、语雀文档的效果，参考 [demo](https://www.wangeditor.com/demo/zh-CN/like-qq-doc.html)
 - 其他自行探索
 
-![](/v5/image/yuque.png)
+![](/image/yuque.png)
 
 ## 一个页面多个编辑器
 

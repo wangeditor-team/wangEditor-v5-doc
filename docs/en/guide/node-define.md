@@ -21,11 +21,11 @@ If you want to know a node structure quickly, it's very simply.
 
 For example, you type some text, set a header or list, run `editor.children` then you can see it's structure
 
-![](/v5/image/数据结构-1-en.png)
+![](/image/数据结构-1-en.png)
 
 Set line height and text style, run `editor.children` then you can see it's structure
 
-![](/v5/image/数据结构-2-en.png)
+![](/image/数据结构-2-en.png)
 
 ## All Nodes Structure
 

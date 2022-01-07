@@ -24,7 +24,7 @@ footer: Copyright © 2017-present wangeditor.com
 
 10 行代码即可创建一个功能健全的富文本编辑器，可查看 [demo 示例](https://www.wangeditor.com/demo/zh-CN/)。如用于 Vue React 可参考[这里](/v5/guide/for-frame.html)。
 
-![](/v5/image/editor.png)
+![](/image/editor.png)
 
 ```js
 import '@wangeditor/editor/dist/css/style.css'

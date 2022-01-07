@@ -57,7 +57,7 @@ const toolbar = createToolbar({
 
 With the simple code above, you will create a basic editor.
 
-![](/v5/image/editor-en.png)
+![](/image/editor-en.png)
 
 ::: tip
 1. The toolbar is not necessary
@@ -179,7 +179,7 @@ If you unwanted full-screen menu, you can hide this by `{ excludeKeys: 'fullScre
 - You can fixed toolbar to top by define `toolbar-container` style.
 - You can dev an editor like Google Doc by redefine html structure and style.
 
-![](/v5/image/like-google-doc.png)
+![](/image/like-google-doc.png)
 
 ## Multiple Editors
 

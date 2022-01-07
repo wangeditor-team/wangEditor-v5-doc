@@ -93,7 +93,7 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 
 You may want to append the modal when a menu clicked to `<body>`, and custom its position style.
 
-![](/v5/image/modal-appendTo-body-en.png)
+![](/image/modal-appendTo-body-en.png)
 
 ```ts
 const toolbarConfig: Partial<IToolbarConfig> = {

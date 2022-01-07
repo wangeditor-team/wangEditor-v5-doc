@@ -83,7 +83,7 @@ editorConfig.onMaxLength = function (editor: IDomEditor) {
 
 配置编辑器的 hoverbar 菜单。通过 `editor.getConfig().hoverbarKeys` 可查看当前的 hoverbarKeys
 
-![](/v5/image/hoverbar.png)
+![](/image/hoverbar.png)
 
 :::tip
 createEditor 时设置 `model: 'simple'` 可隐藏选中文本时的 hoverbar 。
@@ -96,7 +96,7 @@ createEditor 时设置 `model: 'simple'` 可隐藏选中文本时的 hoverbar �
 - 元素的 `type` 可通过 `editor.children` 查看，如下图
 - 使用 `editor.getAllMenuKeys()` 可查看所有内置 menu key
 
-![](/v5/image/elem-type.png)
+![](/image/elem-type.png)
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}

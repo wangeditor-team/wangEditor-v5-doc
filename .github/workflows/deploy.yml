@@ -18,10 +18,10 @@ jobs:
     - name: build
       run: |
         echo "---------- node-version `node -v` ----------"
-        npm i
-        echo "---------- npm install ok ----------"
-        npm run build ## 打包出 html 到 docs/.vuepress/dist
-        echo "---------- build ok ----------"
+        yarn install
+        echo "---------- yarn install ok ----------"
+        yarn build ## 打包出 html 到 docs/.vuepress/dist
+        echo "---------- yarn build ok ----------"
     - name: set ssh key # 临时设置 ssh key
       run: |
         mkdir -p ~/.ssh/
