@@ -5,6 +5,8 @@
         "docs",
         "hoverbar",
         "keys",
+        "vdom",
+        "vnode",
         "vuepress",
         "wangeditor"
     ],

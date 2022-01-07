@@ -31,49 +31,14 @@ wangEditor 扩展性包括以下部分，你可以来扩展大部分常用的功
 如果你定义了新元素，则需要把它显示到编辑器内。主要过程是：**model -> 生成 vdom -> 渲染 DOM** <br>
 用到了 vdom 需要安装 `snabbdom`，参考上文。
 
+![](/v5/image/extend-api.png)
+
 ### 安装 snabbdom.js
 
 ```shell
 yarn add snabbdom --peer
 ## 安装到 package.json 的 peerDependencies 中即可
 ```
-
-### renderTextStyle
-
-编辑器中需要渲染文本样式，最基本的一些文本样式（如加粗、斜体、颜色等）编辑器已经自带了。
-如果你需要再自定义新的文本样式，可以通过以下方式来注册。
-
-注意：
-- 必须在创建编辑器之前注册
-- 全局只能注册一次，不要重复注册
-
-```ts
-import { h, VNode } from 'snabbdom'
-import { Boot, SlateNode, SlateText } from '@wangeditor/editor'
-
-// 定义渲染函数
-function fn(textNode: SlateNode, vnode: VNode): VNode {
-    // 1. 根据 textNode 的属性
-    const { bold, color } = textNode as SlateText
-    let newVnode = vnode
-
-    // 2. 为 vnode 添加样式标签
-    if (bold) {
-      newVnode = h('b', {}, [newVnode])
-    }
-    if (color) {
-      // 继续...
-    }
-
-    // 3. 返回添加了样式的 vnode
-    return newVnode
-}
-
-// 注册进 wangEditor
-Boot.registerRenderTextStyle(fn)
-```
-
-PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
 
 ### renderElem
 
@@ -88,7 +53,7 @@ import { h, VNode } from 'snabbdom'
 import { Boot, IDomEditor, SlateElement } from '@wangeditor/editor'
 
 // 渲染函数
-function fn(elem: SlateElement, children: VNode[] | null, editor: IDomEditor): VNode {
+function renderParagraph(elem: SlateElement, children: VNode[] | null, editor: IDomEditor): VNode {
     // elem 即当前节点
     // children 是下级节点
     // editor 即编辑器实例
@@ -100,7 +65,7 @@ function fn(elem: SlateElement, children: VNode[] | null, editor: IDomEditor): V
 // 渲染配置
 const conf = {
     type: 'paragraph', // 节点 type ，重要！！！
-    renderElem: fn,
+    renderElem: renderParagraph,
 }
 
 // 注册到 wangEditor
@@ -109,75 +74,67 @@ Boot.registerRenderElem(conf)
 
 PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
 
+### renderStyle
+
+渲染 CSS 样式，最基本的一些样式（如加粗、斜体、颜色、对齐方式等）编辑器已经自带了。
+如果你需要再自定义新的样式，可以通过以下方式来注册。
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
+
+```ts
+import { h, VNode, VNodeStyle } from 'snabbdom'
+import { Boot, SlateElement, SlateText, SlateDescendant } from '@wangeditor/editor'
+
+/**
+ * 给 vnode 添加样式
+ * @param vnode vnode
+ * @param newStyle { key: val }
+ */
+function addVnodeStyle(vnode: VNode, newStyle: VNodeStyle) {
+  if (vnode.data == null) vnode.data = {}
+  const data = vnode.data
+  if (data.style == null) data.style = {}
+  Object.assign(data.style, newStyle)
+}
+
+/**
+ * render style
+ * @param node slate node
+ * @param vnode vnode
+ * @returns new vnode
+ */
+function renderStyle(node: SlateDescendant, vnode: VNode): VNode {
+    // 1. 获取样式相关的属性
+    const { bold, color } = node as SlateText
+    // const { lineHeight } = node as SlateElement // node 可能是 Text 也可能是 Element
+    let newVnode = vnode
+
+    // 2. 为 vnode 添加样式标签
+    if (bold) {
+      newVnode = h('strong', {}, [newVnode])
+    }
+    if (color) {
+      addVnodeStyle(newVnode, { color })
+    }
+    // if (lineHeight) {
+    //   addVnodeStyle(newVnode, { lineHeight })
+    // }
+
+    // 3. 返回添加了样式的 vnode
+    return newVnode
+}
+
+// 注册到 wangEditor
+Boot.registerRenderStyle(renderStyle)
+```
+
+PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
+
 ## 生成 HTML
 
 在显示编辑器内容时 ，无论什么渲染形式，都需要得到各个元素的 html。所以对于新元素，必须要扩展 toHtml 方法。
-
-### textToHtml
-
-生成 text 节点的的 html
-
-注意：
-- 必须在创建编辑器之前注册
-- 全局只能注册一次，不要重复注册
-
-```ts
-import { Boot, SlateText } from '@wangeditor/editor'
-
-// 定义生成 html 的函数
-function fn(textNode: SlateText, textHtml: string): string {
-  // 获取 text 节点的属性
-  const { bold, italic } = textNode
-
-  // 生成 html
-  let res = textHtml
-  if (bold) res = `<strong>${res}</strong>`
-  if (italic) res = `<em>${res}</em>`
-
-  // 返回 html
-  return res
-}
-
-// 注册到 wangEditor
-Boot.registerTextToHtml(fn)
-```
-
-可参考 wangEditor 源码中文本样式的 [textToHtml](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/text-style/text-to-html.ts) 。
-
-### textStyleToHtml
-
-生成文本样式的 html
-
-注意：
-- 必须在创建编辑器之前注册
-- 全局只能注册一次，不要重复注册
-
-```ts
-import { Boot, SlateText, SlateNode } from '@wangeditor/editor'
-
-// 定义函数
-function fn(textNode: SlateNode, curHtml: string): string {
-    // 根据 textNode 属性，生成带有样式的 html
-
-    // 获取属性
-    const { color, bgColor, text } = textNode as SlateText
-
-    // 设置样式
-    const $elem = $(elemHtml)
-    if (color) $elem.css('color', color)
-    if (bgColor) $elem.css('background-color', bgColor)
-
-    // 输出 html
-    const $div = $('<div></div>')
-    $div.append($elem)
-    return $div.html()
-}
-
-// 注册到 wangEditor
-Boot.registerTextStyleToHtml(fn)
-```
-
-可参考 wangEditor 源码中 [颜色、背景色](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/color/text-style-to-html.ts) 和 [字体字号](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/font-size-family/text-style-to-html.ts) 的 text-style-to-html 。
 
 ### elemToHtml
 
@@ -191,7 +148,7 @@ Boot.registerTextStyleToHtml(fn)
 import { Boot, SlateElement } from '@wangeditor/editor'
 
 // 生成 html 的函数
-function fn(elem: SlateElement, childrenHtml: string): string {
+function paragraphToHtml(elem: SlateElement, childrenHtml: string): string {
     if (childrenHtml === '') {
         return '<p><br/></p>'
     }
@@ -201,7 +158,7 @@ function fn(elem: SlateElement, childrenHtml: string): string {
 // 配置
 const conf = {
     type: 'paragraph', // 节点 type ，重要！！！
-    elemToHtml: fn,
+    elemToHtml: paragraphToHtml,
 }
 
 // 注册到 wangEditor
@@ -209,6 +166,44 @@ Boot.registerElemToHtml(conf)
 ```
 
 可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/wangEditor-v5/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `elem-to-html.ts` 文件。
+
+### styleToHtml
+
+生成 CSS 样式的 html ，如文本的加粗、斜体、颜色等，还有段落的对齐、行高等。
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
+
+```ts
+import { Boot, SlateText, SlateElement, SlateDescendant } from '@wangeditor/editor'
+
+/**
+ * style to html
+ * @param node slate node
+ * @param nodeHtml node html
+ * @returns styled html
+ */
+function styleToHtml(node: SlateDescendant, nodeHtml: string): string {
+    // 1. 获取样式相关的属性获取属性
+    const { color, bgColor } = node as SlateText
+    // const { lineHeight } = node as SlateElement // node 可能是 Text 也可能是 Element
+
+    // 设置样式
+    const $elem = $(elemHtml)
+    if (color) $elem.css('color', color)
+    if (bgColor) $elem.css('background-color', bgColor)
+    // $elem.css('line-height', lineHeight)
+
+    // 输出 html
+    return $elem[0].outerHTML
+}
+
+// 注册到 wangEditor
+Boot.registerStyleToHtmlHandler(styleToHtml)
+```
+
+可参考 wangEditor 源码中 [颜色、背景色](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/color/style-to-html.ts) 和 [字体字号](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/font-size-family/style-to-html.ts) 的 style-to-html 。
 
 ## 注册插件
 
