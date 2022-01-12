@@ -13,7 +13,7 @@ actions:
 features:
 - title: 简洁易用，功能强大
   details: 快速接入，配置简单，几行代码即可生成。集成了所有常见功能，无需二次开发。在 Vue React 也可以快速接入。
-- title: 无框架依赖
+- title: 支持 JS Vue React
   details: 不依赖任何第三方框架，可用于 jQuery Vue React 等。wangEditor 提供了官方的 Vue React 组件。
 - title: 踩过 4000+ 坑
   details: wangEditor 开源多年，有大量用户使用和反馈，我们已解决了太多的用户问题（详见 github issues）。

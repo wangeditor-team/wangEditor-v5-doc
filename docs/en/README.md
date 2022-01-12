@@ -13,7 +13,7 @@ actions:
 features:
 - title: Easy to use
   details: Quick use, easy config, few codes will create an editor. Integrate all basic functions, No need to secondary develop.
-- title: Independent frameworks
+- title: Support JS Vue React
   details: Independent of any third-party frameworks, you can use it in jQuery, Vue, React. We supply official Vue React components.
 - title: Closed 4000+ issues
   details: wangEditor open source for many years, many users committed many issues. We have closed 4000+ Github issues and will go on.
