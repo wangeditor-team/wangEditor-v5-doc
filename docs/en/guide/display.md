@@ -109,6 +109,8 @@ If you saved html, just output html.
 
 You can convert content to html in browser and nodejs SSR.
 
+If in nodejs, you should exec `yarn add jsdom global-jsdom` firstly, then `require('global-jsdom/register')` in front of the below codes.
+
 ```js
 // 1. get `content` from your server or database
 

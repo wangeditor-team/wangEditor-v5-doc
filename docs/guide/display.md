@@ -108,9 +108,10 @@ $('#button-save').on('click', () => {
 
 ### content 转换为 html
 
-如果你没有存储 html ，只存储了 content ，可以通过以下方式将 content 转换为 html 。
+如果你没有存储 html ，只存储了 content ，可以通过以下方式将 content 转换为 html 。<br>
+支持浏览器，**也支持 nodejs**（所以可以用于 nodejs SSR 服务端渲染）。
 
-支持浏览器，**也支持 nodejs**（所以可以用于 nodejs SSR 服务端渲染）
+如果是在 nodejs 中，需要安装 `yarn add jsdom global-jsdom` ，并且引入 `require('global-jsdom/register')`。
 
 ```js
 // 1. 自己从服务端或这数据库获取 content
