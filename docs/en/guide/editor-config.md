@@ -13,8 +13,6 @@ const editorConfig: Partial<IEditorConfig> = {
 const editor = createEditor({
   selector: '#editor-container',
   config: editorConfig,
-  content: [],
-  mode: 'default'
 })
 
 // Can use `editor.getConfig()` to checkout editor's default config

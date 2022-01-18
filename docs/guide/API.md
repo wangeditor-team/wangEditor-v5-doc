@@ -151,7 +151,8 @@ editor.insertText('xxx')
 
 ### dangerouslyInsertHtml
 
-插入 HTML ，但不能保证语义一致。
+- 如果是 `editor.getHtml()` 获取的 HTML 格式，可以完美解析。
+- 如果是其他的 HTML 格式，则不能保证语义正确 —— **dangerously** 。
 
 ```ts
 editor.dangerouslyInsertHtml(`<h1>标题</h1><p>文本 <b>加粗</b></p>`)

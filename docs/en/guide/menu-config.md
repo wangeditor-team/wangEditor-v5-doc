@@ -37,8 +37,6 @@ editorConfig.MENU_CONF['otherMenuKey'] = {
 const editor = createEditor({
   selector: '#editor-container',
   config: editorConfig,
-  content: [],
-  mode: 'default'
 })
 
 // create a toolbar

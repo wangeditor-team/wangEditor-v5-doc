@@ -38,7 +38,6 @@ module.exports = {
                         children: [
                             '/guide/getting-started.md',
                             '/guide/for-frame.md',
-                            '/guide/display.md',
                         ]
                     },
                     {
@@ -82,7 +81,6 @@ module.exports = {
                         children: [
                             '/en/guide/getting-started.md',
                             '/en/guide/for-frame.md',
-                            '/en/guide/display.md',
                         ]
                     },
                     {

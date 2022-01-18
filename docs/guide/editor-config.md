@@ -12,8 +12,6 @@ const editorConfig: Partial<IEditorConfig> = {
 const editor = createEditor({
   selector: '#editor-container',
   config: editorConfig,
-  content: [],
-  mode: 'default'
 })
 
 // 可通过 editor.getConfig() 查看编辑器默认配置
