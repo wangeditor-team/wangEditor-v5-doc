@@ -24,7 +24,7 @@ wangEditor 扩展性包括以下部分，你可以来扩展大部分常用的功
 具体可参考 [节点数据结构](/v5/guide/node-define.html) ，定义自己的节点数据结构。<br>
 注意要符合 [slate.js](https://docs.slatejs.org/) 的数据规范。
 
-## 渲染编辑器视图
+## Render
 
 需要你提前了解 vdom 概念，以及 [snabbdom.js](https://github.com/snabbdom/snabbdom) 和它的 `h` 函数。
 
@@ -132,7 +132,7 @@ Boot.registerRenderStyle(renderStyle)
 
 PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
 
-## 生成 HTML
+## To HTML
 
 在显示编辑器内容时 ，无论什么渲染形式，都需要得到各个元素的 html。所以对于新元素，必须要扩展 toHtml 方法。
 
@@ -204,6 +204,93 @@ Boot.registerStyleToHtmlHandler(styleToHtml)
 ```
 
 可参考 wangEditor 源码中 [颜色、背景色](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/color/style-to-html.ts) 和 [字体字号](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/font-size-family/style-to-html.ts) 的 style-to-html 。
+
+## Parse HTML
+
+上文的 toHtml 是从编辑器获取 html 。得到的 html 还可能再设置回显到编辑器中，这就需要 parse html 。
+
+### parseElemHtml
+
+例如编辑器的“链接”，以下函数会把 html `'<a href="https://www.baidu.com/" target="_blank">百度<a/>'` 转换为 slate element 。
+
+```ts
+import { Dom7Array } from 'dom7'
+import { Boot, IDomEditor, SlateDescendant, SlateText, SlateElement } from '@wangeditor/editor'
+
+/**
+ * 将 html 转换为 slate elem
+ * @param $elem 由 html 生成的 DOM 节点（Dom7 封装，类似于 jquery）
+ * @param children 子节点
+ * @param editor editor
+ * @returns slate element
+ */
+function parseHtml($elem: Dom7Array, children: SlateDescendant[], editor: IDomEditor): SlateElement {
+  // 过滤 children
+  children = children.filter(child => {
+    // child 必须是 text 或者 inline element （不能是 block element）
+    if (SlateText.isText(child)) return true
+    if (editor.isInline(child)) return true
+    return false
+  })
+
+  // 无 children ，则取 $elem 纯文本
+  if (children.length === 0) {
+    children = [{ text: $elem.text().replace(/\s+/gm, ' ') }]
+  }
+
+  // 返回 slate elem ，链接类型
+  return {
+    type: 'link',
+    url: $elem.attr('href') || '',
+    target: $elem.attr('target') || '',
+    children,
+  }
+}
+
+export const parseHtmlConf = {
+  selector: 'a', // CSS 选择器，以匹配“链接”的 html tag
+  parseElemHtml: parseHtml,
+}
+
+// 注册
+Boot.registerParseElemHtml(parseHtmlConf)
+```
+
+### parseStyleHtml
+
+例如编辑器处理颜色，以下代码可识别 html `'<span style="color: rgb(231, 95, 51); background-color: rgb(252, 251, 207);">hello</span>'` 中的 `color` 和 `background-color` ，并添加到 text node 。
+
+```ts
+import { Dom7Array, SlateText } from 'dom7'
+import { Boot, SlateDescendant, SlateText } from '@wangeditor/editor'
+
+/**
+ * 识别 html 中的颜色，并添加到 text node
+ * @param $text 由 html 创建的 DOM 节点（Dom7 创建，类似 jquery）
+ * @param node text node
+ * @returns text node with color and bgColor
+ */
+export function parseStyleHtml($text: Dom7Array, node: SlateDescendant): SlateDescendant {
+  if (!SlateText.isText(node)) return node
+
+  const textNode = node as SlateText
+
+  const color = getStyleValue($text, 'color') // 获取 style 中的 color 值
+  if (color) {
+    textNode.color = color
+  }
+
+  const bgColor = getStyleValue($text, 'background-color') // 获取 style 中的 background-color 值
+  if (bgColor) {
+    textNode.bgColor = bgColor
+  }
+
+  return textNode
+}
+
+// 注册
+Boot.registerParseStyleHtml(parseStyleHtml)
+```
 
 ## 注册插件
 
@@ -355,7 +442,9 @@ Boot.registerMenu(menuConf)
 - render-style.tsx
 - elem-to-html.ts
 - style-to-html.tsx
+- parse-elem-html.ts
+- parse-style-html.ts
 - plugin.ts
-- menu
+- menu/
     - Menu1.ts
     - Menu2.ts
