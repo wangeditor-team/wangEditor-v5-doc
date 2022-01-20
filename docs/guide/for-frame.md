@@ -23,7 +23,7 @@
 
 模板
 
-```html
+```xml
 <template>
     <div style="border: 1px solid #ccc;">
         <Toolbar
@@ -37,8 +37,10 @@
             :editorId="editorId"
             :defaultConfig="editorConfig"
             :defaultContent="getDefaultContent"
+            :defaultHtml="defaultHtml"
             :mode="mode"
         />
+        <!-- 注意： defaultContent （JSON 格式） 和 defaultHtml （HTML 格式），二选一 -->
     </div>
 </template>
 ```
@@ -59,10 +61,13 @@ export default Vue.extend({
             editorId: `w-e-${Math.random().toString().slice(-5)}`, //【注意】编辑器 id ，要全局唯一
             toolbarConfig: {},
             editorConfig: { placeholder: '请输入内容...' },
+            mode: 'default', // or 'simple'
+
+            // defaultContent （JSON 格式） 和 defaultHtml（HTML 格式）二选一
             defaultContent: [
                 { type: 'paragraph', children: [{ text: '一行文字' }] }
             ],
-            mode: 'default', // or 'simple'
+            defaultHtml: '<p>hello</p>',
         }
     },
     computed: {
@@ -84,7 +89,8 @@ export default Vue.extend({
 
 :::tip
 - `editorId` 要全局唯一，不可重复
-- `defaultContent` 要使用 `computed` 和深拷贝，否则会报错
+- `defaultContent`（JSON 格式） 和 `defaultHtml`（HTML 格式），二选一
+- 如果使用 `defaultContent` ，要使用 `computed` 和深拷贝，否则会报错
 - 组件销毁时，要及时销毁编辑器
 :::
 
@@ -96,7 +102,7 @@ export default Vue.extend({
 
 ### 异步设置内容
 
-例如，Ajax 异步获取内容，然后设置到编辑器中。**注意，不可以直接修改 `defaultContent` ，而是要异步渲染组件**。
+例如，Ajax 异步获取内容，然后设置到编辑器中。**注意，不可以直接修改 `defaultContent` 或 `defaultHtml` ，而是要异步渲染组件**。
 
 在 `data` 中定义一个属性 `isEditorShow: false`，在 Ajax 结束时设置为 `true`
 
@@ -110,9 +116,12 @@ data() {
 mounted() {
     // 模拟 ajax 请求，异步渲染编辑器
     setTimeout(() => {
+        // defaultContent （JSON 格式） 和 defaultHtml（HTML 格式）二选一
         this.defaultContent = [
             { type: 'paragraph', children: [{ text: 'ajax 异步获取的内容' }] }
         ]
+        this.defaultHtml = '<p>ajax&nbsp;异步获取的内容</p>'
+
         this.isEditorShow = true
     }, 1000)
 },
@@ -120,7 +129,7 @@ mounted() {
 
 模板中，根据 `isEditorShow` 来渲染组件
 
-```html
+```xml
 <template>
     <div>
         <div v-if="isEditorShow" style="border: 1px solid #ccc;">
@@ -141,7 +150,7 @@ mounted() {
 
 【注意】，编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
 
-```html
+```xml
 <template>
     <div style="border: 1px solid #ccc;">
         <Toolbar ... />
@@ -185,7 +194,7 @@ methods: {
 
 当编辑器渲染完成之后，通过 `getEditor(this.editorId)` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
 
-```html
+```xml
 <template>
     <div>
         <button @click="insertText">insert text</button>
@@ -229,7 +238,7 @@ mounted() {
 
 模板
 
-```html
+```xml
 <template>
     <div style="border: 1px solid #ccc">
       <Toolbar
@@ -242,9 +251,11 @@ mounted() {
         :editorId="editorId"
         :defaultConfig="editorConfig"
         :defaultContent="getDefaultContent"
+        :defaultHtml="defaultHtml"
         :mode="mode"
         style="height: 500px"
       />
+      <!-- 注意: defaultContent (JSON 格式) 和 defaultHtml (HTML 格式) ，二选一 -->
     </div>
 </template>
 ```
@@ -262,8 +273,10 @@ export default {
   setup() {
     const editorId = `w-e-${Math.random().toString().slice(-5)}` //【注意】编辑器 id ，要全局唯一
 
+    // defaultContent (JSON 格式) 和 defaultHtml (HTML 格式) ，二选一
+    const defaultHtml = '一行文字'
     const defaultContent = [
-        { type: "paragraph", children: [{ text: "一行文字" }] }
+        { type: 'paragraph', children: [{ text: '一行文字' }] }
     ]
     const getDefaultContent = computed(() => cloneDeep(defaultContent)) // 注意，要深拷贝 defaultContent ，否则报错
 
@@ -282,6 +295,7 @@ export default {
     return {
       editorId,
       mode: 'default',
+      defaultHtml,
       getDefaultContent,
       toolbarConfig,
       editorConfig,
@@ -293,7 +307,8 @@ export default {
 
 :::tip
 - `editorId` 要全局唯一，不可重复
-- `defaultContent` 要使用 `computed` 和深拷贝，否则会报错
+- `defaultContent` (JSON 格式) 和 `defaultHtml` (HTML 格式) ，二选一
+- 如果选择了 `defaultContent` ，要使用 `computed` 和深拷贝，否则会报错
 - 组件销毁时，要及时销毁编辑器
 :::
 
@@ -305,11 +320,14 @@ export default {
 
 ### 异步设置内容
 
-例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` ，而是要异步渲染组件**。
+例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` 或 `defaultHtml` ，而是要异步渲染组件**。
 
 可以使用 Vue3 ref 定义一个响应式变量 `isEditorShow = false`，在 Ajax 结束时设置为 `true`。
 
 ```js
+// const defaultHtml = '一行文字'
+const defaultHtml = ref('')
+
 // const defaultContent = []
 // const getDefaultContent = computed(() => cloneDeep(defaultContent))
 const defaultContent = ref([])
@@ -319,16 +337,19 @@ const isEditorShow = ref(false)
 
 // 模拟 ajax 异步获取内容
 setTimeout(() => {
-    isEditorShow.value = true
+    // defaultContent (JSON 格式) 和 defaultHtml (HTML 格式) ，二选一
+    defaultHtml.value = 'ajax&nbsp;异步获取的内容'
     defaultContent.value =  [
         { type: "paragraph", children: [{ text: "ajax 异步获取的内容" }] },
     ]
+
+    isEditorShow.value = true
 }, 1000)
 ```
 
 然后 template 根据 `isEditorShow` 异步渲染编辑器
 
-```html
+```xml
 <template>
     <div>
         <div v-if="isEditorShow" style="border: 1px solid #ccc">
@@ -349,7 +370,7 @@ setTimeout(() => {
 
 【注意】，编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
 
-```html
+```xml
 <template>
     <div style="border: 1px solid #ccc">
       <Toolbar ... />
@@ -401,7 +422,7 @@ return {
 
 当编辑器渲染完成之后，通过 `getEditor(editorId)` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
 
-```html
+```xml
 <template>
     <div>
         <button @click="insertText">insert text</button>
@@ -447,9 +468,13 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
 function MyEditor() {
     const [editor, setEditor] = useState(null) // 存储 editor 实例
+
+    // `defaultContent` (JSON 格式) 和 `defaultHtml` (HTML 格式) 二选一
     const defaultContent = [
         { type: "paragraph", children: [{ text: "一行文字" }], }
     ]
+    // const defaultHtml = '<p>一行文字</p>'
+
     const toolbarConfig = { }
     const editorConfig = {
         placeholder: '请输入内容...',
@@ -477,6 +502,7 @@ function MyEditor() {
                 <Editor
                     defaultConfig={editorConfig}
                     defaultContent={defaultContent}
+                    // defaultHtml={defaultHtml}
                     mode="default"
                     style={{ height: '500px' }}
                 />
@@ -490,13 +516,15 @@ export default MyEditor
 
 ### 异步设置内容
 
-例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` ，而是要异步渲染组件**。
+例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` 或 `defaultHtml` ，而是要异步渲染组件**。
 
 可定义一个 state `isEditorShow = false` ，等 Ajax 结束时设置为 `true`
 
 ```js
-// const defaultContent = [ ... ]
+// `defaultContent` (JSON 格式) 和 `defaultHtml` (HTML 格式) 二选一
 const [defaultContent, setDefaultContent] = useState([])
+// const [defaultHtml, setDefaultHtml] = useState('')
+
 const [isEditorShow, setIsEditorShow] = useState(false)
 
 // 模拟 ajax 异步请求
@@ -504,6 +532,8 @@ setTimeout(() => {
     setDefaultContent([
         { type: "paragraph", children: [{ text: "ajax 异步获取的内容" }] }
     ])
+    // setDefaultHtml('<p>ajax&nbsp;异步获取的内容</p>')
+
     setIsEditorShow(true)
 }, 1000)
 ```

@@ -20,7 +20,7 @@ Install `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`, see [Installation
 
 Template
 
-```html
+```xml
 <template>
     <div style="border: 1px solid #ccc;">
         <Toolbar
@@ -34,8 +34,10 @@ Template
             :editorId="editorId"
             :defaultConfig="editorConfig"
             :defaultContent="getDefaultContent"
+            :defaultHtml="defaultHtml"
             :mode="mode"
         />
+        <!-- Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format) -->
     </div>
 </template>
 ```
@@ -56,10 +58,13 @@ export default Vue.extend({
             editorId: `w-e-${Math.random().toString().slice(-5)}`, // Must be unique !
             toolbarConfig: {},
             editorConfig: { placeholder: 'Type your text...' },
+            mode: 'default', // or 'simple'
+
+            // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
             defaultContent: [
                 { type: 'paragraph', children: [{ text: 'hello world' }] }
             ],
-            mode: 'default', // or 'simple'
+            defaultHtml: '<p>hello</p>'
         }
     },
     computed: {
@@ -81,7 +86,8 @@ export default Vue.extend({
 
 :::tip
 - `editorId` should be unique.
-- `defaultContent` should deep clone in `computed`.
+- You should choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
+- If you chose `defaultContent`, you should deep clone it in `computed`.
 - Timely destroy `editor` before vue component destroy.
 :::
 
@@ -93,7 +99,7 @@ Import style
 
 ### Async set content
 
-For instance, you may async set content after ajax. **You can not change `defaultContent` directly, but async-render the component**.
+For instance, you may async set content after ajax. **You can not change `defaultContent` or `defaultHtml` directly, but async-render the component**.
 
 Add a `data` property `isEditorShow: false`, set `true` when ajax done.
 
@@ -108,9 +114,12 @@ data() {
 mounted() {
     // Simulate ajax, async set content
     setTimeout(() => {
+        // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
         this.defaultContent = [
             { type: 'paragraph', children: [{ text: 'ajax content' }] }
         ]
+        this.defaultHtml: '<p>ajax&nbsp;content</p>'
+
         this.isEditorShow = true
     }, 1000)
 },
@@ -118,7 +127,7 @@ mounted() {
 
 In template, async-render component according to `isEditorShow`.
 
-```html
+```xml
 <template>
     <div>
         <div v-if="isEditorShow" style="border: 1px solid #ccc;">
@@ -139,7 +148,7 @@ You can extend toolbar and editor config in `toolbarConfig` and `editorConfig` (
 
 Be careful: life-cycle functions (format like `onXxx`) which in editor's config, **you should use Vue events, not use in `editorConfig`**
 
-```html
+```xml
 <template>
     <div style="border: 1px solid #ccc;">
         <Toolbar ... />
@@ -183,7 +192,7 @@ methods: {
 
 You can use `getEditor(this.editorId)` to get the `editor` instance after it's rendered, and trigger it's [APIs]((./API.md)).
 
-```html
+```xml
 <template>
     <div>
         <button @click="insertText">insert text</button>
@@ -225,7 +234,7 @@ Install `@wangeditor/editor` and `@wangeditor/editor-for-vue@next`, see [Install
 
 Template
 
-```html
+```xml
 <template>
     <div style="border: 1px solid #ccc">
       <Toolbar
@@ -238,9 +247,11 @@ Template
         :editorId="editorId"
         :defaultConfig="editorConfig"
         :defaultContent="getDefaultContent"
+        :defaultHtml="defaultHtml"
         :mode="mode"
         style="height: 500px"
       />
+      <!-- Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format) -->
     </div>
 </template>
 ```
@@ -258,8 +269,10 @@ export default {
   setup() {
     const editorId = `w-e-${Math.random().toString().slice(-5)}` // Must be unique !
 
+    // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
+    const defaultHtml = 'hello&nbsp;word'
     const defaultContent = [
-        { type: "paragraph", children: [{ text: "hello word" }] }
+        { type: 'paragraph', children: [{ text: 'hello word' }] }
     ]
     const getDefaultContent = computed(() => cloneDeep(defaultContent)) // Must deep clone `defaultContent`
 
@@ -278,6 +291,7 @@ export default {
     return {
       editorId,
       mode: 'default',
+      defaultHtml,
       getDefaultContent,
       toolbarConfig,
       editorConfig,
@@ -289,7 +303,8 @@ export default {
 
 :::tip
 - `editorId` should be unique.
-- `defaultContent` should deep clone in `computed`.
+- Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
+- If you chose `defaultContent`, you should deep clone it in `computed`.
 - Timely destroy `editor` before vue component destroy.
 :::
 
@@ -301,11 +316,14 @@ Import style
 
 ### Async set content
 
-For instance, you may async set content after ajax. **You can not change `defaultContent` directly, but async-render the component**.
+For instance, you may async set content after ajax. **You can not change `defaultContent` or `defaultHtml` directly, but async-render the component**.
 
 You can declare a ref `isEditorShow = false`, set `true` when ajax done.
 
 ```js
+// const defaultHtml = 'hello&nbsp;world'
+const defaultHtml = ref('')
+
 // const defaultContent = []
 // const getDefaultContent = computed(() => cloneDeep(defaultContent))
 const defaultContent = ref([])
@@ -315,16 +333,19 @@ const isEditorShow = ref(false)
 
 // Simulate ajax, async set content
 setTimeout(() => {
-    isEditorShow.value = true
+    // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
+    defaultHtml.value = '<p>ajax&nbsp;content</p>'
     defaultContent.value =  [
         { type: "paragraph", children: [{ text: "ajax content" }] },
     ]
+
+    isEditorShow.value = true
 }, 1000)
 ```
 
 In template, async-render component according to `isEditorShow` value.
 
-```html
+```xml
 <template>
     <div>
         <div v-if="isEditorShow" style="border: 1px solid #ccc">
@@ -345,7 +366,7 @@ You can extend toolbar and editor config in `toolbarConfig` and `editorConfig` (
 
 Be careful: life-cycle functions (format like `onXxx`) which in editor's config, **you should use Vue events, not use in `editorConfig`**
 
-```html
+```xml
 <template>
     <div style="border: 1px solid #ccc">
       <Toolbar ... />
@@ -397,7 +418,7 @@ return {
 
 You can use `getEditor(editorId)` to get the `editor` instance after it's rendered, and trigger it's [APIs]((./API.md)).
 
-```html
+```xml
 <template>
     <div>
         <button @click="insertText">insert text</button>
@@ -439,9 +460,13 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 
 function MyEditor() {
     const [editor, setEditor] = useState(null) // editor instance
+
+    // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
     const defaultContent = [
         { type: "paragraph", children: [{ text: "hello world" }], }
     ]
+    // const defaultHtml = '<p>hello&nbsp;</p>'
+
     const toolbarConfig = { }
     const editorConfig = {
         placeholder: 'Type here...',
@@ -469,6 +494,7 @@ function MyEditor() {
                 <Editor
                     defaultConfig={editorConfig}
                     defaultContent={defaultContent}
+                    // defaultHtml={defaultHtml}
                     mode="default"
                     style={{ height: '500px' }}
                 />
@@ -482,13 +508,15 @@ export default MyEditor
 
 ### Async set content
 
-For instance, you may async set content after ajax. **You can not change `defaultContent` directly, but async-render the component**.
+For instance, you may async set content after ajax. **You can not change `defaultContent` or `defaultHtml` directly, but async-render the component**.
 
 You can declare a state variable `isEditorShow = false`, set `true` when ajax done.
 
 ```js
-// const defaultContent = [ ... ]
+// Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
 const [defaultContent, setDefaultContent] = useState([])
+// const [defaultHtml, setDefaultHtml] = useState('')
+
 const [isEditorShow, setIsEditorShow] = useState(false)
 
 // Simulate ajax, async set content
@@ -496,6 +524,8 @@ setTimeout(() => {
     setDefaultContent([
         { type: "paragraph", children: [{ text: "ajax content" }] }
     ])
+    // setDefaultHtml('ajax&nbsp;content')
+
     setIsEditorShow(true)
 }, 1000)
 ```

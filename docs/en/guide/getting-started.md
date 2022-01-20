@@ -275,14 +275,18 @@ If you unwanted full-screen menu, you can hide this by `{ excludeKeys: 'fullScre
 
 You can create many editors in one page.
 
-```js
-<div id="toolbar-container-1"></div>
-<div id="editor-container-1"></div>
+```xml
+<div>
+  <div id="toolbar-container-1"></div>
+  <div id="editor-container-1"></div>
+</div>
 
 <hr>
 
-<div id="toolbar-container-2"></div>
-<div id="editor-container-2"></div>
+<div>
+  <div id="toolbar-container-2"></div>
+  <div id="editor-container-2"></div>
+</div>
 ```
 
 ```js

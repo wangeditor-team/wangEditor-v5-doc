@@ -281,14 +281,18 @@ wangEditor 工具栏内置了“全屏”菜单，但使用它需要有一个条
 
 wangEditor 支持多个编辑器共存，正常创建即可
 
-```html
-<div id="toolbar-container-1"></div>
-<div id="editor-container-1"></div>
+```xml
+<div>
+  <div id="toolbar-container-1"></div>
+  <div id="editor-container-1"></div>
+</div>
 
 <hr>
 
-<div id="toolbar-container-2"></div>
-<div id="editor-container-2"></div>
+<div>
+  <div id="toolbar-container-2"></div>
+  <div id="editor-container-2"></div>
+</div>
 ```
 
 ```js
