@@ -197,6 +197,10 @@ editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean 
     // event 是 ClipboardEvent 类型，可以拿到粘贴的数据
     // 可参考 https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
 
+    // const html = event.clipboardData.getData('text/html') // 获取粘贴的 html
+    // const text = event.clipboardData.getData('text/plain') // 获取粘贴的纯文本
+    // const rtf = event.clipboardData.getData('text/rtf') // 获取 rtf 数据（如从 word wsp 复制粘贴）
+
     // 同步
     editor.insertText('xxx')
 

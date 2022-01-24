@@ -188,6 +188,10 @@ const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean => {
     // event is ClipboardEvent type, see https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
 
+    // const html = event.clipboardData.getData('text/html') // get paste html
+    // const text = event.clipboardData.getData('text/plain') // get paste text
+    // const rtf = event.clipboardData.getData('text/rtf') // get paste rtf data (word, wsp...)
+
     // insert your custom text (sync)
     editor.insertText('xxx')
 
