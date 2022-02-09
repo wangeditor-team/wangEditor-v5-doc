@@ -288,7 +288,7 @@ If your server's response body is not above format, you can use the following `c
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    // form-data fieldName ，default 'wangeditor-uploaded-file'
+    // form-data fieldName ，default 'wangeditor-uploaded-image'
     fieldName: 'your-custom-name',
 
     // max size of one file
@@ -475,6 +475,179 @@ editorConfig.MENU_CONF['insertVideo'] = {
 }
 
 // do createEditor
+```
+
+## Upload Video
+
+```ts{4}
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
+
+editorConfig.MENU_CONF['uploadVideo'] = {
+    // menu config...
+}
+
+// do createEditor
+```
+
+### Server Address
+
+Required.
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+     server: '/api/upload',
+}
+```
+
+If uploaded successfully, the server must return data like this format:
+
+```json
+{
+    "errno": 0, // it's number, not string
+    "data": {
+        "url": "xxx", // video src, required
+    }
+}
+```
+
+If uploaded failed, the server must return data like this format:
+
+```json
+{
+    "errno": 1, // number, not equal 0
+    "message": "your failed message"
+}
+```
+
+:::tip
+If your server's response body is not above format, you can use the following `customInsert`.
+:::
+
+### Basic Config
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    // form-data fieldName ，default 'wangeditor-uploaded-video'
+    fieldName: 'your-custom-name',
+
+    // max size of one file
+    maxFileSize: 5 * 1024 * 1024, // 5M
+
+    // max length of uploaded files
+    maxNumberOfFiles: 3,
+
+    // file types, default `['video/*']`. If unwanted, you can set []
+    allowedFileTypes: ['video/*'],
+
+    // custom upload params, like token
+    meta: {
+        token: 'xxx',
+        otherKey: 'yyy'
+    },
+
+    // Embed meta in url, not in formData. Default is false
+    metaWithUrl: false,
+
+    // custom http headers
+    headers: {
+        Accept: 'text/x-json',
+        otherKey: 'xxx'
+    },
+
+    // send cookie when cross-origin
+    withCredentials: true,
+
+    // timeout, default 30s
+    timeout: 5 * 1000, // 5 秒
+
+    // video do not support base64 format src.
+}
+```
+
+### Callbacks
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    onBeforeUpload(files) {
+        // `files` is selected files, format like { key1: file1, key2: file2 }
+        return files
+
+        // You can return:
+        // 1. return a object (files or partial of files). Editor will upload files in this object
+        // 2. return false. Stop upload
+    },
+    onProgress(progress: number) {
+        // progress is a number 0-100
+        console.log('progress', progress)
+    },
+    // One file upload success
+    onSuccess(file: File, res: any) {
+        console.log(`${file.name} uploaded`, res)
+    },
+    // One file upload failed
+    onFailed(file: File, res: any) {
+        console.log(`${file.name} failed`, res)
+    },
+    // upload error or timeout
+    onError(file: File, err: any, res: any) {
+        console.log(`${file.name} error`, err, res)
+    },
+}
+```
+
+### Custom Functions
+
+If you use Type script, you should define a function type first.
+
+```ts
+type InsertFnType = (url: string) => void
+```
+
+#### Custom Insert
+
+If your server response body is not above format, you can use `customInsert` to insert video.
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    customInsert(res: any, insertFn: InsertFnType) {
+        // `res` is server response
+
+        // Get video's url in res, and insert to editor
+        insertFn(url)
+    },
+}
+```
+
+#### Custom Upload
+
+If you unwanted wangEditor's embedded upload function, you can use `customUpload` to upload videos yourself.
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    async customUpload(file: File, insertFn: InsertFnType) {
+        // `file` is your selected file
+
+        // upload videos yourself, and get video's url
+
+        // insert video
+        insertFn(url)
+    }
+}
+```
+
+#### Custom Select Videos
+
+If you unwanted wangEditor's embedded select function, you can use `customBrowseAndUpload` to implement by yourself.
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    customBrowseAndUpload(insertFn: InsertFnType) {
+        // 1. select files by yourself
+        // 2. upload files, and get video's url
+        // 3. insert video
+        insertFn(url)
+    }
+}
 ```
 
 ## Code Highlight

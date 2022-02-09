@@ -296,7 +296,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 {
     "errno": 1, // 只要不等于 0 就行
-    "message": '失败信息'
+    "message": "失败信息"
 }
 ```
 
@@ -309,7 +309,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    // form-data fieldName ，默认值 'wangeditor-uploaded-file'
+    // form-data fieldName ，默认值 'wangeditor-uploaded-image'
     fieldName: 'your-custom-name',
 
     // 单个文件的最大体积限制，默认为 2M
@@ -510,6 +510,188 @@ editorConfig.MENU_CONF['insertVideo'] = {
 }
 
 // 执行 createEditor
+```
+
+## 上传视频
+
+上传视频的配置比较复杂，拆分为几个部分来讲解。
+
+```ts{4}
+const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
+
+editorConfig.MENU_CONF['uploadVideo'] = {
+    // 上传视频的配置
+}
+
+// 执行 createEditor
+```
+
+### 服务端地址
+
+**必填**，否则上传视频会报错。
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+     server: '/api/upload',
+}
+```
+
+**【特别注意】服务端 response body 格式要求如下：**<br>
+上传成功的返回格式：
+
+```json
+{
+    "errno": 0, // 注意：值是数字，不能是字符串
+    "data": {
+        "url": "xxx", // 视频 src ，必须
+    }
+}
+```
+
+上传失败的返回格式：
+
+```json
+{
+    "errno": 1, // 只要不等于 0 就行
+    "message": "失败信息"
+}
+```
+
+:::tip
+如果你的服务端 response body 无法按照上述格式，可以使用下文的 `customInsert`
+:::
+
+### 基本配置
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    // form-data fieldName ，默认值 'wangeditor-uploaded-video'
+    fieldName: 'your-custom-name',
+
+    // 单个文件的最大体积限制，默认为 10M
+    maxFileSize: 5 * 1024 * 1024, // 5M
+
+    // 最多可上传几个文件，默认为 5
+    maxNumberOfFiles: 3,
+
+    // 选择文件时的类型限制，默认为 ['video/*'] 。如不想限制，则设置为 []
+    allowedFileTypes: ['video/*'],
+
+    // 自定义上传参数，例如传递验证的 token 等。参数会被添加到 formData 中，一起上传到服务端。
+    meta: {
+        token: 'xxx',
+        otherKey: 'yyy'
+    },
+
+    // 将 meta 拼接到 url 参数中，默认 false
+    metaWithUrl: false,
+
+    // 自定义增加 http  header
+    headers: {
+        Accept: 'text/x-json',
+        otherKey: 'xxx'
+    },
+
+    // 跨域是否传递 cookie ，默认为 false
+    withCredentials: true,
+
+    // 超时时间，默认为 30 秒
+    timeout: 15 * 1000, // 15 秒
+
+    // 视频不支持 base64 格式插入
+}
+```
+
+### 回调函数
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    // 上传之前触发
+    onBeforeUpload(files) {
+        // files 选中的文件列表，格式如 { key1: file1, key2: file2 }
+        return files
+
+        // 返回值可选择：
+        // 1. 返回一个对象（files 或者 files 的一部分），则将上传返回结果中的文件
+        // 2. 返回 false ，终止上传
+    },
+    // 上传进度的回调函数
+    onProgress(progress: number) {
+        // progress 是 0-100 的数字
+        console.log('progress', progress)
+    },
+    // 单个文件上传成功之后
+    onSuccess(file: File, res: any) {
+        console.log(`${file.name} 上传成功`, res)
+    },
+    // 单个文件上传失败
+    onFailed(file: File, res: any) {
+        console.log(`${file.name} 上传失败`, res)
+    },
+    // 上传错误，或者触发 timeout 超时
+    onError(file: File, err: any, res: any) {
+        console.log(`${file.name} 上传出错`, err, res)
+    },
+}
+```
+
+### 自定义功能
+
+如果用于 Typescript ，则要定义插入函数的类型。
+
+```ts
+type InsertFnType = (url: string) => void
+```
+
+#### 自定义插入
+
+如果你的服务端 response body 无法按照上文规定的格式，则无法插入视频，提示失败。<br>
+但你可以使用 `customInsert` 来自定义插入视频。
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    // 自定义插入视频
+    customInsert(res: any, insertFn: InsertFnType) {
+        // res 即服务端的返回结果
+
+        // 从 res 中找到 url ，然后插入视频
+        insertFn(url)
+    },
+}
+```
+
+#### 自定义上传
+
+如果你不想使用 wangEditor 自带的上传功能，例如你要上传到阿里云 OSS 。<br>
+可以通过 `customUpload` 来自定义上传。
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    // 自定义上传
+    async customUpload(file: File, insertFn: InsertFnType) {
+        // file 即选中的文件
+        // 自己实现上传，并得到视频 url
+        // 最后插入视频
+        insertFn(url)
+    }
+}
+```
+
+#### 自定义选择视频
+
+如果你不想使用 wangEditor 自带的选择文件功能，例如你有自己的图床，或者视频文件选择器。<br>
+可以通过 `customBrowseAndUpload` 来自己实现选择视频、上传视频，并插入视频。
+
+```ts
+editorConfig.MENU_CONF['uploadVideo'] = {
+    // 自定义选择视频
+    customBrowseAndUpload(insertFn: InsertFnType) {
+        // 自己选择文件
+        // 自己上传文件，并得到视频 url
+        // 最后插入视频
+        insertFn(url)
+    }
+}
 ```
 
 ## 代码高亮
