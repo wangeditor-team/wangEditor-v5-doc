@@ -37,6 +37,7 @@ module.exports = {
                         text: '基础',
                         children: [
                             '/guide/getting-started.md',
+                            '/guide/content.md',
                             '/guide/for-frame.md',
                         ]
                     },
@@ -80,6 +81,7 @@ module.exports = {
                         text: 'Basic',
                         children: [
                             '/en/guide/getting-started.md',
+                            '/en/guide/content.md',
                             '/en/guide/for-frame.md',
                         ]
                     },
