@@ -438,10 +438,10 @@ Boot.registerMenu(menuConf)
 ## 总结
 
 一个模块常用代码文件如下，共选择参考（不一定都用到）
-- render-elem.tsx
-- render-style.tsx
+- render-elem.ts
+- render-style.ts
 - elem-to-html.ts
-- style-to-html.tsx
+- style-to-html.ts
 - parse-elem-html.ts
 - parse-style-html.ts
 - plugin.ts
