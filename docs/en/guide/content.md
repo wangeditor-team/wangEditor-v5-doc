@@ -123,6 +123,20 @@ const editor = createEditor({
 })
 ```
 
+### Ajax async set content
+
+You can create editor after ajax success callback.
+
+```js
+// pseudo code
+ajax(url, res => {
+  const editor = createEditor({
+    // content or html
+    // other props...
+  })
+})
+```
+
 ::: tip
 Goto [API](./API.html) to checkout more content APIs.
 :::

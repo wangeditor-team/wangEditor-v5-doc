@@ -100,7 +100,7 @@ export default Vue.extend({
 <style src="@wangeditor/editor/dist/css/style.css"></style>
 ```
 
-### 异步设置内容
+### Ajax 异步设置内容
 
 例如，Ajax 异步获取内容，然后设置到编辑器中。**注意，不可以直接修改 `defaultContent` 或 `defaultHtml` ，而是要异步渲染组件**。
 
@@ -318,7 +318,7 @@ export default {
 <style src="@wangeditor/editor/dist/css/style.css"></style>
 ```
 
-### 异步设置内容
+### Ajax 异步设置内容
 
 例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` 或 `defaultHtml` ，而是要异步渲染组件**。
 
@@ -514,7 +514,7 @@ function MyEditor() {
 export default MyEditor
 ```
 
-### 异步设置内容
+### Ajax 异步设置内容
 
 例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` 或 `defaultHtml` ，而是要异步渲染组件**。
 

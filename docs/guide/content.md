@@ -129,6 +129,20 @@ const editor = createEditor({
 })
 ```
 
+### Ajax 异步设置内容
+
+可等待 Ajax 返回之后再创建编辑器。
+
+```js
+// 伪代码
+ajax(url, res => {
+  const editor = createEditor({
+    // content 或 html
+    // 其他属性
+  })
+})
+```
+
 ::: tip
 其他的内容处理，可参考 [API](./API.html)
 :::

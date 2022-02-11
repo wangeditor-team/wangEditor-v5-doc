@@ -97,7 +97,7 @@ Import style
 <style src="@wangeditor/editor/dist/css/style.css"></style>
 ```
 
-### Async set content
+### Ajax async set content
 
 For instance, you may async set content after ajax. **You can not change `defaultContent` or `defaultHtml` directly, but async-render the component**.
 
@@ -314,7 +314,7 @@ Import style
 <style src="@wangeditor/editor/dist/css/style.css"></style>
 ```
 
-### Async set content
+### Ajax async set content
 
 For instance, you may async set content after ajax. **You can not change `defaultContent` or `defaultHtml` directly, but async-render the component**.
 
@@ -506,7 +506,7 @@ function MyEditor() {
 export default MyEditor
 ```
 
-### Async set content
+### Ajax async set content
 
 For instance, you may async set content after ajax. **You can not change `defaultContent` or `defaultHtml` directly, but async-render the component**.
 
