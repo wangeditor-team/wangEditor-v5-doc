@@ -129,8 +129,12 @@ You can create editor after ajax success callback.
 
 ```js
 // pseudo code
+import { IDomEditor } from '@wangeditor/editor'
+
+let editor: IDomEditor | null = null
+
 ajax(url, res => {
-  const editor = createEditor({
+  editor = createEditor({
     // content or html
     // other props...
   })

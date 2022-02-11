@@ -133,10 +133,14 @@ const editor = createEditor({
 
 可等待 Ajax 返回之后再创建编辑器。
 
-```js
+```ts
 // 伪代码
+import { IDomEditor } from '@wangeditor/editor'
+
+let editor: IDomEditor | null = null
+
 ajax(url, res => {
-  const editor = createEditor({
+  editor = createEditor({
     // content 或 html
     // 其他属性
   })
