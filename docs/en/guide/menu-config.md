@@ -320,9 +320,6 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
     // timeout, default 10s
     timeout: 5 * 1000, // 5 秒
-
-    // If image's size less than this, then insert image by base64 format. Default 0.
-    base64LimitSize: 5 * 1024 // 5kb
 }
 ```
 
@@ -409,6 +406,17 @@ editorConfig.MENU_CONF['uploadImage'] = {
         // 3. insert image
         insertFn(url, alt, href)
     }
+}
+```
+
+### Base64 insert images
+
+```ts
+editorConfig.MENU_CONF['uploadImage'] = {
+    // other props...
+
+    // If image's size less than this, then insert image by base64 format. Default 0.
+    base64LimitSize: 5 * 1024 // 5kb
 }
 ```
 

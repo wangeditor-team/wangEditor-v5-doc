@@ -341,9 +341,6 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
     // 超时时间，默认为 10 秒
     timeout: 5 * 1000, // 5 秒
-
-    // 小于该值就插入 base64 格式（而不上传），默认为 0
-    base64LimitSize: 5 * 1024 // 5kb
 }
 ```
 
@@ -436,6 +433,17 @@ editorConfig.MENU_CONF['uploadImage'] = {
         // 最后插入图片
         insertFn(url, alt, href)
     }
+}
+```
+
+### base64 插入图片
+
+```ts
+editorConfig.MENU_CONF['uploadImage'] = {
+    // 其他配置...
+
+    // 小于该值就插入 base64 格式（而不上传），默认为 0
+    base64LimitSize: 5 * 1024 // 5kb
 }
 ```
 
