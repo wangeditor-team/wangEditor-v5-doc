@@ -33,7 +33,7 @@
             :mode="mode"
         />
         <Editor
-            style="height: 500px"
+            style="height: 500px; overflow-y: hidden;"
             :editorId="editorId"
             :defaultConfig="editorConfig"
             :defaultContent="getDefaultContent"
@@ -253,7 +253,7 @@ mounted() {
         :defaultContent="getDefaultContent"
         :defaultHtml="defaultHtml"
         :mode="mode"
-        style="height: 500px"
+        style="height: 500px; overflow-y: hidden;"
       />
       <!-- 注意: defaultContent (JSON 格式) 和 defaultHtml (HTML 格式) ，二选一 -->
     </div>
@@ -504,7 +504,7 @@ function MyEditor() {
                     defaultContent={defaultContent}
                     // defaultHtml={defaultHtml}
                     mode="default"
-                    style={{ height: '500px' }}
+                    style={{ height: '500px', overflowY: 'hidden' }}
                 />
             </div>
         </>

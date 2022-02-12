@@ -30,7 +30,7 @@ Template
             :mode="mode"
         />
         <Editor
-            style="height: 500px"
+            style="height: 500px; overflow-y: hidden;"
             :editorId="editorId"
             :defaultConfig="editorConfig"
             :defaultContent="getDefaultContent"
@@ -249,7 +249,7 @@ Template
         :defaultContent="getDefaultContent"
         :defaultHtml="defaultHtml"
         :mode="mode"
-        style="height: 500px"
+        style="height: 500px; overflow-y: hidden;"
       />
       <!-- Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format) -->
     </div>
@@ -496,7 +496,7 @@ function MyEditor() {
                     defaultContent={defaultContent}
                     // defaultHtml={defaultHtml}
                     mode="default"
-                    style={{ height: '500px' }}
+                    style={{ height: '500px', overflowY: 'hidden' }}
                 />
             </div>
         </>
