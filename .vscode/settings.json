@@ -4,6 +4,7 @@
         "clonedeep",
         "dev",
         "docs",
+        "Elems",
         "hoverbar",
         "keys",
         "vdom",

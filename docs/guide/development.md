@@ -63,13 +63,13 @@ function renderParagraph(elem: SlateElement, children: VNode[] | null, editor: I
 }
 
 // 渲染配置
-const conf = {
+const renderElemConf = {
     type: 'paragraph', // 节点 type ，重要！！！
     renderElem: renderParagraph,
 }
 
 // 注册到 wangEditor
-Boot.registerRenderElem(conf)
+Boot.registerRenderElem(renderElemConf)
 ```
 
 PS：`h` 函数的使用，请参考 [snabbdom](https://github.com/snabbdom/snabbdom)
@@ -156,13 +156,13 @@ function paragraphToHtml(elem: SlateElement, childrenHtml: string): string {
 }
 
 // 配置
-const conf = {
+const elemToHtmlConf = {
     type: 'paragraph', // 节点 type ，重要！！！
     elemToHtml: paragraphToHtml,
 }
 
 // 注册到 wangEditor
-Boot.registerElemToHtml(conf)
+Boot.registerElemToHtml(elemToHtmlConf)
 ```
 
 可参考 wangEditor 源码中 [基础模块](https://github.com/wangeditor-team/wangEditor-v5/tree/main/packages/basic-modules/src/modules) 中各个模块的所有 `elem-to-html.ts` 文件。
@@ -366,7 +366,7 @@ class MyButtonMenu implements IButtonMenu {
 }
 
 // 定义菜单配置
-export const menuConf = {
+export const menu1Conf = {
   key: 'menu1', // menu key ，唯一。注册之后，可配置到工具栏
   factory() {
     return new MyButtonMenu()
@@ -374,7 +374,7 @@ export const menuConf = {
 }
 
 // 注册到 wangEditor
-Boot.registerMenu(menuConf)
+Boot.registerMenu(menu1Conf)
 ```
 
 ### SelectMenu
@@ -395,7 +395,7 @@ class MySelectMenu implements ISelectMenu {
 }
 
 // 定义菜单配置
-export const menuConf = {
+export const menu2Conf = {
   key: 'menu2', // menu key ，唯一。注册之后，可配置到工具栏
   factory() {
     return new MySelectMenu()
@@ -403,7 +403,7 @@ export const menuConf = {
 }
 
 // 注册到 wangEditor
-Boot.registerMenu(menuConf)
+Boot.registerMenu(menu2Conf)
 ```
 
 ### ModalMenu
@@ -424,7 +424,7 @@ class MyModalMenu implements IModalMenu {
 }
 
 // 定义菜单配置
-export const menuConf = {
+export const menu3Conf = {
   key: 'menu3', // menu key ，唯一。注册之后，可配置到工具栏
   factory() {
     return new MyModalMenu()
@@ -432,7 +432,29 @@ export const menuConf = {
 }
 
 // 注册到 wangEditor
-Boot.registerMenu(menuConf)
+Boot.registerMenu(menu3Conf)
+```
+
+## 封装为模块
+
+可以把上述的 renderElem toHtml parseHtml 插件 菜单等，封装为一个 module ，然后一次性注册。
+
+```ts
+import { Boot } from '@wangeditor/editor'
+import { IModuleConf } from '@wangeditor/core'
+
+const module: Partial<IModuleConf> = {
+  editorPlugin: withBreak,
+  renderElems: [renderElemConf],
+  renderStyle: renderStyle,
+  elemsToHtml: [elemToHtmlConf],
+  styleToHtml: styleToHtml,
+  parseElemsHtml: [parseHtmlConf],
+  parseStyleHtml: parseStyleHtml,
+  menus: [menu1Conf, menu2Conf, menu3Conf],
+}
+
+Boot.registerModule(module)
 ```
 
 ## 总结
