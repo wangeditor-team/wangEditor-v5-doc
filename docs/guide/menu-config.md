@@ -350,7 +350,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 editorConfig.MENU_CONF['uploadImage'] = {
     // 上传之前触发
     onBeforeUpload(file) {
-        // file 选中的文件列表，格式如 { key: file }
+        // file 选中的文件，格式如 { key: file }
         return file
 
         // 可以 return
@@ -616,7 +616,7 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 editorConfig.MENU_CONF['uploadVideo'] = {
     // 上传之前触发
     onBeforeUpload(file) {
-        // file 选中的文件列表，格式如 { key: file }
+        // file 选中的文件，格式如 { key: file }
         return file
 
         // 可以 return
