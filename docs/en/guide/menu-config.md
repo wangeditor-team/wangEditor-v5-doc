@@ -327,13 +327,13 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    onBeforeUpload(files) {
-        // `files` is selected files, format like { key1: file1, key2: file2 }
-        return files
+    onBeforeUpload(file) {
+        // `file` is selected file, format like { key: file }
+        return file
 
         // You can return:
-        // 1. return a object (files or partial of files). Editor will upload files in this object
-        // 2. return false. Stop upload
+        // 1. return the file object or a new file object. Editor will upload it.
+        // 2. return false. Stop upload this file.
     },
     onProgress(progress: number) {
         // progress is a number 0-100
@@ -576,13 +576,13 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    onBeforeUpload(files) {
-        // `files` is selected files, format like { key1: file1, key2: file2 }
-        return files
+    onBeforeUpload(file) {
+        // `file` is selected file, format like { key: file }
+        return file
 
         // You can return:
-        // 1. return a object (files or partial of files). Editor will upload files in this object
-        // 2. return false. Stop upload
+        // 1. return the file object or a new file object. Editor will upload it.
+        // 2. return false. Stop upload this file.
     },
     onProgress(progress: number) {
         // progress is a number 0-100

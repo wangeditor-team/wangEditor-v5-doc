@@ -349,13 +349,13 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 上传之前触发
-    onBeforeUpload(files) {
-        // files 选中的文件列表，格式如 { key1: file1, key2: file2 }
-        return files
+    onBeforeUpload(file) {
+        // file 选中的文件列表，格式如 { key: file }
+        return file
 
-        // 返回值可选择：
-        // 1. 返回一个对象（files 或者 files 的一部分），则将上传返回结果中的文件
-        // 2. 返回 false ，终止上传
+        // 可以 return
+        // 1. return file 或者 new 一个 file ，接下来将上传
+        // 2. return false ，不上传这个 file
     },
     // 上传进度的回调函数
     onProgress(progress: number) {
@@ -615,13 +615,13 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
     // 上传之前触发
-    onBeforeUpload(files) {
-        // files 选中的文件列表，格式如 { key1: file1, key2: file2 }
-        return files
+    onBeforeUpload(file) {
+        // file 选中的文件列表，格式如 { key: file }
+        return file
 
-        // 返回值可选择：
-        // 1. 返回一个对象（files 或者 files 的一部分），则将上传返回结果中的文件
-        // 2. 返回 false ，终止上传
+        // 可以 return
+        // 1. return file 或者 new 一个 file ，接下来将上传
+        // 2. return false ，不上传这个 file
     },
     // 上传进度的回调函数
     onProgress(progress: number) {
