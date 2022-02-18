@@ -455,6 +455,14 @@ editor.destroy()
 `destroy` can only remove the DOM element, remove global event binding.
 :::
 
+### Get Editable Container
+
+Get editable container DOM element.
+
+```ts
+editor.getEditableContainer()
+```
+
 ## selection API
 
 You may see [Slate Location doc](https://docs.slatejs.org/concepts/03-locations) API first.

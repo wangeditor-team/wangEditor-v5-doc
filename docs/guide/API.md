@@ -506,6 +506,14 @@ destroy 仅仅是移除编辑器、工具栏的 DOM 节点，全局绑定的事�
 自己定义的变量，如 `const editor = createEditor({...})` ，这个 `editor` 还需要自己来销毁。
 :::
 
+### 获取编辑区域容器 DOM
+
+获取编辑区域容器 DOM 节点
+
+```ts
+editor.getEditableContainer()
+```
+
 ## selection 相关
 
 selection 数据结构参考 [slate Location](https://docs.slatejs.org/concepts/03-locations) 。
