@@ -177,6 +177,7 @@ Boot.registerElemToHtml(elemToHtmlConf)
 
 ```ts
 import { Boot, SlateText, SlateElement, SlateDescendant } from '@wangeditor/editor'
+import $ from 'dom7' // jquery 也可以
 
 /**
  * style to html
@@ -189,7 +190,7 @@ function styleToHtml(node: SlateDescendant, nodeHtml: string): string {
     const { color, bgColor } = node as SlateText
     // const { lineHeight } = node as SlateElement // node 可能是 Text 也可能是 Element
 
-    // 设置样式
+    // 设置 css 样式
     const $elem = $(elemHtml)
     if (color) $elem.css('color', color)
     if (bgColor) $elem.css('background-color', bgColor)
@@ -200,7 +201,7 @@ function styleToHtml(node: SlateDescendant, nodeHtml: string): string {
 }
 
 // 注册到 wangEditor
-Boot.registerStyleToHtmlHandler(styleToHtml)
+Boot.registerStyleToHtml(styleToHtml)
 ```
 
 可参考 wangEditor 源码中 [颜色、背景色](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/color/style-to-html.ts) 和 [字体字号](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/font-size-family/style-to-html.ts) 的 style-to-html 。
