@@ -542,19 +542,25 @@ editor.isSelectedAll() // true/false
 
 ### getSelectionPosition
 
-Get text selection position data (like `top` `left` `right` `bottom`), which is relative to editor DOM, not body.
+Get text selection position data (like `top` `left` `right` `bottom`).
 
 ```ts
 editor.getSelectionPosition() // eg. { left: "80.15px", top: "116px" }
 ```
 
+PS: This position is **relative to editor DOM node**, not `<body>`.<br>
+You can get editor DOM node's position by `editor.getEditableContainer().getBoundingClientRect()`, then compute position which is relative to `<body>`.
+
 ### getNodePosition
 
-Get selected node position data (like `top` `left` `right` `bottom`), which is relative to editor DOM, not body.
+Get selected node position data (like `top` `left` `right` `bottom`).
 
 ```ts
-editor.getNodePosition(node)
+editor.getNodePosition(node) // eg. { left: "80.15px", top: "116px" }
 ```
+
+PS: This position is **relative to editor DOM node**, not `<body>`.<br>
+You can get editor DOM node's position by `editor.getEditableContainer().getBoundingClientRect()`, then compute position which is relative to `<body>`.
 
 ## Custom event
 

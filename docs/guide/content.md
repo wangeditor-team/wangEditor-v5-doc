@@ -21,10 +21,12 @@ const text = editor.getText()
 
 ### 自定义样式
 
-编辑器输出或者生成的 html 都是纯标签，直接输出显示看起来会和编辑器的不一样。<br>
+编辑器输出或者生成的 html 都是**纯标签**，没有内联样式。直接输出显示看起来会和编辑器的不一样。<br>
 所以，需要在显示时，对 html 增加一些样式。
 
 以下是几个最常见的样式，作为参考。你可以再自己修改，也据此实现“多皮肤”功能。
+
+PS：详细的样式，你可以参考 [style.css](https://cdn.jsdelivr.net/npm/@wangeditor/editor@0.15.7/dist/css/style.css)（压缩代码，自己[格式化](https://tool.oschina.net/codeformat/css)一下）中 `.w-e-text-container [data-slate-editor]` 的样式代码。
 
 ```css
 p, li, td, th, blockquote {

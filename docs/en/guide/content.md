@@ -21,7 +21,8 @@ const text = editor.getText()
 
 ### Custom Style
 
-The html is clean, only has tag, but no style. You may define some style like:
+The html is clean, only has tag, but no style. You may define some style like:<br>
+PS: You can check out `.w-e-text-container [data-slate-editor]` style codes in [style.css](https://cdn.jsdelivr.net/npm/@wangeditor/editor@0.15.7/dist/css/style.css).
 
 ```css
 p, li, td, th, blockquote {

@@ -597,19 +597,25 @@ editor.isSelectedAll() // true/false
 
 ### getSelectionPosition
 
-获取选区的定位（相对于编辑区域，而非 body），**将视情况返回 `left` `right` `top` `bottom` 的其中几个**。
+获取选区的定位，**将视情况返回 `left` `right` `top` `bottom` 的其中几个**。
 
 ```ts
 editor.getSelectionPosition() // 例如 { left: "80.15px", top: "116px" }
 ```
 
+【注意】该定位是**相对于编辑区域**的，而非 body 。<br>
+你可以获取编辑区域 DOM 元素的定位 `editor.getEditableContainer().getBoundingClientRect()` 从而计算出相对于 body 的定位。
+
 ### getNodePosition
 
-获取某个节点的定位（相对于编辑区域，而非 body），**将视情况返回 `left` `right` `top` `bottom` 的其中几个**。
+获取某个节点的定位，**将视情况返回 `left` `right` `top` `bottom` 的其中几个**。
 
 ```ts
-editor.getNodePosition(node)
+editor.getNodePosition(node) // 例如 { left: "80.15px", top: "116px" }
 ```
+
+【注意】该定位是**相对于编辑区域**的，而非 body。<br>
+你可以获取编辑区域 DOM 元素的定位 `editor.getEditableContainer().getBoundingClientRect()` 从而计算出相对于 body 的定位。
 
 ## 自定义事件
 
