@@ -200,8 +200,12 @@ editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean 
         editor.insertText('yy')
     }, 1000)
 
-    return false // prevent default paste event.
-    // return true // continue default paste event.
+    // 1. prevent default paste event.
+    event.preventDefault()
+    return false
+
+    // 2. continue default paste event.
+    // return true
 }
 ```
 

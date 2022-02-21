@@ -209,8 +209,12 @@ editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean 
         editor.insertText('yy')
     }, 1000)
 
-    return false // 阻止默认的粘贴行为
-    // return true // 继续执行默认的粘贴行为
+    // 阻止默认的粘贴行为
+    event.preventDefault()
+    return false
+
+    // 继续执行默认的粘贴行为
+    // return true
 }
 ```
 

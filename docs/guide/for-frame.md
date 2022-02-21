@@ -179,13 +179,19 @@ methods: {
     customAlert(info: string, type: string) { window.alert(`customAlert in Vue demo\n${type}:\n${info}`) },
     customPaste(editor, event, callback) {
         console.log('ClipboardEvent 粘贴事件对象', event)
+        // const html = event.clipboardData.getData('text/html') // 获取粘贴的 html
+        // const text = event.clipboardData.getData('text/plain') // 获取粘贴的纯文本
+        // const rtf = event.clipboardData.getData('text/rtf') // 获取 rtf 数据（如从 word wsp 复制粘贴）
 
         // 自定义插入内容
         editor.insertText('xxx')
 
-        // 返回值（注意，vue 事件的返回值，不能用 return）
-        callback(false) // 返回 false ，阻止默认粘贴行为
-        // callback(true) // 返回 true ，继续默认的粘贴行为
+        // 返回 false ，阻止默认粘贴行为
+        event.preventDefault()
+        callback(false) // 返回值（注意，vue 事件的返回值，不能用 return）
+
+        // 返回 true ，继续默认的粘贴行为
+        // callback(true)
     },
 }
 ```
@@ -396,13 +402,19 @@ const handleBlur = (editor) => { console.log('blur', editor) }
 const customAlert = (info, type) => { alert(`【自定义提示】${type} - ${info}`) }
 const customPaste = (editor, event, callback) => {
     console.log('ClipboardEvent 粘贴事件对象', event)
+    // const html = event.clipboardData.getData('text/html') // 获取粘贴的 html
+    // const text = event.clipboardData.getData('text/plain') // 获取粘贴的纯文本
+    // const rtf = event.clipboardData.getData('text/rtf') // 获取 rtf 数据（如从 word wsp 复制粘贴）
 
     // 自定义插入内容
     editor.insertText('xxx')
 
-    // 返回值（注意，vue 事件的返回值，不能用 return）
-    callback(false) // 返回 false ，阻止默认粘贴行为
-    // callback(true) // 返回 true ，继续默认的粘贴行为
+    // 返回 false ，阻止默认粘贴行为
+    event.preventDefault()
+    callback(false) // 返回值（注意，vue 事件的返回值，不能用 return）
+
+    // 返回 true ，继续默认的粘贴行为
+    // callback(true)
 }
 
 return {

@@ -177,13 +177,19 @@ methods: {
     customAlert(info: string, type: string) { window.alert(`customAlert in Vue demo\n${type}:\n${info}`) },
     customPaste(editor, event, callback) {
         console.log('ClipboardEvent is paste event data', event)
+        // const html = event.clipboardData.getData('text/html') // get paste html
+        // const text = event.clipboardData.getData('text/plain') // get paste text
+        // const rtf = event.clipboardData.getData('text/rtf') // get paste rtf data (word, wsp...)
 
         // Insert some text
         editor.insertText('xxx')
 
-        // You can not `return xxx` in Vue event function, use `callback`
-        callback(false) // return false ，prevent default paste behavior
-        // callback(true) // return true ，go on default paste behavior
+        // return false ，prevent default paste behavior
+        event.preventDefault() // If you return false
+        callback(false) // You can not `return xxx` in Vue event function, use `callback`
+
+        // return true ，go on default paste behavior
+        // callback(true)
     },
 }
 ```
@@ -392,13 +398,19 @@ const handleBlur = (editor) => { console.log('blur', editor) }
 const customAlert = (info, type) => { alert(`Custom alert: ${type} - ${info}`) }
 const customPaste = (editor, event, callback) => {
     console.log('ClipboardEvent is paste event data', event)
+    // const html = event.clipboardData.getData('text/html') // get paste html
+    // const text = event.clipboardData.getData('text/plain') // get paste text
+    // const rtf = event.clipboardData.getData('text/rtf') // get paste rtf data (word, wsp...)
 
     // Insert your custom text
     editor.insertText('xxx')
 
-    // You can not `return xxx` in Vue event function, use `callback`
-    callback(false) // return false ，prevent default paste behavior
-    // callback(true) // return true ，go on default paste behavior
+    // return false ，prevent default paste behavior
+    event.preventDefault()
+    callback(false) // You can not `return xxx` in Vue event function, use `callback`
+
+    // return true ，go on default paste behavior
+    // callback(true)
 }
 
 return {
