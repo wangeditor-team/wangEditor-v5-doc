@@ -20,11 +20,12 @@ const toolbar = createToolbar({
   config: toolbarConfig
   mode: 'default'
 })
-
-// 可通过 toolbar.getConfig() 查看工具栏的默认配置
 ```
 
-【附加】如果你使用 Vue React ，可以通过如下代码获取 `toolbar` 实例
+## getConfig
+
+可通过 `toolbar.getConfig()` 查看工具栏的默认配置。<br>
+如果你使用 Vue React ，可以通过如下代码获取 `toolbar` 实例
 
 ```ts
 import { DomEditor } from '@wangeditor/editor'
@@ -35,7 +36,8 @@ const toolbar = DomEditor.getToolbar(editor)
 
 **重新**配置工具栏，显示哪些菜单，以及菜单的排序、分组。
 
-【注意】可以通过 `editor.getAllMenuKeys()` 查询编辑器注册的所有菜单 key 。这些都可以用于 `toolbarKeys` 中。
+- `toolbar.getConfig().toolbarKeys` 查看当前的默认配置
+- `editor.getAllMenuKeys()` 查询编辑器注册的所有菜单 key
 
 ```ts
 const toolbarConfig: Partial<IToolbarConfig> = {
