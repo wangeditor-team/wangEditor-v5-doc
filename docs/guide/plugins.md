@@ -5,3 +5,4 @@
 - [formula 公式](https://github.com/wangeditor-team/wangEditor-plugin-formula)
 - [markdown](https://github.com/wangeditor-team/wangEditor-plugin-md)
 - [上传附件](https://github.com/wangeditor-team/wangEditor-plugin-upload-attachment)
+- [链接卡片](https://github.com/wangeditor-team/wangEditor-plugin-link-card)

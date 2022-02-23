@@ -27,6 +27,7 @@ module.exports = {
                 navbar: [
                     { text: '指南', link: '/guide/' },
                     { text: 'Demo', link: 'https://www.wangeditor.com/demo/zh-CN/' },
+                    { text: '插件', link: '/guide/plugins.md' },
                     { text: 'Github', link: 'https://github.com/wangeditor-team/wangEditor' },
                 ],
 
@@ -71,6 +72,7 @@ module.exports = {
                 navbar: [
                     { text: 'Guide', link: '/en/guide/' },
                     { text: 'Demo', link: 'https://www.wangeditor.com/demo/en/' },
+                    { text: 'Plugins', link: '/en/guide/plugins.md' },
                     { text: 'Github', link: 'https://github.com/wangeditor-team/wangEditor' },
                 ],
 
