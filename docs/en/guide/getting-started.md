@@ -87,10 +87,10 @@ When editor content changed, sync to `<textarea>`.
 editorConfig.onChange = (editor: IDomEditor) => {
     const content = editor.children
     const contentStr = JSON.stringify(content)
-    document.getElementById('textarea-1').innerHTML = contentStr
+    document.getElementById('textarea-1').value = contentStr
 
     const html = editor.getHtml()
-    document.getElementById('textarea-2').innerHTML = html
+    document.getElementById('textarea-2').value = html
 }
 ```
 
