@@ -44,15 +44,10 @@ const toolbar = createToolbar({
 ### 兼容性
 
 - 兼容主流的 PC 浏览器，如 Chrome Firefox Safari Edge 等
-- 暂不支持移动端（后续支持～）
+- 暂不支持移动端编辑（支持移动端查看）
 - **不再支持 IE 浏览器**
 
 ### 交流
 
 - 加入 QQ 群 `681464059`
 - [提交问题和建议](https://github.com/wangeditor-team/wangEditor-v5/issues)
-
-### 团队
-
-- [研发团队](https://github.com/wangeditor-team/wangEditor-v5/graphs/contributors)
-- [申请加入团队](https://github.com/wangeditor-team/wangEditor-v5/blob/main/docs/join.md)

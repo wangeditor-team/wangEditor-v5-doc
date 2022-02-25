@@ -45,13 +45,9 @@ const toolbar = createToolbar({
 ### Compatibility
 
 - Support most PC browsers, like Chrome, Firefox, Safari, Edge
-- Not support mobile browsers at the moment
+- Not support mobile editing at the moment (Support mobile viewing)
 - **No longer support IE browser**
 
 ### Communication
 
 - [Commit an issue]((https://github.com/wangeditor-team/wangEditor-v5/issues))
-
-### Team
-
-- [Team members](https://github.com/wangeditor-team/wangEditor-v5/graphs/contributors)
