@@ -97,6 +97,10 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 // 创建 toolbar
 ```
 
+如果你想排除某个菜单组，可通过 `toolbar.getConfig().toolbarKeys` 找到这个菜单组的 key 。
+
+![](/image/exclude-group.png)
+
 ## modalAppendToBody
 
 将菜单弹出的 modal 添加到 body 下，并自定义 modal 的定位和其他样式。

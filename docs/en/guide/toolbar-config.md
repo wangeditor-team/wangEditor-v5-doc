@@ -92,6 +92,10 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 // create toolbar
 ```
 
+If you want to exclude a menu group, you can find it's key by `toolbar.getConfig().toolbarKeys`
+
+![](/image/exclude-group-en.png)
+
 ## modalAppendToBody
 
 You may want to append the modal when a menu clicked to `<body>`, and custom its position style.
