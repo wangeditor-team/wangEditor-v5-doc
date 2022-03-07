@@ -158,17 +158,24 @@ You can write content by selection APIs and node APIs.
 ```ts
 import { SlateTransforms } from '@wangeditor/editor'
 
-// Select all
+// Select all, then delete
 editor.select([])
-// Delete selected content
 editor.deleteFragment()
-// Insert your content
-SlateTransforms.insertNodes(editor, [
-  { type: 'paragraph', children: [{ text: 'your text 1' }] },
-  { type: 'paragraph', children: [{ text: 'your text 2' }] }
-])
-// Delete the first paragraph (optional)
-SlateTransforms.removeNodes(editor, { at: [0] })
+
+// 1. Insert HTML format
+// 1.1 Change type of first element
+SlateTransforms.setNodes(editor, { type: 'paragraph' }, { mode: 'highest' })
+// 1.2 Insert your content
+editor.dangerouslyInsertHtml('<p>your text</p>')
+
+// // 2. Insert JSON format
+// // 2.1 Insert your content
+// SlateTransforms.insertNodes(editor, [
+//   { type: 'paragraph', children: [{ text: 'your text 1' }] },
+//   { type: 'paragraph', children: [{ text: 'your text 2' }] }
+// ])
+// // 2.2 Delete the first paragraph (optional)
+// SlateTransforms.removeNodes(editor, { at: [0] })
 ```
 
 ### undo

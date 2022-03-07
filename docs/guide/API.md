@@ -173,17 +173,24 @@ editor.clear()
 ```ts
 import { SlateTransforms } from '@wangeditor/editor'
 
-// 全选
+// 全选并删除
 editor.select([])
-// 删除选中内容
 editor.deleteFragment()
-// 插入自己的内容
-SlateTransforms.insertNodes(editor, [
-  { type: 'paragraph', children: [{ text: '你的文章内容1' }] },
-  { type: 'paragraph', children: [{ text: '你的文章内容2' }] }
-])
-// 删除第一个空行（按需）
-SlateTransforms.removeNodes(editor, { at: [0] })
+
+// 1. 插入 HTML 格式
+// 1.1 第一行改为 paragraph
+SlateTransforms.setNodes(editor, { type: 'paragraph' }, { mode: 'highest' })
+// 1.2 插入内容
+editor.dangerouslyInsertHtml('<p>你的文章内容</p>')
+
+// // 2. 插入 JSON 内容
+// // 2.1 插入 node
+// SlateTransforms.insertNodes(editor, [
+//   { type: 'paragraph', children: [{ text: '你的文章内容1' }] },
+//   { type: 'paragraph', children: [{ text: '你的文章内容2' }] }
+// ])
+// // 2.2 删除第一个空行（按需）
+// SlateTransforms.removeNodes(editor, { at: [0] })
 ```
 
 ### undo
