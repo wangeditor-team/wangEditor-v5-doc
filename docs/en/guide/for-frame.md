@@ -469,7 +469,7 @@ Install `@wangeditor/editor` and `@wangeditor/editor-for-react`, see [Installati
 import React, { useState, useEffect } from 'react'
 import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
-import {IDomEditor} from '@wangeditor/editor'
+import { IDomEditor } from '@wangeditor/editor'
 
 function MyEditor() {
     const [editor, setEditor] = useState<IDomEditor | null>(null) // editor instance
