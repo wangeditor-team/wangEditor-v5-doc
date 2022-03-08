@@ -477,9 +477,10 @@ return {
 import React, { useState, useEffect } from 'react'
 import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
+import {IDomEditor} from '@wangeditor/editor'
 
 function MyEditor() {
-    const [editor, setEditor] = useState(null) // 存储 editor 实例
+    const [editor, setEditor] = useState<IDomEditor | null>(null) // 存储 editor 实例
 
     // `defaultContent` (JSON 格式) 和 `defaultHtml` (HTML 格式) 二选一
     const defaultContent = [
