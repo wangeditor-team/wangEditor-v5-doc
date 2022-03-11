@@ -237,3 +237,7 @@ editorConfig.customAlert = (s: string, t: string) => {
     }
 }
 ```
+
+## EXTEND_CONF
+
+Use in third-party plugin, like [mention plugin](https://github.com/wangeditor-team/wangEditor-plugin-mention/blob/main/README-en.md).
