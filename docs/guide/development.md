@@ -332,9 +332,10 @@ Boot.registerPlugin(withBreak)
 
 ## 注册菜单
 
-菜单分为三种，都可以扩展
+菜单分为几种，都可以扩展
 - ButtonMenu 按钮菜单，如加粗、斜体
 - SelectMenu 下拉菜单，如标题、字体、行高
+- DropPanelMenu 下拉面板菜单，如颜色、创建表格
 - ModalMenu 弹出框菜单，如插入链接、插入网络图片
 
 注意，下面代码中的 `key` 即菜单 key ，要唯一不重复。<br>
@@ -407,6 +408,35 @@ export const menu2Conf = {
 Boot.registerMenu(menu2Conf)
 ```
 
+### DropPanelMenu
+
+代码如下。菜单的详细配置，可参考“颜色”菜单[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/color/menu/BaseMenu.ts)。
+
+注意：
+- 必须在创建编辑器之前注册
+- 全局只能注册一次，不要重复注册
+
+```ts
+import { IDropPanelMenu } from '@wangeditor/core'
+import { Boot } from '@wangeditor/editor'
+
+// 定义菜单 class
+class MyDropPanelMenu implements IDropPanelMenu {
+  // 菜单配置，代码可参考“颜色”菜单源码
+}
+
+// 定义菜单配置
+export const menu3Conf = {
+  key: 'menu3', // menu key ，唯一。注册之后，可配置到工具栏
+  factory() {
+    return new MyDropPanelMenu()
+  },
+}
+
+// 注册到 wangEditor
+Boot.registerMenu(menu3Conf)
+```
+
 ### ModalMenu
 
 代码如下。菜单配置可参考“插入链接”菜单[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/basic-modules/src/modules/link/menu/InsertLink.ts)。
@@ -425,15 +455,15 @@ class MyModalMenu implements IModalMenu {
 }
 
 // 定义菜单配置
-export const menu3Conf = {
-  key: 'menu3', // menu key ，唯一。注册之后，可配置到工具栏
+export const menu4Conf = {
+  key: 'menu4', // menu key ，唯一。注册之后，可配置到工具栏
   factory() {
     return new MyModalMenu()
   },
 }
 
 // 注册到 wangEditor
-Boot.registerMenu(menu3Conf)
+Boot.registerMenu(menu4Conf)
 ```
 
 ## 封装为模块
