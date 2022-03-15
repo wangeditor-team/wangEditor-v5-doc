@@ -36,7 +36,7 @@
             style="height: 500px; overflow-y: hidden;"
             :editorId="editorId"
             :defaultConfig="editorConfig"
-            :defaultContent="getDefaultContent"
+            :defaultContent="defaultContent"
             :defaultHtml="defaultHtml"
             :mode="mode"
         />
@@ -52,7 +52,6 @@ script
 import Vue from 'vue'
 import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
-import cloneDeep from 'lodash.clonedeep'
 
 export default Vue.extend({
     components: { Editor, Toolbar },
@@ -70,11 +69,6 @@ export default Vue.extend({
             defaultHtml: '<p>hello</p>',
         }
     },
-    computed: {
-        getDefaultContent() {
-            return cloneDeep(this.defaultContent) //【注意】深度拷贝 defaultContent ，否则会报错
-        }
-    },
     beforeDestroy() {
         const editor = getEditor(this.editorId)
         if (editor == null) return
@@ -90,7 +84,6 @@ export default Vue.extend({
 :::tip
 - `editorId` 要全局唯一，不可重复
 - `defaultContent`（JSON 格式） 和 `defaultHtml`（HTML 格式），二选一
-- 如果使用 `defaultContent` ，要使用 `computed` 和深拷贝，否则会报错
 - 组件销毁时，要及时销毁编辑器
 :::
 
@@ -256,7 +249,7 @@ mounted() {
       <Editor
         :editorId="editorId"
         :defaultConfig="editorConfig"
-        :defaultContent="getDefaultContent"
+        :defaultContent="defaultContent"
         :defaultHtml="defaultHtml"
         :mode="mode"
         style="height: 500px; overflow-y: hidden;"
@@ -270,9 +263,8 @@ script
 
 ```html
 <script>
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
-import cloneDeep from 'lodash.clonedeep'
 
 export default {
   components: { Editor, Toolbar },
@@ -284,7 +276,6 @@ export default {
     const defaultContent = [
         { type: 'paragraph', children: [{ text: '一行文字' }] }
     ]
-    const getDefaultContent = computed(() => cloneDeep(defaultContent)) // 注意，要深拷贝 defaultContent ，否则报错
 
     const toolbarConfig = {}
     const editorConfig = { placeholder: '请输入内容...' }
@@ -302,7 +293,6 @@ export default {
       editorId,
       mode: 'default',
       defaultHtml,
-      getDefaultContent,
       toolbarConfig,
       editorConfig,
     };
@@ -314,7 +304,6 @@ export default {
 :::tip
 - `editorId` 要全局唯一，不可重复
 - `defaultContent` (JSON 格式) 和 `defaultHtml` (HTML 格式) ，二选一
-- 如果选择了 `defaultContent` ，要使用 `computed` 和深拷贝，否则会报错
 - 组件销毁时，要及时销毁编辑器
 :::
 
@@ -335,9 +324,7 @@ export default {
 const defaultHtml = ref('')
 
 // const defaultContent = []
-// const getDefaultContent = computed(() => cloneDeep(defaultContent))
 const defaultContent = ref([])
-const getDefaultContent = computed(() => cloneDeep(defaultContent.value))
 
 const isEditorShow = ref(false)
 

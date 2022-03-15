@@ -33,7 +33,7 @@ Template
             style="height: 500px; overflow-y: hidden;"
             :editorId="editorId"
             :defaultConfig="editorConfig"
-            :defaultContent="getDefaultContent"
+            :defaultContent="defaultContent"
             :defaultHtml="defaultHtml"
             :mode="mode"
         />
@@ -49,7 +49,6 @@ Script
 import Vue from 'vue'
 import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
-import cloneDeep from 'lodash.clonedeep'
 
 export default Vue.extend({
     components: { Editor, Toolbar },
@@ -67,11 +66,6 @@ export default Vue.extend({
             defaultHtml: '<p>hello</p>'
         }
     },
-    computed: {
-        getDefaultContent() {
-            return cloneDeep(this.defaultContent) // Must deep clone `defaultContent`
-        }
-    },
     beforeDestroy() {
         const editor = getEditor(this.editorId)
         if (editor == null) return
@@ -87,7 +81,6 @@ export default Vue.extend({
 :::tip
 - `editorId` should be unique.
 - You should choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
-- If you chose `defaultContent`, you should deep clone it in `computed`.
 - Timely destroy `editor` before vue component destroy.
 :::
 
@@ -252,7 +245,7 @@ Template
       <Editor
         :editorId="editorId"
         :defaultConfig="editorConfig"
-        :defaultContent="getDefaultContent"
+        :defaultContent="defaultContent"
         :defaultHtml="defaultHtml"
         :mode="mode"
         style="height: 500px; overflow-y: hidden;"
@@ -266,9 +259,8 @@ Script
 
 ```html
 <script>
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
-import cloneDeep from 'lodash.clonedeep'
 
 export default {
   components: { Editor, Toolbar },
@@ -280,7 +272,6 @@ export default {
     const defaultContent = [
         { type: 'paragraph', children: [{ text: 'hello word' }] }
     ]
-    const getDefaultContent = computed(() => cloneDeep(defaultContent)) // Must deep clone `defaultContent`
 
     const toolbarConfig = {}
     const editorConfig = { placeholder: 'Type here...' }
@@ -298,7 +289,6 @@ export default {
       editorId,
       mode: 'default',
       defaultHtml,
-      getDefaultContent,
       toolbarConfig,
       editorConfig,
     };
@@ -310,7 +300,6 @@ export default {
 :::tip
 - `editorId` should be unique.
 - Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
-- If you chose `defaultContent`, you should deep clone it in `computed`.
 - Timely destroy `editor` before vue component destroy.
 :::
 
@@ -331,9 +320,7 @@ You can declare a ref `isEditorShow = false`, set `true` when ajax done.
 const defaultHtml = ref('')
 
 // const defaultContent = []
-// const getDefaultContent = computed(() => cloneDeep(defaultContent))
 const defaultContent = ref([])
-const getDefaultContent = computed(() => cloneDeep(defaultContent.value))
 
 const isEditorShow = ref(false)
 
