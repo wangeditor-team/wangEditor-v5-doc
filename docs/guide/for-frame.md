@@ -477,7 +477,7 @@ return {
 import React, { useState, useEffect } from 'react'
 import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
-import { IDomEditor } from '@wangeditor/editor'
+import { IDomEditor, IEditorConfig } from '@wangeditor/editor'
 
 function MyEditor() {
     const [editor, setEditor] = useState<IDomEditor | null>(null) // 存储 editor 实例
@@ -489,7 +489,7 @@ function MyEditor() {
     // const defaultHtml = '<p>一行文字</p>'
 
     const toolbarConfig = { }
-    const editorConfig = {
+    const editorConfig: Partial<IEditorConfig> = {
         placeholder: '请输入内容...',
         onCreated(editor) { setEditor(editor) } // 记录下 editor 实例，重要！
     }
