@@ -456,29 +456,31 @@ return {
 
 需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/guide/installation.html)。
 
-### 基本使用
+### 使用
 
-以下代码使用 React Hooks 。如使用 React class 组件，可参考[这里](https://github.com/wangeditor-team/wangEditor-for-react/tree/main/example/pages)。
+[示例源码](https://github.com/wangfupeng1988/react-wangeditor-demo)
 
 ```jsx
-import React, { useState, useEffect } from 'react'
 import '@wangeditor/editor/dist/css/style.css'
+
+import React, { useState, useEffect } from 'react'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 import { IDomEditor } from '@wangeditor/editor'
 
 function MyEditor() {
     const [editor, setEditor] = useState<IDomEditor | null>(null) // 存储 editor 实例
+    const [html, setHtml] = useState('<p>hello</p>') // 编辑器内容
 
-    // `defaultContent` (JSON 格式) 和 `defaultHtml` (HTML 格式) 二选一
-    const defaultContent = [
-        { type: "paragraph", children: [{ text: "一行文字" }], }
-    ]
-    // const defaultHtml = '<p>一行文字</p>'
+    // 模拟 ajax 请求，异步设置 html
+    useEffect(() => {
+        setTimeout(() => {
+            setHtml('<p>hello&nbsp;world</p>')
+        }, 1500)
+    }, [])
 
     const toolbarConfig = { }
     const editorConfig = {
         placeholder: '请输入内容...',
-        onCreated(editor) { setEditor(editor) } // 记录下 editor 实例，重要！
     }
 
     // 及时销毁 editor ，重要！
@@ -501,11 +503,15 @@ function MyEditor() {
                 />
                 <Editor
                     defaultConfig={editorConfig}
-                    defaultContent={defaultContent}
-                    // defaultHtml={defaultHtml}
+                    value={html}
+                    onCreated={setEditor}
+                    onChange={editor => setHtml(editor.getHtml())}
                     mode="default"
-                    style={{ height: '500px', overflowY: 'hidden' }}
+                    style={{ height: '500px' }}
                 />
+            </div>
+            <div style={{ marginTop: '15px' }}>
+                {html}
             </div>
         </>
     )
@@ -513,45 +519,6 @@ function MyEditor() {
 
 export default MyEditor
 ```
-
-### Ajax 异步设置内容
-
-例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` 或 `defaultHtml` ，而是要异步渲染组件**。
-
-可定义一个 state `isEditorShow = false` ，等 Ajax 结束时设置为 `true`
-
-```js
-// `defaultContent` (JSON 格式) 和 `defaultHtml` (HTML 格式) 二选一
-const [defaultContent, setDefaultContent] = useState([])
-// const [defaultHtml, setDefaultHtml] = useState('')
-
-const [isEditorShow, setIsEditorShow] = useState(false)
-
-// 模拟 ajax 异步请求
-setTimeout(() => {
-    setDefaultContent([
-        { type: "paragraph", children: [{ text: "ajax 异步获取的内容" }] }
-    ])
-    // setDefaultHtml('<p>ajax&nbsp;异步获取的内容</p>')
-
-    setIsEditorShow(true)
-}, 1000)
-```
-
-JSX 中根据 `isEditorShow` 异步渲染组件
-
-```jsx
-return (
-    <>
-        {isEditorShow && <div style={{ border: '1px solid #ccc', zIndex: 100}}>
-            <Toolbar ... />
-            <Editor ... />
-        </div>}
-        {!isEditorShow && <p>loading</p>}
-    </>
-)
-```
-
 
 ### 配置
 
@@ -567,7 +534,7 @@ return (
 ```jsx
 function insertText() {
     if (editor == null) return
-    console.log(editor.insertText('hello'))
+    editor.insertText('hello')
 }
 
 return (

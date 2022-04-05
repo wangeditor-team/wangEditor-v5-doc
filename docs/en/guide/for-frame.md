@@ -450,27 +450,31 @@ return {
 
 Install `@wangeditor/editor` and `@wangeditor/editor-for-react`, see [Installation](./installation.md).
 
-### Basic usage
+### Usage
+
+[Demo source code](https://github.com/wangfupeng1988/react-wangeditor-demo)
 
 ```jsx
-import React, { useState, useEffect } from 'react'
 import '@wangeditor/editor/dist/css/style.css'
+
+import React, { useState, useEffect } from 'react'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 import { IDomEditor } from '@wangeditor/editor'
 
 function MyEditor() {
     const [editor, setEditor] = useState<IDomEditor | null>(null) // editor instance
+    const [html, setHtml] = useState('<p>hello</p>') // editor content
 
-    // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
-    const defaultContent = [
-        { type: "paragraph", children: [{ text: "hello world" }], }
-    ]
-    // const defaultHtml = '<p>hello&nbsp;</p>'
+    // Simulate ajax async set html
+    useEffect(() => {
+        setTimeout(() => {
+            setHtml('<p>hello&nbsp;world</p>')
+        }, 1500)
+    }, [])
 
     const toolbarConfig = { }
     const editorConfig = {
         placeholder: 'Type here...',
-        onCreated(editor) { setEditor(editor) } // Save editor instance here, important!
     }
 
     // Timely destroy editor, important!
@@ -493,11 +497,15 @@ function MyEditor() {
                 />
                 <Editor
                     defaultConfig={editorConfig}
-                    defaultContent={defaultContent}
-                    // defaultHtml={defaultHtml}
+                    value={html}
+                    onCreated={setEditor}
+                    onChange={editor => setHtml(editor.getHtml())}
                     mode="default"
-                    style={{ height: '500px', overflowY: 'hidden' }}
+                    style={{ height: '500px' }}
                 />
+            </div>
+            <div style={{ marginTop: '15px' }}>
+                {html}
             </div>
         </>
     )
@@ -505,45 +513,6 @@ function MyEditor() {
 
 export default MyEditor
 ```
-
-### Ajax async set content
-
-For instance, you may async set content after ajax. **You can not change `defaultContent` or `defaultHtml` directly, but async-render the component**.
-
-You can declare a state variable `isEditorShow = false`, set `true` when ajax done.
-
-```js
-// Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
-const [defaultContent, setDefaultContent] = useState([])
-// const [defaultHtml, setDefaultHtml] = useState('')
-
-const [isEditorShow, setIsEditorShow] = useState(false)
-
-// Simulate ajax, async set content
-setTimeout(() => {
-    setDefaultContent([
-        { type: "paragraph", children: [{ text: "ajax content" }] }
-    ])
-    // setDefaultHtml('ajax&nbsp;content')
-
-    setIsEditorShow(true)
-}, 1000)
-```
-
-In JSX, async-render component according to `isEditorShow` value.
-
-```jsx
-return (
-    <>
-        {isEditorShow && <div style={{ border: '1px solid #ccc', zIndex: 100}}>
-            <Toolbar ... />
-            <Editor ... />
-        </div>}
-        {!isEditorShow && <p>loading</p>}
-    </>
-)
-```
-
 
 ### Config
 
@@ -559,7 +528,7 @@ You can get the `editor` state value, and trigger it's [APIs]((./API.md)).
 ```jsx
 function insertText() {
     if (editor == null) return
-    console.log(editor.insertText('hello'))
+    editor.insertText('hello')
 }
 
 return (
