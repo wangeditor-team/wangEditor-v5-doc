@@ -459,7 +459,7 @@ import '@wangeditor/editor/dist/css/style.css'
 
 import React, { useState, useEffect } from 'react'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
-import { IDomEditor } from '@wangeditor/editor'
+import { IDomEditor, IEditorConfig } from '@wangeditor/editor'
 
 function MyEditor() {
     const [editor, setEditor] = useState<IDomEditor | null>(null) // editor instance
@@ -473,7 +473,7 @@ function MyEditor() {
     }, [])
 
     const toolbarConfig = { }
-    const editorConfig = {
+    const editorConfig: Partial<IEditorConfig> = {
         placeholder: 'Type here...',
     }
 
