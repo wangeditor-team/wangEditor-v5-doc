@@ -67,7 +67,7 @@ const toolbar = createToolbar({
 
 ### mode 模式
 
-编辑器内置了两种模式（区别可参考 [demo](https://www.wangeditor.com/demo/zh-CN/index.html)）
+编辑器内置了两种模式（区别可参考 [demo](https://www.wangeditor.com/demo/index.html)）
 - `default` 默认模式 - 集成了 wangEditor 所有功能
 - `simple` 简洁模式 - 仅有部分常见功能，但更加简洁易用
 
@@ -139,7 +139,7 @@ wangEditor 工具栏内置了“全屏”菜单，但使用它需要有一个条
 ### 其他
 
 - 可以自定义 `toolbar-container` 的样式和行为，实现工具栏 fixed 到顶部
-- 可以自定义 html 实现腾讯文档、语雀文档的效果，参考 [demo](https://www.wangeditor.com/demo/zh-CN/like-qq-doc.html)
+- 可以自定义 html 实现腾讯文档、语雀文档的效果，参考 [demo](https://www.wangeditor.com/demo/like-qq-doc.html)
 - 其他自行探索
 
 ![](/image/yuque.png)

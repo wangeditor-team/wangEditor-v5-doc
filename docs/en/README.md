@@ -8,7 +8,7 @@ actions:
     link: /en/guide/getting-started.html
     type: primary
   - text: demo
-    link: https://www.wangeditor.com/demo/en/
+    link: https://www.wangeditor.com/demo/index.html?lang=en
     type: secondary
 features:
 - title: Easy to use
@@ -22,7 +22,7 @@ footer: Copyright © 2017-present wangeditor.com
 
 ### Easy usage
 
-You can create a fully functional rich-text editor with 10 lines of code. See [demo](https://www.wangeditor.com/demo/en/).
+You can create a fully functional rich-text editor with 10 lines of code. See [demo](https://www.wangeditor.com/demo/index.html?lang=en).
 You can use [official component](/v5/en/guide/for-frame.html) in Vue or React.
 
 ![](/image/editor-en.png)

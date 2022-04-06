@@ -8,7 +8,7 @@ actions:
     link: /guide/getting-started.html
     type: primary
   - text: demo 演示
-    link: https://www.wangeditor.com/demo/zh-CN/
+    link: https://www.wangeditor.com/demo/index.html
     type: secondary
 features:
 - title: 简洁易用，功能强大
@@ -22,7 +22,7 @@ footer: Copyright © 2017-present wangeditor.com
 
 ### 使用简单
 
-10 行代码即可创建一个功能健全的富文本编辑器，可查看 [demo 示例](https://www.wangeditor.com/demo/zh-CN/)。如用于 Vue React 可参考[这里](/v5/guide/for-frame.html)。
+10 行代码即可创建一个功能健全的富文本编辑器，可查看 [demo 示例](https://www.wangeditor.com/demo/index.html)。如用于 Vue React 可参考[这里](/v5/guide/for-frame.html)。
 
 ![](/image/editor.png)
 

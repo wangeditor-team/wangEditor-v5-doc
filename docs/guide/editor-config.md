@@ -58,7 +58,7 @@ editorConfig.scroll = false
 :::tip
 可将 scroll 设置为 `false` 的情况：
 - 编辑器高度自增
-- 在线文档，如腾讯文档、语雀那样的，参考 [demo](https://www.wangeditor.com/demo/zh-CN/like-qq-doc.html) 中的“仿语雀编辑器”
+- 在线文档，如腾讯文档、语雀那样的，参考 [demo](https://www.wangeditor.com/demo/zh-CN/like-qq-doc.html) 中的“仿腾讯文档”
 :::
 
 ## maxLength onMaxLength

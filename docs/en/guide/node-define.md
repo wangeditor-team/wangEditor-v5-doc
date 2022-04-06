@@ -15,7 +15,7 @@ This article will tell you all of the node types and props, so you can do everyt
 ## Getting Started
 
 If you want to know a node structure quickly, it's very simply.
-- Create an editor and run in browser, or use [demo](https://www.wangeditor.com/demo/en/)
+- Create an editor and run in browser, or use [demo](https://www.wangeditor.com/demo/index.html?lang=en)
 - Do something, like: bold, set color, set header ...
 - Run `editor.children` in browser's console
 

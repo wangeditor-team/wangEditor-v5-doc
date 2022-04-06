@@ -66,7 +66,7 @@ With the simple code above, you will create a basic editor.
 
 ### Mode
 
-There are to modes, see [Demo](https://www.wangeditor.com/demo/en/).
+There are to modes, see [Demo](https://www.wangeditor.com/demo/index.html?lang=en).
 - `default` mode, Integrate all wangEditor functions
 - `simple` mode, Only basic functions, but terse
 

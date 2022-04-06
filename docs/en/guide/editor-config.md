@@ -58,7 +58,7 @@ editorConfig.scroll = false
 :::tip
 When you need to set `false`?
 - Editor height increases automatically
-- Want a Google doc style, see [Demo](https://www.wangeditor.com/demo/en/like-google-doc.html)
+- Want a Google doc style, see [Demo](https://www.wangeditor.com/demo/like-qq-doc.html?lang=en)
 :::
 
 ## maxLength onMaxLength
