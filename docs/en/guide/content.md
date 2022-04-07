@@ -6,6 +6,8 @@
 
 Use `editor.getHtml()` to get HTML content. Use `editor.getText()` to get text content.
 
+PS: HTML format is recommended.
+
 ### Get JSON
 
 Use `editor.children` to get JSON content.
@@ -21,68 +23,11 @@ const text = editor.getText()
 
 ### Custom Style
 
-The html is clean, only has tag, but no style. You may define some style like:<br>
-PS: You can check out `.w-e-text-container [data-slate-editor]` style codes in [style.css](https://cdn.jsdelivr.net/npm/@wangeditor/editor@0.15.7/dist/css/style.css).
+`editor.getHtml()` can only get pure HTML, there is no inline styles. You need to define your custom style. See some demos:
+- [Get and render HTML](https://www.wangeditor.com/demo/get-html.html?lang=en)
+- [Custom CSS style](https://www.wangeditor.com/demo/css/view.css)
 
-```css
-p, li, td, th, blockquote {
-    white-space: pre-wrap; /* Show space */
-}
-
-table {
-    border-collapse: collapse;
-}
-table th,
-table td {
-    border: 1px solid #ccc;
-    min-width: 50px;
-    height: 20px;
-    text-align: left;
-}
-table th {
-    background-color: #f1f1f1;
-    text-align: center
-}
-
-/* code block */
-pre>code {
-    display: block;
-    border: 1px solid hsl(0, 0%, 91%);
-    border-radius: 4px 4px;
-    text-indent: 0;
-    background-color: #fafafa;
-    padding: 10px;
-    font-size: 14px;
-}
-
-blockquote {
-    display: block;
-    border-left: 8px solid #d0e5f2;
-    padding: 10px 10px;
-    margin: 10px 0;
-    background-color: #f1f1f1;
-}
-
-/* list */
-ul, ol {
-  margin: 10px 0 10px 20px;
-}
-
-hr {
-    display: block;
-    width: 90%;
-    margin: 20px auto;
-    border: 0;
-    height: 1px;
-    background-color: #ccc;
-}
-
-img {
-    max-width: 100%;
-}
-```
-
-PS: You should use [Prism.js](https://prismjs.com/) to highlight code block by yourself.
+You should use [Prism.js](https://prismjs.com/) to highlight code block by yourself. See [demo](https://www.wangeditor.com/demo/code-highlight.html?lang=en).
 
 ## Set Content
 

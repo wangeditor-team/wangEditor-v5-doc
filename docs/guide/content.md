@@ -6,6 +6,8 @@
 
 使用 `editor.getHtml()` 获取 HTML 内容。使用 `editor.getText()` 获取纯文本内容。
 
+推荐使用 HTML 格式存储数据。
+
 ### 获取 JSON
 
 使用 `editor.children` 获取 JSON 内容。
@@ -21,75 +23,11 @@ const text = editor.getText()
 
 ### 自定义样式
 
-编辑器输出或者生成的 html 都是**纯标签**，没有内联样式。直接输出显示看起来会和编辑器的不一样。<br>
-所以，需要在显示时，对 html 增加一些样式。
+编辑器输出或者生成的 HTML 都是**纯标签**，没有内联样式。所以，显示 HTML 时需要你自定义样式。可参考以下示例
+- [显示 HTML](https://www.wangeditor.com/demo/get-html.html)
+- [自定义样式](https://www.wangeditor.com/demo/css/view.css)
 
-以下是几个最常见的样式，作为参考。你可以再自己修改，也据此实现“多皮肤”功能。
-
-PS：详细的样式，你可以参考 [style.css](https://cdn.jsdelivr.net/npm/@wangeditor/editor@0.15.7/dist/css/style.css)（压缩代码，自己[格式化](https://tool.oschina.net/codeformat/css)一下）中 `.w-e-text-container [data-slate-editor]` 的样式代码。
-
-```css
-p, li, td, th, blockquote {
-    white-space: pre-wrap; /* 显示空格 */
-}
-
-/* 表格 */
-table {
-    border-collapse: collapse;
-}
-table th,
-table td {
-    border: 1px solid #ccc;
-    min-width: 50px;
-    height: 20px;
-    text-align: left;
-}
-table th {
-    background-color: #f1f1f1;
-    text-align: center
-}
-
-/* 代码块 */
-pre>code {
-    display: block;
-    border: 1px solid hsl(0, 0%, 91%);
-    border-radius: 4px 4px;
-    text-indent: 0;
-    background-color: #fafafa;
-    padding: 10px;
-    font-size: 14px;
-}
-
-/* 引用 */
-blockquote {
-    display: block;
-    border-left: 8px solid #d0e5f2;
-    padding: 10px 10px;
-    margin: 10px 0;
-    background-color: #f1f1f1;
-}
-
-/* 列表 */
-ul, ol {
-  margin: 10px 0 10px 20px;
-}
-
-/* 分割线 */
-hr {
-    display: block;
-    width: 90%;
-    margin: 20px auto;
-    border: 0;
-    height: 1px;
-    background-color: #ccc;
-}
-
-img {
-    max-width: 100%;
-}
-```
-
-另外，代码高亮也需要自行处理，推荐使用 [Prism.js](https://prismjs.com/) ，因为编辑器内容内部也是基于 Prism.js 来实现的。
+另外，**代码高亮**也需要自行处理，推荐使用 [Prism.js](https://prismjs.com/) ，因为编辑器内容内部也是基于 Prism.js 来实现的。可参考 [demo](https://www.wangeditor.com/demo/code-highlight.html)。
 
 ## 设置内容
 

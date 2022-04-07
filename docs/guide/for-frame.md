@@ -429,7 +429,7 @@ function MyEditor() {
                     onCreated={setEditor}
                     onChange={editor => setHtml(editor.getHtml())}
                     mode="default"
-                    style={{ height: '500px' }}
+                    style={{ height: '500px', 'overflow-y': 'hidden' }}
                 />
             </div>
             <div style={{ marginTop: '15px' }}>
