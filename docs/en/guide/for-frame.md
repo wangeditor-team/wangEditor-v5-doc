@@ -16,7 +16,7 @@ This article only introduces editor components, you should also learn some API a
 
 Install `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`, see [Installation](./installation.md).
 
-### Basic usage
+### Usage
 
 Template
 
@@ -25,19 +25,17 @@ Template
     <div style="border: 1px solid #ccc;">
         <Toolbar
             style="border-bottom: 1px solid #ccc"
-            :editorId="editorId"
+            :editor="editor"
             :defaultConfig="toolbarConfig"
             :mode="mode"
         />
         <Editor
             style="height: 500px; overflow-y: hidden;"
-            :editorId="editorId"
+            v-model="html"
             :defaultConfig="editorConfig"
-            :defaultContent="defaultContent"
-            :defaultHtml="defaultHtml"
             :mode="mode"
+            @onCreated="onCreated"
         />
-        <!-- Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format) -->
     </div>
 </template>
 ```
@@ -48,39 +46,41 @@ Script
 <script>
 import Vue from 'vue'
 import '@wangeditor/editor/dist/css/style.css'
-import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
 export default Vue.extend({
     components: { Editor, Toolbar },
     data() {
         return {
-            editorId: `w-e-${Math.random().toString().slice(-5)}`, // Must be unique !
-            toolbarConfig: {},
-            editorConfig: { placeholder: 'Type your text...' },
+            editor: null,
+            html: '<p>hello</p>',
+            toolbarConfig: { },
+            editorConfig: { placeholder: 'Type here...' },
             mode: 'default', // or 'simple'
-
-            // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
-            defaultContent: [
-                { type: 'paragraph', children: [{ text: 'hello world' }] }
-            ],
-            defaultHtml: '<p>hello</p>'
         }
     },
+    methods: {
+        onCreated(editor) {
+            this.editor = Object.seal(editor) // Use `Object.seal`
+        },
+    },
+    mounted() {
+        // Simulate ajax async set HTMl content.
+        setTimeout(() => {
+            this.html = '<p>Async set HTML content.</p>'
+        }, 1500)
+    },
     beforeDestroy() {
-        const editor = getEditor(this.editorId)
+        const editor = this.editor
         if (editor == null) return
-
-        // Timely destroy editor !
-        editor.destroy()
-        removeEditor(this.editorId)
+        editor.destroy() // Timely destroy editor !
     }
 })
 </script>
 ```
 
 :::tip
-- `editorId` should be unique.
-- You should choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
+- Use `Object.seal()` when set `this.editor`
 - Timely destroy `editor` before vue component destroy.
 :::
 
@@ -88,48 +88,6 @@ Import style
 
 ```html
 <style src="@wangeditor/editor/dist/css/style.css"></style>
-```
-
-### Ajax async set content
-
-For instance, you may async set content after ajax. **You can not change `defaultContent` or `defaultHtml` directly, but async-render the component**.
-
-Add a `data` property `isEditorShow: false`, set `true` when ajax done.
-
-```js
-data() {
-    return {
-        // other data properties...
-
-        isEditorShow: false
-    }
-},
-mounted() {
-    // Simulate ajax, async set content
-    setTimeout(() => {
-        // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
-        this.defaultContent = [
-            { type: 'paragraph', children: [{ text: 'ajax content' }] }
-        ]
-        this.defaultHtml: '<p>ajax&nbsp;content</p>'
-
-        this.isEditorShow = true
-    }, 1000)
-},
-```
-
-In template, async-render component according to `isEditorShow`.
-
-```xml
-<template>
-    <div>
-        <div v-if="isEditorShow" style="border: 1px solid #ccc;">
-            <Toolbar ... />
-            <Editor ... />
-        </div>
-        <p v-else>loading...</p>
-    </div>
-</template>
 ```
 
 ### Config
@@ -161,7 +119,10 @@ Be careful: life-cycle functions (format like `onXxx`) which in editor's config,
 
 ```js
 methods: {
-    onCreated(editor) { console.log('onCreated', editor) },
+    onCreated(editor) {
+        this.editor = Object.seal(editor)
+        console.log('onCreated', editor)
+    },
     onChange(editor) { console.log('onChange', editor.children) },
     onDestroyed(editor) { console.log('onDestroyed', editor) },
     onMaxLength(editor) { console.log('onMaxLength', editor) },
@@ -189,7 +150,7 @@ methods: {
 
 ### API
 
-You can use `getEditor(this.editorId)` to get the `editor` instance after it's rendered, and trigger it's [APIs]((./API.md)).
+You can use `this.editor` to get the `editor` instance after it's rendered, and trigger it's [APIs]((./API.md)).
 
 ```xml
 <template>
@@ -206,20 +167,13 @@ You can use `getEditor(this.editorId)` to get the `editor` instance after it's r
 ```js
 methods: {
     insertText() {
-        const editor = getEditor(this.editorId) // get editor instance (after it's rendered)
+        const editor = this.editor // get editor instance
         if (editor == null) return
 
         // Trigger it's API or property
         editor.insertText('hello')
         console.log(editor.children)
     },
-},
-mounted() {
-    this.$nextTick(() => {
-        const editor = getEditor(this.editorId) // get editor instance (after it's rendered)
-        if (editor == null) return
-        console.log('getEditor on mounted', editor)
-    })
 },
 ```
 
@@ -229,7 +183,7 @@ mounted() {
 
 Install `@wangeditor/editor` and `@wangeditor/editor-for-vue@next`, see [Installation](./installation.md).
 
-### Basic usage
+### Usage
 
 Template
 
@@ -237,20 +191,18 @@ Template
 <template>
     <div style="border: 1px solid #ccc">
       <Toolbar
-        :editorId="editorId"
+        style="border-bottom: 1px solid #ccc"
+        :editor="editorRef"
         :defaultConfig="toolbarConfig"
         :mode="mode"
-        style="border-bottom: 1px solid #ccc"
       />
       <Editor
-        :editorId="editorId"
-        :defaultConfig="editorConfig"
-        :defaultContent="defaultContent"
-        :defaultHtml="defaultHtml"
-        :mode="mode"
         style="height: 500px; overflow-y: hidden;"
+        v-model="valueHtml"
+        :defaultConfig="editorConfig"
+        :mode="mode"
+        @onCreated="handleCreated"
       />
-      <!-- Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format) -->
     </div>
 </template>
 ```
@@ -259,38 +211,46 @@ Script
 
 ```html
 <script>
-import { onBeforeUnmount, ref } from 'vue'
-import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
+import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
 export default {
   components: { Editor, Toolbar },
   setup() {
-    const editorId = `w-e-${Math.random().toString().slice(-5)}` // Must be unique !
+    // editor instance, use `shallowRef`
+    const editorRef = shallowRef()
 
-    // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
-    const defaultHtml = 'hello&nbsp;word'
-    const defaultContent = [
-        { type: 'paragraph', children: [{ text: 'hello word' }] }
-    ]
+    // content HTML
+    const valueHtml = ref('<p>hello</p>')
+
+    // Simulate ajax async set HTML
+    onMounted(() => {
+        setTimeout(() => {
+            valueHtml.value = '<p>Ajax async set HTML.</p>'
+        }, 1500)
+    })
 
     const toolbarConfig = {}
     const editorConfig = { placeholder: 'Type here...' }
 
     // Timely destroy `editor` before vue component destroy.
     onBeforeUnmount(() => {
-        const editor = getEditor(editorId)
+        const editor = editorRef.value
         if (editor == null) return
-
         editor.destroy()
-        removeEditor(editorId)
     })
 
+    const handleCreated = (editor) => {
+      editorRef.value = editor // record editor instance
+    }
+
     return {
-      editorId,
-      mode: 'default',
-      defaultHtml,
+      editorRef,
+      mode: 'default', // or 'simple'
+      valueHtml,
       toolbarConfig,
       editorConfig,
+      handleCreated
     };
   }
 }
@@ -298,8 +258,7 @@ export default {
 ```
 
 :::tip
-- `editorId` should be unique.
-- Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
+- Use `shallowRef` when create editor instance.
 - Timely destroy `editor` before vue component destroy.
 :::
 
@@ -307,47 +266,6 @@ Import style
 
 ```html
 <style src="@wangeditor/editor/dist/css/style.css"></style>
-```
-
-### Ajax async set content
-
-For instance, you may async set content after ajax. **You can not change `defaultContent` or `defaultHtml` directly, but async-render the component**.
-
-You can declare a ref `isEditorShow = false`, set `true` when ajax done.
-
-```js
-// const defaultHtml = 'hello&nbsp;world'
-const defaultHtml = ref('')
-
-// const defaultContent = []
-const defaultContent = ref([])
-
-const isEditorShow = ref(false)
-
-// Simulate ajax, async set content
-setTimeout(() => {
-    // Choose either `defaultContent` (JSON format) or `defaultHtml` (HTML format)
-    defaultHtml.value = '<p>ajax&nbsp;content</p>'
-    defaultContent.value =  [
-        { type: "paragraph", children: [{ text: "ajax content" }] },
-    ]
-
-    isEditorShow.value = true
-}, 1000)
-```
-
-In template, async-render component according to `isEditorShow` value.
-
-```xml
-<template>
-    <div>
-        <div v-if="isEditorShow" style="border: 1px solid #ccc">
-            <Toolbar ... />
-            <Editor ... />
-        </div>
-        <p v-else>loading</p>
-    </div>
-</template>
 ```
 
 ### Config
@@ -377,7 +295,10 @@ Be careful: life-cycle functions (format like `onXxx`) which in editor's config,
 ```
 
 ```js
-const handleCreated = (editor) => { console.log('created', editor) }
+const handleCreated = (editor) => {
+    editorRef.value = editor
+    console.log('created', editor)
+}
 const handleChange = (editor) => { console.log('change:', editor.children) }
 const handleDestroyed = (editor) => { console.log('destroyed', editor) }
 const handleFocus = (editor) => { console.log('focus', editor) }
@@ -415,7 +336,7 @@ return {
 
 ### API
 
-You can use `getEditor(editorId)` to get the `editor` instance after it's rendered, and trigger it's [APIs]((./API.md)).
+You can use `editorRef.value` to get the `editor` instance after it's rendered, and trigger it's [APIs]((./API.md)).
 
 ```xml
 <template>
@@ -431,7 +352,7 @@ You can use `getEditor(editorId)` to get the `editor` instance after it's render
 
 ```js
 const insertText = () => {
-    const editor = getEditor(editorId) // get editor instance, after it's rendered
+    const editor = editorRef.value // get editor instance, after it's rendered
     if (editor == null) return
 
     editor.insertText('hello world') // trigger editor API

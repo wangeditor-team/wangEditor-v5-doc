@@ -19,7 +19,7 @@
 
 需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/guide/installation.html)。
 
-### 基本使用
+### 使用
 
 模板
 
@@ -28,19 +28,17 @@
     <div style="border: 1px solid #ccc;">
         <Toolbar
             style="border-bottom: 1px solid #ccc"
-            :editorId="editorId"
+            :editor="editor"
             :defaultConfig="toolbarConfig"
             :mode="mode"
         />
         <Editor
             style="height: 500px; overflow-y: hidden;"
-            :editorId="editorId"
+            v-model="html"
             :defaultConfig="editorConfig"
-            :defaultContent="defaultContent"
-            :defaultHtml="defaultHtml"
             :mode="mode"
+            @onCreated="onCreated"
         />
-        <!-- 注意： defaultContent （JSON 格式） 和 defaultHtml （HTML 格式），二选一 -->
     </div>
 </template>
 ```
@@ -51,39 +49,41 @@ script
 <script>
 import Vue from 'vue'
 import '@wangeditor/editor/dist/css/style.css'
-import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
 export default Vue.extend({
     components: { Editor, Toolbar },
     data() {
         return {
-            editorId: `w-e-${Math.random().toString().slice(-5)}`, //【注意】编辑器 id ，要全局唯一
-            toolbarConfig: {},
+            editor: null,
+            html: '<p>hello</p>',
+            toolbarConfig: { },
             editorConfig: { placeholder: '请输入内容...' },
             mode: 'default', // or 'simple'
-
-            // defaultContent （JSON 格式） 和 defaultHtml（HTML 格式）二选一
-            defaultContent: [
-                { type: 'paragraph', children: [{ text: '一行文字' }] }
-            ],
-            defaultHtml: '<p>hello</p>',
         }
     },
+    methods: {
+        onCreated(editor) {
+            this.editor = Object.seal(editor) // 一定要用 Object.seal() ，否则会报错
+        },
+    },
+    mounted() {
+        // 模拟 ajax 请求，异步渲染编辑器
+        setTimeout(() => {
+            this.html = '<p>模拟 Ajax 异步设置内容 HTML</p>'
+        }, 1500)
+    },
     beforeDestroy() {
-        const editor = getEditor(this.editorId)
+        const editor = this.editor
         if (editor == null) return
-
-        // 【注意】组件销毁时，及时销毁编辑器
-        editor.destroy()
-        removeEditor(this.editorId)
+        editor.destroy() // 组件销毁时，及时销毁编辑器
     }
 })
 </script>
 ```
 
 :::tip
-- `editorId` 要全局唯一，不可重复
-- `defaultContent`（JSON 格式） 和 `defaultHtml`（HTML 格式），二选一
+- 赋值 `this.editor` 时要用 `Object.seal()`
 - 组件销毁时，要及时销毁编辑器
 :::
 
@@ -91,47 +91,6 @@ export default Vue.extend({
 
 ```html
 <style src="@wangeditor/editor/dist/css/style.css"></style>
-```
-
-### Ajax 异步设置内容
-
-例如，Ajax 异步获取内容，然后设置到编辑器中。**注意，不可以直接修改 `defaultContent` 或 `defaultHtml` ，而是要异步渲染组件**。
-
-在 `data` 中定义一个属性 `isEditorShow: false`，在 Ajax 结束时设置为 `true`
-
-```js
-data() {
-    return {
-        // 省略其他属性...
-        isEditorShow: false
-    }
-},
-mounted() {
-    // 模拟 ajax 请求，异步渲染编辑器
-    setTimeout(() => {
-        // defaultContent （JSON 格式） 和 defaultHtml（HTML 格式）二选一
-        this.defaultContent = [
-            { type: 'paragraph', children: [{ text: 'ajax 异步获取的内容' }] }
-        ]
-        this.defaultHtml = '<p>ajax&nbsp;异步获取的内容</p>'
-
-        this.isEditorShow = true
-    }, 1000)
-},
-```
-
-模板中，根据 `isEditorShow` 来渲染组件
-
-```xml
-<template>
-    <div>
-        <div v-if="isEditorShow" style="border: 1px solid #ccc;">
-            <Toolbar ... />
-            <Editor ... />
-        </div>
-        <p v-else>loading...</p>
-    </div>
-</template>
 ```
 
 ### 配置
@@ -163,7 +122,10 @@ mounted() {
 
 ```js
 methods: {
-    onCreated(editor) { console.log('onCreated', editor) },
+    onCreated(editor) {
+        this.editor = Object.seal(editor)
+        console.log('onCreated', editor)
+    },
     onChange(editor) { console.log('onChange', editor.children) },
     onDestroyed(editor) { console.log('onDestroyed', editor) },
     onMaxLength(editor) { console.log('onMaxLength', editor) },
@@ -191,7 +153,7 @@ methods: {
 
 ### 调用 API
 
-当编辑器渲染完成之后，通过 `getEditor(this.editorId)` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
+当编辑器渲染完成之后，通过 `this.editor` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
 
 ```xml
 <template>
@@ -208,20 +170,13 @@ methods: {
 ```js
 methods: {
     insertText() {
-        const editor = getEditor(this.editorId) // 获取 editor 实例（必须等它渲染完成）
+        const editor = this.editor // 获取 editor 实例
         if (editor == null) return
 
         // 调用 editor 属性和 API
         editor.insertText('一段文字')
         console.log(editor.children)
     },
-},
-mounted() {
-    this.$nextTick(() => {
-        const editor = getEditor(this.editorId) // 获取 editor 实例（必须等它渲染完成）
-        if (editor == null) return
-        console.log('getEditor on mounted', editor)
-    })
 },
 ```
 
@@ -233,7 +188,7 @@ mounted() {
 
 需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue@next`，可参考[这里](/v5/guide/installation.html)。
 
-### 基本使用
+### 使用
 
 模板
 
@@ -241,20 +196,18 @@ mounted() {
 <template>
     <div style="border: 1px solid #ccc">
       <Toolbar
-        :editorId="editorId"
+        style="border-bottom: 1px solid #ccc"
+        :editor="editorRef"
         :defaultConfig="toolbarConfig"
         :mode="mode"
-        style="border-bottom: 1px solid #ccc"
       />
       <Editor
-        :editorId="editorId"
-        :defaultConfig="editorConfig"
-        :defaultContent="defaultContent"
-        :defaultHtml="defaultHtml"
-        :mode="mode"
         style="height: 500px; overflow-y: hidden;"
+        v-model="valueHtml"
+        :defaultConfig="editorConfig"
+        :mode="mode"
+        @onCreated="handleCreated"
       />
-      <!-- 注意: defaultContent (JSON 格式) 和 defaultHtml (HTML 格式) ，二选一 -->
     </div>
 </template>
 ```
@@ -263,38 +216,46 @@ script
 
 ```html
 <script>
-import { onBeforeUnmount, ref } from 'vue'
-import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
+import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
 export default {
   components: { Editor, Toolbar },
   setup() {
-    const editorId = `w-e-${Math.random().toString().slice(-5)}` //【注意】编辑器 id ，要全局唯一
+    // 编辑器实例，必须用 shallowRef
+    const editorRef = shallowRef()
 
-    // defaultContent (JSON 格式) 和 defaultHtml (HTML 格式) ，二选一
-    const defaultHtml = '一行文字'
-    const defaultContent = [
-        { type: 'paragraph', children: [{ text: '一行文字' }] }
-    ]
+    // 内容 HTML
+    const valueHtml = ref('<p>hello</p>')
+
+    // 模拟 ajax 异步获取内容
+    onMounted(() => {
+        setTimeout(() => {
+            valueHtml.value = '<p>模拟 Ajax 异步设置内容</p>'
+        }, 1500)
+    })
 
     const toolbarConfig = {}
     const editorConfig = { placeholder: '请输入内容...' }
 
     // 组件销毁时，也及时销毁编辑器
     onBeforeUnmount(() => {
-        const editor = getEditor(editorId)
+        const editor = editorRef.value
         if (editor == null) return
-
         editor.destroy()
-        removeEditor(editorId)
     })
 
+    const handleCreated = (editor) => {
+      editorRef.value = editor // 记录 editor 实例，重要！
+    }
+
     return {
-      editorId,
-      mode: 'default',
-      defaultHtml,
+      editorRef,
+      valueHtml,
+      mode: 'default', // 或 'simple'
       toolbarConfig,
       editorConfig,
+      handleCreated
     };
   }
 }
@@ -302,8 +263,7 @@ export default {
 ```
 
 :::tip
-- `editorId` 要全局唯一，不可重复
-- `defaultContent` (JSON 格式) 和 `defaultHtml` (HTML 格式) ，二选一
+- `editorRef` 必须用 `shallowRef`
 - 组件销毁时，要及时销毁编辑器
 :::
 
@@ -311,47 +271,6 @@ export default {
 
 ```html
 <style src="@wangeditor/editor/dist/css/style.css"></style>
-```
-
-### Ajax 异步设置内容
-
-例如，Ajax 异步获取内容，然后设置到编辑器中。注意，**不可以直接修改 `defaultContent` 或 `defaultHtml` ，而是要异步渲染组件**。
-
-可以使用 Vue3 ref 定义一个响应式变量 `isEditorShow = false`，在 Ajax 结束时设置为 `true`。
-
-```js
-// const defaultHtml = '一行文字'
-const defaultHtml = ref('')
-
-// const defaultContent = []
-const defaultContent = ref([])
-
-const isEditorShow = ref(false)
-
-// 模拟 ajax 异步获取内容
-setTimeout(() => {
-    // defaultContent (JSON 格式) 和 defaultHtml (HTML 格式) ，二选一
-    defaultHtml.value = 'ajax&nbsp;异步获取的内容'
-    defaultContent.value =  [
-        { type: "paragraph", children: [{ text: "ajax 异步获取的内容" }] },
-    ]
-
-    isEditorShow.value = true
-}, 1000)
-```
-
-然后 template 根据 `isEditorShow` 异步渲染编辑器
-
-```xml
-<template>
-    <div>
-        <div v-if="isEditorShow" style="border: 1px solid #ccc">
-            <Toolbar ... />
-            <Editor ... />
-        </div>
-        <p v-else>loading</p>
-    </div>
-</template>
 ```
 
 ### 配置
@@ -381,7 +300,10 @@ setTimeout(() => {
 ```
 
 ```js
-const handleCreated = (editor) => { console.log('created', editor) }
+const handleCreated = (editor) => {
+    editorRef.value = editor
+    console.log('created', editor)
+}
 const handleChange = (editor) => { console.log('change:', editor.children) }
 const handleDestroyed = (editor) => { console.log('destroyed', editor) }
 const handleFocus = (editor) => { console.log('focus', editor) }
@@ -419,7 +341,7 @@ return {
 
 ### 调用 API
 
-当编辑器渲染完成之后，通过 `getEditor(editorId)` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
+当编辑器渲染完成之后，通过 `editorRef.value` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
 
 ```xml
 <template>
@@ -435,7 +357,7 @@ return {
 
 ```js
 const insertText = () => {
-    const editor = getEditor(editorId) // 获取 editor ，必须等待它渲染完之后
+    const editor = editorRef.value // 获取 editor ，必须等待它渲染完之后
     if (editor == null) return
 
     editor.insertText('hello world') // 执行 editor API
