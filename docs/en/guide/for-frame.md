@@ -12,6 +12,11 @@ This article only introduces editor components, you should also learn some API a
 
 ## Vue2
 
+### Demo
+
+- [Demo source](https://github.com/wangfupeng1988/vue2-wangeditor-demo)
+- [Online demo](https://codesandbox.io/s/vue2-wangeditor-demo-1rwjms?file=/src/components/MyEditor.vue)
+
 ### Installation
 
 Install `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`, see [Installation](./installation.md).
@@ -179,6 +184,11 @@ methods: {
 
 ## Vue3
 
+### Demo
+
+- [Demo source](https://github.com/wangfupeng1988/vue3-wangeditor-demo)
+- [Online demo](https://stackblitz.com/edit/vue3-wangeditor-demo?file=src%2Fcomponents%2FBasicEditor.vue)
+
 ### Installation
 
 Install `@wangeditor/editor` and `@wangeditor/editor-for-vue@next`, see [Installation](./installation.md).
@@ -211,6 +221,8 @@ Script
 
 ```html
 <script>
+import '@wangeditor/editor/dist/css/style.css' // import css
+
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
@@ -261,12 +273,6 @@ export default {
 - Use `shallowRef` when create editor instance.
 - Timely destroy `editor` before vue component destroy.
 :::
-
-Import style
-
-```html
-<style src="@wangeditor/editor/dist/css/style.css"></style>
-```
 
 ### Config
 
@@ -367,6 +373,11 @@ return {
 
 ## React
 
+### Demo
+
+- [Demo source](https://github.com/wangfupeng1988/react-wangeditor-demo)
+- [Online demo](https://codesandbox.io/s/react-wangeditor-demo-unvron?file=/src/components/MyEditor.js)
+
 ### Installation
 
 Install `@wangeditor/editor` and `@wangeditor/editor-for-react`, see [Installation](./installation.md).
@@ -376,7 +387,7 @@ Install `@wangeditor/editor` and `@wangeditor/editor-for-react`, see [Installati
 [Demo source code](https://github.com/wangfupeng1988/react-wangeditor-demo)
 
 ```jsx
-import '@wangeditor/editor/dist/css/style.css'
+import '@wangeditor/editor/dist/css/style.css' // import css
 
 import React, { useState, useEffect } from 'react'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'

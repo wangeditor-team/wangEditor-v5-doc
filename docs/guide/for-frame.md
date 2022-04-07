@@ -13,7 +13,10 @@
 
 ## Vue2
 
-可参考博客 [50 行代码 Vue2.6 中使用富文本编辑器](https://juejin.cn/post/7030722267264843783/)
+### Demo
+
+- [Demo 源码](https://github.com/wangfupeng1988/vue2-wangeditor-demo)
+- [在线 demo](https://codesandbox.io/s/vue2-wangeditor-demo-1rwjms?file=/src/components/MyEditor.vue)
 
 ### 安装
 
@@ -182,7 +185,10 @@ methods: {
 
 ## Vue3
 
-可参考博客[50 行代码 Vue3 中使用富文本编辑器](https://juejin.cn/post/7027977252331585544)。
+### Demo
+
+- [Demo 源码](https://github.com/wangfupeng1988/vue3-wangeditor-demo)
+- [在线 demo](https://stackblitz.com/edit/vue3-wangeditor-demo?file=src%2Fcomponents%2FBasicEditor.vue)
 
 ### 安装
 
@@ -216,6 +222,8 @@ script
 
 ```html
 <script>
+import '@wangeditor/editor/dist/css/style.css' // 引入 css
+
 import { onBeforeUnmount, ref, shallowRef, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
@@ -266,12 +274,6 @@ export default {
 - `editorRef` 必须用 `shallowRef`
 - 组件销毁时，要及时销毁编辑器
 :::
-
-记得引入 style
-
-```html
-<style src="@wangeditor/editor/dist/css/style.css"></style>
-```
 
 ### 配置
 
@@ -372,7 +374,10 @@ return {
 
 ## React
 
-可参考博客 [50 行代码 React Hooks 中使用富文本编辑器](https://juejin.cn/post/7030584414652334093)
+### Demo
+
+- [Demo 源码](https://github.com/wangfupeng1988/react-wangeditor-demo)
+- [在线 demo](https://codesandbox.io/s/react-wangeditor-demo-unvron?file=/src/components/MyEditor.js)
 
 ### 安装
 
@@ -383,7 +388,7 @@ return {
 [示例源码](https://github.com/wangfupeng1988/react-wangeditor-demo)
 
 ```jsx
-import '@wangeditor/editor/dist/css/style.css'
+import '@wangeditor/editor/dist/css/style.css' // 引入 css
 
 import React, { useState, useEffect } from 'react'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
