@@ -1,11 +1,11 @@
 ---
 home: true
 heroImage: null
-heroText: wangEditor
+heroText: wangEditor 5
 tagline: 开源 Web 富文本编辑器，开箱即用，配置简单
 actions:
   - text: 快速上手
-    link: /guide/getting-started.html
+    link: /v5/getting-started.html
     type: primary
   - text: demo 演示
     link: https://www.wangeditor.com/demo/index.html
@@ -22,7 +22,7 @@ footer: Copyright © 2017-present wangeditor.com
 
 ### 使用简单
 
-10 行代码即可创建一个功能健全的富文本编辑器，可查看 [demo 示例](https://www.wangeditor.com/demo/index.html)。如用于 Vue React 可参考[这里](/v5/guide/for-frame.html)。
+10 行代码即可创建一个功能健全的富文本编辑器，可查看 [demo 示例](https://www.wangeditor.com/demo/index.html)。如用于 Vue React 可参考[这里](/v5/for-frame.html)。
 
 ![](/image/editor.png)
 

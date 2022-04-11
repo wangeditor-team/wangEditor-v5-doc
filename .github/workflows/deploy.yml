@@ -31,13 +31,13 @@ jobs:
         echo "---------- set ssh-key ok ----------"
     - name: download and replace # 下载现有文件，替换
       run: |
-        git clone git@github.com:wangEditor/v5.git
+        git clone git@github.com:wangEditor/wangEditor.github.io.git
         echo "---------- git clone ok ----------"
-        cp -r ./docs/.vuepress/dist/* ./v5 ## 用最新构建出来的文件，替换现有的
+        cp -r ./docs/.vuepress/dist/* ./wangEditor.github.io ## 用最新构建出来的文件，替换现有的
         echo "---------- replace ok ----------"
     - name: upload # 上传文件
       run: |
-        cd ./v5
+        cd ./wangEditor.github.io
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
         echo "---------- begin git status ----------"
@@ -46,7 +46,7 @@ jobs:
         git add .
         git commit -m "update by github actions"
         echo "---------- begin git push ----------"
-        git push origin main
+        git push origin master
         echo "---------- end git push ----------"
     - name: delete ssh key # 删除 ssh key
       run: rm -rf ~/.ssh/id_rsa

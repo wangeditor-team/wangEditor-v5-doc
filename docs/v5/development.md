@@ -21,7 +21,7 @@ wangEditor 扩展性包括以下部分，你可以来扩展大部分常用的功
 如果你需要扩展新元素，则需要先定义数据结构。<br>
 如果不需要，则忽略该步骤。
 
-具体可参考 [节点数据结构](/v5/guide/node-define.html) ，定义自己的节点数据结构。<br>
+具体可参考 [节点数据结构](/v5/node-define.html) ，定义自己的节点数据结构。<br>
 注意要符合 [slate.js](https://docs.slatejs.org/) 的数据规范。
 
 ## Render
@@ -339,7 +339,7 @@ Boot.registerPlugin(withBreak)
 - ModalMenu 弹出框菜单，如插入链接、插入网络图片
 
 注意，下面代码中的 `key` 即菜单 key ，要唯一不重复。<br>
-注册完菜单之后，即可把这个 `key` 配置到[工具栏](/v5/guide/toolbar-config.html)中。
+注册完菜单之后，即可把这个 `key` 配置到[工具栏](/v5/toolbar-config.html)中。
 
 ### 安装 `@wangeditor/core`
 

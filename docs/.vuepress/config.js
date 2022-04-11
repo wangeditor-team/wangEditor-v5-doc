@@ -5,8 +5,6 @@ module.exports = {
         ['link', { rel: 'icon', href: '/favicon.ico' }]
     ],
 
-    base: '/v5/',
-
     locales: {
         '/': {
             lang: 'zh-CN',
@@ -25,41 +23,42 @@ module.exports = {
                 selectLanguageName: '简体中文',
 
                 navbar: [
-                    { text: '指南', link: '/guide/' },
+                    { text: '指南', link: '/v5/' },
                     { text: 'Demo', link: 'https://www.wangeditor.com/demo/index.html' },
-                    { text: '插件', link: '/guide/plugins.md' },
+                    { text: '插件', link: '/v5/plugins.md' },
                     { text: 'Github', link: 'https://github.com/wangeditor-team/wangEditor' },
+                    { text: 'v4 版本', link: 'https://www.wangeditor.com/v4/' }
                 ],
 
                 sidebar: [
-                    '/guide/README.md',
-                    '/guide/installation.md',
+                    '/v5/README.md',
+                    '/v5/installation.md',
                     {
                         text: '基础',
                         children: [
-                            '/guide/getting-started.md',
-                            '/guide/content.md',
-                            '/guide/for-frame.md',
+                            '/v5/getting-started.md',
+                            '/v5/content.md',
+                            '/v5/for-frame.md',
                         ]
                     },
                     {
                         text: '配置和 API',
                         children: [
-                            '/guide/toolbar-config.md',
-                            '/guide/editor-config.md',
-                            '/guide/menu-config.md',
-                            '/guide/API.md',
+                            '/v5/toolbar-config.md',
+                            '/v5/editor-config.md',
+                            '/v5/menu-config.md',
+                            '/v5/API.md',
                         ]
                     },
                     {
                         text: '高级',
                         children: [
-                            '/guide/node-define.md',
-                            '/guide/development.md',
-                            '/guide/i18n.md',
-                            '/guide/theme.md',
-                            '/guide/for-ts.md',
-                            '/guide/plugins.md',
+                            '/v5/node-define.md',
+                            '/v5/development.md',
+                            '/v5/i18n.md',
+                            '/v5/theme.md',
+                            '/v5/for-ts.md',
+                            '/v5/plugins.md',
                         ]
                     }
                 ],
@@ -70,41 +69,42 @@ module.exports = {
                 description: 'Open source web rich text editor',
 
                 navbar: [
-                    { text: 'Guide', link: '/en/guide/' },
+                    { text: 'Guide', link: '/en/v5/' },
                     { text: 'Demo', link: 'https://www.wangeditor.com/demo/index.html?lang=en' },
-                    { text: 'Plugins', link: '/en/guide/plugins.md' },
+                    { text: 'Plugins', link: '/en/v5/plugins.md' },
                     { text: 'Github', link: 'https://github.com/wangeditor-team/wangEditor' },
+                    { text: 'v4', link: 'https://www.wangeditor.com/v4-en/' }
                 ],
 
                 sidebar: [
-                    '/en/guide/README.md',
-                    '/en/guide/installation.md',
+                    '/en/v5/README.md',
+                    '/en/v5/installation.md',
                     {
                         text: 'Basic',
                         children: [
-                            '/en/guide/getting-started.md',
-                            '/en/guide/content.md',
-                            '/en/guide/for-frame.md',
+                            '/en/v5/getting-started.md',
+                            '/en/v5/content.md',
+                            '/en/v5/for-frame.md',
                         ]
                     },
                     {
                         text: 'Config and API',
                         children: [
-                            '/en/guide/toolbar-config.md',
-                            '/en/guide/editor-config.md',
-                            '/en/guide/menu-config.md',
-                            '/en/guide/API.md',
+                            '/en/v5/toolbar-config.md',
+                            '/en/v5/editor-config.md',
+                            '/en/v5/menu-config.md',
+                            '/en/v5/API.md',
                         ]
                     },
                     {
                         text: 'Advance',
                         children: [
-                            '/en/guide/node-define.md',
-                            '/en/guide/development.md',
-                            '/en/guide/i18n.md',
-                            '/en/guide/theme.md',
-                            '/en/guide/for-ts.md',
-                            '/en/guide/plugins.md',
+                            '/en/v5/node-define.md',
+                            '/en/v5/development.md',
+                            '/en/v5/i18n.md',
+                            '/en/v5/theme.md',
+                            '/en/v5/for-ts.md',
+                            '/en/v5/plugins.md',
                         ]
                     }
                 ],

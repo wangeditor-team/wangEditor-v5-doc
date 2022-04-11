@@ -1,6 +1,6 @@
 # 编辑器配置
 
-如果是第一次使用，请先通过 [快速开始](/v5/guide/getting-started.html) 了解基本使用。
+如果是第一次使用，请先通过 [快速开始](/v5/getting-started.html) 了解基本使用。
 
 ```ts{4}
 import { IEditorConfig, createEditor } from '@wangeditor/editor'
@@ -35,7 +35,7 @@ const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.readOnly = true
 ```
 
-只读状态可通过 `editor.enable()` 和 `editor.disable()` 切换，详见 [API](/v5/guide/API.html) 。
+只读状态可通过 `editor.enable()` 和 `editor.disable()` 切换，详见 [API](/v5/API.html) 。
 
 ## autoFocus
 
@@ -156,7 +156,7 @@ editorConfig.onChange = (editor: IDomEditor) => {
 
 ## onDestroyed
 
-编辑器销毁时的回调函数。调用 `editor.destroy()` 即可销毁编辑器，详见 [API](/v5/guide/API.html) 。
+编辑器销毁时的回调函数。调用 `editor.destroy()` 即可销毁编辑器，详见 [API](/v5/API.html) 。
 
 ```ts
 const editorConfig: Partial<IEditorConfig> = {}

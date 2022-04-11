@@ -15,7 +15,7 @@
 
 ### 创建编辑器和工具栏
 
-注意，安装 wangEditor 参考[这里](/v5/guide/installation.html)。
+注意，安装 wangEditor 参考[这里](/v5/installation.html)。
 
 引入 wangEditor
 
@@ -61,8 +61,8 @@ const toolbar = createToolbar({
 
 ::: tip
 1. 工具栏并不是强制的，如不需要，可以不创建。这并不影响编辑器的使用。
-2. 工具栏的菜单是可以配置的，可参考[配置](/v5/guide/toolbar-config.html)。
-3. 其他 editor config 可参考[配置](/v5/guide/editor-config.html)。
+2. 工具栏的菜单是可以配置的，可参考[配置](/v5/toolbar-config.html)。
+3. 其他 editor config 可参考[配置](/v5/editor-config.html)。
 :::
 
 ### mode 模式
@@ -134,7 +134,7 @@ wangEditor 工具栏内置了“全屏”菜单，但使用它需要有一个条
 </div>
 ```
 
-如果你的 html 结构无法做到上述要求，或者不想用全屏功能，可以通过[工具栏配置](/v5/guide/toolbar-config.html) `{ excludeKeys: 'fullScreen' }` 来隐藏全屏菜单。
+如果你的 html 结构无法做到上述要求，或者不想用全屏功能，可以通过[工具栏配置](/v5/toolbar-config.html) `{ excludeKeys: 'fullScreen' }` 来隐藏全屏菜单。
 
 ### 其他
 

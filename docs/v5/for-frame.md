@@ -1,15 +1,15 @@
 # 用于 Vue React
 
-如果是第一次使用，请先通过 [快速开始](/v5/guide/getting-started.html) 了解基本使用。
+如果是第一次使用，请先通过 [快速开始](/v5/getting-started.html) 了解基本使用。
 
 ## 注意
 
 本文只介绍各个框架的组件接入，实际使用时还需要很多配置、API 。<br>
 所以，阅读下文代码时，如遇到 `工具栏配置` `编辑器配置` `菜单配置` `editor API` 等字眼，请继续参考其他文档：
-- [工具栏配置](/v5/guide/toolbar-config.html)
-- [编辑器配置](/v5/guide/editor-config.html)
-- [编辑器 API](/v5/guide/API.html)
-- [菜单配置](/v5/guide/menu-config.html)
+- [工具栏配置](/v5/toolbar-config.html)
+- [编辑器配置](/v5/editor-config.html)
+- [编辑器 API](/v5/API.html)
+- [菜单配置](/v5/menu-config.html)
 
 ## Vue2
 
@@ -20,7 +20,7 @@
 
 ### 安装
 
-需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/guide/installation.html)。
+需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/installation.html)。
 
 ### 使用
 
@@ -99,9 +99,9 @@ export default Vue.extend({
 ### 配置
 
 可通过 `toolbarConfig` 和 `editorConfig` 来修改菜单栏和编辑器的配置，详细文档参考
-- [工具栏配置](/v5/guide/toolbar-config.html)
-- [编辑器配置](/v5/guide/editor-config.html)
-- [菜单配置](/v5/guide/menu-config.html)
+- [工具栏配置](/v5/toolbar-config.html)
+- [编辑器配置](/v5/editor-config.html)
+- [菜单配置](/v5/menu-config.html)
 
 【注意】，编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
 
@@ -156,7 +156,7 @@ methods: {
 
 ### 调用 API
 
-当编辑器渲染完成之后，通过 `this.editor` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
+当编辑器渲染完成之后，通过 `this.editor` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/API.html) 。
 
 ```xml
 <template>
@@ -192,7 +192,7 @@ methods: {
 
 ### 安装
 
-需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue@next`，可参考[这里](/v5/guide/installation.html)。
+需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue@next`，可参考[这里](/v5/installation.html)。
 
 ### 使用
 
@@ -278,9 +278,9 @@ export default {
 ### 配置
 
 可通过 `toolbarConfig` 和 `editorConfig` 来修改菜单栏和编辑器的配置，详细文档参考
-- [工具栏配置](/v5/guide/toolbar-config.html)
-- [编辑器配置](/v5/guide/editor-config.html)
-- [菜单配置](/v5/guide/menu-config.html)
+- [工具栏配置](/v5/toolbar-config.html)
+- [编辑器配置](/v5/editor-config.html)
+- [菜单配置](/v5/menu-config.html)
 
 【注意】，编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
 
@@ -343,7 +343,7 @@ return {
 
 ### 调用 API
 
-当编辑器渲染完成之后，通过 `editorRef.value` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
+当编辑器渲染完成之后，通过 `editorRef.value` 获取 editor 实例，即可调用它的 API 。参考 [编辑器 API](/v5/API.html) 。
 
 ```xml
 <template>
@@ -381,7 +381,7 @@ return {
 
 ### 安装
 
-需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/guide/installation.html)。
+需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/installation.html)。
 
 ### 使用
 
@@ -450,13 +450,13 @@ export default MyEditor
 ### 配置
 
 可通过 `toolbarConfig` 和 `editorConfig` 来修改菜单栏和编辑器的配置，详细文档参考
-- [工具栏配置](/v5/guide/toolbar-config.html)
-- [编辑器配置](/v5/guide/editor-config.html)
-- [菜单配置](/v5/guide/menu-config.html)
+- [工具栏配置](/v5/toolbar-config.html)
+- [编辑器配置](/v5/editor-config.html)
+- [菜单配置](/v5/menu-config.html)
 
 ### 调用 API
 
-当编辑器渲染完成之后，即可调用它的 API 。参考 [编辑器 API](/v5/guide/API.html) 。
+当编辑器渲染完成之后，即可调用它的 API 。参考 [编辑器 API](/v5/API.html) 。
 
 ```jsx
 function insertText() {

@@ -1,11 +1,11 @@
 ---
 home: true
 heroImage: null
-heroText: wangEditor
+heroText: wangEditor 5
 tagline: Open source web rich text editor, run right out of the box, config simply.
 actions:
   - text: Getting started
-    link: /en/guide/getting-started.html
+    link: /en/v5/getting-started.html
     type: primary
   - text: demo
     link: https://www.wangeditor.com/demo/index.html?lang=en
@@ -15,15 +15,15 @@ features:
   details: Quick use, easy config, few codes will create an editor. Integrate all basic functions, No need to secondary develop.
 - title: Support JS Vue React
   details: Independent of any third-party frameworks, you can use it in jQuery, Vue, React. We supply official Vue React components.
-- title: Closed 4000+ issues
-  details: wangEditor open source for many years, many users committed many issues. We have closed 4000+ Github issues and will go on.
+- title: Resolved 4000+ issues
+  details: wangEditor open source for many years, many users committed many issues. We have resolved 4000+ Github issues and will go on.
 footer: Copyright © 2017-present wangeditor.com
 ---
 
 ### Easy usage
 
 You can create a fully functional rich-text editor with 10 lines of code. See [demo](https://www.wangeditor.com/demo/index.html?lang=en).
-You can use [official component](/v5/en/guide/for-frame.html) in Vue or React.
+You can use [official component](/en/v5/for-frame.html) in Vue or React.
 
 ![](/image/editor-en.png)
 
