@@ -1,6 +1,6 @@
 # wangEditor v5 doc
 
-线上地址：https://www.wangeditor.com/v5/
+线上地址：https://www.wangeditor.com/
 
 ## 本地开发
 
