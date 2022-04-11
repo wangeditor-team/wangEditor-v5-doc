@@ -50,4 +50,4 @@ const toolbar = createToolbar({
 
 ### Communication
 
-- [Commit an issue]((https://github.com/wangeditor-team/wangEditor-v5/issues))
+- [Commit an issue]((https://github.com/wangeditor-team/wangEditor/issues))

@@ -1,6 +1,6 @@
 # 主题
 
-可以通过 CSS vars 定义自己的主题，样式请参考[源码](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor/src/assets/index.less)。
+可以通过 CSS vars 定义自己的主题，样式请参考[源码](https://github.com/wangeditor-team/wangEditor/blob/master/packages/editor/src/assets/index.less)。
 
 ```css
 /* 暗色主题 */

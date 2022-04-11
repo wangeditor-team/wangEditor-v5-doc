@@ -1,6 +1,6 @@
 # Theme
 
-You can custom your theme by CSS vars , you can checkout all styles in the [source code](https://github.com/wangeditor-team/wangEditor-v5/blob/main/packages/editor/src/assets/index.less).
+You can custom your theme by CSS vars , you can checkout all styles in the [source code](https://github.com/wangeditor-team/wangEditor/blob/master/packages/editor/src/assets/index.less).
 
 ```css
 /* Dark theme */

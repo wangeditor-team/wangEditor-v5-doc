@@ -49,5 +49,5 @@ const toolbar = createToolbar({
 
 ### 交流
 
-- [提交问题和建议](https://github.com/wangeditor-team/wangEditor-v5/issues)
+- [提交问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
 - 加入 QQ 群 `812473515`
