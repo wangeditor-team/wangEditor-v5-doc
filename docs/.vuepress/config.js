@@ -2,7 +2,20 @@ module.exports = {
     title: 'wangEditor',
     description: '开源 Web 富文本编辑器',
     head: [
-        ['link', { rel: 'icon', href: '/favicon.ico' }]
+        ['link', { rel: 'icon', href: '/favicon.ico' }],
+        [
+            'script',
+            {},
+            `
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?a25f260386e515f4eee3e0a6bb4166be";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            `
+        ]
     ],
 
     locales: {
