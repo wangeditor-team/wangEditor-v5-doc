@@ -1,6 +1,6 @@
 module.exports = {
     title: 'wangEditor',
-    description: '开源 Web 富文本编辑器',
+    description: '开源 Web 富文本编辑器，开箱即用，配置简单',
     head: [
         ['link', { rel: 'icon', href: '/favicon.ico' }],
         [
@@ -79,7 +79,7 @@ module.exports = {
             '/en/': {
                 lang: 'en',
                 selectLanguageName: 'English',
-                description: 'Open source web rich text editor',
+                description: 'Open source web rich text editor, run right out of the box, config simply.',
 
                 navbar: [
                     { text: 'Guide', link: '/en/v5/' },
