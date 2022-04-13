@@ -83,7 +83,7 @@ You can use `editor.getConfig().hoverbarKeys` to checkout default config.
 ![](/image/hoverbar-en.png)
 
 :::tip
-If you only unwanted hoverbar when select text, set `model: 'simple'` when creating editor
+If you only unwanted hoverbar when select text, set `mode: 'simple'` when creating editor
 :::
 
 ### Use element type

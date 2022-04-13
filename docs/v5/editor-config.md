@@ -84,7 +84,7 @@ editorConfig.onMaxLength = function (editor: IDomEditor) {
 ![](/image/hoverbar.png)
 
 :::tip
-createEditor 时设置 `model: 'simple'` 可隐藏选中文本时的 hoverbar 。
+createEditor 时设置 `mode: 'simple'` 可隐藏选中文本时的 hoverbar 。
 :::
 
 ### 使用 element type
