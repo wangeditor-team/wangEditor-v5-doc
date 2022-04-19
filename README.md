@@ -4,7 +4,7 @@
 
 ## 本地开发
 
-使用 [vupress v2](https://v2.vuepress.vuejs.org/zh/) 搭建的文档。
+使用 [VuePress v2](https://v2.vuepress.vuejs.org/zh/) 搭建的文档。
 
 全局安装 vuepress `npm install vuepress -g`
 
