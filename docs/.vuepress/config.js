@@ -4,6 +4,7 @@ const { searchPlugin } = require('@vuepress/plugin-search');
 module.exports = {
   title: 'wangEditor',
   description: '开源 Web 富文本编辑器，开箱即用，配置简单',
+  //   采用vite默认打包配置
   bundler: viteBundler(),
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],

@@ -1,15 +1,16 @@
 {
-    "cSpell.words": [
-        "antd",
-        "clonedeep",
-        "dev",
-        "docs",
-        "Elems",
-        "hoverbar",
-        "keys",
-        "vdom",
-        "vnode",
-        "vuepress",
-        "wangeditor"
-    ],
+  "cSpell.words": [
+    "antd",
+    "clonedeep",
+    "dev",
+    "docs",
+    "Elems",
+    "hoverbar",
+    "keys",
+    "vdom",
+    "vite",
+    "vnode",
+    "vuepress",
+    "wangeditor"
+  ]
 }
