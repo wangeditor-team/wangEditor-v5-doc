@@ -1,6 +1,10 @@
+const { viteBundler, defaultTheme } = require('vuepress');
+const { searchPlugin } = require('@vuepress/plugin-search');
+
 module.exports = {
     title: 'wangEditor',
     description: '开源 Web 富文本编辑器，开箱即用，配置简单',
+    bundler: viteBundler(),
     head: [
         ['link', { rel: 'icon', href: '/favicon.ico' }],
         [
@@ -27,7 +31,7 @@ module.exports = {
         },
     },
 
-    themeConfig: {
+    theme: defaultTheme({
         logo: '/image/logo.png',
 
         locales: {
@@ -123,12 +127,11 @@ module.exports = {
                 ],
             },
         },
-    },
+    }),
 
     plugins: [
         [
-            '@vuepress/plugin-search',
-            {
+            searchPlugin({
                 locales: {
                     '/': {
                         placeholder: '搜索',
@@ -137,7 +140,7 @@ module.exports = {
                         placeholder: 'Search',
                     },
                 },
-            },
+            })
         ],
     ],
 }
