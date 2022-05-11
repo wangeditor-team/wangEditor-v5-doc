@@ -20,7 +20,7 @@ PS：英语特别的，请略过。
 
 ### 需要大量二次开发
 
-如 ProseMirror Draft Slate ProseMirror ，他们虽然也是富文本编辑器，但他们仅仅是一个 core 或者 controller ，并不是一个完整的功能。
+如 ProseMirror Draft Slate ，他们虽然也是富文本编辑器，但他们仅仅是一个 core 或者 controller ，并不是一个完整的功能。
 
 大量的二次开发，不仅仅会导致研发成本大增（本月封闭～），还可能因为测试不完善而出现无尽的 bug ，陷入泥潭。
 
@@ -32,7 +32,7 @@ PS：除非你们有强烈的定制开发需要。
 
 ### 无官方 React Vue 等组件
 
-一些无框架依赖的，如 PromiseMirror ，如果你要用到 Vue React ，需要自己封装组件。
+一些无框架依赖的，如 ProseMirror ，如果你要用到 Vue React ，需要自己封装组件。
 
 ### 新产品尚未稳定
 
