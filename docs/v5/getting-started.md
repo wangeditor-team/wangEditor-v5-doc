@@ -33,6 +33,7 @@ import { createEditor, createToolbar, IEditorConfig, IDomEditor } from '@wangedi
 ```ts
 //【注意】下面使用的 typescript 语法。如用 javascript 语法，把类型去掉即可。
 
+// 编辑器配置
 const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.placeholder = '请输入内容'
 editorConfig.onChange = (editor: IDomEditor) => {
@@ -40,6 +41,9 @@ editorConfig.onChange = (editor: IDomEditor) => {
     console.log('content', editor.children)
     console.log('html', editor.getHtml())
 }
+
+// 工具栏配置
+const toolbarConfig: Partial<IToolbarConfig> = {}
 
 // 创建编辑器
 const editor = createEditor({
@@ -51,6 +55,7 @@ const editor = createEditor({
 const toolbar = createToolbar({
   editor,
   selector: '#toolbar-container',
+  config: toolbarConfig,
   mode: 'default' // 或 'simple' 参考下文
 })
 ```

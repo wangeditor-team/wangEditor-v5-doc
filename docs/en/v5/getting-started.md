@@ -40,6 +40,8 @@ editorConfig.onChange = (editor: IDomEditor) => {
     console.log('html', editor.getHtml())
 }
 
+const toolbarConfig: Partial<IToolbarConfig> = {}
+
 // create editor
 const editor = createEditor({
   selector: '#editor-container',
@@ -50,6 +52,7 @@ const editor = createEditor({
 const toolbar = createToolbar({
   editor,
   selector: '#toolbar-container',
+  config: toolbarConfig,
   mode: 'default' // or 'simple'
 })
 ```
