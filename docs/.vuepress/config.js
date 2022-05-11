@@ -40,7 +40,8 @@ module.exports = {
                 selectLanguageName: '简体中文',
 
                 navbar: [
-                    { text: '指南', link: '/v5/' },
+                    { text: '指南', link: '/v5/getting-started.md' },
+                    { text: '视频教程', link: '/v5/video-course.md' },
                     { text: 'Demo', link: 'https://www.wangeditor.com/demo/index.html' },
                     { text: '插件', link: '/v5/plugins.md' },
                     { text: 'Github', link: 'https://github.com/wangeditor-team/wangEditor' },
@@ -76,6 +77,12 @@ module.exports = {
                             '/v5/theme.md',
                             '/v5/for-ts.md',
                             '/v5/plugins.md',
+                        ]
+                    },
+                    {
+                        text: '资源',
+                        children: [
+                            '/v5/video-course.md'
                         ]
                     }
                 ],
