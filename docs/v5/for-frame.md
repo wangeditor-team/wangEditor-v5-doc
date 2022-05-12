@@ -2,6 +2,8 @@
 
 如果是第一次使用，请先通过 [快速开始](/v5/getting-started.html) 了解基本使用。
 
+快速了解可查看[视频教程](/v5/video-course.html)。
+
 ## 注意
 
 本文只介绍各个框架的组件接入，实际使用时还需要很多配置、API 。<br>
@@ -51,7 +53,6 @@ script
 ```html
 <script>
 import Vue from 'vue'
-import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
 export default Vue.extend({

@@ -2,6 +2,8 @@
 
 如果你想用于 Vue React ，请先阅读本文，然后看[这里](./for-frame.md)。
 
+快速了解可查看[视频教程](/v5/video-course.html)。
+
 ## 创建空白编辑器
 
 ### 定义 html 结构

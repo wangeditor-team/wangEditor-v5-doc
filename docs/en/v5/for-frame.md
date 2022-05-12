@@ -50,7 +50,6 @@ Script
 ```html
 <script>
 import Vue from 'vue'
-import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
 export default Vue.extend({
