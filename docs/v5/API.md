@@ -400,6 +400,8 @@ editor.isFullScreen // true/false
 
 ```ts
 editor.focus()
+
+// editor.focus(true) // 选区定位到最后
 ```
 
 ### blur

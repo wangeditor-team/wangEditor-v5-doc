@@ -367,6 +367,8 @@ editor.isFullScreen // true/false
 
 ```ts
 editor.focus()
+
+// editor.focus(true) // Select end
 ```
 
 ### blur
