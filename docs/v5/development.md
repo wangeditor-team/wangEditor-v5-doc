@@ -341,15 +341,6 @@ Boot.registerPlugin(withBreak)
 注意，下面代码中的 `key` 即菜单 key ，要唯一不重复。<br>
 注册完菜单之后，即可把这个 `key` 配置到[工具栏](/v5/toolbar-config.html)中。
 
-### 安装 `@wangeditor/core`
-
-如使用 Typescript 需要类型校验，需安装 `@wangeditor/core` 。
-
-```shell
-yarn add @wangeditor/core --peer
-## 安装到 package.json 的 peerDependencies 中即可
-```
-
 ### ButtonMenu
 
 代码如下。菜单的详细配置，可参考“引用”菜单[源码](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/blockquote/menu/BlockquoteMenu.ts)。
@@ -359,8 +350,7 @@ yarn add @wangeditor/core --peer
 - 全局只能注册一次，不要重复注册
 
 ```ts
-import { IButtonMenu } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor'
+import { Boot, IButtonMenu } from '@wangeditor/editor'
 
 // 定义菜单 class
 class MyButtonMenu implements IButtonMenu {
@@ -388,8 +378,7 @@ Boot.registerMenu(menu1Conf)
 - 全局只能注册一次，不要重复注册
 
 ```ts
-import { ISelectMenu } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor'
+import { Boot, ISelectMenu } from '@wangeditor/editor'
 
 // 定义菜单 class
 class MySelectMenu implements ISelectMenu {
@@ -417,8 +406,7 @@ Boot.registerMenu(menu2Conf)
 - 全局只能注册一次，不要重复注册
 
 ```ts
-import { IDropPanelMenu } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor'
+import { Boot, IDropPanelMenu } from '@wangeditor/editor'
 
 // 定义菜单 class
 class MyDropPanelMenu implements IDropPanelMenu {
@@ -446,8 +434,7 @@ Boot.registerMenu(menu3Conf)
 - 全局只能注册一次，不要重复注册
 
 ```ts
-import { IModalMenu } from '@wangeditor/core'
-import { Boot } from '@wangeditor/editor'
+import { Boot, IModalMenu } from '@wangeditor/editor'
 
 // 定义菜单 class
 class MyModalMenu implements IModalMenu {
@@ -471,8 +458,7 @@ Boot.registerMenu(menu4Conf)
 可以把上述的 renderElem toHtml parseHtml 插件 菜单等，封装为一个 module ，然后一次性注册。
 
 ```ts
-import { Boot } from '@wangeditor/editor'
-import { IModuleConf } from '@wangeditor/core'
+import { Boot, IModuleConf } from '@wangeditor/editor'
 
 const module: Partial<IModuleConf> = {
   editorPlugin: withBreak,
