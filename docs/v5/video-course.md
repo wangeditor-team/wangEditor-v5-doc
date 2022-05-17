@@ -14,6 +14,7 @@
 - [wangEditor5教程09-菜单配置](https://www.bilibili.com/video/BV1LS4y187eC/)
 - [wangEditor5教程10-编辑器配置](https://www.bilibili.com/video/BV1jF41177GD/)
 - [wangEditor5教程11-API（视频较长，耐心观看）](https://www.bilibili.com/video/BV1fu411z75r/)
+- [wangEditor5教程12-自定义扩展（视频较长，耐心观看）](https://www.bilibili.com/video/BV1Y3411A7eb/)
 
 如需要其他视频教程，可去提交 [issue](https://github.com/wangeditor-team/wangEditor/issues) 反馈。
 
