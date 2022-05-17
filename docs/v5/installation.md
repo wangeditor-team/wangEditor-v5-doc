@@ -44,3 +44,7 @@ yarn add @wangeditor/editor-for-vue@next
     var E = window.wangEditor; // 全局变量
 </script>
 ```
+
+如果上述 CDN 访问不成功，可使用以下备用地址
+- https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css
+- https://unpkg.com/@wangeditor/editor@latest/dist/index.js
