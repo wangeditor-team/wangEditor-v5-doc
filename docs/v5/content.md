@@ -35,15 +35,23 @@ const text = editor.getText()
 
 ### 设置 HTML
 
-<b style="color: red;">【注意】这里的 `html` 内容必须是 wangEditor 生成的 HTML 格式，不可以自己随意写</b>。HTML 格式非常灵活，wangEditor 无法兼容所有的 HTML 格式。
+<b style="color: red;">【注意】这里的 HTML 内容必须是 wangEditor 生成的（即 `editor.getHtml()` 返回的） HTML 格式，不可以自己随意写</b>。HTML 格式非常灵活，wangEditor 无法兼容所有的 HTML 格式。
 
 例如，wangEditor 可以识别 `<strong>hello</strong>` 为加粗，但无法识别 `<span style="font-weight: bold;">hello</span>` 等其他加粗方式。
+
+#### 创建时设置 HTML
 
 ```js
 const editor = createEditor({
   html: '<p>hello <strong>world</strong></p>', // 从 editor.getHtml() 获取的 html 内容
   // 其他属性...
 })
+```
+
+#### 动态设置 HTML
+
+```js
+editor.setHtml('<p>hello <strong>world</strong></p>')
 ```
 
 ### 设置 Text
@@ -58,6 +66,9 @@ const editor = createEditor({
   html,
   // 其他属性...
 })
+
+// 3. 或，在创建完 editor 之后执行 setHtml
+// editor.setHtml(html)
 ```
 
 ### 设置 JSON

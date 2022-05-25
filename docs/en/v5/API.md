@@ -62,6 +62,16 @@ Get editor's plain text.
 const text = editor.getText()
 ```
 
+### setHtml
+
+Rewrite editor HTML content.
+
+```ts
+editor.setHtml('<p>hello</p>')
+```
+
+PS: wangEditor can only understand the **HTML format produced by `editor.getHtml()`**, but custom HTML format.
+
 ### isEmpty
 
 Determine whether the editor is empty (just has an empty paragraph)
@@ -149,33 +159,6 @@ editor.dangerouslyInsertHtml(`<h1>Header1</h1><p>Hello <b>word</b></p>`)
 
 ```ts
 editor.clear()
-```
-
-### Rewrite content
-
-You can write content by selection APIs and node APIs.
-
-```ts
-import { SlateTransforms } from '@wangeditor/editor'
-
-// Select all, then delete
-editor.select([])
-editor.deleteFragment()
-
-// 1. Insert HTML format
-// 1.1 Change type of first element
-SlateTransforms.setNodes(editor, { type: 'paragraph' }, { mode: 'highest' })
-// 1.2 Insert your content
-editor.dangerouslyInsertHtml('<p>your text</p>')
-
-// // 2. Insert JSON format
-// // 2.1 Insert your content
-// SlateTransforms.insertNodes(editor, [
-//   { type: 'paragraph', children: [{ text: 'your text 1' }] },
-//   { type: 'paragraph', children: [{ text: 'your text 2' }] }
-// ])
-// // 2.2 Delete the first paragraph (optional)
-// SlateTransforms.removeNodes(editor, { at: [0] })
 ```
 
 ### undo

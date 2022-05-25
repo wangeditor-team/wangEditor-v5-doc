@@ -62,6 +62,14 @@ editor.handleTab = () => editor.insertText('    ')
 const text = editor.getText()
 ```
 
+### setHtml
+
+重置编辑器的 HTML 内容。【注意】只能解析 `editor.getHtml()` 返回的 HTML 格式，不支持自定义 HTML 格式。
+
+```rs
+editor.setHtml('<p>hello</p>')
+```
+
 ### isEmpty
 
 判断当前编辑器内容是否为空（只有一个空段落）
@@ -164,33 +172,6 @@ editor.dangerouslyInsertHtml(`<h1>标题</h1><p>文本 <b>加粗</b></p>`)
 
 ```ts
 editor.clear()
-```
-
-### 重置内容
-
-可以通过 selection API 和 node API 来重置内容
-
-```ts
-import { SlateTransforms } from '@wangeditor/editor'
-
-// 全选并删除
-editor.select([])
-editor.deleteFragment()
-
-// 1. 插入 HTML 格式
-// 1.1 第一行改为 paragraph
-SlateTransforms.setNodes(editor, { type: 'paragraph' }, { mode: 'highest' })
-// 1.2 插入内容
-editor.dangerouslyInsertHtml('<p>你的文章内容</p>')
-
-// // 2. 插入 JSON 内容
-// // 2.1 插入 node
-// SlateTransforms.insertNodes(editor, [
-//   { type: 'paragraph', children: [{ text: '你的文章内容1' }] },
-//   { type: 'paragraph', children: [{ text: '你的文章内容2' }] }
-// ])
-// // 2.2 删除第一个空行（按需）
-// SlateTransforms.removeNodes(editor, { at: [0] })
 ```
 
 ### undo

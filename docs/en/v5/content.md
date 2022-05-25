@@ -39,11 +39,19 @@ You can set your custom content when creating an editor.
 
 For instance, wangEditor can understand `<strong>hello</strong>`, but can not understand `<span style="font-weight:bold;"></span>`.
 
+### Set HTML when create editor
+
 ```js
 const editor = createEditor({
   html: '<p>hello <strong>world</strong></p>', // html content, got from `editor.getHtml()`
   // other props ...
 })
+```
+
+### Set HTML after create editor
+
+```js
+editor.setHtml('<p>hello <strong>world</strong></p>')
 ```
 
 ### Set Text
@@ -58,6 +66,9 @@ const editor = createEditor({
   html,
   // other props ...
 })
+
+// 3. or setHtml after create editor
+// editor.setHtml(html)
 ```
 
 ### Set JSON
