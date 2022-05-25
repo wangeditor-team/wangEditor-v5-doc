@@ -36,22 +36,17 @@ yarn add @wangeditor/editor-for-vue@next
 
 ```html
 <!-- 引入 css -->
-<link href="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+<link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
 
 <!-- 引入 js -->
-<script src="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/index.min.js"></script>
+<script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
 <script>
     var E = window.wangEditor; // 全局变量
 </script>
 ```
 
-如果上述 CDN 访问不成功，可选择如下两种备用方案：
+如果上述 CDN 访问不成功，可以在 npm 安装完成之后，在安装包找到 JS CSS 文件，步骤如下：
 
-第一，使用以下备用地址
-- [https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css](https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css)
-- [https://unpkg.com/@wangeditor/editor@latest/dist/index.js](https://unpkg.com/@wangeditor/editor@latest/dist/index.js)
-
-第二，在 npm 安装完成之后，在安装包找到 JS CSS 文件，步骤如下：
 - 新建一个 `test1` 文件夹，打开控制台，目录定位到该文件夹，执行 `npm install @wangeditor/editor` 或 `yarn add @wangeditor/editor`
 - 安装完成，打开 `node_modules/@wangeditor/editor/dist` 文件夹，即可找到 JS CSS 文件：
     - `index.js`
