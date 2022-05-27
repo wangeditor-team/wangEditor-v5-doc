@@ -13,7 +13,7 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 const toolbar = createToolbar({
   editor,
   selector: '#toolbar-container',
-  config: toolbarConfig
+  config: toolbarConfig,
   mode: 'default'
 })
 ```
