@@ -263,15 +263,16 @@ Boot.registerParseElemHtml(parseHtmlConf)
 
 ```ts
 import { Dom7Array, SlateText } from 'dom7'
-import { Boot, SlateDescendant, SlateText } from '@wangeditor/editor'
+import { Boot, SlateDescendant, SlateText, IDomEditor } from '@wangeditor/editor'
 
 /**
  * 识别 html 中的颜色，并添加到 text node
  * @param $text 由 html 创建的 DOM 节点（Dom7 创建，类似 jquery）
  * @param node text node
+ * @param editor editor
  * @returns text node with color and bgColor
  */
-export function parseStyleHtml($text: Dom7Array, node: SlateDescendant): SlateDescendant {
+export function parseStyleHtml($text: Dom7Array, node: SlateDescendant, editor: IDomEditor): SlateDescendant {
   if (!SlateText.isText(node)) return node
 
   const textNode = node as SlateText
