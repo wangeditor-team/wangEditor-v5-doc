@@ -17,9 +17,3 @@
 - [wangEditor5教程12-自定义扩展（视频较长，耐心观看）](https://www.bilibili.com/video/BV1Y3411A7eb/)
 
 如需要其他视频教程，可去提交 [issue](https://github.com/wangeditor-team/wangEditor/issues) 反馈。
-
-## 关注作者
-
-关注抖音（ID 95431723872）听作者聊聊前端、开源、工作、学习的想法和建议。抖音会持续更新~
-
-![](/image/douyin.jpeg)
