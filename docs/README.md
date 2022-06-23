@@ -50,7 +50,7 @@ const toolbar = createToolbar({
 ### 交流
 
 - [提交问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
-- 加入 QQ 群 `687709612`
+- 加入 QQ 群 `730729330`
 
 ### 关注作者抖音
 
