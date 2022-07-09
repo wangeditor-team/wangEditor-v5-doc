@@ -1,3 +1,5 @@
+[![极客时间学习卡](/image/ad/geek-ad.jpeg "极客时间学习卡")](https://time.geekbang.org/activity/promo?page_name=page_418)
+
 # 用于 Vue React
 
 如果是第一次使用，请先通过 [快速开始](/v5/getting-started.html) 了解基本使用。
