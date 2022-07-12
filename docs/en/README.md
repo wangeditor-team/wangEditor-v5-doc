@@ -51,3 +51,7 @@ const toolbar = createToolbar({
 ### Communication
 
 - [Commit an issue]((https://github.com/wangeditor-team/wangEditor/issues))
+
+### Donation
+
+Support wangEditor open-source work [https://opencollective.com/wangeditor](https://opencollective.com/wangeditor)

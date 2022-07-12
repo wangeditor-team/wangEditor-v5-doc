@@ -54,6 +54,10 @@ const toolbar = createToolbar({
 - [提交问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
 - 加入 QQ 群 `730729330`
 
+### 捐赠
+
+支持 wangEditor 开源工作 [https://opencollective.com/wangeditor](https://opencollective.com/wangeditor)
+
 ### 关注作者抖音
 
 ![](/image/douyin.jpeg)
