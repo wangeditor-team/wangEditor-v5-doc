@@ -11,21 +11,21 @@ yarn add @wangeditor/editor
 # 或者 npm install @wangeditor/editor --save
 ```
 
-安装 React 组件
+安装 React 组件(可选)
 
 ```shell
 yarn add @wangeditor/editor-for-react
 # 或者 npm install @wangeditor/editor-for-react --save
 ```
 
-安装 Vue2 组件
+安装 Vue2 组件(可选)
 
 ```shell
 yarn add @wangeditor/editor-for-vue
 # 或者 npm install @wangeditor/editor-for-vue --save
 ```
 
-安装 Vue3 组件
+安装 Vue3 组件(可选)
 
 ```shell
 yarn add @wangeditor/editor-for-vue@next
