@@ -49,10 +49,11 @@ const toolbar = createToolbar({
 - 暂不支持移动端编辑（支持移动端查看）
 - **不再支持 IE 浏览器**
 
-### 交流
+### 遇到问题
 
-- [提交问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
-- 加入 QQ 群 `730729330`
+- [常见问题汇总](https://github.com/wangeditor-team/wangEditor/issues/4524)
+- [提交 issue 问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
+- 用户交流 QQ 群 `730729330`
 
 ### 捐赠
 
