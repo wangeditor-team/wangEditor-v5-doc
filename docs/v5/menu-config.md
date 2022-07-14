@@ -468,6 +468,7 @@ import { SlateElement } from '@wangeditor/editor'
 
 type VideoElement = SlateElement & {
     src: string
+    poster?: string
 }
 ```
 
@@ -552,8 +553,11 @@ editorConfig.MENU_CONF['uploadVideo'] = {
     "errno": 0, // 注意：值是数字，不能是字符串
     "data": {
         "url": "xxx", // 视频 src ，必须
+        "poster": "xxx.png" // 视频封面图片 url ，可选
     }
 }
+
+// 注意：@wangeditor/editor 版本 >= 5.1.8 才支持 video poster
 ```
 
 上传失败的返回格式：
@@ -648,7 +652,7 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 如果用于 Typescript ，则要定义插入函数的类型。
 
 ```ts
-type InsertFnType = (url: string) => void
+type InsertFnType = (url: string, poster: string = '') => void
 ```
 
 #### 自定义插入
@@ -662,8 +666,8 @@ editorConfig.MENU_CONF['uploadVideo'] = {
     customInsert(res: any, insertFn: InsertFnType) {
         // res 即服务端的返回结果
 
-        // 从 res 中找到 url ，然后插入视频
-        insertFn(url)
+        // 从 res 中找到 url poster ，然后插入视频
+        insertFn(url, poster)
     },
 }
 ```
@@ -678,9 +682,9 @@ editorConfig.MENU_CONF['uploadVideo'] = {
     // 自定义上传
     async customUpload(file: File, insertFn: InsertFnType) {
         // file 即选中的文件
-        // 自己实现上传，并得到视频 url
+        // 自己实现上传，并得到视频 url poster
         // 最后插入视频
-        insertFn(url)
+        insertFn(url, poster)
     }
 }
 ```
@@ -695,9 +699,9 @@ editorConfig.MENU_CONF['uploadVideo'] = {
     // 自定义选择视频
     customBrowseAndUpload(insertFn: InsertFnType) {
         // 自己选择文件
-        // 自己上传文件，并得到视频 url
+        // 自己上传文件，并得到视频 url poster
         // 最后插入视频
-        insertFn(url)
+        insertFn(url, poster)
     }
 }
 ```

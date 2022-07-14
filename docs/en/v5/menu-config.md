@@ -443,6 +443,7 @@ import { SlateElement } from '@wangeditor/editor'
 
 type VideoElement = SlateElement & {
     src: string
+    poster?: string
 }
 ```
 
@@ -509,13 +510,16 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 If uploaded successfully, the server must return data like this format:
 
-```json
+```js
 {
     "errno": 0, // it's number, not string
     "data": {
         "url": "xxx", // video src, required
+        "poster": "xxx.png" // video poster image, optional
     }
 }
+
+// @wangeditor/editor >= 5.1.8 support video poster
 ```
 
 If uploaded failed, the server must return data like this format:
@@ -608,7 +612,7 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 If you use Type script, you should define a function type first.
 
 ```ts
-type InsertFnType = (url: string) => void
+type InsertFnType = (url: string, poster: string = '') => void
 ```
 
 #### Custom Insert
@@ -620,8 +624,8 @@ editorConfig.MENU_CONF['uploadVideo'] = {
     customInsert(res: any, insertFn: InsertFnType) {
         // `res` is server response
 
-        // Get video's url in res, and insert to editor
-        insertFn(url)
+        // Get video's url and poster in res, and insert to editor
+        insertFn(url, poster)
     },
 }
 ```
@@ -635,10 +639,10 @@ editorConfig.MENU_CONF['uploadVideo'] = {
     async customUpload(file: File, insertFn: InsertFnType) {
         // `file` is your selected file
 
-        // upload videos yourself, and get video's url
+        // upload videos yourself, and get video's url and poster
 
         // insert video
-        insertFn(url)
+        insertFn(url, poster)
     }
 }
 ```
@@ -651,9 +655,9 @@ If you unwanted wangEditor's embedded select function, you can use `customBrowse
 editorConfig.MENU_CONF['uploadVideo'] = {
     customBrowseAndUpload(insertFn: InsertFnType) {
         // 1. select files by yourself
-        // 2. upload files, and get video's url
+        // 2. upload files, and get video's url and poster
         // 3. insert video
-        insertFn(url)
+        insertFn(url, poster)
     }
 }
 ```
