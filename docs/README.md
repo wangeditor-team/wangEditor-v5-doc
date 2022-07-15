@@ -53,7 +53,7 @@ const toolbar = createToolbar({
 
 - [常见问题汇总](https://github.com/wangeditor-team/wangEditor/issues/4524)
 - [提交 issue 问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
-- 用户交流 QQ 群 `730729330`
+- 用户交流 QQ 群 `657798566`
 
 ### 捐赠
 
