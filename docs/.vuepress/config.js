@@ -77,6 +77,7 @@ module.exports = {
                             '/v5/theme.md',
                             '/v5/for-ts.md',
                             '/v5/plugins.md',
+                            '/v5/VIP.md',
                         ]
                     },
                     {
