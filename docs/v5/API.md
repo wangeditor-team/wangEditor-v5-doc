@@ -1,5 +1,3 @@
-[![极客时间学习卡](/image/ad/geek-ad.png "极客时间学习卡")](https://time.geekbang.org/activity/promo?page_name=page_418)
-
 # 编辑器 API
 
 ## config 相关

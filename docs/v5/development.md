@@ -1,5 +1,3 @@
-[![极客时间学习卡](/image/ad/geek-ad.png "极客时间学习卡")](https://time.geekbang.org/activity/promo?page_name=page_418)
-
 # 自定义扩展新功能
 
 wangEditor 从 V5 开始，源码上就分离了 core editor 还有各个 module 。<br>

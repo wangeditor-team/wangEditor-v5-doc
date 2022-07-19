@@ -1,5 +1,3 @@
-[![极客时间学习卡](/image/ad/geek-ad.png "极客时间学习卡")](https://time.geekbang.org/activity/promo?page_name=page_418)
-
 # 快速开始
 
 如果你想用于 Vue React ，请先阅读本文，然后看[这里](./for-frame.md)。
