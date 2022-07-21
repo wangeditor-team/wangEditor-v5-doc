@@ -2,14 +2,6 @@
 
 If you first-time use wangEditor, please see [Get started](./getting-started.md) it to learn basic usage.
 
-## Attention
-
-This article only introduces editor components, you should also learn some API and configs.
-- [Toolbar Config](./toolbar-config.md)
-- [Editor Config](./editor-config.md)
-- [Editor API](./API.md)
-- [Menus Config](./menu-config.md)
-
 ## Vue2
 
 ### Demo
@@ -19,7 +11,13 @@ This article only introduces editor components, you should also learn some API a
 
 ### Installation
 
-Install `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`, see [Installation](./installation.md).
+```sh
+yarn add @wangeditor/editor
+# npm install @wangeditor/editor --save
+
+yarn add @wangeditor/editor-for-vue
+# npm install @wangeditor/editor-for-vue --save
+```
 
 ### Usage
 
@@ -97,9 +95,9 @@ Import style
 ### Config
 
 You can extend toolbar and editor config in `toolbarConfig` and `editorConfig` (above code)
-- [Toolbar Config](./toolbar-config.md)
-- [Editor Config](./editor-config.md)
-- [Menus Config](./menu-config.md)
+- [Toolbar Config](./toolbar-config.md) - Insert a new menu, exclude some menus
+- [Editor Config](./editor-config.md) - Editor life-cycles, custom **paste** event
+- [Menus Config](./menu-config.md) - Config colors font-size font-family, config **upload image**
 
 Be careful: life-cycle functions (format like `onXxx`) which in editor's config, **you should use Vue events, not use in `editorConfig`**
 
@@ -192,6 +190,14 @@ methods: {
 
 Install `@wangeditor/editor` and `@wangeditor/editor-for-vue@next`, see [Installation](./installation.md).
 
+```sh
+yarn add @wangeditor/editor
+# npm install @wangeditor/editor --save
+
+yarn add @wangeditor/editor-for-vue@next
+# npm install @wangeditor/editor-for-vue@next --save
+```
+
 ### Usage
 
 Template
@@ -276,9 +282,9 @@ export default {
 ### Config
 
 You can extend toolbar and editor config in `toolbarConfig` and `editorConfig` (above code)
-- [Toolbar Config](./toolbar-config.md)
-- [Editor Config](./editor-config.md)
-- [Menus Config](./menu-config.md)
+- [Toolbar Config](./toolbar-config.md) - Insert a new menu, exclude some menus
+- [Editor Config](./editor-config.md) - Editor life-cycles, custom **paste** event
+- [Menus Config](./menu-config.md) - Config colors font-size font-family, config **upload image**
 
 Be careful: life-cycle functions (format like `onXxx`) which in editor's config, **you should use Vue events, not use in `editorConfig`**
 
@@ -379,22 +385,30 @@ return {
 
 ### Installation
 
-Install `@wangeditor/editor` and `@wangeditor/editor-for-react`, see [Installation](./installation.md).
+```sh
+yarn add @wangeditor/editor
+# npm install @wangeditor/editor --save
+
+yarn add @wangeditor/editor-for-react
+# npm install @wangeditor/editor-for-react --save
+```
 
 ### Usage
 
-[Demo source code](https://github.com/wangfupeng1988/react-wangeditor-demo)
-
-```jsx
+```tsx
 import '@wangeditor/editor/dist/css/style.css' // import css
 
 import React, { useState, useEffect } from 'react'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
-import { IDomEditor, IEditorConfig } from '@wangeditor/editor'
+import { IDomEditor, IEditorConfig, IToolbarConfig } from '@wangeditor/editor'
 
 function MyEditor() {
-    const [editor, setEditor] = useState<IDomEditor | null>(null) // editor instance
-    const [html, setHtml] = useState('<p>hello</p>') // editor content
+    // editor instance
+    const [editor, setEditor] = useState<IDomEditor | null>(null)  // TS syntax
+    // const [editor, setEditor] = useState(null)                  // JS syntax
+
+    // editor content
+    const [html, setHtml] = useState('<p>hello</p>')
 
     // Simulate ajax async set html
     useEffect(() => {
@@ -403,8 +417,11 @@ function MyEditor() {
         }, 1500)
     }, [])
 
-    const toolbarConfig = { }
-    const editorConfig: Partial<IEditorConfig> = {
+    const toolbarConfig: Partial<IToolbarConfig> = { }  // TS syntax
+    // const toolbarConfig = { }                        // JS syntax
+
+    const editorConfig: Partial<IEditorConfig> = {  // TS syntax
+    // const editorConfig = {                       // JS syntax
         placeholder: 'Type here...',
     }
 
@@ -432,7 +449,7 @@ function MyEditor() {
                     onCreated={setEditor}
                     onChange={editor => setHtml(editor.getHtml())}
                     mode="default"
-                    style={{ height: '500px', 'overflow-y': 'hidden' }}
+                    style={{ height: '500px', overflowY: 'hidden' }}
                 />
             </div>
             <div style={{ marginTop: '15px' }}>
@@ -448,9 +465,9 @@ export default MyEditor
 ### Config
 
 You can extend toolbar and editor config in `toolbarConfig` and `editorConfig` (above code)
-- [Toolbar Config](./toolbar-config.md)
-- [Editor Config](./editor-config.md)
-- [Menus Config](./menu-config.md)
+- [Toolbar Config](./toolbar-config.md) - Insert a new menu, exclude some menus
+- [Editor Config](./editor-config.md) - Editor life-cycles, custom **paste** event
+- [Menus Config](./menu-config.md) - Config colors font-size font-family, config **upload image**
 
 ### API
 

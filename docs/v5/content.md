@@ -1,5 +1,7 @@
 # 内容处理
 
+快速了解可查看[视频教程](./content.md)。
+
 ## 获取内容
 
 ### 获取 HTML 和 Text
@@ -88,7 +90,8 @@ const editor = createEditor({
 // 伪代码
 import { IDomEditor } from '@wangeditor/editor'
 
-let editor: IDomEditor | null = null
+let editor: IDomEditor | null = null   // TS 语法
+// let editor = null                   // JS 语法
 
 ajax(url, res => {
   editor = createEditor({

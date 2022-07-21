@@ -235,7 +235,8 @@ SlateTransforms.removeNodes(editor)
 import { SlateEditor, SlateElement, SlateNode } from '@wangeditor/editor'
 
 const nodeEntries = SlateEditor.nodes(editor, {
-    match: (node: SlateNode) => {
+    match: (node: SlateNode) => {  // TS syntax
+    // match: (node) => {          // JS syntax
         if (SlateElement.isElement(node)) {
             if (node.type === 'paragraph') {
                 return true // 匹配 paragraph

@@ -17,9 +17,15 @@ editor.getMenuConfig('uploadImage') // `uploadImage` is a menu key
 ### Change the Menu Config
 
 ```ts
-import { IEditorConfig, createEditor, createToolbar } from '@wangeditor/editor'
+import { IEditorConfig } from '@wangeditor/editor'
 
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} } // add a MENU_CONF prop
+// add a MENU_CONF prop
+const editorConfig: Partial<IEditorConfig> = {  // TS syntax
+// const editorConfig = {                       // JS syntax
+    MENU_CONF: {}
+
+    // other props...
+}
 
 // change `uploadImage` menu config
 editorConfig.MENU_CONF['uploadImage'] = {
@@ -33,21 +39,12 @@ editorConfig.MENU_CONF['otherMenuKey'] = {
     // config...
 }
 
-// create an editor
-const editor = createEditor({
-  selector: '#editor-container',
-  config: editorConfig,
-})
-
-// create a toolbar
-const toolbar = createToolbar({...})
+// create editor, or Vue React <Editor> component
 ```
 
 ## Color
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 // font colors
 editorConfig.MENU_CONF['color'] = {
     colors: ['#000', '#333', '#666']
@@ -57,20 +54,14 @@ editorConfig.MENU_CONF['color'] = {
 editorConfig.MENU_CONF['bgColor'] = {
     colors: ['#000', '#333', '#666']
 }
-
-// do createEditor...
 ```
 
 ## Font Size
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['fontSize'] = {
     fontSizeList: ['12px', '16px', '24px', '40px']
 }
-
-// do createEditor
 ```
 
 ## Font-Family
@@ -80,8 +71,6 @@ Some fonts are not commercially available.
 :::
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['fontFamily'] = {
     fontFamilyList: [
         // Support two format
@@ -94,32 +83,22 @@ editorConfig.MENU_CONF['fontFamily'] = {
         { name: 'Tahoma', value: 'Tahoma' },
     ]
 }
-
-// do createEditor
 ```
 
 ## Line Height
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['lineHeight'] = {
     lineHeightList: ['1', '1.5', '2', '2.5']
 }
-
-// do createEditor
 ```
 
 ## Emotion
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['emotion'] = {
     emotions: '😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉'.split(' ') // 数组
 }
-
-// done createEditor
 ```
 
 ## Link
@@ -128,7 +107,8 @@ editorConfig.MENU_CONF['emotion'] = {
 - `parseLinkUrl` Parse link url
 
 ```ts
-function customCheckLinkFn(text: string, url: string): string | boolean | undefined {
+function customCheckLinkFn(text: string, url: string): string | boolean | undefined {  // TS syntax
+// function customCheckLinkFn(text, url) {                                             // JS syntax
     if (!url) {
         return
     }
@@ -143,14 +123,13 @@ function customCheckLinkFn(text: string, url: string): string | boolean | undefi
     // 3. return undefined. Means check failed, no need to alert some text info
 }
 
-function customParseLinkUrl(url: string): string {
+function customParseLinkUrl(url: string): string {   // TS syntax
+// function customParseLinkUrl(url) {                // JS syntax
     if (url.indexOf('http') !== 0) {
         return `http://${url}`
     }
     return url
 }
-
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // insertLink menu config
 editorConfig.MENU_CONF['insertLink'] = {
@@ -162,8 +141,6 @@ editorConfig.MENU_CONF['editLink'] = {
     checkLink: customCheckLinkFn, // support `async function`
     parseLinkUrl: customParseLinkUrl, // support `async function`
 }
-
-// do createEditor
 ```
 
 ## Image
@@ -186,7 +163,8 @@ type ImageElement = SlateElement & {
 Image menu config.
 
 ```ts
-function customCheckImageFn(src: string, alt: string, url: string): boolean | undefined | string {
+function customCheckImageFn(src: string, alt: string, url: string): boolean | undefined | string {  // TS syntax
+// function customCheckImageFn(src, alt, url) {                                                     // JS syntax
     if (!src) {
         return
     }
@@ -201,18 +179,18 @@ function customCheckImageFn(src: string, alt: string, url: string): boolean | un
     // 3. return undefined. Means check failed, no need to alert some text info
 }
 
-function customParseImageSrc(src: string): string {
+function customParseImageSrc(src: string): string {  // TS syntax
+// function customParseImageSrc(src) {               // JS syntax
     if (src.indexOf('http') !== 0) {
         return `http://${src}`
     }
     return src
 }
 
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 // insertImage menu config
 editorConfig.MENU_CONF['insertImage'] = {
-    onInsertedImage(imageNode: ImageElement | null) {
+    onInsertedImage(imageNode: ImageElement | null) {  // TS syntax
+    // onInsertedImage(imageNode) {                    // JS syntax
         if (imageNode == null) return
 
         const { src, alt, url, href } = imageNode
@@ -223,7 +201,8 @@ editorConfig.MENU_CONF['insertImage'] = {
 }
 // editImage menu config
 editorConfig.MENU_CONF['editImage'] = {
-    onUpdatedImage(imageNode: ImageElement | null) {
+    onUpdatedImage(imageNode: ImageElement | null) {   // TS syntax
+    // onUpdatedImage(imageNode) {                     // JS syntax
         if (imageNode == null) return
 
         const { src, alt, url } = imageNode
@@ -232,20 +211,14 @@ editorConfig.MENU_CONF['editImage'] = {
     checkImage: customCheckImageFn, // support `async function`
     parseImageSrc: customParseImageSrc, // support `async function`
 }
-
-// do createEditor
 ```
 
 ## Upload Image
 
-```ts{4}
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
+```ts{2}
 editorConfig.MENU_CONF['uploadImage'] = {
     // menu config...
 }
-
-// do createEditor
 ```
 
 ### Server Address
@@ -327,7 +300,8 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    onBeforeUpload(file) {
+    onBeforeUpload(file: File) {   // TS syntax
+    // onBeforeUpload(file) {      // JS syntax
         // `file` is selected file, format like { key: file }
         return file
 
@@ -335,20 +309,28 @@ editorConfig.MENU_CONF['uploadImage'] = {
         // 1. return the file object or a new file object. Editor will upload it.
         // 2. return false. Stop upload this file.
     },
-    onProgress(progress: number) {
+
+    onProgress(progress: number) {   // TS syntax
+    // onProgress(progress) {        // JS syntax
         // progress is a number 0-100
         console.log('progress', progress)
     },
+
     // One file upload success
-    onSuccess(file: File, res: any) {
+    onSuccess(file: File, res: any) {     // TS syntax
+    // onSuccess(file, res) {             // JS syntax
         console.log(`${file.name} uploaded`, res)
     },
+
     // One file upload failed
-    onFailed(file: File, res: any) {
+    onFailed(file: File, res: any) {     // TS syntax
+    // onFailed(file, res) {             // JS syntax
         console.log(`${file.name} failed`, res)
     },
+
     // upload error or timeout
-    onError(file: File, err: any, res: any) {
+    onError(file: File, err: any, res: any) {  // TS syntax
+    // onError(file, err, res) {               // JS syntax
         console.log(`${file.name} error`, err, res)
     },
 }
@@ -368,7 +350,9 @@ If your server response body is not above format, you can use `customInsert` to 
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    customInsert(res: any, insertFn: InsertFnType) {
+    customInsert(res: any, insertFn: InsertFnType) {   // TS syntax
+    // customInsert(res, insertFn) {                   // JS syntax
+
         // `res` is server response
 
         // Get image's url, alt, href in res, and insert to editor
@@ -383,7 +367,9 @@ If you unwanted wangEditor's embedded upload function, you can use `customUpload
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    async customUpload(file: File, insertFn: InsertFnType) {
+    async customUpload(file: File, insertFn: InsertFnType) {   // TS syntax
+    // async customUpload(file, insertFn) {                    // JS syntax
+
         // `file` is your selected file
 
         // upload images yourself, and get image's url, alt, href
@@ -400,7 +386,8 @@ If you unwanted wangEditor's embedded select function, you can use `customBrowse
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    customBrowseAndUpload(insertFn: InsertFnType) {
+    customBrowseAndUpload(insertFn: InsertFnType) {  // TS syntax
+    // customBrowseAndUpload(insertFn) {             // JS syntax
         // 1. select files by yourself
         // 2. upload files, and get image's url, alt, href
         // 3. insert image
@@ -450,7 +437,8 @@ type VideoElement = SlateElement & {
 Menu config.
 
 ```ts
-function customCheckVideoFn(src: string): boolean | string | undefined {
+function customCheckVideoFn(src: string): boolean | string | undefined {   // TS syntax
+// function customCheckVideoFn(src) {                                      // JS syntax
     if (!src) {
         return
     }
@@ -465,15 +453,15 @@ function customCheckVideoFn(src: string): boolean | string | undefined {
     // 3. return undefined. Means check failed, no need to alert some text info
 }
 
-function customParseVideoSrc(src: string): string {
+function customParseVideoSrc(src: string): string {  // TS syntax
+// function customParseVideoSrc(src) {               // JS syntax
     // parse video src and return the new src
     return newSrc
 }
 
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['insertVideo'] = {
-    onInsertedVideo(videoNode: VideoElement | null) {
+    onInsertedVideo(videoNode: VideoElement | null) {  // TS syntax
+    // onInsertedVideo(videoNode) {                    // JS syntax
         if (videoNode == null) return
 
         const { src } = videoNode
@@ -482,20 +470,14 @@ editorConfig.MENU_CONF['insertVideo'] = {
     checkVideo: customCheckVideoFn, // support `async function`
     parseVideoSrc: customParseVideoSrc, // support `async function`
 }
-
-// do createEditor
 ```
 
 ## Upload Video
 
-```ts{4}
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
+```ts{2}
 editorConfig.MENU_CONF['uploadVideo'] = {
     // menu config...
 }
-
-// do createEditor
 ```
 
 ### Server Address
@@ -580,7 +562,8 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    onBeforeUpload(file) {
+    onBeforeUpload(file: File) {   // TS syntax
+    // onBeforeUpload(file) {      // JS syntax
         // `file` is selected file, format like { key: file }
         return file
 
@@ -588,20 +571,28 @@ editorConfig.MENU_CONF['uploadVideo'] = {
         // 1. return the file object or a new file object. Editor will upload it.
         // 2. return false. Stop upload this file.
     },
-    onProgress(progress: number) {
+
+    onProgress(progress: number) {  // TS syntax
+    // onProgress(progress) {       // JS syntax
         // progress is a number 0-100
         console.log('progress', progress)
     },
+
     // One file upload success
-    onSuccess(file: File, res: any) {
+    onSuccess(file: File, res: any) {  // TS syntax
+    // onSuccess(file, res) {          // JS syntax
         console.log(`${file.name} uploaded`, res)
     },
+
     // One file upload failed
-    onFailed(file: File, res: any) {
+    onFailed(file: File, res: any) {  // TS syntax
+    // onFailed(file, res) {          // JS syntax
         console.log(`${file.name} failed`, res)
     },
+
     // upload error or timeout
-    onError(file: File, err: any, res: any) {
+    onError(file: File, err: any, res: any) {   // TS syntax
+    // onError(file, err, res) {                // JS syntax
         console.log(`${file.name} error`, err, res)
     },
 }
@@ -621,7 +612,9 @@ If your server response body is not above format, you can use `customInsert` to 
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    customInsert(res: any, insertFn: InsertFnType) {
+    customInsert(res: any, insertFn: InsertFnType) {     // TS syntax
+    // customInsert(res: any, insertFn: InsertFnType) {  // JS syntax
+
         // `res` is server response
 
         // Get video's url and poster in res, and insert to editor
@@ -636,7 +629,9 @@ If you unwanted wangEditor's embedded upload function, you can use `customUpload
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    async customUpload(file: File, insertFn: InsertFnType) {
+    async customUpload(file: File, insertFn: InsertFnType) {  // TS syntax
+    // async customUpload(file, insertFn) {                   // JS syntax
+
         // `file` is your selected file
 
         // upload videos yourself, and get video's url and poster
@@ -653,7 +648,8 @@ If you unwanted wangEditor's embedded select function, you can use `customBrowse
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    customBrowseAndUpload(insertFn: InsertFnType) {
+    customBrowseAndUpload(insertFn: InsertFnType) {   // TS syntax
+    // customBrowseAndUpload(insertFn) {              // JS syntax
         // 1. select files by yourself
         // 2. upload files, and get video's url and poster
         // 3. insert video
@@ -665,8 +661,6 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 ## Code Highlight
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['codeSelectLang'] = {
     codeLangs: [
         { text: 'CSS', value: 'css' },
@@ -675,8 +669,6 @@ editorConfig.MENU_CONF['codeSelectLang'] = {
         // others...
     ]
 }
-
-// do createEditor
 ```
 
 :::tip

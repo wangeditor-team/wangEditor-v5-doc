@@ -55,8 +55,8 @@ module.exports = {
                         text: '基础',
                         children: [
                             '/v5/getting-started.md',
-                            '/v5/content.md',
                             '/v5/for-frame.md',
+                            '/v5/content.md',
                         ]
                     },
                     {
@@ -107,8 +107,8 @@ module.exports = {
                         text: 'Basic',
                         children: [
                             '/en/v5/getting-started.md',
-                            '/en/v5/content.md',
                             '/en/v5/for-frame.md',
+                            '/en/v5/content.md',
                         ]
                     },
                     {

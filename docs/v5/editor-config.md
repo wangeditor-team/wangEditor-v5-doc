@@ -1,28 +1,27 @@
 # 编辑器配置
 
-如果是第一次使用，请先通过 [快速开始](/v5/getting-started.html) 了解基本使用。
+快速了解可查看[视频教程](./video-course.md)。
 
-```ts{4}
-import { IEditorConfig, createEditor } from '@wangeditor/editor'
+```ts{5}
+import { IEditorConfig } from '@wangeditor/editor'
 
-const editorConfig: Partial<IEditorConfig> = {
+const editorConfig: Partial<IEditorConfig> = {   // TS 语法
+// const editorConfig = {                        // JS 语法
     /* 编辑器配置 */
 }
 
-const editor = createEditor({
-  selector: '#editor-container',
-  config: editorConfig,
-})
-
-// 可通过 editor.getConfig() 查看编辑器默认配置
+// 创建 editor 或传入 Vue React <Editor> 组件
 ```
+
+:::tip
+可通过 `editor.getConfig()` 查看编辑器默认配置
+:::
 
 ## placeholder
 
 配置编辑器 placeholder
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.placeholder = '请输入内容...'
 ```
 
@@ -31,7 +30,6 @@ editorConfig.placeholder = '请输入内容...'
 配置编辑器是否只读，默认为 `false`
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.readOnly = true
 ```
 
@@ -42,7 +40,6 @@ editorConfig.readOnly = true
 配置编辑器默认是否 focus ，默认为 `true`
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.autoFocus = false
 ```
 
@@ -51,7 +48,6 @@ editorConfig.autoFocus = false
 配置编辑器是否支持滚动，默认为 `true` 。注意，此时**不要固定 `editor-container` 的高度**，设置一个 `min-height` 即可。
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.scroll = false
 ```
 
@@ -66,9 +62,11 @@ editorConfig.scroll = false
 配置编辑器的 maxlength ，默认不限制
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
+import { IDomEditor } from '@wangeditor/editor'
+
 editorConfig.maxLength = 1000
-editorConfig.onMaxLength = function (editor: IDomEditor) {
+editorConfig.onMaxLength = function (editor: IDomEditor) {   // TS 语法
+// editorConfig.onMaxLength = function (editor) {            // JS 语法
     // 当达到 maxlength 限制时，触发该回调函数
 }
 ```
@@ -97,7 +95,6 @@ createEditor 时设置 `mode: 'simple'` 可隐藏选中文本时的 hoverbar 。
 ![](/image/elem-type.png)
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.hoverbarKeys = {
     'link': {
         // 重写 link 元素的 hoverbar
@@ -115,13 +112,13 @@ editorConfig.hoverbarKeys = {
 如果 element type 无法满足需求，可通过自定义 `match` 函数匹配元素。
 
 ```ts
-import { SlateNode, IDomEditor, IEditorConfig } from '@wangeditor/editor'
+import { SlateNode, IDomEditor } from '@wangeditor/editor'
 
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.hoverbarKeys = {
     'text': {
         // 如有 match 函数，则优先根据 match 判断，而忽略 element type
-        match: (editor: IDomEditor, n: SlateNode) => {
+        match: (editor: IDomEditor, n: SlateNode) => {   // TS 语法
+        // match: (editor, n) => {                       // JS 语法
             // 可参考下文的源码
         },
         menuKeys: [ ... ], // 定义你想要的 menu keys
@@ -136,8 +133,10 @@ editorConfig.hoverbarKeys = {
 编辑器创建完毕时的回调函数。
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onCreated = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onCreated = (editor: IDomEditor) => {   // TS 语法
+// editorConfig.onCreated = (editor) => {            // JS 语法
     // editor created
 }
 ```
@@ -147,8 +146,10 @@ editorConfig.onCreated = (editor: IDomEditor) => {
 编辑器内容、选区变化时的回调函数。
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onChange = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onChange = (editor: IDomEditor) => {   // TS 语法
+// editorConfig.onChange = (editor) => {            // JS 语法
     // editor changed
     console.log('content', editor.children)
 }
@@ -159,8 +160,10 @@ editorConfig.onChange = (editor: IDomEditor) => {
 编辑器销毁时的回调函数。调用 `editor.destroy()` 即可销毁编辑器，详见 [API](/v5/API.html) 。
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onDestroyed = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onDestroyed = (editor: IDomEditor) => {   // TS 语法
+// editorConfig.onDestroyed = (editor) => {            // JS 语法
     // editor destroyed
 }
 ```
@@ -170,8 +173,10 @@ editorConfig.onDestroyed = (editor: IDomEditor) => {
 编辑器 focus 时的回调函数。
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onFocus = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onFocus = (editor: IDomEditor) => {    // TS 语法
+// editorConfig.onFocus = (editor) => {             // JS 语法
     // editor focused
 }
 ```
@@ -181,8 +186,10 @@ editorConfig.onFocus = (editor: IDomEditor) => {
 编辑器 blur 时的回调函数。
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onBlur = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onBlur = (editor: IDomEditor) => {   // TS 语法
+// editorConfig.onBlur = (editor) => {            // JS 语法
     // editor blur
 }
 ```
@@ -192,8 +199,11 @@ editorConfig.onBlur = (editor: IDomEditor) => {
 自定义粘贴。可阻止编辑器的默认粘贴，实现自己的粘贴逻辑。
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean => {     // TS 语法
+// editorConfig.customPaste = (editor, event) => {                                       // JS 语法
+
     // event 是 ClipboardEvent 类型，可以拿到粘贴的数据
     // 可参考 https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
 
@@ -225,8 +235,8 @@ editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean 
 ```ts
 import { message } from 'antd'
 
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.customAlert = (s: string, t: string) => {
+editorConfig.customAlert = (s: string, t: string) => {    // TS 语法
+// editorConfig.customAlert = (s, t) => {                 // JS 语法
     switch (t) {
         case 'success':
             message.success(s)

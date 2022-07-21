@@ -1,17 +1,6 @@
 # 用于 Vue React
 
-如果是第一次使用，请先通过 [快速开始](/v5/getting-started.html) 了解基本使用。
-
 快速了解可查看[视频教程](/v5/video-course.html)。
-
-## 注意
-
-本文只介绍各个框架的组件接入，实际使用时还需要很多配置、API 。<br>
-所以，阅读下文代码时，如遇到 `工具栏配置` `编辑器配置` `菜单配置` `editor API` 等字眼，请继续参考其他文档：
-- [工具栏配置](/v5/toolbar-config.html)
-- [编辑器配置](/v5/editor-config.html)
-- [编辑器 API](/v5/API.html)
-- [菜单配置](/v5/menu-config.html)
 
 ## Vue2
 
@@ -22,7 +11,13 @@
 
 ### 安装
 
-需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue`，可参考[这里](/v5/installation.html)。
+```sh
+yarn add @wangeditor/editor
+# 或者 npm install @wangeditor/editor --save
+
+yarn add @wangeditor/editor-for-vue
+# 或者 npm install @wangeditor/editor-for-vue --save
+```
 
 ### 使用
 
@@ -100,11 +95,11 @@ export default Vue.extend({
 ### 配置
 
 可通过 `toolbarConfig` 和 `editorConfig` 来修改菜单栏和编辑器的配置，详细文档参考
-- [工具栏配置](/v5/toolbar-config.html)
-- [编辑器配置](/v5/editor-config.html)
-- [菜单配置](/v5/menu-config.html)
+- [工具栏配置](/v5/toolbar-config.html) - 插入新菜单，屏蔽某个菜单等
+- [编辑器配置](/v5/editor-config.html) - 兼听各个**生命周期**，自定义**粘贴**
+- [菜单配置](/v5/menu-config.html) - 配置颜色、字体、字号、链接校验、**上传图片、视频**等
 
-【注意】，编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
+【注意】编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
 
 ```xml
 <template>
@@ -193,7 +188,13 @@ methods: {
 
 ### 安装
 
-需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-vue@next`，可参考[这里](/v5/installation.html)。
+```sh
+yarn add @wangeditor/editor
+# 或者 npm install @wangeditor/editor --save
+
+yarn add @wangeditor/editor-for-vue@next
+# 或者 npm install @wangeditor/editor-for-vue@next --save
+```
 
 ### 使用
 
@@ -279,11 +280,11 @@ export default {
 ### 配置
 
 可通过 `toolbarConfig` 和 `editorConfig` 来修改菜单栏和编辑器的配置，详细文档参考
-- [工具栏配置](/v5/toolbar-config.html)
-- [编辑器配置](/v5/editor-config.html)
-- [菜单配置](/v5/menu-config.html)
+- [工具栏配置](/v5/toolbar-config.html) - 插入新菜单，屏蔽某个菜单等
+- [编辑器配置](/v5/editor-config.html) - 兼听各个**生命周期**，自定义**粘贴**
+- [菜单配置](/v5/menu-config.html) - 配置颜色、字体、字号、链接校验、**上传图片、视频**等
 
-【注意】，编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
+【注意】编辑器配置中 `onXxx` 格式的生命周期函数，**必须通过 Vue 事件来传递，不可以放在 `editorConfig` 中**，例如：
 
 ```xml
 <template>
@@ -382,32 +383,45 @@ return {
 
 ### 安装
 
-需安装 `@wangeditor/editor` 和 `@wangeditor/editor-for-react`，可参考[这里](/v5/installation.html)。
+```sh
+yarn add @wangeditor/editor
+# 或者 npm install @wangeditor/editor --save
+
+yarn add @wangeditor/editor-for-react
+# 或者 npm install @wangeditor/editor-for-react --save
+```
 
 ### 使用
 
-[示例源码](https://github.com/wangfupeng1988/react-wangeditor-demo)
-
-```jsx
+```tsx
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
 
 import React, { useState, useEffect } from 'react'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
-import { IDomEditor, IEditorConfig } from '@wangeditor/editor'
+import { IDomEditor, IEditorConfig, IToolbarConfig } from '@wangeditor/editor'
 
 function MyEditor() {
-    const [editor, setEditor] = useState<IDomEditor | null>(null) // 存储 editor 实例
-    const [html, setHtml] = useState('<p>hello</p>') // 编辑器内容
+    // editor 实例
+    const [editor, setEditor] = useState<IDomEditor | null>(null)   // TS 语法
+    // const [editor, setEditor] = useState(null)                   // JS 语法
+
+    // 编辑器内容
+    const [html, setHtml] = useState('<p>hello</p>')
 
     // 模拟 ajax 请求，异步设置 html
     useEffect(() => {
         setTimeout(() => {
-            setHtml('<p>hello&nbsp;world</p>')
+            setHtml('<p>hello world</p>')
         }, 1500)
     }, [])
 
-    const toolbarConfig = { }
-    const editorConfig: Partial<IEditorConfig> = {
+    // 工具栏配置
+    const toolbarConfig: Partial<IToolbarConfig> = { }  // TS 语法
+    // const toolbarConfig = { }                        // JS 语法
+
+    // 编辑器配置
+    const editorConfig: Partial<IEditorConfig> = {    // TS 语法
+    // const editorConfig = {                         // JS 语法
         placeholder: '请输入内容...',
     }
 
@@ -435,7 +449,7 @@ function MyEditor() {
                     onCreated={setEditor}
                     onChange={editor => setHtml(editor.getHtml())}
                     mode="default"
-                    style={{ height: '500px', 'overflow-y': 'hidden' }}
+                    style={{ height: '500px', overflowY: 'hidden' }}
                 />
             </div>
             <div style={{ marginTop: '15px' }}>
@@ -451,9 +465,9 @@ export default MyEditor
 ### 配置
 
 可通过 `toolbarConfig` 和 `editorConfig` 来修改菜单栏和编辑器的配置，详细文档参考
-- [工具栏配置](/v5/toolbar-config.html)
-- [编辑器配置](/v5/editor-config.html)
-- [菜单配置](/v5/menu-config.html)
+- [工具栏配置](/v5/toolbar-config.html) - 插入新菜单，屏蔽某个菜单等
+- [编辑器配置](/v5/editor-config.html) - 兼听各个**生命周期**，自定义**粘贴**
+- [菜单配置](/v5/menu-config.html) - 配置颜色、字体、字号、链接校验、**上传图片、视频**等
 
 ### 调用 API
 

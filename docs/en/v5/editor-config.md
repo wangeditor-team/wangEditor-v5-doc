@@ -3,25 +3,24 @@
 If you first-time use wangEditor, please see [Get Started](./getting-started.md) it to learn basic usage.
 
 
-```ts{4}
-import { IEditorConfig, createEditor } from '@wangeditor/editor'
+```ts{5}
+import { IEditorConfig } from '@wangeditor/editor'
 
-const editorConfig: Partial<IEditorConfig> = {
+const editorConfig: Partial<IEditorConfig> = {  // TS syntax
+// const editorConfig = {                       // JS syntax
     /* editor config */
 }
 
-const editor = createEditor({
-  selector: '#editor-container',
-  config: editorConfig,
-})
-
-// Can use `editor.getConfig()` to checkout editor's default config
+// create editor, or Vue React <Editor> component
 ```
+
+:::tip
+You can use `editor.getConfig()` to checkout editor's default config
+:::
 
 ## placeholder
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.placeholder = 'Type your text'
 ```
 
@@ -31,7 +30,6 @@ Default value is `false`. <br>
 You can use `editor.enable()` and `editor.disable()` to toggle readOnly. see [Editor API](./API.md).
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.readOnly = true
 ```
 
@@ -40,7 +38,6 @@ editorConfig.readOnly = true
 Default value is `true`.
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.autoFocus = false
 ```
 
@@ -51,7 +48,6 @@ Default value is `true`. You can scroll editor area.
 If you set `false`, **do not set `editor-container` a fixed height**, just set `min-height`.
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.scroll = false
 ```
 
@@ -64,9 +60,11 @@ When you need to set `false`?
 ## maxLength onMaxLength
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
+import { IDomEditor } from '@wangeditor/editor'
+
 editorConfig.maxLength = 1000
-editorConfig.onMaxLength = function (editor: IDomEditor) {
+editorConfig.onMaxLength = function (editor: IDomEditor) {   // TS syntax
+// editorConfig.onMaxLength = function (editor) {            // JS syntax
     // trigger this when exceed maxlength
 }
 ```
@@ -96,7 +94,6 @@ You can config hoverbar menu keys by element type.<br>
 ![](/image/elem-type-en.png)
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.hoverbarKeys = {
     'link': {
         // rewrite link element's hoverbar
@@ -115,12 +112,12 @@ editorConfig.hoverbarKeys = {
 You can also custom a match function instead of use element type.
 
 ```ts
-import { SlateNode, IDomEditor, IEditorConfig } from '@wangeditor/editor'
+import { SlateNode, IDomEditor } from '@wangeditor/editor'
 
-const editorConfig: Partial<IEditorConfig> = {}
 editorConfig.hoverbarKeys = {
     'text': {
-        match: (editor: IDomEditor, n: SlateNode) => {
+        match: (editor: IDomEditor, n: SlateNode) => {    // TS syntax
+        // match: (editor, n) => {                        // JS syntax
             // match your node exactly
         },
         menuKeys: [ ... ], // custom your menu keys
@@ -134,8 +131,10 @@ You can see [source code](https://github.com/wangeditor-team/wangEditor/blob/mas
 ## onCreated
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onCreated = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onCreated = (editor: IDomEditor) => {   // TS syntax
+// editorConfig.onCreated = (editor) => {            // JS syntax
     // editor created
 }
 ```
@@ -143,8 +142,10 @@ editorConfig.onCreated = (editor: IDomEditor) => {
 ## onChange
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onChange = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onChange = (editor: IDomEditor) => {  // TS syntax
+// editorConfig.onChange = (editor:) => {             // JS syntax
     // editor's content or selection changed
     console.log('content', editor.children)
 }
@@ -155,8 +156,10 @@ editorConfig.onChange = (editor: IDomEditor) => {
 You can use `editor.destroy()` to destroy editor. see [API](./API.md).
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onDestroyed = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onDestroyed = (editor: IDomEditor) => {  // TS syntax
+// editorConfig.onDestroyed = (editor) => {           // JS syntax
     // editor destroyed
 }
 ```
@@ -164,8 +167,10 @@ editorConfig.onDestroyed = (editor: IDomEditor) => {
 ## onFocus
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onFocus = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onFocus = (editor: IDomEditor) => {  // TS syntax
+// editorConfig.onFocus = (editor) => {           // JS syntax
     // editor focused
 }
 ```
@@ -173,8 +178,10 @@ editorConfig.onFocus = (editor: IDomEditor) => {
 ## onBlur
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.onBlur = (editor: IDomEditor) => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.onBlur = (editor: IDomEditor) => {  // TS syntax
+// editorConfig.onBlur = (editor) => {           // JS syntax
     // editor blur
 }
 ```
@@ -184,8 +191,11 @@ editorConfig.onBlur = (editor: IDomEditor) => {
 You can prevent default paste event, redefine your custom paste logic.
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean => {
+import { IDomEditor } from '@wangeditor/editor'
+
+editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean => {  // TS syntax
+// editorConfig.customPaste = (editor, event) => {                                    // JS syntax
+
     // event is ClipboardEvent type, see https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
 
     // const html = event.clipboardData.getData('text/html') // get paste html
@@ -216,8 +226,8 @@ Redefine your custom editor alert.
 ```ts
 import { message } from 'antd'
 
-const editorConfig: Partial<IEditorConfig> = {}
-editorConfig.customAlert = (s: string, t: string) => {
+editorConfig.customAlert = (s: string, t: string) => {   // TS syntax
+// editorConfig.customAlert = (s, t) => {                // JS syntax
     switch (t) {
         case 'success':
             message.success(s)

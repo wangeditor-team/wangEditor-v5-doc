@@ -88,7 +88,8 @@ You can create editor after ajax success callback.
 // pseudo code
 import { IDomEditor } from '@wangeditor/editor'
 
-let editor: IDomEditor | null = null
+let editor: IDomEditor | null = null  // TS syntax
+// let editor = null                  // JS syntax
 
 ajax(url, res => {
   editor = createEditor({

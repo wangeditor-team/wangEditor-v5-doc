@@ -1,25 +1,20 @@
 # 工具栏配置
 
-如果是第一次使用，请先通过 [快速开始](/v5/getting-started.html) 了解基本使用。
+快速了解可查看[视频教程](./video-course.md)。
 
 :::tip
 wangEditor 从 V5 版本开始，工具栏配置和[菜单配置](/v5/menu-config.html)（如配置颜色、字体、链接校验、上传图片等）分离了。本文只讲工具栏配置。
 :::
 
-```ts{4}
-import { IToolbarConfig, createToolbar } from '@wangeditor/editor'
+```ts{5}
+import { IToolbarConfig } from '@wangeditor/editor'
 
-const toolbarConfig: Partial<IToolbarConfig> = {
+const toolbarConfig: Partial<IToolbarConfig> = {  // TS 语法
+// const toolbarConfig = {                        // JS 语法
     /* 工具栏配置 */
 }
 
-// 创建工具栏
-const toolbar = createToolbar({
-  editor,
-  selector: '#toolbar-container',
-  config: toolbarConfig,
-  mode: 'default'
-})
+// 创建 toolbar ，或者传入 Vue React <Toolbar> 组件中
 ```
 
 ## getConfig
@@ -30,6 +25,9 @@ const toolbar = createToolbar({
 ```ts
 import { DomEditor } from '@wangeditor/editor'
 const toolbar = DomEditor.getToolbar(editor)
+
+const curToolbarConfig = toolbar.getConfig()
+console.log( curToolbarConfig.toolbarKeys ) // 当前菜单排序和分组
 ```
 
 ## toolbarKeys
@@ -37,32 +35,28 @@ const toolbar = DomEditor.getToolbar(editor)
 **重新**配置工具栏，显示哪些菜单，以及菜单的排序、分组。
 
 - `toolbar.getConfig().toolbarKeys` 查看当前的默认配置
-- `editor.getAllMenuKeys()` 查询编辑器注册的所有菜单 key
+- `editor.getAllMenuKeys()` 查询编辑器注册的所有菜单 key （可能有的不在工具栏上）
 
 ```ts
-const toolbarConfig: Partial<IToolbarConfig> = {
-    toolbarKeys: [
-        // 菜单 key
-        'headerSelect',
+toolbarConfig.toolbarKeys = [
+    // 菜单 key
+    'headerSelect',
 
-        // 分割线
-        '|',
+    // 分割线
+    '|',
 
-        // 菜单 key
-        'bold', 'italic',
+    // 菜单 key
+    'bold', 'italic',
 
-        // 菜单组，包含多个菜单
-        {
-            key: 'group-more-style', // 必填，要以 group 开头
-            title: '更多样式', // 必填
-            iconSvg: '<svg>....</svg>', // 可选
-            menuKeys: ["through", "code", "clearStyle"] // 下级菜单 key ，必填
-        },
-        // 继续配置其他菜单...
-    ]
-}
-
-// 创建 toolbar
+    // 菜单组，包含多个菜单
+    {
+        key: 'group-more-style', // 必填，要以 group 开头
+        title: '更多样式', // 必填
+        iconSvg: '<svg>....</svg>', // 可选
+        menuKeys: ["through", "code", "clearStyle"] // 下级菜单 key ，必填
+    },
+    // 继续配置其他菜单...
+]
 ```
 
 ## insertKeys
@@ -70,14 +64,10 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 可以在当前 `toolbarKeys` 的基础上继续插入新菜单，如自定义扩展的菜单。
 
 ```ts
-const toolbarConfig: Partial<IToolbarConfig> = {
-    insertKeys: {
-        index: 5, // 插入的位置，基于当前的 toolbarKeys
-        keys: ['menu-key1', 'menu-key2']
-    },
+toolbarConfig.insertKeys = {
+    index: 5, // 插入的位置，基于当前的 toolbarKeys
+    keys: ['menu-key1', 'menu-key2']
 }
-
-// 创建 toolbar
 ```
 
 ## excludeKeys
@@ -86,15 +76,11 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 可通过 `toolbar.getConfig().toolbarKeys` 查看工具栏的默认配置
 
 ```ts
-const toolbarConfig: Partial<IToolbarConfig> = {
-    excludeKeys: [
-        'headerSelect',
-        'italic',
-        'group-more-style' // 排除菜单组，写菜单组 key 的值即可
-    ]
-}
-
-// 创建 toolbar
+toolbarConfig.excludeKeys = [
+    'headerSelect',
+    'italic',
+    'group-more-style' // 排除菜单组，写菜单组 key 的值即可
+]
 ```
 
 如果你想排除某个菜单组，可通过 `toolbar.getConfig().toolbarKeys` 找到这个菜单组的 key 。
@@ -107,10 +93,8 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 
 ![](/image/modal-appendTo-body.png)
 
-```ts
-const toolbarConfig: Partial<IToolbarConfig> = {
-    modalAppendToBody: true
-}
+```ts{1}
+toolbarConfig.modalAppendToBody = true
 
 // 创建 toolbar 和 editor
 

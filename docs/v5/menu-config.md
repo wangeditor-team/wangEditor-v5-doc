@@ -1,5 +1,7 @@
 # 菜单配置
 
+快速了解可查看[视频教程](./video-course.md)。
+
 本文是各个菜单项的详细配置。如想要自定义工具栏的菜单（隐藏某些菜单、排序、分组等），请参考[工具栏配置](/v5/toolbar-config.html)。
 
 ## 通用方法
@@ -19,9 +21,15 @@ editor.getMenuConfig('uploadImage') // 获取 uploadImage 的当前配置
 ### 修改配置
 
 ```ts
-import { IEditorConfig, createEditor, createToolbar } from '@wangeditor/editor'
+import { IEditorConfig } from '@wangeditor/editor'
 
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} } // 初始化 MENU_CONF 属性
+// 初始化 MENU_CONF 属性
+const editorConfig: Partial<IEditorConfig> = {  // TS 语法
+// const editorConfig = {                       // JS 语法
+    MENU_CONF: {}
+
+    // 其他属性...
+}
 
 // 修改 uploadImage 菜单配置
 editorConfig.MENU_CONF['uploadImage'] = {
@@ -37,25 +45,12 @@ editorConfig.MENU_CONF['otherMenuKey'] = {
     // 配置
 }
 
-// 创建编辑器
-const editor = createEditor({
-  selector: '#editor-container',
-  config: editorConfig,
-})
-
-// 创建菜单栏
-const toolbar = createToolbar({...})
+// 创建 editor 或传入 Vue React <Editor> 组件
 ```
-
-:::tip
-请一定在 `createEditor` 之前完成菜单配置的修改，否则可能无效。
-:::
 
 ## 颜色
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 // 文字颜色
 editorConfig.MENU_CONF['color'] = {
     colors: ['#000', '#333', '#666']
@@ -65,20 +60,14 @@ editorConfig.MENU_CONF['color'] = {
 editorConfig.MENU_CONF['bgColor'] = {
     colors: ['#000', '#333', '#666']
 }
-
-// 执行 createEditor
 ```
 
 ## 字号
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['fontSize'] = {
     fontSizeList: ['12px', '16px', '24px', '40px']
 }
-
-// 执行 createEditor
 ```
 
 ## 字体
@@ -88,8 +77,6 @@ editorConfig.MENU_CONF['fontSize'] = {
 :::
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['fontFamily'] = {
     fontFamilyList: [
         // 元素支持两种形式
@@ -104,32 +91,22 @@ editorConfig.MENU_CONF['fontFamily'] = {
         'Verdana'
     ]
 }
-
-// 执行 createEditor
 ```
 
 ## 行高
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['lineHeight'] = {
     lineHeightList: ['1', '1.5', '2', '2.5']
 }
-
-// 执行 createEditor
 ```
 
 ## 表情
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['emotion'] = {
     emotions: '😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉'.split(' ') // 数组
 }
-
-// 执行 createEditor
 ```
 
 
@@ -140,7 +117,9 @@ editorConfig.MENU_CONF['emotion'] = {
 
 ```ts
 // 自定义校验链接
-function customCheckLinkFn(text: string, url: string): string | boolean | undefined {
+function customCheckLinkFn(text: string, url: string): string | boolean | undefined {   // TS 语法
+// function customCheckLinkFn(text, url) {                                              // JS 语法
+
     if (!url) {
         return
     }
@@ -156,14 +135,14 @@ function customCheckLinkFn(text: string, url: string): string | boolean | undefi
 }
 
 // 自定义转换链接 url
-function customParseLinkUrl(url: string): string {
+function customParseLinkUrl(url: string): string {   // TS 语法
+// function customParseLinkUrl(url) {                // JS 语法
+
     if (url.indexOf('http') !== 0) {
         return `http://${url}`
     }
     return url
 }
-
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
 
 // 插入链接
 editorConfig.MENU_CONF['insertLink'] = {
@@ -175,8 +154,6 @@ editorConfig.MENU_CONF['editLink'] = {
     checkLink: customCheckLinkFn, // 也支持 async 函数
     parseLinkUrl: customParseLinkUrl, // 也支持 async 函数
 }
-
-// 执行 createEditor
 ```
 
 ## 图片
@@ -202,7 +179,8 @@ type ImageElement = SlateElement & {
 
 ```ts
 // 自定义校验图片
-function customCheckImageFn(src: string, alt: string, url: string): boolean | undefined | string {
+function customCheckImageFn(src: string, alt: string, url: string): boolean | undefined | string { // TS 语法
+// function customCheckImageFn(src, alt, url) {                                                    // JS 语法
     if (!src) {
         return
     }
@@ -218,18 +196,18 @@ function customCheckImageFn(src: string, alt: string, url: string): boolean | un
 }
 
 // 转换图片链接
-function customParseImageSrc(src: string): string {
+function customParseImageSrc(src: string): string {  // TS 语法
+// function customParseImageSrc(src) {               // JS 语法
     if (src.indexOf('http') !== 0) {
         return `http://${src}`
     }
     return src
 }
 
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 // 插入图片
 editorConfig.MENU_CONF['insertImage'] = {
-    onInsertedImage(imageNode: ImageElement | null) {
+    onInsertedImage(imageNode: ImageElement | null) {  // TS 语法
+    // onInsertedImage(imageNode) {                    // JS 语法
         if (imageNode == null) return
 
         const { src, alt, url, href } = imageNode
@@ -240,7 +218,8 @@ editorConfig.MENU_CONF['insertImage'] = {
 }
 // 编辑图片
 editorConfig.MENU_CONF['editImage'] = {
-    onUpdatedImage(imageNode: ImageElement | null) {
+    onUpdatedImage(imageNode: ImageElement | null) {  // TS 语法
+    // onUpdatedImage(imageNode) {                    // JS 语法
         if (imageNode == null) return
 
         const { src, alt, url } = imageNode
@@ -249,22 +228,16 @@ editorConfig.MENU_CONF['editImage'] = {
     checkImage: customCheckImageFn, // 也支持 async 函数
     parseImageSrc: customParseImageSrc, // 也支持 async 函数
 }
-
-// 执行 createEditor
 ```
 
 ## 上传图片
 
 上传图片的配置比较复杂，拆分为几个部分来讲解。
 
-```ts{4}
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
+```ts{2}
 editorConfig.MENU_CONF['uploadImage'] = {
     // 上传图片的配置
 }
-
-// 执行 createEditor
 ```
 
 ### 服务端地址
@@ -349,7 +322,8 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 上传之前触发
-    onBeforeUpload(file) {
+    onBeforeUpload(file: File) { // TS 语法
+    // onBeforeUpload(file) {    // JS 语法
         // file 选中的文件，格式如 { key: file }
         return file
 
@@ -357,21 +331,29 @@ editorConfig.MENU_CONF['uploadImage'] = {
         // 1. return file 或者 new 一个 file ，接下来将上传
         // 2. return false ，不上传这个 file
     },
+
     // 上传进度的回调函数
-    onProgress(progress: number) {
+    onProgress(progress: number) {  // TS 语法
+    // onProgress(progress) {       // JS 语法
         // progress 是 0-100 的数字
         console.log('progress', progress)
     },
+
     // 单个文件上传成功之后
-    onSuccess(file: File, res: any) {
+    onSuccess(file: File, res: any) {  // TS 语法
+    // onSuccess(file, res) {          // JS 语法
         console.log(`${file.name} 上传成功`, res)
     },
+
     // 单个文件上传失败
-    onFailed(file: File, res: any) {
+    onFailed(file: File, res: any) {   // TS 语法
+    // onFailed(file, res) {           // JS 语法
         console.log(`${file.name} 上传失败`, res)
     },
+
     // 上传错误，或者触发 timeout 超时
-    onError(file: File, err: any, res: any) {
+    onError(file: File, err: any, res: any) {  // TS 语法
+    // onError(file, err, res) {               // JS 语法
         console.log(`${file.name} 上传出错`, err, res)
     },
 }
@@ -393,7 +375,8 @@ type InsertFnType = (url: string, alt: string, href: string) => void
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义插入图片
-    customInsert(res: any, insertFn: InsertFnType) {
+    customInsert(res: any, insertFn: InsertFnType) {  // TS 语法
+    // customInsert(res, insertFn) {                  // JS 语法
         // res 即服务端的返回结果
 
         // 从 res 中找到 url alt href ，然后插图图片
@@ -410,7 +393,8 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义上传
-    async customUpload(file: File, insertFn: InsertFnType) {
+    async customUpload(file: File, insertFn: InsertFnType) {  // TS 语法
+    // async customUpload(file, insertFn) {                   // JS 语法
         // file 即选中的文件
         // 自己实现上传，并得到图片 url alt href
         // 最后插入图片
@@ -427,7 +411,8 @@ editorConfig.MENU_CONF['uploadImage'] = {
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
     // 自定义选择图片
-    customBrowseAndUpload(insertFn: InsertFnType) {
+    customBrowseAndUpload(insertFn: InsertFnType) {   // TS 语法
+    // customBrowseAndUpload(insertFn) {              // JS 语法
         // 自己选择文件
         // 自己上传文件，并得到图片 url alt href
         // 最后插入图片
@@ -479,7 +464,8 @@ type VideoElement = SlateElement & {
 
 ```ts
 // 自定义校验视频
-function customCheckVideoFn(src: string): boolean | string | undefined {
+function customCheckVideoFn(src: string): boolean | string | undefined {  // TS 语法
+// function customCheckVideoFn(src) {                                     // JS 语法
     if (!src) {
         return
     }
@@ -495,7 +481,8 @@ function customCheckVideoFn(src: string): boolean | string | undefined {
 }
 
 // 自定义转换视频
-function customParseVideoSrc(src: string): string {
+function customParseVideoSrc(src: string): string {  // TS 语法
+// function customParseVideoSrc(src) {               // JS 语法
     if (src.includes('.bilibili.com')) {
         // 转换 bilibili url 为 iframe （仅作为示例，不保证代码正确和完整）
         const arr = location.pathname.split('/')
@@ -505,10 +492,9 @@ function customParseVideoSrc(src: string): string {
     return src
 }
 
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['insertVideo'] = {
-    onInsertedVideo(videoNode: VideoElement | null) {
+    onInsertedVideo(videoNode: VideoElement | null) {  // TS 语法
+    // onInsertedVideo(videoNode) {                    // JS 语法
         if (videoNode == null) return
 
         const { src } = videoNode
@@ -517,22 +503,16 @@ editorConfig.MENU_CONF['insertVideo'] = {
     checkVideo: customCheckVideoFn, // 也支持 async 函数
     parseVideoSrc: customParseVideoSrc, // 也支持 async 函数
 }
-
-// 执行 createEditor
 ```
 
 ## 上传视频
 
 上传视频的配置比较复杂，拆分为几个部分来讲解。
 
-```ts{4}
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
+```ts{2}
 editorConfig.MENU_CONF['uploadVideo'] = {
     // 上传视频的配置
 }
-
-// 执行 createEditor
 ```
 
 ### 服务端地址
@@ -619,7 +599,8 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
     // 上传之前触发
-    onBeforeUpload(file) {
+    onBeforeUpload(file: File) {   // TS 语法
+    // onBeforeUpload(file) {      // JS 语法
         // file 选中的文件，格式如 { key: file }
         return file
 
@@ -627,21 +608,29 @@ editorConfig.MENU_CONF['uploadVideo'] = {
         // 1. return file 或者 new 一个 file ，接下来将上传
         // 2. return false ，不上传这个 file
     },
+
     // 上传进度的回调函数
-    onProgress(progress: number) {
+    onProgress(progress: number) {  // TS 语法
+    // onProgress(progress) {       // JS 语法
         // progress 是 0-100 的数字
         console.log('progress', progress)
     },
+
     // 单个文件上传成功之后
-    onSuccess(file: File, res: any) {
+    onSuccess(file: File, res: any) {  // TS 语法
+    // onSuccess(file, res) {          // JS 语法
         console.log(`${file.name} 上传成功`, res)
     },
+
     // 单个文件上传失败
-    onFailed(file: File, res: any) {
+    onFailed(file: File, res: any) {  // TS 语法
+    // onFailed(file, res) {          // JS 语法
         console.log(`${file.name} 上传失败`, res)
     },
+
     // 上传错误，或者触发 timeout 超时
-    onError(file: File, err: any, res: any) {
+    onError(file: File, err: any, res: any) {  // TS 语法
+    // onError(file, err, res) {               // JS 语法
         console.log(`${file.name} 上传出错`, err, res)
     },
 }
@@ -663,7 +652,8 @@ type InsertFnType = (url: string, poster: string = '') => void
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
     // 自定义插入视频
-    customInsert(res: any, insertFn: InsertFnType) {
+    customInsert(res: any, insertFn: InsertFnType) {  // TS 语法
+    // customInsert(res, insertFn) {                  // JS 语法
         // res 即服务端的返回结果
 
         // 从 res 中找到 url poster ，然后插入视频
@@ -680,7 +670,8 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
     // 自定义上传
-    async customUpload(file: File, insertFn: InsertFnType) {
+    async customUpload(file: File, insertFn: InsertFnType) {  // TS 语法
+    // async customUpload(file, insertFn) {                   // JS 语法
         // file 即选中的文件
         // 自己实现上传，并得到视频 url poster
         // 最后插入视频
@@ -697,7 +688,8 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
     // 自定义选择视频
-    customBrowseAndUpload(insertFn: InsertFnType) {
+    customBrowseAndUpload(insertFn: InsertFnType) {  // TS 语法
+    // customBrowseAndUpload(insertFn) {             // JS 语法
         // 自己选择文件
         // 自己上传文件，并得到视频 url poster
         // 最后插入视频
@@ -711,8 +703,6 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 - `codeLangs` 配置代码语言
 
 ```ts
-const editorConfig: Partial<IEditorConfig> = { MENU_CONF: {} }
-
 editorConfig.MENU_CONF['codeSelectLang'] = {
     // 代码语言
     codeLangs: [
@@ -722,8 +712,6 @@ editorConfig.MENU_CONF['codeSelectLang'] = {
         // 其他
     ]
 }
-
-// 执行 createEditor
 ```
 
 :::tip

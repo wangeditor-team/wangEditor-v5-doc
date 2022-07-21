@@ -2,20 +2,15 @@
 
 If you first-time use wangEditor, please see [Get Started](./getting-started.md) it to learn basic usage.
 
-```ts{4}
-import { IToolbarConfig, createToolbar } from '@wangeditor/editor'
+```ts{5}
+import { IToolbarConfig } from '@wangeditor/editor'
 
-const toolbarConfig: Partial<IToolbarConfig> = {
+const toolbarConfig: Partial<IToolbarConfig> = {   // TS syntax
+// const toolbarConfig = {                         // JS syntax
     /* your toolbar config */
 }
 
-// create toolbar
-const toolbar = createToolbar({
-  editor,
-  selector: '#toolbar-container',
-  config: toolbarConfig,
-  mode: 'default'
-})
+// create toolbar, or Vue React <Toolbar>
 ```
 
 ## getConfig
@@ -36,44 +31,25 @@ const toolbar = DomEditor.getToolbar(editor)
 - `editor.getAllMenuKeys()` checkout all embedded menu keys.
 
 ```ts
-const toolbarConfig: Partial<IToolbarConfig> = {
-    toolbarKeys: [
-        // menu key
-        'headerSelect',
+toolbarConfig.toolbarKeys = [
+    // menu key
+    'headerSelect',
 
-        // split line
-        '|',
+    // split line
+    '|',
 
-        // menu key
-        'bold', 'italic',
+    // menu key
+    'bold', 'italic',
 
-        // menu group, includes many menu
-        {
-            key: 'group-more-style', // required, must start with `group-`
-            title: 'more', // required
-            iconSvg: '<svg>....</svg>', // optional
-            menuKeys: ["through", "code", "clearStyle"] // required, children menu keys
-        },
-        // other menu keys...
-    ]
-}
-
-// create toolbar
-```
-
-## insertKeys
-
-You may only want to insert some new menus, based on current `toolbarKeys`.
-
-```ts
-const toolbarConfig: Partial<IToolbarConfig> = {
-    insertKeys: {
-        index: 5, // inserted index, in current toolbarKeys
-        keys: ['menu-key1', 'menu-key2']
+    // menu group, includes many menu
+    {
+        key: 'group-more-style', // required, must start with `group-`
+        title: 'more', // required
+        iconSvg: '<svg>....</svg>', // optional
+        menuKeys: ["through", "code", "clearStyle"] // required, children menu keys
     },
-}
-
-// create toolbar
+    // other menu keys...
+]
 ```
 
 ## excludeKeys
@@ -81,15 +57,11 @@ const toolbarConfig: Partial<IToolbarConfig> = {
 You may only want to exclude some menus, and keep the rest.
 
 ```ts
-const toolbarConfig: Partial<IToolbarConfig> = {
-    excludeKeys: [
-        'headerSelect',
-        'italic',
-        'group-more-style' // exclude menu-group
-    ]
-}
-
-// create toolbar
+toolbarConfig.excludeKeys = [
+    'headerSelect',
+    'italic',
+    'group-more-style' // exclude menu-group
+]
 ```
 
 If you want to exclude a menu group, you can find it's key by `toolbar.getConfig().toolbarKeys`
@@ -102,10 +74,8 @@ You may want to append the modal when a menu clicked to `<body>`, and custom its
 
 ![](/image/modal-appendTo-body-en.png)
 
-```ts
-const toolbarConfig: Partial<IToolbarConfig> = {
-    modalAppendToBody: true
-}
+```ts{1}
+toolbarConfig.modalAppendToBody = true
 
 // Create toolbar and editor
 
