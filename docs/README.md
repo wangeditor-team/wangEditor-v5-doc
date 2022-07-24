@@ -20,6 +20,20 @@ features:
 footer: Copyright © 2017-present wangeditor.com
 ---
 
+<div
+  style="opacity: 0.5; border: 1px solid #ccc; padding: 0 20px; border-radius: 10px;"
+  onmouseover="this.style.opacity = '1.0'; this.style.background = '#f1f1f1';"
+  onmouseout="this.style.opacity = '0.5'; this.style.background = 'none';"
+>
+
+### 荐：wangEditor 作者 [慕课网 双越讲师](https://www.imooc.com/t/4427201) 亲授，前端面试解决方案，5000+学员好评！
+
+1. **简历** [1小时带你写出亮眼的前端简历，免费学习！！！](https://www.imooc.com/learn/1329)
+2. **基础** [一天时间快速准备前端面试，构建前端基础知识体系](https://coding.imooc.com/class/400.html)
+3. **框架** [前端框架面试题，聚焦 Vue3 React Webpack](https://coding.imooc.com/class/419.html)
+4. **刷题** [2周刷完100道前端优质面试真题](https://coding.imooc.com/class/562.html)
+</div>
+
 ### 使用简单
 
 10 行代码即可创建一个功能健全的富文本编辑器，可查看 [demo 示例](https://www.wangeditor.com/demo/index.html)。如用于 Vue React 可参考[这里](/v5/for-frame.html)。
@@ -52,10 +66,6 @@ const toolbar = createToolbar({
 - [常见问题汇总](https://github.com/wangeditor-team/wangEditor/issues/4524)
 - [提交 issue 问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
 - 用户交流 QQ 群 `657798566`
-
-### 捐赠
-
-支持 wangEditor 开源工作 [https://opencollective.com/wangeditor](https://opencollective.com/wangeditor)
 
 ### 关注作者抖音
 
