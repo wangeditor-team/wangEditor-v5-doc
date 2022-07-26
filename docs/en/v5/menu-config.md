@@ -215,6 +215,8 @@ editorConfig.MENU_CONF['editImage'] = {
 
 ## Upload Image
 
+See [demo](https://github.com/wangeditor-team/server).
+
 ```ts{2}
 editorConfig.MENU_CONF['uploadImage'] = {
     // menu config...
@@ -473,6 +475,8 @@ editorConfig.MENU_CONF['insertVideo'] = {
 ```
 
 ## Upload Video
+
+See [demo](https://github.com/wangeditor-team/server).
 
 ```ts{2}
 editorConfig.MENU_CONF['uploadVideo'] = {

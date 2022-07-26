@@ -232,7 +232,7 @@ editorConfig.MENU_CONF['editImage'] = {
 
 ## 上传图片
 
-上传图片的配置比较复杂，拆分为几个部分来讲解。
+上传图片的配置比较复杂，拆分为几个部分来讲解。可参考这个 [demo](https://github.com/wangeditor-team/server)。
 
 ```ts{2}
 editorConfig.MENU_CONF['uploadImage'] = {
@@ -507,7 +507,7 @@ editorConfig.MENU_CONF['insertVideo'] = {
 
 ## 上传视频
 
-上传视频的配置比较复杂，拆分为几个部分来讲解。
+上传视频的配置比较复杂，拆分为几个部分来讲解。可参考这个 [demo](https://github.com/wangeditor-team/server)。
 
 ```ts{2}
 editorConfig.MENU_CONF['uploadVideo'] = {

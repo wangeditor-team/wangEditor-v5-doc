@@ -87,6 +87,6 @@ const toolbar = createToolbar({
 - [内容处理](./content.md) - 获取内容，**设置内容**，展示内容
 - [工具栏配置](./toolbar-config.md) - 插入新菜单，屏蔽某个菜单等
 - [编辑器配置](./editor-config.md) - 兼听各个**生命周期**，自定义**粘贴**
-- [菜单配置](./menu-config.md) - 配置颜色、字体、字号、链接校验、**上传图片、视频**等
+- [菜单配置](./menu-config.md) - 配置颜色、字体、字号、链接校验、**上传图片、上传视频**等
 - [编辑器 API](./API.md) - 控制编辑器内容和选区
 - [扩展新功能](./development.md) - 扩展菜单、元素、插件等

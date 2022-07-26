@@ -416,7 +416,7 @@ updateView 是内部 API ，不建议用户使用。如要使用，也请勿频�
 
 ### scrollToElem
 
-滚动到指定元素，类似锚点。如滚动到某个标题的位置。
+滚动到指定元素，类似锚点。如滚动到某个标题的位置。可实现标题目录，参考 [demo](https://www.wangeditor.com/demo/catalog.html)。
 
 可根据 `toDOMNode` 获取 node 对应的 DOM 元素。
 

@@ -1,12 +1,12 @@
 # 内容处理
 
-快速了解可查看[视频教程](./content.md)。
+快速了解可查看[视频教程](./video-course.md)。
 
 ## 获取内容
 
 ### 获取 HTML 和 Text
 
-使用 `editor.getHtml()` 获取 HTML 内容。使用 `editor.getText()` 获取纯文本内容。
+使用 `editor.getHtml()` 获取 HTML 内容，可参考 [demo](https://www.wangeditor.com/demo/get-html.html)。使用 `editor.getText()` 获取纯文本内容。
 
 推荐使用 HTML 格式存储数据。
 
@@ -51,6 +51,8 @@ const editor = createEditor({
 ```
 
 #### 动态设置 HTML
+
+参考 [demo](https://www.wangeditor.com/demo/set-html.html)
 
 ```js
 editor.setHtml('<p>hello <strong>world</strong></p>')

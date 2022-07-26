@@ -4,7 +4,7 @@
 
 ### Get HTML and Text
 
-Use `editor.getHtml()` to get HTML content. Use `editor.getText()` to get text content.
+Use `editor.getHtml()` to get HTML content, see [demo](https://www.wangeditor.com/demo/get-html.html?lang=en). Use `editor.getText()` to get text content.
 
 PS: HTML format is recommended.
 
@@ -49,6 +49,8 @@ const editor = createEditor({
 ```
 
 ### Set HTML after create editor
+
+See [demo](https://www.wangeditor.com/demo/set-html.html?lang=en)
 
 ```js
 editor.setHtml('<p>hello <strong>world</strong></p>')

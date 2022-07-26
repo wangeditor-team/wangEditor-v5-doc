@@ -59,6 +59,8 @@ When you need to set `false`?
 
 ## maxLength onMaxLength
 
+See [demo](https://www.wangeditor.com/demo/max-length.html?lang=en).
+
 ```ts
 import { IDomEditor } from '@wangeditor/editor'
 

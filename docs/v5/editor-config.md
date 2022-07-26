@@ -59,7 +59,7 @@ editorConfig.scroll = false
 
 ## maxLength onMaxLength
 
-配置编辑器的 maxlength ，默认不限制
+配置编辑器的 maxlength ，参考 [demo](https://www.wangeditor.com/demo/max-length.html)。
 
 ```ts
 import { IDomEditor } from '@wangeditor/editor'
