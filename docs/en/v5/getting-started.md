@@ -63,7 +63,7 @@ const toolbarConfig = {}
 const toolbar = createToolbar({
     editor,
     selector: '#toolbar-container',
-    config: toolbarConfig
+    config: toolbarConfig,
     mode: 'default', // or 'simple'
 })
 </script>
