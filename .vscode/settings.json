@@ -8,6 +8,7 @@
         "Elems",
         "hoverbar",
         "keys",
+        "snabbdom",
         "vdom",
         "vite",
         "vnode",

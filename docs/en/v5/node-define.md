@@ -27,24 +27,56 @@ Set line height and text style, run `editor.children` then you can see it's stru
 
 ![](/image/数据结构-2-en.png)
 
+## Text Node
+
+A text node **must have a `text` prop**, like `{ text: 'hello' }` . You can extend custom props, for instance bold text can be `{ text: 'hello', bold: true }` .
+
+Text node is leaf node, it **can not have `children` prop**.
+
+## Element Node
+
+An element node **must have two props `type` and `children`** , like `{ type: 'header1', children: [ { text: 'hello' } ] }` . You can extend custom props, for instance `{ type: 'header1', textAlign: 'center', children: [ { text: 'hello' } ] }` .
+
+## Inline Element
+
+By default, an element node is **block** style, like `<div>` in HTML. But we want some elements are **inline** style, like `<img>` `<a>` .
+
+We can define an element node as `inline` by **rewrite editor `isInline` API**, see link element [plugin source code](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/link/plugin.ts).
+
+## Void Element
+
+By default, an element node is not void node, it can have children. But we want some elements ar `void` node, like `<img>` `<video>` .
+
+We can define an element node as `void` by **rewrite editor `isVoid` API**, see image element [plugin source code](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/image/plugin.ts).
+
+Void element must have a `children` prop, which involve an empty text node. A image element is like:
+
+```js
+{
+    type: 'image',
+    // other props ...
+    children: [{ text: '' }] // A void element must have a children props, which involve an empty text node.
+}
+```
+
 ## All Nodes Structure
 
 See `type` in every source code.
 
-- [Text style](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/text-style/custom-types.ts)
-- [Font color and background color](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/color/custom-types.ts)
-- [Paragraph](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/paragraph/custom-types.ts)
-- [Line height](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/line-height/custom-types.ts)
-- [Font size and family](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/font-size-family/custom-types.ts)
-- [Justify](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/justify/custom-types.ts)
-- [indent](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/indent/custom-types.ts)
-- [Link](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/link/custom-types.ts)
-- [Header](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/header/custom-types.ts)
-- [Blockquote](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/blockquote/custom-types.ts)
-- [Image](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/image/custom-types.ts)
-- [Split line](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/divider/custom-types.ts)
-- [Code block](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/code-block/custom-types.ts)
-- [List](https://github.com/wangeditor-team/wangEditor/blob/master/packages/list-module/src/module/custom-types.ts)
-- [Table](https://github.com/wangeditor-team/wangEditor/blob/master/packages/table-module/src/module/custom-types.ts)
-- [Video](https://github.com/wangeditor-team/wangEditor/blob/master/packages/video-module/src/module/custom-types.ts)
+- [Text style](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/text-style/custom-types.ts) - Extend text node props
+- [Font color and background color](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/color/custom-types.ts) - Extend text node props
+- [Paragraph](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/paragraph/custom-types.ts) - Define element node
+- [Line height](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/line-height/custom-types.ts) - Extend element node props
+- [Font size and family](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/font-size-family/custom-types.ts) - Extend text node props
+- [Justify](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/justify/custom-types.ts) - Extend element node props
+- [indent](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/indent/custom-types.ts) - Extend element node props
+- [Link](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/link/custom-types.ts) - Define **inline** element
+- [Header](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/header/custom-types.ts) - Define element node
+- [Blockquote](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/blockquote/custom-types.ts) - Define element node
+- [Image](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/image/custom-types.ts) - Define **inline and void** element
+- [Split line](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/divider/custom-types.ts) - Define **void** element
+- [Code block](https://github.com/wangeditor-team/wangEditor/blob/master/packages/basic-modules/src/modules/code-block/custom-types.ts) - Define element node
+- [List](https://github.com/wangeditor-team/wangEditor/blob/master/packages/list-module/src/module/custom-types.ts) - Define element node
+- [Table](https://github.com/wangeditor-team/wangEditor/blob/master/packages/table-module/src/module/custom-types.ts) - Define element node
+- [Video](https://github.com/wangeditor-team/wangEditor/blob/master/packages/video-module/src/module/custom-types.ts) - Define **void** element
 
