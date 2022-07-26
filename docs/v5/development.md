@@ -82,9 +82,11 @@ import { IDomEditor, ISelectMenu } from '@wangeditor/editor'
 class MySelectMenu implements ISelectMenu {   // TS 语法
 // class MySelectMenu {                       // JS 语法
 
-    this.title = 'My Select Menu',
-    this.tag = 'select'
-    this.width = 60
+    constructor() {
+      this.title = 'My Select Menu',
+      this.tag = 'select'
+      this.width = 60
+    }
 
     // 下拉框的选项
     getOptions(editor: IDomEditor) {   // TS 语法
