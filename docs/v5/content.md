@@ -58,6 +58,11 @@ const editor = createEditor({
 editor.setHtml('<p>hello <strong>world</strong></p>')
 ```
 
+:::tip
+注意，`setHtml` 主要用于回显编辑器输出的 HTML ，即 `editor.getHtml()` 的内容。<br>
+如果想插入一段 HTML ，请使用 [dangerouslyInsertHtml](./API.md#dangerouslyinserthtml)
+:::
+
 ### 设置 Text
 
 ```js

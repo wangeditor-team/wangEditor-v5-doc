@@ -70,6 +70,8 @@ const text = editor.getText()
 editor.setHtml('<p>hello</p>')
 ```
 
+如果想插入一段 HTML ，请使用 [dangerouslyInsertHtml](#dangerouslyinserthtml)
+
 ### isEmpty
 
 判断当前编辑器内容是否为空（只有一个空段落）
@@ -165,6 +167,10 @@ editor.insertText('xxx')
 ```ts
 editor.dangerouslyInsertHtml(`<h1>标题</h1><p>文本 <b>加粗</b></p>`)
 ```
+
+:::tip
+如果你想**重置**编辑器 HTML 内容，请使用 [setHtml](#sethtml)
+:::
 
 ### clear
 

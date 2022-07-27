@@ -56,6 +56,11 @@ See [demo](https://www.wangeditor.com/demo/set-html.html?lang=en)
 editor.setHtml('<p>hello <strong>world</strong></p>')
 ```
 
+:::tip
+`setHtml` is mainly used for re-write editor HTML content which got by `editor.getHtml()`.<br>
+If you want to insert some HTML, use [dangerouslyInsertHtml](./API.md#dangerouslyinserthtml) please.
+:::
+
 ### Set Text
 
 ```js

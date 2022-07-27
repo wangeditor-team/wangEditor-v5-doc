@@ -72,6 +72,8 @@ editor.setHtml('<p>hello</p>')
 
 PS: wangEditor can only understand the **HTML format produced by `editor.getHtml()`**, but custom HTML format.
 
+If you want to insert some HTML, use [dangerouslyInsertHtml](#dangerouslyinserthtml) please.
+
 ### isEmpty
 
 Determine whether the editor is empty (just has an empty paragraph)
@@ -154,6 +156,10 @@ Insert HTML string, but it's dangerous. There is no guarantee of complete consis
 ```ts
 editor.dangerouslyInsertHtml(`<h1>Header1</h1><p>Hello <b>word</b></p>`)
 ```
+
+:::tip
+If you want to **rewrite** editor HTML content, use [setHtml](#sethtml) please.
+:::
 
 ### clear
 

@@ -7,7 +7,7 @@ actions:
   - text: 快速上手
     link: /v5/getting-started.html
     type: primary
-  - text: demo 演示
+  - text: demo 示例
     link: https://www.wangeditor.com/demo/index.html
     type: secondary
 features:
