@@ -2,6 +2,8 @@
 
 ## 视频教程
 
+关注 wangEditor [B 站账号](https://space.bilibili.com/697803545)
+
 - [如何选择富文本编辑器](https://www.bilibili.com/video/BV1XB4y1C7EP)
 - [wangEditor5教程01-使用入门](https://www.bilibili.com/video/BV1GU4y1q7ob)
 - [wangEditor5教程02-用于 Vue2](https://www.bilibili.com/video/BV1b34y1h7oj)
@@ -18,3 +20,11 @@
 - [wangEditor5教程13-自定义扩展 part2（视频较长，耐心观看）](https://www.bilibili.com/video/BV16Y4y1A7iM/)
 
 如需要其他视频教程，可去提交 [issue](https://github.com/wangeditor-team/wangEditor/issues) 反馈。
+
+## 作者抖音
+
+关注作者抖音，学习编程小技巧~
+
+![](/image/douyin.jpeg)
+
+
