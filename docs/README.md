@@ -29,8 +29,8 @@ footer: Copyright © 2017-present wangeditor.com
 ### wangEditor 作者 周二（8.9）20:00 [直播](http://www.imooc.com/onlive/357qxf75nz629)！！！
 
 1. Web 富文本编辑器的重点和难点
-2. 开源会遇到哪些问题？
-3. 开源给我带来什么价值？
+2. 开源会遇到哪些问题？带来什么价值？
+3. wangEditor 常见问题答疑
 
 [![](/image/add/imooc-live-8.9.png "")](http://www.imooc.com/onlive/357qxf75nz629)
 
