@@ -489,3 +489,28 @@ return (
     </>
 )
 ```
+### 组件API
+#### Toolbar
+|参数 |说明|类型|
+|:---|:---|:---|
+|editor|编辑器对象|IDomEditor|
+|defaultConfig|编辑器工具栏配置|IToolbarConfig|
+|mode|编辑器模式|string|
+
+#### Editor
+|参数 |说明|类型|
+|:---|:---|:---|
+|defaultContent|默认内容|SlateDescendant[]|
+|defaultHtml|默认html结构|string|
+|defaultConfig|编辑器配置(note:组件传递的属性比config属性的优先级更高)|IEditorConfig|
+|value|输入框内容|string|
+|mode|编辑器模式|string|
+|placeholder|编辑器空白占位符|string|
+|maxLength|编辑器最大长度|number|
+|readOnly|只读属性|boolean|
+|onCreated|编辑器的创建函数|function(e:IDomEditor)|
+|onChange|编辑器内容变化时的回调|function(e:IDomEditor)|
+|onDestroyed|编辑器销毁后的回调|function(e:IDomEditor)|
+|onBlur|编辑器失焦后的回调|function(e:IDomEditor)|
+|onFocus|编辑器合焦后的回调|function(e:IDomEditor)|
+|onMaxLength|编辑器内容到达最大长度的调用|function()|
