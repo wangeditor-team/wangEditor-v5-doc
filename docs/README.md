@@ -32,7 +32,7 @@ footer: Copyright © 2017-present wangeditor.com
 2. **基础** [1 天时间快速准备前端基础面试，构建前端基础知识体系](https://coding.imooc.com/class/400.html)
 3. **框架** [前端框架面试题，聚焦 Vue3 React Webpack](https://coding.imooc.com/class/419.html)
 4. **刷题** [2 周刷完 100 道前端优质面试真题，覆盖 9 大考察方向](https://coding.imooc.com/class/562.html)
-5. **模拟面试** [前端面试模拟+复盘 ，揭秘面试官的内心世界 - 新课优惠！！！](https://coding.imooc.com/class/596.html)
+5. **模拟面试** [前端面试模拟+复盘 ，揭秘面试官的内心世界](https://coding.imooc.com/class/596.html)
 
 *也欢迎关注作者 抖音 “[王福朋的编程小屋](#关注作者抖音)” 和 [B 站频道](https://space.bilibili.com/697803545)*
 </div>
