@@ -464,8 +464,8 @@ type VideoElement = SlateElement & {
 
 ```ts
 // 自定义校验视频
-function customCheckVideoFn(src: string): boolean | string | undefined {  // TS 语法
-// function customCheckVideoFn(src) {                                     // JS 语法
+function customCheckVideoFn(src: string, poster: string): boolean | string | undefined {  // TS 语法
+// function customCheckVideoFn(src, poster) {                                             // JS 语法
     if (!src) {
         return
     }

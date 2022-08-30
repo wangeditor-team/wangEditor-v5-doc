@@ -439,8 +439,8 @@ type VideoElement = SlateElement & {
 Menu config.
 
 ```ts
-function customCheckVideoFn(src: string): boolean | string | undefined {   // TS syntax
-// function customCheckVideoFn(src) {                                      // JS syntax
+function customCheckVideoFn(src: string, poster: string): boolean | string | undefined {   // TS syntax
+// function customCheckVideoFn(src, poster) {                                              // JS syntax
     if (!src) {
         return
     }
