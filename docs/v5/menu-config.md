@@ -379,7 +379,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
     // customInsert(res, insertFn) {                  // JS 语法
         // res 即服务端的返回结果
 
-        // 从 res 中找到 url alt href ，然后插图图片
+        // 从 res 中找到 url alt href ，然后插入图片
         insertFn(url, alt, href)
     },
 }
