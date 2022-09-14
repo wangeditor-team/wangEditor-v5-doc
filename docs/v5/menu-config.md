@@ -66,7 +66,16 @@ editorConfig.MENU_CONF['bgColor'] = {
 
 ```ts
 editorConfig.MENU_CONF['fontSize'] = {
-    fontSizeList: ['12px', '16px', '24px', '40px']
+    fontSizeList: [
+        // 元素支持两种形式
+        //   1. 字符串；
+        //   2. { name: 'xxx', value: 'xxx' }
+
+        '12px',
+        '16px',
+        { name: '24px', value: '24px' },
+        '40px',
+    ]
 }
 ```
 

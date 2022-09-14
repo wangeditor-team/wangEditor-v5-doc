@@ -60,7 +60,16 @@ editorConfig.MENU_CONF['bgColor'] = {
 
 ```ts
 editorConfig.MENU_CONF['fontSize'] = {
-    fontSizeList: ['12px', '16px', '24px', '40px']
+    fontSizeList: [
+        // Support two format
+        //   1. string
+        //   2. object like { name: 'xxx', value: 'xxx' }
+
+        '12px',
+        '16px',
+        { name: '24px', value: '24px' },
+        '40px',
+    ]
 }
 ```
 
