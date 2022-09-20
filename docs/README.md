@@ -69,7 +69,7 @@ const toolbar = createToolbar({
 
 - [常见问题汇总](https://github.com/wangeditor-team/wangEditor/issues/4524)
 - [提交 issue 问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
-- 加入 QQ 群 `657798566` ，**但请注意：**
+- 加入 QQ 群 `651704125` ，**但请注意：**
   - 用户交流，请不要 `@群主` 解答问题！
   - 白嫖党、伸手党请绕行！
   - 说脏话、发广告，直接踢出！
