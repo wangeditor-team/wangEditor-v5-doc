@@ -15,8 +15,8 @@ features:
   details: Quick use, easy config, few codes will create an editor. Integrate all basic functions, No need to secondary develop.
 - title: Support JS Vue React
   details: Independent of any third-party frameworks, you can use it in jQuery, Vue, React. We supply official Vue React components.
-- title: Resolved 4000+ issues
-  details: wangEditor open source for many years, many users committed many issues. We have resolved 4000+ Github issues and will go on.
+- title: Resolved 5000+ issues
+  details: wangEditor open source for many years, many users committed many issues. We have resolved 5000+ Github issues and will go on.
 footer: Copyright © 2017-present wangeditor.com
 ---
 

@@ -110,7 +110,7 @@ wangEditor 基于 slate 内核开发，但不依赖于 React ，所以它本身�
 并且，我们官方封装了 Vue React 组件，可以很方便的[用于 Vue React 等框架](/v5/for-frame.html)。<br>
 其他框架，我们会继续支持，大家也可以提交 issue 。
 
-### 踩过 4000 个坑
+### 踩过 5000 个坑
 
 wangEditor 开源多年，大量用户使用和反馈，已经解决了[很多问题](https://github.com/wangeditor-team/wangEditor/issues)。在 V5 版本测试过程中，也这些问题进行了重复测试，最大程度保证稳定性。
 
