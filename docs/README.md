@@ -20,21 +20,11 @@ features:
 footer: Copyright © 2017-present wangeditor.com
 ---
 
-<div
-  style="opacity: 0.5; transition: opacity 0.5s; border: 1px solid #ccc; padding: 0 20px; border-radius: 10px; box-shadow: 0 2px 10px #0000001f;"
-  onmouseover="this.style.opacity = '1.0';"
-  onmouseout="this.style.opacity = '0.5';"
->
-
-### wangEditor 作者 [慕课网 双越讲师](https://www.imooc.com/t/4427201) 亲授 [前端面试全家桶](https://coding.imooc.com/class/613.html) 全流程、体系化的前端面试解决方案
-
-1. **全流程** 从知识点讲解，到面试题练习，再到真实面试过程演练
-2. **体系化** 包含前端面试常考的内容，如 CSS JS Vue React 算法等
-3. **讲师靠谱** 双越老师从 2017 年开始制作前端面试课，已服务 1w+ 学员
-
-*也欢迎关注作者**抖音** [王福朋的编程小屋](#关注作者抖音) 和 [wangEditor B站频道](https://space.bilibili.com/697803545)*
+<div style="border: 1px solid #f1f1f1; border-radius: 10px;">
+  <a href="https://www.diboot.com/?from=we" target="_blank">
+    <img src="https://www.diboot.com/diboot_banner.png">
+  </a>
 </div>
-
 
 ### 使用简单
 
