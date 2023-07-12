@@ -11,8 +11,8 @@
 下载当前代码，然后启动
 
 ```shell
-npm install
-npm run dev # 浏览器访问 http://localhost:8080/
+yarn     # 安装依赖
+yarn dev # 启动，浏览器访问 http://localhost:8080/
 ```
 
 ## 发布上线
