@@ -20,7 +20,8 @@ features:
 footer: Copyright © 2017-present wangeditor.com
 ---
 
-<div style="border: 1px solid #f1f1f1; border-radius: 10px;">
+<div style="border: 1px solid #f1f1f1; border-radius: 10px; position: relative;">
+  <span style="position: absolute; background-color: #f1f1f1; padding: 3px; font-size: 14px;">🏅金牌赞助</span>
   <a href="https://www.diboot.com/?from=we" target="_blank">
     <img src="https://www.diboot.com/diboot_banner.png">
   </a>
