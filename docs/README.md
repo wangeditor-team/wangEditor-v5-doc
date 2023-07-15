@@ -60,6 +60,3 @@ const toolbar = createToolbar({
 - [提交 issue 问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
 - 暂停 QQ 群（无良“伸手党”过多，还请体谅~）
 
-### 关注作者抖音
-
-![](/image/douyin.jpeg)
