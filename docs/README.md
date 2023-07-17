@@ -20,6 +20,7 @@ features:
 footer: Copyright © 2017-present wangeditor.com
 ---
 
+<!-- banner 赞助 -->
 <div style="border: 1px solid #f1f1f1; border-radius: 10px; position: relative;">
   <span style="position: absolute; background-color: #f1f1f1; padding: 3px; font-size: 14px;">🏅金牌赞助</span>
   <a href="https://www.diboot.com/?from=we" target="_blank">
@@ -29,27 +30,15 @@ footer: Copyright © 2017-present wangeditor.com
 
 ### 使用简单
 
-10 行代码即可创建一个功能健全的富文本编辑器，可查看 [demo 示例](https://www.wangeditor.com/demo/index.html)。如用于 Vue React 可参考[这里](/v5/for-frame.html)。
+下面是一个基础 demo 演示。可查看 [更多 demo 示例](https://www.wangeditor.com/demo/index.html)，如用于 Vue React 可参考[这里](https://www.wangeditor.com/v5/for-frame.html)。
 
-![](/image/editor.png)
-
-```js
-import '@wangeditor/editor/dist/css/style.css'
-import { createEditor, createToolbar } from '@wangeditor/editor'
-
-// 创建编辑器
-const editor = createEditor({
-  selector: '#editor-container'
-})
-// 创建工具栏
-const toolbar = createToolbar({
-  editor,
-  selector: '#toolbar-container'
-})
-```
+<!-- 编辑器 demo -->
+<iframe
+  style="border: 0; width: 960px; height: 500px; overflow: hidden; margin-top: 20px;"
+  src="https://www.wangeditor.com/demo/demo-for-home.html">
+</iframe>
 
 ### 兼容性
-
 - 兼容主流的 PC 浏览器，如 Chrome Firefox Safari Edge 等
 - 暂不支持移动端编辑（支持移动端查看）
 - **不再支持 IE 浏览器**

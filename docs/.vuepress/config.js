@@ -7,6 +7,8 @@ module.exports = {
     bundler: viteBundler(),
     head: [
         ['link', { rel: 'icon', href: '/favicon.ico' }],
+
+        // 百度统计
         [
             'script',
             {},
