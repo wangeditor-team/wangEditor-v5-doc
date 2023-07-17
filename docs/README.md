@@ -34,7 +34,7 @@ footer: Copyright © 2017-present wangeditor.com
 
 <!-- 编辑器 demo -->
 <iframe
-  style="border: 0; width: 960px; height: 540px; overflow: hidden; margin-top: 20px;"
+  style="border: 0; width: 960px; height: 385px; overflow: hidden;"
   src="https://www.wangeditor.com/demo/demo-for-home.html">
 </iframe>
 
