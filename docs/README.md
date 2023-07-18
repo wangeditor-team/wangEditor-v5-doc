@@ -45,7 +45,5 @@ footer: Copyright © 2017-present wangeditor.com
 
 ### 遇到问题
 
-- [常见问题汇总](https://github.com/wangeditor-team/wangEditor/issues/4524)
-- [提交 issue 问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
-- 暂停 QQ 群（无良“伸手党”过多，还请体谅~）
-
+- [讨论问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
+- 暂停 QQ 群（“伸手党”过多，还请体谅~）
