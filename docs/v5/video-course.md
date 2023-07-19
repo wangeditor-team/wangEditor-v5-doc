@@ -25,6 +25,6 @@
 
 关注作者抖音，学习编程小技巧~
 
-![](/image/douyin.jpeg)
+![](/image/sponsor/douyin.jpeg)
 
 
