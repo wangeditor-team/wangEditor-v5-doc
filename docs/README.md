@@ -20,9 +20,11 @@ features:
 footer: Copyright © 2017-present wangeditor.com
 ---
 
-<!-- banner 赞助 -->
+<!-- 金牌赞助 -->
 <div style="border: 1px solid #f1f1f1; border-radius: 10px; position: relative;">
-  <span style="position: absolute; background-color: #f1f1f1; padding: 3px; font-size: 14px;">🏅金牌赞助</span>
+  <a href="/v5/sponsor.html" style="position: absolute; background-color: #f1f1f1; padding: 5px; font-size: 14px;">
+    🏅金牌赞助
+  </a>
   <a href="https://www.diboot.com/?from=we" target="_blank">
     <img src="https://www.diboot.com/diboot_banner.png">
   </a>
@@ -30,7 +32,7 @@ footer: Copyright © 2017-present wangeditor.com
 
 ### 使用简单
 
-下面是一个基础 demo 演示。可查看 [更多 demo 示例](https://www.wangeditor.com/demo/index.html)，如用于 Vue React 可参考[这里](https://www.wangeditor.com/v5/for-frame.html)。
+下面是一个基础 demo 演示。可查看 [更多 demo 示例](https://www.wangeditor.com/demo/index.html)，如用于 Vue React 可参考[这里](/v5/for-frame.html)。
 
 <!-- 编辑器 demo -->
 <iframe
@@ -47,3 +49,42 @@ footer: Copyright © 2017-present wangeditor.com
 
 - [讨论问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
 - 暂停 QQ 群（“伸手党”过多，还请体谅~）
+
+### 赞助商
+
+<!-- 铜牌赞助 -->
+<div style="display: flex; margin-bottom: 30px;">
+  <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px;">
+    <img src="/image/sponsor/douyin1.png"/>
+  </div>
+  <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px; text-align: center;">
+    <a
+      href="/v5/sponsor.html"
+      style="display: block; margin-top: 70px; font-size: 14px;"
+    >
+      成为赞助商💰<br>程序员垂类用户<br>每月近 10 万次曝光
+    </a>
+  </div>
+  <div style="flex: 1; margin-right: 15px; text-align: center;">
+  </div>
+  <div style="flex: 1; text-align: center;">
+  </div>
+</div>
+
+<!-- 银牌赞助（网页右下角，悬浮固定） -->
+<div
+  style="position: fixed; border: 2px solid #f1f1f1; background: #fff; height: 180px; width: 180px; bottom: 60px; right: 60px; text-align: center;"
+>
+  <a
+    href="/v5/sponsor.html"
+    style="position: absolute; left: 0; background-color: #f1f1f1; padding: 5px; font-size: 14px;"
+  >
+    🥈银牌赞助
+  </a>
+  <a
+    href="/v5/sponsor.html"
+    style="display: block; margin-top: 55px; font-size: 14px;"
+  >
+    成为赞助商💰<br>程序员垂类用户<br>每月近 10 万次曝光
+  </a>
+</div>
