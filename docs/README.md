@@ -73,7 +73,7 @@ footer: Copyright © 2017-present wangeditor.com
 
 <!-- 银牌赞助（网页右下角，悬浮固定） -->
 <div
-  style="position: fixed; border: 2px solid #f1f1f1; background: #fff; height: 180px; width: 180px; bottom: 60px; right: 60px; text-align: center;"
+  style="position: fixed; border: 2px solid #f1f1f1; background: #fff; height: 180px; width: 180px; bottom: 30px; right: 30px; text-align: center;"
 >
   <a
     href="/v5/sponsor.html"
