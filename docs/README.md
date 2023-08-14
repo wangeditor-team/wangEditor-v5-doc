@@ -20,16 +20,6 @@ features:
 footer: Copyright © 2017-present wangeditor.com
 ---
 
-<!-- 金牌赞助 -->
-<div style="border: 1px solid #f1f1f1; border-radius: 10px; position: relative;">
-  <a href="/v5/sponsor.html" style="position: absolute; background-color: #f1f1f1; padding: 5px; font-size: 14px;">
-    🏅金牌赞助
-  </a>
-  <a href="https://www.diboot.com/?from=we" target="_blank">
-    <img src="https://www.diboot.com/diboot_banner.png">
-  </a>
-</div>
-
 ### 使用简单
 
 下面是一个基础 demo 演示。可查看 [更多 demo 示例](https://www.wangeditor.com/demo/index.html)，如用于 Vue React 可参考[这里](/v5/for-frame.html)。

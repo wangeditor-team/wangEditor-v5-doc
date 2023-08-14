@@ -12,3 +12,14 @@
 4. **刷题** [2 周刷完 100 道前端优质面试真题，覆盖 9 大考察方向](https://coding.imooc.com/class/562.html)
 5. **模拟面试** [前端面试模拟+复盘 ，揭秘面试官的内心世界 - 新课优惠！！！](https://coding.imooc.com/class/596.html)
 </div>
+
+
+<!-- 金牌赞助 -->
+<div style="border: 1px solid #f1f1f1; border-radius: 10px; position: relative;">
+  <a href="/v5/sponsor.html" style="position: absolute; background-color: #f1f1f1; padding: 5px; font-size: 14px;">
+    🏅金牌赞助
+  </a>
+  <a href="https://www.diboot.com/?from=we" target="_blank">
+    <img src="https://www.diboot.com/diboot_banner.png">
+  </a>
+</div>
