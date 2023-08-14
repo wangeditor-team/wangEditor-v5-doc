@@ -20,6 +20,20 @@ features:
 footer: Copyright © 2017-present wangeditor.com
 ---
 
+<!-- 金牌赞助 -->
+<div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px;">
+  <a href="/v5/sponsor.html" style="position: absolute; background-color: #f1f1f1; padding: 5px; font-size: 14px; left: 0;">
+    🏅金牌赞助
+  </a>
+  <a
+    href="/v5/sponsor.html"
+    style="display: block; margin-top: 30px; font-size: 14px;"
+  >
+    成为赞助商💰
+  </a>
+  <span style="font-size: 14px; color: #999;">程序员垂类用户，每月近 10 万次曝光</span>
+</div>
+
 ### 使用简单
 
 下面是一个基础 demo 演示。可查看 [更多 demo 示例](https://www.wangeditor.com/demo/index.html)，如用于 Vue React 可参考[这里](/v5/for-frame.html)。
