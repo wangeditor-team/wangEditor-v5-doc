@@ -21,17 +21,18 @@ footer: Copyright © 2017-present wangeditor.com
 ---
 
 <!-- 金牌赞助 -->
-<div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px;">
+<div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px; background: #f9f9f9">
   <a href="/v5/sponsor.html" style="position: absolute; background-color: #f1f1f1; padding: 5px; font-size: 14px; left: 0;">
     🏅金牌赞助
   </a>
   <a
-    href="/v5/sponsor.html"
-    style="display: block; margin-top: 30px; font-size: 14px;"
+    href="https://zhuanlan.zhihu.com/p/649930153"
+    target="_blank"
+    style="display: block; margin-top: 20px; font-size: 24px;"
   >
-    成为赞助商💰
+    wangEditor 作者（双越老师）：前端面试 1-1 咨询服务
   </a>
-  <span style="font-size: 14px; color: #999;">程序员垂类用户，每月近 10 万次曝光</span>
+  <span style="line-height: 1.8">私人定制学习内容 + 学习打卡 讲师点评 + 优化简历 发掘亮点 + 模拟面试</span>
 </div>
 
 ### 使用简单
@@ -57,10 +58,7 @@ footer: Copyright © 2017-present wangeditor.com
 ### 赞助商
 
 <!-- 铜牌赞助 -->
-<div style="display: flex; margin-bottom: 30px;">
-  <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px;">
-    <img src="/image/sponsor/douyin1.png"/>
-  </div>
+<div style="display: flex; margin-bottom: 30px; height: 200px;">
   <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px; text-align: center;">
     <a
       href="/v5/sponsor.html"
@@ -68,6 +66,8 @@ footer: Copyright © 2017-present wangeditor.com
     >
       成为赞助商💰<br>程序员垂类用户<br>每月近 10 万次曝光
     </a>
+  </div>
+  <div style="flex: 1; margin-right: 15px; text-align: center;">
   </div>
   <div style="flex: 1; margin-right: 15px; text-align: center;">
   </div>
