@@ -32,7 +32,7 @@ footer: Copyright © 2017-present wangeditor.com
   >
     wangEditor 作者（双越老师）：前端面试 1-1 咨询服务
   </a>
-  <span style="line-height: 1.8">私人定制学习内容 + 学习打卡 讲师点评 + 优化简历 发掘亮点 + 模拟面试</span>
+  <span style="line-height: 1.8">1-1 私人定制学习内容 &nbsp; | &nbsp; 制定学习计划 打卡点评 &nbsp; | &nbsp; 优化简历 发掘亮点 &nbsp; | &nbsp; 模拟面试 评估效果</span>
 </div>
 
 ### 使用简单
