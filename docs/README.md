@@ -58,20 +58,23 @@ footer: Copyright © 2017-present wangeditor.com
 ### 赞助商
 
 <!-- 铜牌赞助 -->
-<div style="display: flex; margin-bottom: 30px; height: 200px;">
+<div style="display: flex; margin-bottom: 30px; height: 230px; overflow: hidden">
+  <div style="flex: 1; margin-right: 15px; text-align: center;">
+    <a href="https://91haoka.cn/91haoka_platform/#/minishop?share_id=519735&shop_name=B%25E7%25AB%2599%25E6%25B5%2581%25E9%2587%258F%25E5%258D%25A1%25E8%2580%2581%25E9%2593%2581" target="_blank">
+      <img src="/image/add/liuliangka.png"/>
+    </a>
+  </div>
   <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px; text-align: center;">
+  </div>
+  <div style="flex: 1; background-color: #f1f1f1; text-align: center; margin-right: 15px;">
+  </div>
+  <div style="flex: 1; background-color: #f1f1f1; text-align: center;">
     <a
       href="/v5/sponsor.html"
       style="display: block; margin-top: 70px; font-size: 14px;"
     >
       成为赞助商💰<br>程序员垂类用户<br>每月近 10 万次曝光
     </a>
-  </div>
-  <div style="flex: 1; margin-right: 15px; text-align: center;">
-  </div>
-  <div style="flex: 1; margin-right: 15px; text-align: center;">
-  </div>
-  <div style="flex: 1; text-align: center;">
   </div>
 </div>
 
