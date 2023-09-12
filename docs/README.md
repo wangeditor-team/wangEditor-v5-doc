@@ -59,22 +59,19 @@ footer: Copyright © 2017-present wangeditor.com
 
 <!-- 铜牌赞助 -->
 <div style="display: flex; margin-bottom: 30px; height: 230px; overflow: hidden">
-  <div style="flex: 1; margin-right: 15px; text-align: center;">
-    <a href="https://91haoka.cn/91haoka_platform/#/minishop?share_id=519735&shop_name=B%25E7%25AB%2599%25E6%25B5%2581%25E9%2587%258F%25E5%258D%25A1%25E8%2580%2581%25E9%2593%2581" target="_blank">
-      <img src="/image/add/liuliangka.png"/>
-    </a>
-  </div>
-  <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px; text-align: center;">
-  </div>
   <div style="flex: 1; background-color: #f1f1f1; text-align: center; margin-right: 15px;">
-  </div>
-  <div style="flex: 1; background-color: #f1f1f1; text-align: center;">
     <a
       href="/v5/sponsor.html"
       style="display: block; margin-top: 70px; font-size: 14px;"
     >
       成为赞助商💰<br>程序员垂类用户<br>每月近 10 万次曝光
     </a>
+  </div>
+  <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px; text-align: center;">
+  </div>
+  <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px; text-align: center;">
+  </div>
+  <div style="flex: 1; background-color: #f1f1f1; text-align: center;">
   </div>
 </div>
 
@@ -84,14 +81,11 @@ footer: Copyright © 2017-present wangeditor.com
 >
   <a
     href="/v5/sponsor.html"
-    style="position: absolute; left: 0; background-color: #f1f1f1; padding: 5px; font-size: 14px;"
+    style="position: absolute; right: 0; background-color: #f1f1f1; padding: 5px; font-size: 12px;"
   >
     🥈银牌赞助
   </a>
-  <a
-    href="/v5/sponsor.html"
-    style="display: block; margin-top: 55px; font-size: 14px;"
-  >
-    成为赞助商💰<br>程序员垂类用户<br>每月近 10 万次曝光
+  <a href="https://91haoka.cn/91haoka_platform/#/minishop?share_id=519735&shop_name=B%25E7%25AB%2599%25E6%25B5%2581%25E9%2587%258F%25E5%258D%25A1%25E8%2580%2581%25E9%2593%2581" target="_blank">
+    <img src="/image/add/liuliangka.png"/>
   </a>
 </div>
