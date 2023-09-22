@@ -20,11 +20,8 @@ features:
 footer: Copyright © 2017-present wangeditor.com
 ---
 
-<!-- 金牌赞助 -->
+<!-- 赞助 -->
 <div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px; background: #f9f9f9">
-  <a href="/v5/sponsor.html" style="position: absolute; background-color: #f1f1f1; padding: 5px; font-size: 14px; left: 0;">
-    🏅金牌赞助
-  </a>
   <a
     href="https://zhuanlan.zhihu.com/p/649930153"
     target="_blank"
@@ -32,7 +29,7 @@ footer: Copyright © 2017-present wangeditor.com
   >
     wangEditor 作者（双越老师）：前端面试 1-1 咨询服务
   </a>
-  <span style="line-height: 1.8">1-1 私人定制学习内容 &nbsp; | &nbsp; 制定学习计划 打卡点评 &nbsp; | &nbsp; 优化简历 发掘亮点 &nbsp; | &nbsp; 模拟面试 评估效果</span>
+  <span style="line-height: 1.8">优化简历 发掘亮点 &nbsp; | &nbsp; 模拟面试 评估效果 &nbsp; | &nbsp; 私人定制学习内容 &nbsp; | &nbsp; 制定学习计划 打卡点评 </span>
 </div>
 
 ### 使用简单
@@ -54,38 +51,3 @@ footer: Copyright © 2017-present wangeditor.com
 
 - [讨论问题和建议](https://github.com/wangeditor-team/wangEditor/issues)
 - 暂停 QQ 群（“伸手党”过多，还请体谅~）
-
-### 赞助商
-
-<!-- 铜牌赞助 -->
-<div style="display: flex; margin-bottom: 30px; height: 230px; overflow: hidden">
-  <div style="flex: 1; background-color: #f1f1f1; text-align: center; margin-right: 15px;">
-    <a
-      href="/v5/sponsor.html"
-      style="display: block; margin-top: 70px; font-size: 14px;"
-    >
-      成为赞助商💰<br>程序员垂类用户<br>每月近 10 万次曝光
-    </a>
-  </div>
-  <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px; text-align: center;">
-  </div>
-  <div style="flex: 1; background-color: #f1f1f1; margin-right: 15px; text-align: center;">
-  </div>
-  <div style="flex: 1; background-color: #f1f1f1; text-align: center;">
-  </div>
-</div>
-
-<!-- 银牌赞助（网页右下角，悬浮固定） -->
-<div
-  style="position: fixed; border: 2px solid #f1f1f1; background: #fff; height: 180px; width: 180px; bottom: 30px; right: 30px; text-align: center;"
->
-  <a
-    href="/v5/sponsor.html"
-    style="position: absolute; right: 0; background-color: #f1f1f1; padding: 5px; font-size: 12px;"
-  >
-    🥈银牌赞助
-  </a>
-  <a href="https://91haoka.cn/91haoka_platform/#/minishop?share_id=519735&shop_name=B%25E7%25AB%2599%25E6%25B5%2581%25E9%2587%258F%25E5%258D%25A1%25E8%2580%2581%25E9%2593%2581" target="_blank">
-    <img src="/image/add/liuliangka.png"/>
-  </a>
-</div>

@@ -56,7 +56,6 @@ module.exports = {
                     { text: '视频教程', link: '/v5/video-course.md' },
                     { text: 'Demo 示例', link: 'https://www.wangeditor.com/demo/index.html' },
                     { text: '插件', link: '/v5/plugins.md' },
-                    { text: '赞助💰', link: '/v5/sponsor.md' },
                     { text: 'Github', link: 'https://github.com/wangeditor-team/wangEditor' },
                     { text: 'v4 版本', link: 'https://www.wangeditor.com/v4/' }
                 ],
