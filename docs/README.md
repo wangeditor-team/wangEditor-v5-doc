@@ -11,19 +11,19 @@ actions:
     link: https://www.wangeditor.com/demo/index.html
     type: secondary
 features:
-- title: 简洁易用，功能强大
-  details: 快速接入，配置简单，几行代码即可生成。集成了所有常见功能，无需二次开发。在 Vue React 也可以快速接入。
-- title: 支持 JS Vue React
-  details: 不依赖任何第三方框架，可用于 jQuery Vue React 等。wangEditor 提供了官方的 Vue React 组件。
-- title: 踩过 5000+ 坑
-  details: wangEditor 开源多年，有大量用户使用和反馈，我们已解决了太多的用户问题（详见 github issues）。
+  - title: 简洁易用，功能强大
+    details: 快速接入，配置简单，几行代码即可生成。集成了所有常见功能，无需二次开发。在 Vue React 也可以快速接入。
+  - title: 支持 JS Vue React
+    details: 不依赖任何第三方框架，可用于 jQuery Vue React 等。wangEditor 提供了官方的 Vue React 组件。
+  - title: 踩过 5000+ 坑
+    details: wangEditor 开源多年，有大量用户使用和反馈，我们已解决了太多的用户问题（详见 github issues）。
 footer: Copyright © 2017-present wangeditor.com
 ---
 
 <!-- 赞助 -->
 <div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px; background: #f9f9f9">
   <a
-    href="https://zhuanlan.zhihu.com/p/649930153"
+    href="https://space.bilibili.com/697803545"
     target="_blank"
     style="display: block; margin-top: 20px; font-size: 24px;"
   >
@@ -43,6 +43,7 @@ footer: Copyright © 2017-present wangeditor.com
 </iframe>
 
 ### 兼容性
+
 - 兼容主流的 PC 浏览器，如 Chrome Firefox Safari Edge 等
 - 暂不支持移动端编辑（支持移动端查看）
 - **不再支持 IE 浏览器**
