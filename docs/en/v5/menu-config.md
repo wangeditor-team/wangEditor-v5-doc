@@ -41,6 +41,35 @@ editorConfig.MENU_CONF['otherMenuKey'] = {
 
 // create editor, or Vue React <Editor> component
 ```
+### change the default Menu Conifg
+
+Change the default font, font size, and line height
+
+```ts
+    const jsonContent = [
+        {
+          type: 'paragraph',
+          lineHeight: '1.5',
+          children: [
+            { text: 'hello world', fontFamily: '黑体', fontSize: '32px' }
+          ]
+        },
+    ]
+```
+
+The Vue and React Editor component has the defaultContent attribute, which can be passed in the above jsonContent
+
+HTML Format 
+
+```ts
+    const htmlContent = '<p style="line-height: 1.5;"><span style="font-size: 32px; font-family: 黑体;">hello world</span></p>'
+``` 
+
+The Vue Editor component can use the v-model attribute to pass in HTML content, and the React Editor component can use the value attribute to pass in HTML content.
+
+- [Vue changes the default font size and line height](https://codesandbox.io/p/sandbox/vue2-wangeditor-demo-forked-67fh5s)
+- [React changes the default font size and line height](https://codesandbox.io/p/sandbox/react-wangeditor-defaultfont-59c48n)
+- [Related issues](https://github.com/wangeditor-team/wangEditor/issues/4042)
 
 ## Color
 
