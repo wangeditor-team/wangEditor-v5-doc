@@ -23,13 +23,13 @@ footer: Copyright © 2017-present wangeditor.com
 <!-- 赞助 -->
 <div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px; background: #f9f9f9">
   <a
-    href="https://space.bilibili.com/697803545"
+    href="https://huashuiai.com/"
     target="_blank"
     style="display: block; margin-top: 20px; font-size: 24px;"
   >
-    wangEditor 作者（双越老师）：前端面试 1-1 咨询服务
+    wangEditor 作者（双越老师）开发：Node 全栈 AIGC 知识库【划水AI】
   </a>
-  <span style="line-height: 1.8">优化简历 发掘亮点 &nbsp; | &nbsp; 模拟面试 评估效果 &nbsp; | &nbsp; 私人定制学习内容 &nbsp; | &nbsp; 制定学习计划 打卡点评 </span>
+  <span style="line-height: 1.8">AI 写作，AI 文本处理 &nbsp; | &nbsp; 富文本编辑器，多人协同编辑 &nbsp; | &nbsp; 真实上线，持续维护 &nbsp; | &nbsp; 可加入团队学习、开发 </span>
 </div>
 
 ### 使用简单
