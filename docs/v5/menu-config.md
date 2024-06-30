@@ -47,6 +47,35 @@ editorConfig.MENU_CONF['otherMenuKey'] = {
 
 // 创建 editor 或传入 Vue React <Editor> 组件
 ```
+### 修改默认配置
+
+修改默认字体、字号、行高
+
+```ts
+    const jsonContent = [
+        {
+          type: 'paragraph',
+          lineHeight: '1.5',
+          children: [
+            { text: 'hello world', fontFamily: '黑体', fontSize: '32px' }
+          ]
+        },
+    ]
+```
+
+Vue React Editor组件有 defaultContent 属性，可传入上述 jsonContent
+
+HTML 格式
+
+```ts
+    const htmlContent = '<p style="line-height: 1.5;"><span style="font-size: 32px; font-family: 黑体;">hello world</span></p>'
+``` 
+
+Vue Editor件可以使用 v-model 属性传入 HTML 内容，React Editor组件可以使用 value 属性传入 HTML 内容使用
+
+- [Vue修改默认字体字号行高](https://codesandbox.io/p/sandbox/vue2-wangeditor-demo-forked-67fh5s)
+- [React修改默认字体字号行高](https://codesandbox.io/p/sandbox/react-wangeditor-defaultfont-59c48n)
+- [相关 issues](https://github.com/wangeditor-team/wangEditor/issues/4042)
 
 ## 颜色
 
