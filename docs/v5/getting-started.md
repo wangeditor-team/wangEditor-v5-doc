@@ -1,6 +1,6 @@
 # 快速开始
 
-快速了解可查看[视频教程](/v5/video-course.html)。用于 Vue React 参考[这里](./for-frame.md)。
+用于 Vue React 参考[这里](./for-frame.md)。
 
 ## 创建空白编辑器
 
@@ -11,14 +11,21 @@
 可自定义编辑器、工具栏的尺寸、边框、`z-index` 等样式。
 
 ```html
-<link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+<link
+  href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css"
+  rel="stylesheet"
+/>
 <style>
   #editor—wrapper {
     border: 1px solid #ccc;
     z-index: 100; /* 按需定义 */
   }
-  #toolbar-container { border-bottom: 1px solid #ccc; }
-  #editor-container { height: 500px; }
+  #toolbar-container {
+    border-bottom: 1px solid #ccc;
+  }
+  #editor-container {
+    height: 500px;
+  }
 </style>
 ```
 
@@ -26,55 +33,57 @@
 
 ```html
 <div id="editor—wrapper">
-    <div id="toolbar-container"><!-- 工具栏 --></div>
-    <div id="editor-container"><!-- 编辑器 --></div>
+  <div id="toolbar-container"><!-- 工具栏 --></div>
+  <div id="editor-container"><!-- 编辑器 --></div>
 </div>
 ```
 
 ::: tip
+
 - 如果想要“全屏”功能，则要求工具栏、编辑器 DOM 节点必须是同一层级
 - 当然，工具栏、编辑器 DOM 节点也可自由组合，例如 [仿腾讯文档 demo](https://www.wangeditor.com/demo/like-qq-doc.html)
-:::
+  :::
 
 ### 引入 JS 创建编辑器
 
 ```html
 <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
 <script>
-const { createEditor, createToolbar } = window.wangEditor
+  const { createEditor, createToolbar } = window.wangEditor
 
-const editorConfig = {
+  const editorConfig = {
     placeholder: 'Type here...',
     onChange(editor) {
       const html = editor.getHtml()
       console.log('editor content', html)
       // 也可以同步到 <textarea>
-    }
-}
+    },
+  }
 
-const editor = createEditor({
+  const editor = createEditor({
     selector: '#editor-container',
     html: '<p><br></p>',
     config: editorConfig,
     mode: 'default', // or 'simple'
-})
+  })
 
-const toolbarConfig = {}
+  const toolbarConfig = {}
 
-const toolbar = createToolbar({
+  const toolbar = createToolbar({
     editor,
     selector: '#toolbar-container',
     config: toolbarConfig,
     mode: 'default', // or 'simple'
-})
+  })
 </script>
 ```
 
 ::: tip
 不同 `mode` 可参考 demo
+
 - [mode: 'default'](https://www.wangeditor.com/demo/index.html) 默认模式 - 集成了 wangEditor 所有功能
 - [mode: 'simple'](https://www.wangeditor.com/demo/simple-mode.html) 简洁模式 - 仅有部分常见功能，但更加简洁易用
-:::
+  :::
 
 这样就创建出了一个最基本的编辑器。
 

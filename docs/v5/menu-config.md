@@ -1,7 +1,5 @@
 # 菜单配置
 
-快速了解可查看[视频教程](./video-course.md)。
-
 本文是各个菜单项的详细配置。如想要自定义工具栏的菜单（隐藏某些菜单、排序、分组等），请参考[工具栏配置](/v5/toolbar-config.html)。
 
 ## 通用方法
@@ -24,25 +22,26 @@ editor.getMenuConfig('uploadImage') // 获取 uploadImage 的当前配置
 import { IEditorConfig } from '@wangeditor/editor'
 
 // 初始化 MENU_CONF 属性
-const editorConfig: Partial<IEditorConfig> = {  // TS 语法
-// const editorConfig = {                       // JS 语法
-    MENU_CONF: {}
+const editorConfig: Partial<IEditorConfig> = {
+  // TS 语法
+  // const editorConfig = {                       // JS 语法
+  MENU_CONF: {},
 
-    // 其他属性...
+  // 其他属性...
 }
 
 // 修改 uploadImage 菜单配置
 editorConfig.MENU_CONF['uploadImage'] = {
-    server: '/api/upload-image',
-    fieldName: 'custom-field-name'
-    // 继续写其他配置...
-    
-    //【注意】不需要修改的不用写，wangEditor 会去 merge 当前其他配置
+  server: '/api/upload-image',
+  fieldName: 'custom-field-name',
+  // 继续写其他配置...
+
+  //【注意】不需要修改的不用写，wangEditor 会去 merge 当前其他配置
 }
 
 // 修改 otherMenuKey 菜单配置
 editorConfig.MENU_CONF['otherMenuKey'] = {
-    // 配置
+  // 配置
 }
 
 // 创建 editor 或传入 Vue React <Editor> 组件
@@ -53,12 +52,12 @@ editorConfig.MENU_CONF['otherMenuKey'] = {
 ```ts
 // 文字颜色
 editorConfig.MENU_CONF['color'] = {
-    colors: ['#000', '#333', '#666']
+  colors: ['#000', '#333', '#666'],
 }
 
 // 背景色
 editorConfig.MENU_CONF['bgColor'] = {
-    colors: ['#000', '#333', '#666']
+  colors: ['#000', '#333', '#666'],
 }
 ```
 
@@ -66,16 +65,16 @@ editorConfig.MENU_CONF['bgColor'] = {
 
 ```ts
 editorConfig.MENU_CONF['fontSize'] = {
-    fontSizeList: [
-        // 元素支持两种形式
-        //   1. 字符串；
-        //   2. { name: 'xxx', value: 'xxx' }
+  fontSizeList: [
+    // 元素支持两种形式
+    //   1. 字符串；
+    //   2. { name: 'xxx', value: 'xxx' }
 
-        '12px',
-        '16px',
-        { name: '24px', value: '24px' },
-        '40px',
-    ]
+    '12px',
+    '16px',
+    { name: '24px', value: '24px' },
+    '40px',
+  ],
 }
 ```
 
@@ -87,18 +86,18 @@ editorConfig.MENU_CONF['fontSize'] = {
 
 ```ts
 editorConfig.MENU_CONF['fontFamily'] = {
-    fontFamilyList: [
-        // 元素支持两种形式
-        //   1. 字符串；
-        //   2. { name: 'xxx', value: 'xxx' }
+  fontFamilyList: [
+    // 元素支持两种形式
+    //   1. 字符串；
+    //   2. { name: 'xxx', value: 'xxx' }
 
-        '黑体',
-        '楷体',
-        { name: '仿宋', value: '仿宋' },
-        'Arial',
-        'Tahoma',
-        'Verdana'
-    ]
+    '黑体',
+    '楷体',
+    { name: '仿宋', value: '仿宋' },
+    'Arial',
+    'Tahoma',
+    'Verdana',
+  ],
 }
 ```
 
@@ -106,7 +105,7 @@ editorConfig.MENU_CONF['fontFamily'] = {
 
 ```ts
 editorConfig.MENU_CONF['lineHeight'] = {
-    lineHeightList: ['1', '1.5', '2', '2.5']
+  lineHeightList: ['1', '1.5', '2', '2.5'],
 }
 ```
 
@@ -114,10 +113,9 @@ editorConfig.MENU_CONF['lineHeight'] = {
 
 ```ts
 editorConfig.MENU_CONF['emotion'] = {
-    emotions: '😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉'.split(' ') // 数组
+  emotions: '😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉'.split(' '), // 数组
 }
 ```
-
 
 ## 链接
 
@@ -126,42 +124,47 @@ editorConfig.MENU_CONF['emotion'] = {
 
 ```ts
 // 自定义校验链接
-function customCheckLinkFn(text: string, url: string): string | boolean | undefined {   // TS 语法
-// function customCheckLinkFn(text, url) {                                              // JS 语法
+function customCheckLinkFn(
+  text: string,
+  url: string
+): string | boolean | undefined {
+  // TS 语法
+  // function customCheckLinkFn(text, url) {                                              // JS 语法
 
-    if (!url) {
-        return
-    }
-    if (url.indexOf('http') !== 0) {
-        return '链接必须以 http/https 开头'
-    }
-    return true
+  if (!url) {
+    return
+  }
+  if (url.indexOf('http') !== 0) {
+    return '链接必须以 http/https 开头'
+  }
+  return true
 
-    // 返回值有三种选择：
-    // 1. 返回 true ，说明检查通过，编辑器将正常插入链接
-    // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
-    // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
+  // 返回值有三种选择：
+  // 1. 返回 true ，说明检查通过，编辑器将正常插入链接
+  // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
+  // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
 }
 
 // 自定义转换链接 url
-function customParseLinkUrl(url: string): string {   // TS 语法
-// function customParseLinkUrl(url) {                // JS 语法
+function customParseLinkUrl(url: string): string {
+  // TS 语法
+  // function customParseLinkUrl(url) {                // JS 语法
 
-    if (url.indexOf('http') !== 0) {
-        return `http://${url}`
-    }
-    return url
+  if (url.indexOf('http') !== 0) {
+    return `http://${url}`
+  }
+  return url
 }
 
 // 插入链接
 editorConfig.MENU_CONF['insertLink'] = {
-    checkLink: customCheckLinkFn, // 也支持 async 函数
-    parseLinkUrl: customParseLinkUrl, // 也支持 async 函数
+  checkLink: customCheckLinkFn, // 也支持 async 函数
+  parseLinkUrl: customParseLinkUrl, // 也支持 async 函数
 }
 // 更新链接
 editorConfig.MENU_CONF['editLink'] = {
-    checkLink: customCheckLinkFn, // 也支持 async 函数
-    parseLinkUrl: customParseLinkUrl, // 也支持 async 函数
+  checkLink: customCheckLinkFn, // 也支持 async 函数
+  parseLinkUrl: customParseLinkUrl, // 也支持 async 函数
 }
 ```
 
@@ -173,14 +176,15 @@ editorConfig.MENU_CONF['editLink'] = {
 import { SlateElement } from '@wangeditor/editor'
 
 type ImageElement = SlateElement & {
-    src: string
-    alt: string
-    url: string
-    href: string
+  src: string
+  alt: string
+  url: string
+  href: string
 }
 ```
 
 图片菜单的配置
+
 - `onInsertedImage` 插入图片之后的回调
 - `onUpdatedImage` 更新图片之后的回调
 - `checkImage` 校验图片链接
@@ -188,54 +192,62 @@ type ImageElement = SlateElement & {
 
 ```ts
 // 自定义校验图片
-function customCheckImageFn(src: string, alt: string, url: string): boolean | undefined | string { // TS 语法
-// function customCheckImageFn(src, alt, url) {                                                    // JS 语法
-    if (!src) {
-        return
-    }
-    if (src.indexOf('http') !== 0) {
-        return '图片网址必须以 http/https 开头'
-    }
-    return true
+function customCheckImageFn(
+  src: string,
+  alt: string,
+  url: string
+): boolean | undefined | string {
+  // TS 语法
+  // function customCheckImageFn(src, alt, url) {                                                    // JS 语法
+  if (!src) {
+    return
+  }
+  if (src.indexOf('http') !== 0) {
+    return '图片网址必须以 http/https 开头'
+  }
+  return true
 
-    // 返回值有三种选择：
-    // 1. 返回 true ，说明检查通过，编辑器将正常插入图片
-    // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
-    // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
+  // 返回值有三种选择：
+  // 1. 返回 true ，说明检查通过，编辑器将正常插入图片
+  // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
+  // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
 }
 
 // 转换图片链接
-function customParseImageSrc(src: string): string {  // TS 语法
-// function customParseImageSrc(src) {               // JS 语法
-    if (src.indexOf('http') !== 0) {
-        return `http://${src}`
-    }
-    return src
+function customParseImageSrc(src: string): string {
+  // TS 语法
+  // function customParseImageSrc(src) {               // JS 语法
+  if (src.indexOf('http') !== 0) {
+    return `http://${src}`
+  }
+  return src
 }
 
 // 插入图片
 editorConfig.MENU_CONF['insertImage'] = {
-    onInsertedImage(imageNode: ImageElement | null) {  // TS 语法
+  onInsertedImage(imageNode: ImageElement | null) {
+    // TS 语法
     // onInsertedImage(imageNode) {                    // JS 语法
-        if (imageNode == null) return
+    if (imageNode == null) return
 
-        const { src, alt, url, href } = imageNode
-        console.log('inserted image', src, alt, url, href)
-    },
-    checkImage: customCheckImageFn, // 也支持 async 函数
-    parseImageSrc: customParseImageSrc, // 也支持 async 函数
+    const { src, alt, url, href } = imageNode
+    console.log('inserted image', src, alt, url, href)
+  },
+  checkImage: customCheckImageFn, // 也支持 async 函数
+  parseImageSrc: customParseImageSrc, // 也支持 async 函数
 }
 // 编辑图片
 editorConfig.MENU_CONF['editImage'] = {
-    onUpdatedImage(imageNode: ImageElement | null) {  // TS 语法
+  onUpdatedImage(imageNode: ImageElement | null) {
+    // TS 语法
     // onUpdatedImage(imageNode) {                    // JS 语法
-        if (imageNode == null) return
+    if (imageNode == null) return
 
-        const { src, alt, url } = imageNode
-        console.log('updated image', src, alt, url)
-    },
-    checkImage: customCheckImageFn, // 也支持 async 函数
-    parseImageSrc: customParseImageSrc, // 也支持 async 函数
+    const { src, alt, url } = imageNode
+    console.log('updated image', src, alt, url)
+  },
+  checkImage: customCheckImageFn, // 也支持 async 函数
+  parseImageSrc: customParseImageSrc, // 也支持 async 函数
 }
 ```
 
@@ -255,7 +267,7 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-     server: '/api/upload',
+  server: '/api/upload',
 }
 ```
 
@@ -286,43 +298,42 @@ editorConfig.MENU_CONF['uploadImage'] = {
 如果你的服务端 response body 无法按照上述格式，可以使用下文的 `customInsert`
 :::
 
-
 ### 基本配置
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    // form-data fieldName ，默认值 'wangeditor-uploaded-image'
-    fieldName: 'your-custom-name',
+  // form-data fieldName ，默认值 'wangeditor-uploaded-image'
+  fieldName: 'your-custom-name',
 
-    // 单个文件的最大体积限制，默认为 2M
-    maxFileSize: 1 * 1024 * 1024, // 1M
+  // 单个文件的最大体积限制，默认为 2M
+  maxFileSize: 1 * 1024 * 1024, // 1M
 
-    // 最多可上传几个文件，默认为 100
-    maxNumberOfFiles: 10,
+  // 最多可上传几个文件，默认为 100
+  maxNumberOfFiles: 10,
 
-    // 选择文件时的类型限制，默认为 ['image/*'] 。如不想限制，则设置为 []
-    allowedFileTypes: ['image/*'],
+  // 选择文件时的类型限制，默认为 ['image/*'] 。如不想限制，则设置为 []
+  allowedFileTypes: ['image/*'],
 
-    // 自定义上传参数，例如传递验证的 token 等。参数会被添加到 formData 中，一起上传到服务端。
-    meta: {
-        token: 'xxx',
-        otherKey: 'yyy'
-    },
+  // 自定义上传参数，例如传递验证的 token 等。参数会被添加到 formData 中，一起上传到服务端。
+  meta: {
+    token: 'xxx',
+    otherKey: 'yyy',
+  },
 
-    // 将 meta 拼接到 url 参数中，默认 false
-    metaWithUrl: false,
+  // 将 meta 拼接到 url 参数中，默认 false
+  metaWithUrl: false,
 
-    // 自定义增加 http  header
-    headers: {
-        Accept: 'text/x-json',
-        otherKey: 'xxx'
-    },
+  // 自定义增加 http  header
+  headers: {
+    Accept: 'text/x-json',
+    otherKey: 'xxx',
+  },
 
-    // 跨域是否传递 cookie ，默认为 false
-    withCredentials: true,
+  // 跨域是否传递 cookie ，默认为 false
+  withCredentials: true,
 
-    // 超时时间，默认为 10 秒
-    timeout: 5 * 1000, // 5 秒
+  // 超时时间，默认为 10 秒
+  timeout: 5 * 1000, // 5 秒
 }
 ```
 
@@ -330,41 +341,46 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    // 上传之前触发
-    onBeforeUpload(file: File) { // TS 语法
+  // 上传之前触发
+  onBeforeUpload(file: File) {
+    // TS 语法
     // onBeforeUpload(file) {    // JS 语法
-        // file 选中的文件，格式如 { key: file }
-        return file
+    // file 选中的文件，格式如 { key: file }
+    return file
 
-        // 可以 return
-        // 1. return file 或者 new 一个 file ，接下来将上传
-        // 2. return false ，不上传这个 file
-    },
+    // 可以 return
+    // 1. return file 或者 new 一个 file ，接下来将上传
+    // 2. return false ，不上传这个 file
+  },
 
-    // 上传进度的回调函数
-    onProgress(progress: number) {  // TS 语法
+  // 上传进度的回调函数
+  onProgress(progress: number) {
+    // TS 语法
     // onProgress(progress) {       // JS 语法
-        // progress 是 0-100 的数字
-        console.log('progress', progress)
-    },
+    // progress 是 0-100 的数字
+    console.log('progress', progress)
+  },
 
-    // 单个文件上传成功之后
-    onSuccess(file: File, res: any) {  // TS 语法
+  // 单个文件上传成功之后
+  onSuccess(file: File, res: any) {
+    // TS 语法
     // onSuccess(file, res) {          // JS 语法
-        console.log(`${file.name} 上传成功`, res)
-    },
+    console.log(`${file.name} 上传成功`, res)
+  },
 
-    // 单个文件上传失败
-    onFailed(file: File, res: any) {   // TS 语法
+  // 单个文件上传失败
+  onFailed(file: File, res: any) {
+    // TS 语法
     // onFailed(file, res) {           // JS 语法
-        console.log(`${file.name} 上传失败`, res)
-    },
+    console.log(`${file.name} 上传失败`, res)
+  },
 
-    // 上传错误，或者触发 timeout 超时
-    onError(file: File, err: any, res: any) {  // TS 语法
+  // 上传错误，或者触发 timeout 超时
+  onError(file: File, err: any, res: any) {
+    // TS 语法
     // onError(file, err, res) {               // JS 语法
-        console.log(`${file.name} 上传出错`, err, res)
-    },
+    console.log(`${file.name} 上传出错`, err, res)
+  },
 }
 ```
 
@@ -383,14 +399,15 @@ type InsertFnType = (url: string, alt: string, href: string) => void
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    // 自定义插入图片
-    customInsert(res: any, insertFn: InsertFnType) {  // TS 语法
+  // 自定义插入图片
+  customInsert(res: any, insertFn: InsertFnType) {
+    // TS 语法
     // customInsert(res, insertFn) {                  // JS 语法
-        // res 即服务端的返回结果
+    // res 即服务端的返回结果
 
-        // 从 res 中找到 url alt href ，然后插入图片
-        insertFn(url, alt, href)
-    },
+    // 从 res 中找到 url alt href ，然后插入图片
+    insertFn(url, alt, href)
+  },
 }
 ```
 
@@ -401,14 +418,15 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    // 自定义上传
-    async customUpload(file: File, insertFn: InsertFnType) {  // TS 语法
+  // 自定义上传
+  async customUpload(file: File, insertFn: InsertFnType) {
+    // TS 语法
     // async customUpload(file, insertFn) {                   // JS 语法
-        // file 即选中的文件
-        // 自己实现上传，并得到图片 url alt href
-        // 最后插入图片
-        insertFn(url, alt, href)
-    }
+    // file 即选中的文件
+    // 自己实现上传，并得到图片 url alt href
+    // 最后插入图片
+    insertFn(url, alt, href)
+  },
 }
 ```
 
@@ -419,14 +437,15 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    // 自定义选择图片
-    customBrowseAndUpload(insertFn: InsertFnType) {   // TS 语法
+  // 自定义选择图片
+  customBrowseAndUpload(insertFn: InsertFnType) {
+    // TS 语法
     // customBrowseAndUpload(insertFn) {              // JS 语法
-        // 自己选择文件
-        // 自己上传文件，并得到图片 url alt href
-        // 最后插入图片
-        insertFn(url, alt, href)
-    }
+    // 自己选择文件
+    // 自己上传文件，并得到图片 url alt href
+    // 最后插入图片
+    insertFn(url, alt, href)
+  },
 }
 ```
 
@@ -434,10 +453,10 @@ editorConfig.MENU_CONF['uploadImage'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadImage'] = {
-    // 其他配置...
+  // 其他配置...
 
-    // 小于该值就插入 base64 格式（而不上传），默认为 0
-    base64LimitSize: 5 * 1024 // 5kb
+  // 小于该值就插入 base64 格式（而不上传），默认为 0
+  base64LimitSize: 5 * 1024, // 5kb
 }
 ```
 
@@ -461,56 +480,63 @@ editorConfig.MENU_CONF['uploadImage'] = {
 import { SlateElement } from '@wangeditor/editor'
 
 type VideoElement = SlateElement & {
-    src: string
-    poster?: string
+  src: string
+  poster?: string
 }
 ```
 
 菜单配置
+
 - `onInsertedVideo` 插入视频之后的回调
 - `checkVideo` 校验视频链接
 - `parseVideoSrc` 转换视频链接
 
 ```ts
 // 自定义校验视频
-function customCheckVideoFn(src: string, poster: string): boolean | string | undefined {  // TS 语法
-// function customCheckVideoFn(src, poster) {                                             // JS 语法
-    if (!src) {
-        return
-    }
-    if (src.indexOf('http') !== 0) {
-        return '视频地址必须以 http/https 开头'
-    }
-    return true
+function customCheckVideoFn(
+  src: string,
+  poster: string
+): boolean | string | undefined {
+  // TS 语法
+  // function customCheckVideoFn(src, poster) {                                             // JS 语法
+  if (!src) {
+    return
+  }
+  if (src.indexOf('http') !== 0) {
+    return '视频地址必须以 http/https 开头'
+  }
+  return true
 
-    // 返回值有三种选择：
-    // 1. 返回 true ，说明检查通过，编辑器将正常插入视频
-    // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
-    // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
+  // 返回值有三种选择：
+  // 1. 返回 true ，说明检查通过，编辑器将正常插入视频
+  // 2. 返回一个字符串，说明检查未通过，编辑器会阻止插入。会 alert 出错误信息（即返回的字符串）
+  // 3. 返回 undefined（即没有任何返回），说明检查未通过，编辑器会阻止插入。但不会提示任何信息
 }
 
 // 自定义转换视频
-function customParseVideoSrc(src: string): string {  // TS 语法
-// function customParseVideoSrc(src) {               // JS 语法
-    if (src.includes('.bilibili.com')) {
-        // 转换 bilibili url 为 iframe （仅作为示例，不保证代码正确和完整）
-        const arr = location.pathname.split('/')
-        const vid = arr[arr.length - 1]
-        return `<iframe src="//player.bilibili.com/player.html?bvid=${vid}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>`
-    }
-    return src
+function customParseVideoSrc(src: string): string {
+  // TS 语法
+  // function customParseVideoSrc(src) {               // JS 语法
+  if (src.includes('.bilibili.com')) {
+    // 转换 bilibili url 为 iframe （仅作为示例，不保证代码正确和完整）
+    const arr = location.pathname.split('/')
+    const vid = arr[arr.length - 1]
+    return `<iframe src="//player.bilibili.com/player.html?bvid=${vid}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>`
+  }
+  return src
 }
 
 editorConfig.MENU_CONF['insertVideo'] = {
-    onInsertedVideo(videoNode: VideoElement | null) {  // TS 语法
+  onInsertedVideo(videoNode: VideoElement | null) {
+    // TS 语法
     // onInsertedVideo(videoNode) {                    // JS 语法
-        if (videoNode == null) return
+    if (videoNode == null) return
 
-        const { src } = videoNode
-        console.log('inserted video', src)
-    },
-    checkVideo: customCheckVideoFn, // 也支持 async 函数
-    parseVideoSrc: customParseVideoSrc, // 也支持 async 函数
+    const { src } = videoNode
+    console.log('inserted video', src)
+  },
+  checkVideo: customCheckVideoFn, // 也支持 async 函数
+  parseVideoSrc: customParseVideoSrc, // 也支持 async 函数
 }
 ```
 
@@ -530,7 +556,7 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-     server: '/api/upload',
+  server: '/api/upload',
 }
 ```
 
@@ -539,11 +565,11 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```json
 {
-    "errno": 0, // 注意：值是数字，不能是字符串
-    "data": {
-        "url": "xxx", // 视频 src ，必须
-        "poster": "xxx.png" // 视频封面图片 url ，可选
-    }
+  "errno": 0, // 注意：值是数字，不能是字符串
+  "data": {
+    "url": "xxx", // 视频 src ，必须
+    "poster": "xxx.png" // 视频封面图片 url ，可选
+  }
 }
 
 // 注意：@wangeditor/editor 版本 >= 5.1.8 才支持 video poster
@@ -553,8 +579,8 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```json
 {
-    "errno": 1, // 只要不等于 0 就行
-    "message": "失败信息"
+  "errno": 1, // 只要不等于 0 就行
+  "message": "失败信息"
 }
 ```
 
@@ -566,40 +592,40 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    // form-data fieldName ，默认值 'wangeditor-uploaded-video'
-    fieldName: 'your-custom-name',
+  // form-data fieldName ，默认值 'wangeditor-uploaded-video'
+  fieldName: 'your-custom-name',
 
-    // 单个文件的最大体积限制，默认为 10M
-    maxFileSize: 5 * 1024 * 1024, // 5M
+  // 单个文件的最大体积限制，默认为 10M
+  maxFileSize: 5 * 1024 * 1024, // 5M
 
-    // 最多可上传几个文件，默认为 5
-    maxNumberOfFiles: 3,
+  // 最多可上传几个文件，默认为 5
+  maxNumberOfFiles: 3,
 
-    // 选择文件时的类型限制，默认为 ['video/*'] 。如不想限制，则设置为 []
-    allowedFileTypes: ['video/*'],
+  // 选择文件时的类型限制，默认为 ['video/*'] 。如不想限制，则设置为 []
+  allowedFileTypes: ['video/*'],
 
-    // 自定义上传参数，例如传递验证的 token 等。参数会被添加到 formData 中，一起上传到服务端。
-    meta: {
-        token: 'xxx',
-        otherKey: 'yyy'
-    },
+  // 自定义上传参数，例如传递验证的 token 等。参数会被添加到 formData 中，一起上传到服务端。
+  meta: {
+    token: 'xxx',
+    otherKey: 'yyy',
+  },
 
-    // 将 meta 拼接到 url 参数中，默认 false
-    metaWithUrl: false,
+  // 将 meta 拼接到 url 参数中，默认 false
+  metaWithUrl: false,
 
-    // 自定义增加 http  header
-    headers: {
-        Accept: 'text/x-json',
-        otherKey: 'xxx'
-    },
+  // 自定义增加 http  header
+  headers: {
+    Accept: 'text/x-json',
+    otherKey: 'xxx',
+  },
 
-    // 跨域是否传递 cookie ，默认为 false
-    withCredentials: true,
+  // 跨域是否传递 cookie ，默认为 false
+  withCredentials: true,
 
-    // 超时时间，默认为 30 秒
-    timeout: 15 * 1000, // 15 秒
+  // 超时时间，默认为 30 秒
+  timeout: 15 * 1000, // 15 秒
 
-    // 视频不支持 base64 格式插入
+  // 视频不支持 base64 格式插入
 }
 ```
 
@@ -607,41 +633,46 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    // 上传之前触发
-    onBeforeUpload(file: File) {   // TS 语法
+  // 上传之前触发
+  onBeforeUpload(file: File) {
+    // TS 语法
     // onBeforeUpload(file) {      // JS 语法
-        // file 选中的文件，格式如 { key: file }
-        return file
+    // file 选中的文件，格式如 { key: file }
+    return file
 
-        // 可以 return
-        // 1. return file 或者 new 一个 file ，接下来将上传
-        // 2. return false ，不上传这个 file
-    },
+    // 可以 return
+    // 1. return file 或者 new 一个 file ，接下来将上传
+    // 2. return false ，不上传这个 file
+  },
 
-    // 上传进度的回调函数
-    onProgress(progress: number) {  // TS 语法
+  // 上传进度的回调函数
+  onProgress(progress: number) {
+    // TS 语法
     // onProgress(progress) {       // JS 语法
-        // progress 是 0-100 的数字
-        console.log('progress', progress)
-    },
+    // progress 是 0-100 的数字
+    console.log('progress', progress)
+  },
 
-    // 单个文件上传成功之后
-    onSuccess(file: File, res: any) {  // TS 语法
+  // 单个文件上传成功之后
+  onSuccess(file: File, res: any) {
+    // TS 语法
     // onSuccess(file, res) {          // JS 语法
-        console.log(`${file.name} 上传成功`, res)
-    },
+    console.log(`${file.name} 上传成功`, res)
+  },
 
-    // 单个文件上传失败
-    onFailed(file: File, res: any) {  // TS 语法
+  // 单个文件上传失败
+  onFailed(file: File, res: any) {
+    // TS 语法
     // onFailed(file, res) {          // JS 语法
-        console.log(`${file.name} 上传失败`, res)
-    },
+    console.log(`${file.name} 上传失败`, res)
+  },
 
-    // 上传错误，或者触发 timeout 超时
-    onError(file: File, err: any, res: any) {  // TS 语法
+  // 上传错误，或者触发 timeout 超时
+  onError(file: File, err: any, res: any) {
+    // TS 语法
     // onError(file, err, res) {               // JS 语法
-        console.log(`${file.name} 上传出错`, err, res)
-    },
+    console.log(`${file.name} 上传出错`, err, res)
+  },
 }
 ```
 
@@ -660,14 +691,15 @@ type InsertFnType = (url: string, poster: string = '') => void
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    // 自定义插入视频
-    customInsert(res: any, insertFn: InsertFnType) {  // TS 语法
+  // 自定义插入视频
+  customInsert(res: any, insertFn: InsertFnType) {
+    // TS 语法
     // customInsert(res, insertFn) {                  // JS 语法
-        // res 即服务端的返回结果
+    // res 即服务端的返回结果
 
-        // 从 res 中找到 url poster ，然后插入视频
-        insertFn(url, poster)
-    },
+    // 从 res 中找到 url poster ，然后插入视频
+    insertFn(url, poster)
+  },
 }
 ```
 
@@ -678,14 +710,15 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    // 自定义上传
-    async customUpload(file: File, insertFn: InsertFnType) {  // TS 语法
+  // 自定义上传
+  async customUpload(file: File, insertFn: InsertFnType) {
+    // TS 语法
     // async customUpload(file, insertFn) {                   // JS 语法
-        // file 即选中的文件
-        // 自己实现上传，并得到视频 url poster
-        // 最后插入视频
-        insertFn(url, poster)
-    }
+    // file 即选中的文件
+    // 自己实现上传，并得到视频 url poster
+    // 最后插入视频
+    insertFn(url, poster)
+  },
 }
 ```
 
@@ -696,14 +729,15 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```ts
 editorConfig.MENU_CONF['uploadVideo'] = {
-    // 自定义选择视频
-    customBrowseAndUpload(insertFn: InsertFnType) {  // TS 语法
+  // 自定义选择视频
+  customBrowseAndUpload(insertFn: InsertFnType) {
+    // TS 语法
     // customBrowseAndUpload(insertFn) {             // JS 语法
-        // 自己选择文件
-        // 自己上传文件，并得到视频 url poster
-        // 最后插入视频
-        insertFn(url, poster)
-    }
+    // 自己选择文件
+    // 自己上传文件，并得到视频 url poster
+    // 最后插入视频
+    insertFn(url, poster)
+  },
 }
 ```
 
@@ -713,13 +747,13 @@ editorConfig.MENU_CONF['uploadVideo'] = {
 
 ```ts
 editorConfig.MENU_CONF['codeSelectLang'] = {
-    // 代码语言
-    codeLangs: [
-        { text: 'CSS', value: 'css' },
-        { text: 'HTML', value: 'html' },
-        { text: 'XML', value: 'xml' },
-        // 其他
-    ]
+  // 代码语言
+  codeLangs: [
+    { text: 'CSS', value: 'css' },
+    { text: 'HTML', value: 'html' },
+    { text: 'XML', value: 'xml' },
+    // 其他
+  ],
 }
 ```
 

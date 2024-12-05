@@ -1,7 +1,5 @@
 # 自定义扩展新功能
 
-快速了解可查看[视频教程](./video-course.md)。
-
 wangEditor 从 V5 开始，源码上就分离了 core editor 还有各个 module 。<br>
 core 是核心 API ，editor 负责汇总集成。所有的具体功能，都分布在各个 module 中来实现。
 
@@ -27,40 +25,44 @@ core 是核心 API ，editor 负责汇总集成。所有的具体功能，都分
 ```ts
 import { IButtonMenu, IDomEditor } from '@wangeditor/editor'
 
-class MyButtonMenu implements IButtonMenu {   // TS 语法
-// class MyButtonMenu {                       // JS 语法
+class MyButtonMenu implements IButtonMenu {
+  // TS 语法
+  // class MyButtonMenu {                       // JS 语法
 
-    constructor() {
-        this.title = 'My menu title' // 自定义菜单标题
-        // this.iconSvg = '<svg>...</svg>' // 可选
-        this.tag = 'button'
-    }
+  constructor() {
+    this.title = 'My menu title' // 自定义菜单标题
+    // this.iconSvg = '<svg>...</svg>' // 可选
+    this.tag = 'button'
+  }
 
-    // 获取菜单执行时的 value ，用不到则返回空 字符串或 false
-    getValue(editor: IDomEditor): string | boolean {   // TS 语法
+  // 获取菜单执行时的 value ，用不到则返回空 字符串或 false
+  getValue(editor: IDomEditor): string | boolean {
+    // TS 语法
     // getValue(editor) {                              // JS 语法
-        return ' hello '
-    }
+    return ' hello '
+  }
 
-    // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
-    isActive(editor: IDomEditor): boolean {  // TS 语法
+  // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
+  isActive(editor: IDomEditor): boolean {
+    // TS 语法
     // isActive(editor) {                    // JS 语法
-        return false
-    }
+    return false
+  }
 
-    // 菜单是否需要禁用（如选中 H1 ，“引用”菜单被禁用），用不到则返回 false
-    isDisabled(editor: IDomEditor): boolean {   // TS 语法
+  // 菜单是否需要禁用（如选中 H1 ，“引用”菜单被禁用），用不到则返回 false
+  isDisabled(editor: IDomEditor): boolean {
+    // TS 语法
     // isDisabled(editor) {                     // JS 语法
-        return false
-    }
+    return false
+  }
 
-    // 点击菜单时触发的函数
-    exec(editor: IDomEditor, value: string | boolean) {   // TS 语法
+  // 点击菜单时触发的函数
+  exec(editor: IDomEditor, value: string | boolean) {
+    // TS 语法
     // exec(editor, value) {                              // JS 语法
-        if (this.isDisabled(editor)) return
-        editor.insertText(value) // value 即 this.value(editor) 的返回值
-    }
-
+    if (this.isDisabled(editor)) return
+    editor.insertText(value) // value 即 this.value(editor) 的返回值
+  }
 }
 ```
 
@@ -79,49 +81,58 @@ class MyButtonMenu implements IButtonMenu {   // TS 语法
 ```ts
 import { IDomEditor, ISelectMenu } from '@wangeditor/editor'
 
-class MySelectMenu implements ISelectMenu {   // TS 语法
-// class MySelectMenu {                       // JS 语法
+class MySelectMenu implements ISelectMenu {
+  // TS 语法
+  // class MySelectMenu {                       // JS 语法
 
-    constructor() {
-      this.title = 'My Select Menu',
-      this.tag = 'select'
-      this.width = 60
-    }
+  constructor() {
+    ;(this.title = 'My Select Menu'), (this.tag = 'select')
+    this.width = 60
+  }
 
-    // 下拉框的选项
-    getOptions(editor: IDomEditor) {   // TS 语法
+  // 下拉框的选项
+  getOptions(editor: IDomEditor) {
+    // TS 语法
     // getOptions(editor) {            // JS 语法
-        const options = [
-          { value: 'beijing', text: '北京', styleForRenderMenuList: { 'font-size': '32px', 'font-weight': 'bold' } },
-          { value: 'shanghai', text: '上海', selected: true },
-          { value: 'shenzhen', text: '深圳' }
-        ]
-        return options
-    }
+    const options = [
+      {
+        value: 'beijing',
+        text: '北京',
+        styleForRenderMenuList: { 'font-size': '32px', 'font-weight': 'bold' },
+      },
+      { value: 'shanghai', text: '上海', selected: true },
+      { value: 'shenzhen', text: '深圳' },
+    ]
+    return options
+  }
 
-    // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
-    isActive(editor: IDomEditor): boolean {    // TS 语法
+  // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
+  isActive(editor: IDomEditor): boolean {
+    // TS 语法
     // isActive(editor) {                      // JS 语法
-        return false
-    }
+    return false
+  }
 
-    // 获取菜单执行时的 value ，用不到则返回空 字符串或 false
-    getValue(editor: IDomEditor): string | boolean {    // TS 语法
+  // 获取菜单执行时的 value ，用不到则返回空 字符串或 false
+  getValue(editor: IDomEditor): string | boolean {
+    // TS 语法
     // getValue(editor) {                               // JS 语法
-        return 'shanghai' // 匹配 options 其中一个 value
-    }
+    return 'shanghai' // 匹配 options 其中一个 value
+  }
 
-    // 菜单是否需要禁用（如选中 H1 ，“引用”菜单被禁用），用不到则返回 false
-    isDisabled(editor: IDomEditor): boolean {   // TS 语法
+  // 菜单是否需要禁用（如选中 H1 ，“引用”菜单被禁用），用不到则返回 false
+  isDisabled(editor: IDomEditor): boolean {
+    // TS 语法
     // isDisabled(editor) {                     // JS 语法
-        return false
-    }
+    return false
+  }
 
-    // 点击菜单时触发的函数
-    exec(editor: IDomEditor, value: string | boolean) {   // TS 语法
+  // 点击菜单时触发的函数
+  exec(editor: IDomEditor, value: string | boolean) {
+    // TS 语法
     // exec(editor, value) {                              // JS 语法
-        // Select menu ，这个函数不用写，空着即可
-    }
+    // Select menu ，这个函数不用写，空着即可
+  }
 }
 ```
 
@@ -140,56 +151,62 @@ class MySelectMenu implements ISelectMenu {   // TS 语法
 ```ts
 import { IDomEditor, IDropPanelMenu } from '@wangeditor/editor'
 
-class MyDropPanelMenu implements IDropPanelMenu {    // TS 语法
-// class MyDropPanelMenu {                           // JS 语法
+class MyDropPanelMenu implements IDropPanelMenu {
+  // TS 语法
+  // class MyDropPanelMenu {                           // JS 语法
 
-    constructor() {
-        this.title = 'My menu'
-        // this.iconSvg = '<svg >...</svg>'
-        this.tag = 'button'
-        this.showDropPanel = true
-    }
+  constructor() {
+    this.title = 'My menu'
+    // this.iconSvg = '<svg >...</svg>'
+    this.tag = 'button'
+    this.showDropPanel = true
+  }
 
-    // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
-    isActive(editor: IDomEditor): boolean {    // TS 语法
+  // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
+  isActive(editor: IDomEditor): boolean {
+    // TS 语法
     // isActive(editor) {                      // JS 语法
-        return false
-    }
+    return false
+  }
 
-    // 获取菜单执行时的 value ，用不到则返回空 字符串或 false
-    getValue(editor: IDomEditor): string | boolean {    // TS 语法
+  // 获取菜单执行时的 value ，用不到则返回空 字符串或 false
+  getValue(editor: IDomEditor): string | boolean {
+    // TS 语法
     // getValue(editor) {                               // JS 语法
-        return ''
-    }
+    return ''
+  }
 
-    // 菜单是否需要禁用（如选中 H1 ，“引用”菜单被禁用），用不到则返回 false
-    isDisabled(editor: IDomEditor): boolean {   // TS 语法
+  // 菜单是否需要禁用（如选中 H1 ，“引用”菜单被禁用），用不到则返回 false
+  isDisabled(editor: IDomEditor): boolean {
+    // TS 语法
     // isDisabled(editor) {                     // JS 语法
-        return false
-    }
+    return false
+  }
 
-    // 点击菜单时触发的函数
-    exec(editor: IDomEditor, value: string | boolean) {   // TS 语法
+  // 点击菜单时触发的函数
+  exec(editor: IDomEditor, value: string | boolean) {
+    // TS 语法
     // exec(editor, value) {                              // JS 语法
-        // DropPanel menu ，这个函数不用写，空着即可
-    }
+    // DropPanel menu ，这个函数不用写，空着即可
+  }
 
-    // 定义 DropPanel 内部的 DOM Element
-    getPanelContentElem(editor: IDomEditor): DOMElement {   // TS 语法
+  // 定义 DropPanel 内部的 DOM Element
+  getPanelContentElem(editor: IDomEditor): DOMElement {
+    // TS 语法
     // getPanelContentElem(editor) {                        // JS 语法
-        const $list = $(`<ul>
+    const $list = $(`<ul>
             <li>北京</li> <li>上海</li> <li>深圳</li>
           </ul>`)
 
-        $list.on('click', 'li', function () {
-          editor.insertText(this.innerHTML)
-          editor.insertText(' ')
-        })
+    $list.on('click', 'li', function () {
+      editor.insertText(this.innerHTML)
+      editor.insertText(' ')
+    })
 
-        return $list[0] // 返回 DOM Element 类型
+    return $list[0] // 返回 DOM Element 类型
 
-        // PS：也可以把 $list 缓存下来，这样不用每次重复创建、重复绑定事件，优化性能
-    }
+    // PS：也可以把 $list 缓存下来，这样不用每次重复创建、重复绑定事件，优化性能
+  }
 }
 ```
 
@@ -208,63 +225,70 @@ class MyDropPanelMenu implements IDropPanelMenu {    // TS 语法
 ```ts
 import { IDomEditor, IModalMenu, SlateNode } from '@wangeditor/editor'
 
-class MyModalMenu implements IModalMenu {    // TS 语法
-// class MyModalMenu {                       // JS 语法
+class MyModalMenu implements IModalMenu {
+  // TS 语法
+  // class MyModalMenu {                       // JS 语法
 
-    constructor() {
-        this.title = 'My menu'
-        // this.iconSvg = '<svg >...</svg>'
-        this.tag = 'button'
-        this.showModal = true
-        this.modalWidth = 300
-    }
+  constructor() {
+    this.title = 'My menu'
+    // this.iconSvg = '<svg >...</svg>'
+    this.tag = 'button'
+    this.showModal = true
+    this.modalWidth = 300
+  }
 
-    // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
-    isActive(editor: IDomEditor): boolean {    // TS 语法
+  // 菜单是否需要激活（如选中加粗文本，“加粗”菜单会激活），用不到则返回 false
+  isActive(editor: IDomEditor): boolean {
+    // TS 语法
     // isActive(editor) {                      // JS 语法
-        return false
-    }
+    return false
+  }
 
-    // 获取菜单执行时的 value ，用不到则返回空 字符串或 false
-    getValue(editor: IDomEditor): string | boolean {    // TS 语法
+  // 获取菜单执行时的 value ，用不到则返回空 字符串或 false
+  getValue(editor: IDomEditor): string | boolean {
+    // TS 语法
     // getValue(editor) {                               // JS 语法
-        return ''
-    }
+    return ''
+  }
 
-    // 菜单是否需要禁用（如选中 H1 ，“引用”菜单被禁用），用不到则返回 false
-    isDisabled(editor: IDomEditor): boolean {   // TS 语法
+  // 菜单是否需要禁用（如选中 H1 ，“引用”菜单被禁用），用不到则返回 false
+  isDisabled(editor: IDomEditor): boolean {
+    // TS 语法
     // isDisabled(editor) {                     // JS 语法
-        return false
-    }
+    return false
+  }
 
-    // 点击菜单时触发的函数
-    exec(editor: IDomEditor, value: string | boolean) {   // TS 语法
+  // 点击菜单时触发的函数
+  exec(editor: IDomEditor, value: string | boolean) {
+    // TS 语法
     // exec(editor, value) {                              // JS 语法
-        // Modal menu ，这个函数不用写，空着即可
-    }
+    // Modal menu ，这个函数不用写，空着即可
+  }
 
-    // 弹出框 modal 的定位：1. 返回某一个 SlateNode； 2. 返回 null （根据当前选区自动定位）
-    getModalPositionNode(editor: IDomEditor): SlateNode | null {  // TS 语法
+  // 弹出框 modal 的定位：1. 返回某一个 SlateNode； 2. 返回 null （根据当前选区自动定位）
+  getModalPositionNode(editor: IDomEditor): SlateNode | null {
+    // TS 语法
     // getModalPositionNode(editor) {                             // JS 语法
-        return null // modal 依据选区定位
-    }
+    return null // modal 依据选区定位
+  }
 
-    // 定义 modal 内部的 DOM Element
-    getModalContentElem(editor: IDomEditor): DOMElement {   // TS 语法
+  // 定义 modal 内部的 DOM Element
+  getModalContentElem(editor: IDomEditor): DOMElement {
+    // TS 语法
     // getModalContentElem(editor) {                        // JS 语法
 
-        const $content = $('<div></div>')
-        const $button = $('<button>do something</button>')
-        $content.append($button)
+    const $content = $('<div></div>')
+    const $button = $('<button>do something</button>')
+    $content.append($button)
 
-        $button.on('click', () => {
-            editor.insertText(' hello ')
-        })
+    $button.on('click', () => {
+      editor.insertText(' hello ')
+    })
 
-        return $content[0] // 返回 DOM Element 类型
+    return $content[0] // 返回 DOM Element 类型
 
-        // PS：也可以把 $content 缓存下来，这样不用每次重复创建、重复绑定事件，优化性能
-    }
+    // PS：也可以把 $content 缓存下来，这样不用每次重复创建、重复绑定事件，优化性能
+  }
 }
 ```
 
@@ -310,12 +334,12 @@ Boot.registerMenu(menu1Conf)
 
 第二，如果除了菜单之外还要同时注册其他能力，则建议使用 `registerModule`
 
-
 ```ts
 import { Boot, IModuleConf } from '@wangeditor/editor'
 
-const module: Partial<IModuleConf> = {   // TS 语法
-// const module = {                      // JS 语法
+const module: Partial<IModuleConf> = {
+  // TS 语法
+  // const module = {                      // JS 语法
 
   menus: [menu1Conf, menu2Conf, menu3Conf],
 
@@ -325,13 +349,15 @@ Boot.registerModule(module)
 ```
 
 :::tip
+
 - 必须在创建编辑器之前注册
 - 全局只能注册一次，不要重复注册
-:::
+  :::
 
 ### 插入菜单到工具栏
 
 在创建编辑器（或渲染 Vue React 组件时）注册到工具栏，可选择以下方式
+
 - 注册到工具栏 [insertKeys](./toolbar-config.md#insertkeys)
 - 注册到悬浮菜单 [hoverbarKeys](./editor-config.md#hoverbarkeys)
 
@@ -346,34 +372,35 @@ Boot.registerModule(module)
 ```ts
 import { IDomEditor } from '@wangeditor/editor'
 
-function withBreakAndDelete<T extends IDomEditor>(editor: T): T {   // TS 语法
-// function withBreakAndDelete(editor) {                            // JS 语法
+function withBreakAndDelete<T extends IDomEditor>(editor: T): T {
+  // TS 语法
+  // function withBreakAndDelete(editor) {                            // JS 语法
 
-    const { insertBreak, deleteBackward } = editor // 获取当前 editor API
-    const newEditor = editor
+  const { insertBreak, deleteBackward } = editor // 获取当前 editor API
+  const newEditor = editor
 
-    // 重写 insertBreak 换行
-    newEditor.insertBreak = () => {
-        // if: 是 ctrl + enter ，则执行 insertBreak
-        insertBreak()
+  // 重写 insertBreak 换行
+  newEditor.insertBreak = () => {
+    // if: 是 ctrl + enter ，则执行 insertBreak
+    insertBreak()
 
-        // else: 则不执行换行
-        return
-    }
+    // else: 则不执行换行
+    return
+  }
 
-    // 重写 deleteBackward 向后删除
-    newEditor.deleteBackward = unit => {
-        // if： 某种情况下，执行默认的删除
-        deleteBackward(unit)
+  // 重写 deleteBackward 向后删除
+  newEditor.deleteBackward = (unit) => {
+    // if： 某种情况下，执行默认的删除
+    deleteBackward(unit)
 
-        // else: 其他情况，则不执行删除
-        return
-    }
+    // else: 其他情况，则不执行删除
+    return
+  }
 
-    // 重写其他 API ...
+  // 重写其他 API ...
 
-    // 返回 newEditor ，重要！
-    return newEditor
+  // 返回 newEditor ，重要！
+  return newEditor
 }
 ```
 
@@ -394,8 +421,9 @@ Boot.registerPlugin(withBreakAndDelete)
 ```ts
 import { Boot, IModuleConf } from '@wangeditor/editor'
 
-const module: Partial<IModuleConf> = {   // TS 语法
-// const module = {                      // JS 语法
+const module: Partial<IModuleConf> = {
+  // TS 语法
+  // const module = {                      // JS 语法
 
   // menus: [menu1Conf, menu2Conf, menu3Conf], // 菜单
   editorPlugin: withBreakAndDelete, // 插件
@@ -406,9 +434,10 @@ Boot.registerModule(module)
 ```
 
 :::tip
+
 - 必须在创建编辑器之前注册
 - 全局只能注册一次，不要重复注册
-:::
+  :::
 
 至此一个插件就注册完成，可以监听编辑器的 `insertBreak` 和 `deleteBackward` 事件。
 
@@ -456,18 +485,19 @@ const myResume: AttachmentElement = {  // TS 语法
 ```ts
 import { DomEditor, IDomEditor } from '@wangeditor/editor'
 
-function withAttachment<T extends IDomEditor>(editor: T) {  // TS 语法
-// function withAttachment(editor) {                        // JS 语法
+function withAttachment<T extends IDomEditor>(editor: T) {
+  // TS 语法
+  // function withAttachment(editor) {                        // JS 语法
   const { isInline, isVoid } = editor
   const newEditor = editor
 
-  newEditor.isInline = elem => {
+  newEditor.isInline = (elem) => {
     const type = DomEditor.getNodeType(elem)
     if (type === 'attachment') return true // 针对 type: attachment ，设置为 inline
     return isInline(elem)
   }
 
-  newEditor.isVoid = elem => {
+  newEditor.isVoid = (elem) => {
     const type = DomEditor.getNodeType(elem)
     if (type === 'attachment') return true // 针对 type: attachment ，设置为 void
     return isVoid(elem)
@@ -571,12 +601,13 @@ Boot.registerRenderElem(renderElemConf)
 ```ts
 import { Boot, IModuleConf } from '@wangeditor/editor'
 
-const module: Partial<IModuleConf> = {   // TS 语法
-// const module = {                      // JS 语法
+const module: Partial<IModuleConf> = {
+  // TS 语法
+  // const module = {                      // JS 语法
 
   // menus: [menu1Conf, menu2Conf, menu3Conf], // 菜单
   // editorPlugin: withBreakAndDelete, // 插件
-  renderElems: [renderElemConf, /* 其他元素... */] // renderElem
+  renderElems: [renderElemConf /* 其他元素... */], // renderElem
 
   // 其他功能，下文讲解...
 }
@@ -584,9 +615,10 @@ Boot.registerModule(module)
 ```
 
 :::tip
+
 - 必须在创建编辑器之前注册
 - 全局只能注册一次，不要重复注册
-:::
+  :::
 
 此时，你再执行 `editor.insertNode(myResume)` 就可以看到“附件”元素被渲染到了编辑器中。
 
@@ -607,8 +639,9 @@ import { SlateElement } from '@wangeditor/editor'
  * @param childrenHtml 子节点的 HTML 代码，void 元素可忽略
  * @returns “附件”元素的 HTML 字符串
  */
-function attachmentToHtml(elem: SlateElement, childrenHtml: string): string {  // TS 语法
-// function attachmentToHtml(elem, childrenHtml) {                             // JS 语法
+function attachmentToHtml(elem: SlateElement, childrenHtml: string): string {
+  // TS 语法
+  // function attachmentToHtml(elem, childrenHtml) {                             // JS 语法
 
   // 获取附件元素的数据
   const { link = '', fileName = '' } = elem
@@ -660,13 +693,14 @@ Boot.registerElemToHtml(elemToHtmlConf)
 ```ts
 import { Boot, IModuleConf } from '@wangeditor/editor'
 
-const module: Partial<IModuleConf> = {   // TS 语法
-// const module = {                      // JS 语法
+const module: Partial<IModuleConf> = {
+  // TS 语法
+  // const module = {                      // JS 语法
 
   // menus: [menu1Conf, menu2Conf, menu3Conf], // 菜单
   // editorPlugin: withBreakAndDelete, // 插件
   // renderElems: [renderElemConf],    // renderElem
-  elemsToHtml: [elemToHtmlConf, /* 其他元素... */]  // elemToHtml
+  elemsToHtml: [elemToHtmlConf /* 其他元素... */], // elemToHtml
 
   // 其他功能，下文讲解...
 }
@@ -674,9 +708,10 @@ Boot.registerModule(module)
 ```
 
 :::tip
+
 - 必须在创建编辑器之前注册
 - 全局只能注册一次，不要重复注册
-:::
+  :::
 
 此时，你再执行 `editor.getHtml()` 即可得到“附件”元素的 HTML 代码，显示 HTML 时可配合 JS 实现点击下载附件的效果。
 
@@ -696,8 +731,13 @@ import { IDomEditor, SlateDescendant, SlateElement } from '@wangeditor/editor'
  * @param editor editor 实例
  * @returns “附件”元素，如上文的 myResume
  */
-function parseAttachmentHtml(domElem: Element, children: SlateDescendant[], editor: IDomEditor): SlateElement {  // TS 语法
-// function parseAttachmentHtml(domElem, children, editor) {                                                     // JS 语法
+function parseAttachmentHtml(
+  domElem: Element,
+  children: SlateDescendant[],
+  editor: IDomEditor
+): SlateElement {
+  // TS 语法
+  // function parseAttachmentHtml(domElem, children, editor) {                                                     // JS 语法
 
   // 从 DOM element 中获取“附件”的信息
   const link = domElem.getAttribute('data-link') || ''
@@ -741,32 +781,35 @@ Boot.registerParseElemHtml(parseHtmlConf)
 ```ts
 import { Boot, IModuleConf } from '@wangeditor/editor'
 
-const module: Partial<IModuleConf> = {   // TS 语法
-// const module = {                      // JS 语法
+const module: Partial<IModuleConf> = {
+  // TS 语法
+  // const module = {                      // JS 语法
 
   // menus: [menu1Conf, menu2Conf, menu3Conf], // 菜单
   // editorPlugin: withBreakAndDelete, // 插件
   // renderElems: [renderElemConf],    // renderElem
   // elemsToHtml: [elemToHtmlConf],    // elemToHtml
-  parseElemsHtml: [parseHtmlConf, /* 其他元素... */]  // parseElemHtml
+  parseElemsHtml: [parseHtmlConf /* 其他元素... */], // parseElemHtml
 }
 Boot.registerModule(module)
 ```
 
 :::tip
+
 - 必须在创建编辑器之前注册
 - 全局只能注册一次，不要重复注册
-:::
+  :::
 
 此时，再把获取的 HTML 设置到编辑器中 `editor.setHtml(html)` 即可成功显示“附件”元素。
 
 ## 总结
 
 一个模块常用代码文件如下，共选择参考（不一定都用到）
+
 - render-elem.ts
 - elem-to-html.ts
 - parse-elem-html.ts
 - plugin.ts
 - menu/
-    - Menu1.ts
-    - Menu2.ts
+  - Menu1.ts
+  - Menu2.ts

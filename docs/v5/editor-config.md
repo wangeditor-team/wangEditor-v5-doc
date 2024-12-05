@@ -1,7 +1,5 @@
 # 编辑器配置
 
-快速了解可查看[视频教程](./video-course.md)。
-
 ```ts{5}
 import { IEditorConfig } from '@wangeditor/editor'
 
@@ -53,9 +51,10 @@ editorConfig.scroll = false
 
 :::tip
 可将 scroll 设置为 `false` 的情况：
+
 - 编辑器高度自增
 - 在线文档，如腾讯文档、语雀那样的，参考 [demo](https://www.wangeditor.com/demo/zh-CN/like-qq-doc.html) 中的“仿腾讯文档”
-:::
+  :::
 
 ## maxLength onMaxLength
 
@@ -65,9 +64,10 @@ editorConfig.scroll = false
 import { IDomEditor } from '@wangeditor/editor'
 
 editorConfig.maxLength = 1000
-editorConfig.onMaxLength = function (editor: IDomEditor) {   // TS 语法
-// editorConfig.onMaxLength = function (editor) {            // JS 语法
-    // 当达到 maxlength 限制时，触发该回调函数
+editorConfig.onMaxLength = function (editor: IDomEditor) {
+  // TS 语法
+  // editorConfig.onMaxLength = function (editor) {            // JS 语法
+  // 当达到 maxlength 限制时，触发该回调函数
 }
 ```
 
@@ -96,14 +96,14 @@ createEditor 时设置 `mode: 'simple'` 可隐藏选中文本时的 hoverbar 。
 
 ```ts
 editorConfig.hoverbarKeys = {
-    'link': {
-        // 重写 link 元素的 hoverbar
-        menuKeys: ['editLink', 'unLink', 'viewLink'],
-    },
-    'image': {
-        // 清空 image 元素的 hoverbar
-        menuKeys: [],
-    }
+  link: {
+    // 重写 link 元素的 hoverbar
+    menuKeys: ['editLink', 'unLink', 'viewLink'],
+  },
+  image: {
+    // 清空 image 元素的 hoverbar
+    menuKeys: [],
+  },
 }
 ```
 
@@ -135,9 +135,10 @@ editorConfig.hoverbarKeys = {
 ```ts
 import { IDomEditor } from '@wangeditor/editor'
 
-editorConfig.onCreated = (editor: IDomEditor) => {   // TS 语法
-// editorConfig.onCreated = (editor) => {            // JS 语法
-    // editor created
+editorConfig.onCreated = (editor: IDomEditor) => {
+  // TS 语法
+  // editorConfig.onCreated = (editor) => {            // JS 语法
+  // editor created
 }
 ```
 
@@ -148,10 +149,11 @@ editorConfig.onCreated = (editor: IDomEditor) => {   // TS 语法
 ```ts
 import { IDomEditor } from '@wangeditor/editor'
 
-editorConfig.onChange = (editor: IDomEditor) => {   // TS 语法
-// editorConfig.onChange = (editor) => {            // JS 语法
-    // editor changed
-    console.log('content', editor.children)
+editorConfig.onChange = (editor: IDomEditor) => {
+  // TS 语法
+  // editorConfig.onChange = (editor) => {            // JS 语法
+  // editor changed
+  console.log('content', editor.children)
 }
 ```
 
@@ -162,9 +164,10 @@ editorConfig.onChange = (editor: IDomEditor) => {   // TS 语法
 ```ts
 import { IDomEditor } from '@wangeditor/editor'
 
-editorConfig.onDestroyed = (editor: IDomEditor) => {   // TS 语法
-// editorConfig.onDestroyed = (editor) => {            // JS 语法
-    // editor destroyed
+editorConfig.onDestroyed = (editor: IDomEditor) => {
+  // TS 语法
+  // editorConfig.onDestroyed = (editor) => {            // JS 语法
+  // editor destroyed
 }
 ```
 
@@ -175,9 +178,10 @@ editorConfig.onDestroyed = (editor: IDomEditor) => {   // TS 语法
 ```ts
 import { IDomEditor } from '@wangeditor/editor'
 
-editorConfig.onFocus = (editor: IDomEditor) => {    // TS 语法
-// editorConfig.onFocus = (editor) => {             // JS 语法
-    // editor focused
+editorConfig.onFocus = (editor: IDomEditor) => {
+  // TS 语法
+  // editorConfig.onFocus = (editor) => {             // JS 语法
+  // editor focused
 }
 ```
 
@@ -188,9 +192,10 @@ editorConfig.onFocus = (editor: IDomEditor) => {    // TS 语法
 ```ts
 import { IDomEditor } from '@wangeditor/editor'
 
-editorConfig.onBlur = (editor: IDomEditor) => {   // TS 语法
-// editorConfig.onBlur = (editor) => {            // JS 语法
-    // editor blur
+editorConfig.onBlur = (editor: IDomEditor) => {
+  // TS 语法
+  // editorConfig.onBlur = (editor) => {            // JS 语法
+  // editor blur
 }
 ```
 
@@ -201,30 +206,34 @@ editorConfig.onBlur = (editor: IDomEditor) => {   // TS 语法
 ```ts
 import { IDomEditor } from '@wangeditor/editor'
 
-editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean => {     // TS 语法
-// editorConfig.customPaste = (editor, event) => {                                       // JS 语法
+editorConfig.customPaste = (
+  editor: IDomEditor,
+  event: ClipboardEvent
+): boolean => {
+  // TS 语法
+  // editorConfig.customPaste = (editor, event) => {                                       // JS 语法
 
-    // event 是 ClipboardEvent 类型，可以拿到粘贴的数据
-    // 可参考 https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
+  // event 是 ClipboardEvent 类型，可以拿到粘贴的数据
+  // 可参考 https://developer.mozilla.org/zh-CN/docs/Web/API/ClipboardEvent
 
-    // const html = event.clipboardData.getData('text/html') // 获取粘贴的 html
-    // const text = event.clipboardData.getData('text/plain') // 获取粘贴的纯文本
-    // const rtf = event.clipboardData.getData('text/rtf') // 获取 rtf 数据（如从 word wsp 复制粘贴）
+  // const html = event.clipboardData.getData('text/html') // 获取粘贴的 html
+  // const text = event.clipboardData.getData('text/plain') // 获取粘贴的纯文本
+  // const rtf = event.clipboardData.getData('text/rtf') // 获取 rtf 数据（如从 word wsp 复制粘贴）
 
-    // 同步
-    editor.insertText('xxx')
+  // 同步
+  editor.insertText('xxx')
 
-    // 异步
-    setTimeout(() => {
-        editor.insertText('yy')
-    }, 1000)
+  // 异步
+  setTimeout(() => {
+    editor.insertText('yy')
+  }, 1000)
 
-    // 阻止默认的粘贴行为
-    event.preventDefault()
-    return false
+  // 阻止默认的粘贴行为
+  event.preventDefault()
+  return false
 
-    // 继续执行默认的粘贴行为
-    // return true
+  // 继续执行默认的粘贴行为
+  // return true
 }
 ```
 
@@ -235,25 +244,26 @@ editorConfig.customPaste = (editor: IDomEditor, event: ClipboardEvent): boolean 
 ```ts
 import { message } from 'antd'
 
-editorConfig.customAlert = (s: string, t: string) => {    // TS 语法
-// editorConfig.customAlert = (s, t) => {                 // JS 语法
-    switch (t) {
-        case 'success':
-            message.success(s)
-            break
-        case 'info':
-            message.info(s)
-            break
-        case 'warning':
-            message.warning(s)
-            break
-        case 'error':
-            message.error(s)
-            break
-        default:
-            message.info(s)
-            break
-    }
+editorConfig.customAlert = (s: string, t: string) => {
+  // TS 语法
+  // editorConfig.customAlert = (s, t) => {                 // JS 语法
+  switch (t) {
+    case 'success':
+      message.success(s)
+      break
+    case 'info':
+      message.info(s)
+      break
+    case 'warning':
+      message.warning(s)
+      break
+    case 'error':
+      message.error(s)
+      break
+    default:
+      message.info(s)
+      break
+  }
 }
 ```
 
