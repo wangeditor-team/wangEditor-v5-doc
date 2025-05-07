@@ -23,13 +23,13 @@ footer: Copyright © 2017-present wangeditor.com
 <!-- 赞助 -->
 <div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px; background: #f9f9f9">
   <a
-    href="https://www.mianshipai.com/"
+    href="https://www.huashuiai.com/join?from=wangeditor"
     target="_blank"
     style="display: block; margin-top: 20px; font-size: 24px;"
   >
-    前端面试派：助你写简历 + 刷题 + 面试技巧，开源免费～
+    前端学 Node 全栈和 AI 开发，可加入【划水AI】项目研发小组
   </a>
-  <span style="line-height: 1.8">wangEditor 作者（双越老师）带队开发，联合多位前端博主，持续更新，免费加群答疑</span>
+  <span style="line-height: 1.8">wangEditor 作者（双越老师）开发，复杂项目，真实上线（非本地 demo），持续维护升级。此处报名有优惠 >></span>
 </div>
 
 ### 使用简单
