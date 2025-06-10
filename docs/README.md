@@ -21,18 +21,25 @@ footer: Copyright © 2017-present wangeditor.com
 ---
 
 <!-- 赞助 -->
-<div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px; background: #f9f9f9">
-  <!-- <a
+<!-- <div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px; background: #f9f9f9">
+  <a
     href="https://www.huashuiai.com/join?from=wangeditor"
     target="_blank"
     style="display: block; margin-top: 20px; font-size: 24px;"
   >
     前端学 Node 全栈和 AI 开发，可加入【划水AI】项目研发小组
   </a>
-  <span style="line-height: 1.8">wangEditor 作者（双越老师）开发，复杂项目，真实上线（非本地 demo），持续维护升级。此处报名有优惠 >></span> -->
-  <a href="https://getrebuild.com/?utm_medium=editor-25e&hmsr=editor-25e" target="_blank">
-    <img src="/image/ad/getrebuild.png"/>
-  </a>
+  <span style="line-height: 1.8">wangEditor 作者（双越老师）开发，复杂项目，真实上线（非本地 demo），持续维护升级。此处报名有优惠 >></span>
+</div> -->
+<div style="border: 1px solid #f1f1f1; position: relative; text-align: center; height: 100px; background: #f9f9f9">
+  <a
+    href="https://getrebuild.com/?utm_medium=editor-25e&hmsr=editor-25e"
+    target="_blank"
+    style="display: block; margin-top: 20px; font-size: 24px;font-weight:bold"
+  >
+    零代码、免费开源的企业管理系统 REBUILD
+  </a >
+  <span style="line-height: 1.8">5分钟快速私有化部署 >></span>
 </div>
 
 ### 使用简单
