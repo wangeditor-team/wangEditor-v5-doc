@@ -31,9 +31,10 @@ footer: Copyright © 2017-present wangeditor.com
   </a>
   <span style="line-height: 1.8">wangEditor 作者（双越老师）开发，复杂项目，真实上线（非本地 demo），持续维护升级。此处报名有优惠 >></span>
 </div> -->
+<!-- 下面广告有效期至 2026.07.10 -->
 <div style="position: relative; text-align: center; height: 100px; background: linear-gradient(90deg, #ff80d5, #4d8dff); border-radius: 12px">
       <a href="https://getrebuild.com/?utm_medium=editor-25e&hmsr=editor-25e" target="_blank" style="display: block; color: #fff; text-decoration: none">
-        <h2 style="font-size: 1.6rem; line-height: 38px; padding-top: 20px; margin: 0; border: 0 none">零代码、免费开源的企业管理系统 REBUILD</h2>
+        <h2 style="font-size: 1.6rem; line-height: 38px; padding-top: 20px; margin: 0; border: 0 none">首款AI集成，零代码、免费开源的管理系统</h2>
         <span style="font-size: 16px; color: #eee; text-decoration: underline">5分钟快速私有化部署 &gt;&gt;</span>
       </a>
     </div>
