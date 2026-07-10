@@ -62,6 +62,5 @@ footer: Copyright © 2017-present wangeditor.com
 
 ### 赞助商
 
-- [Temp Mail](https://tempmail100.com) 是一种临时电子邮件服务，可以快速生成一次性电子邮件地址，保护用户的隐私，避免垃圾邮件。
 - [划水 AI](https://www.huashuiai.com/) Node 全栈开发的 AIGC 知识库，多人协同编辑，AI 智能写作。可[加入](https://www.huashuiai.com/join?from=wangeditor)项目学习和参与开发。
 - [前端面试派](https://www.mianshipai.com/) 系统专业的前端面试导航，大厂面试流程，前端面试刷题必备。[双越老师](https://juejin.cn/user/1714893868765373/posts)带队，开源免费。
