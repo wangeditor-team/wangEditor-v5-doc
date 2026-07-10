@@ -63,7 +63,7 @@ module.exports = {
         adContent.style.cursor = 'pointer';
         adContent.addEventListener('click', function() {
           // window.open('https://www.huashuiai.com/join?from=wangeditor', '_blank');
-          window.open('https://www.huashuiai.com/pub/ai-agent-camp', '_blank');
+          window.open('https://www.huashuiai.com/pub/ai-agent-camp-new', '_blank');
         });
 
         const adClose = document.createElement('div');
