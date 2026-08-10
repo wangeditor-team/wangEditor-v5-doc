@@ -6,3 +6,4 @@
 - [markdown](https://github.com/wangeditor-team/wangEditor-plugin-md)
 - [上传附件](https://github.com/wangeditor-team/wangEditor-plugin-upload-attachment)
 - [链接卡片](https://github.com/wangeditor-team/wangEditor-plugin-link-card)
+- [图片浮动](https://github.com/hqwlkj/wangEditor-plugin-float-image)
